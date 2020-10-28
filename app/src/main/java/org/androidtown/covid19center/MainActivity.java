@@ -27,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setBottomNavigation();
+        
+        // 초기화면 검색화면으로 설정
+        setFragment(FRAGMENT_SEARCH);
     }
 
 
