@@ -5,4 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FragmentSelfCheck">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="자가진단"
+        tools:layout_editor_absoluteX="114dp"
+        tools:layout_editor_absoluteY="242dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

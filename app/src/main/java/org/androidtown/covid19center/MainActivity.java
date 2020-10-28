@@ -27,14 +27,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setBottomNavigation();
-
     }
 
 
-    // 바텀 네비게이션 설정 및 프레그먼트 변경
-
+    // 바텀 네비게이션 설정
     public void setBottomNavigation(){
         bottomNavigationView = findViewById(R.id.bottomNavi);
+
+        // 프레그먼트 선택 시 이벤트 처리 함수
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
