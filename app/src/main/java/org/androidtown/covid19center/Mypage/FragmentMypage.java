@@ -1,4 +1,4 @@
-package org.androidtown.covid19center;
+package org.androidtown.covid19center.Mypage;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -9,7 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class FragmentSearch extends Fragment {
+import org.androidtown.covid19center.R;
+
+public class FragmentMypage extends Fragment {
 
     private View view;
 
@@ -17,7 +19,7 @@ public class FragmentSearch extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
-        view = inflater.inflate(R.layout.fragment_search,container,false);
+        view = inflater.inflate(R.layout.fragment_mypage,container,false);
         return view;
     }
 
