@@ -14,4 +14,11 @@
         android:text="마이페이지"
         tools:layout_editor_absoluteX="110dp"
         tools:layout_editor_absoluteY="143dp" />
+
+    <Button
+        android:id="@+id/button_qr"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="qr코드"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
