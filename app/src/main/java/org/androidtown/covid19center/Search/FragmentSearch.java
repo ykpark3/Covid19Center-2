@@ -6,13 +6,13 @@ import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.androidtown.covid19center.R;
+import org.androidtown.covid19center.Search.List.SearchActivity;
 
 public class FragmentSearch extends Fragment {
 
@@ -43,7 +43,7 @@ public class FragmentSearch extends Fragment {
         search_textView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),SearchActivity.class);
+                Intent intent = new Intent(getActivity(), SearchActivity.class);
                 startActivity(intent);
             }
         });
