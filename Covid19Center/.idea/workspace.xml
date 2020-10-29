@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e88e0383-9162-42ab-94f4-81eb277d3ba2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../app/src/main/java/org/androidtown/covid19center/Main/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/src/main/java/org/androidtown/covid19center/FragmentMypage.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/src/main/java/org/androidtown/covid19center/FragmentSearch.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/src/main/java/org/androidtown/covid19center/FragmentSelfCheck.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/src/main/java/org/androidtown/covid19center/MainActivity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/src/main/java/org/androidtown/covid19center/Search/FragmentSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main/java/org/androidtown/covid19center/Search/FragmentSearch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../app/src/main/java/org/androidtown/covid19center/SelfCheck/FragmentSelfCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/../app/src/main/java/org/androidtown/covid19center/SelfCheck/FragmentSelfCheck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +36,7 @@
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
   </component>
   <component name="RunManager">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
@@ -64,13 +61,13 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1603871347863">
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1603960399201">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1603871347863" />
-    <state x="630" y="313" key="com.intellij.ide.util.TipDialog" timestamp="1603870919567">
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1603960399201" />
+    <state x="630" y="313" key="com.intellij.ide.util.TipDialog" timestamp="1603960177568">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="630" y="313" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1603870919567" />
+    <state x="630" y="313" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1603960177568" />
   </component>
 </project>
