@@ -19,7 +19,7 @@
         android:paddingTop="10dp">
 
         <EditText
-            android:id="@+id/textView2"
+            android:id="@+id/editClinicSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
