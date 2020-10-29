@@ -32,5 +32,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     //qr코드
-    implementation 'com.journeyapps:zxing-android-embedded:4.1.0'
+//    implementation 'com.journeyapps:zxing-android-embedded:4.1.0'
+    implementation 'com.journeyapps:zxing-android-embedded:3.6.0'
 }
