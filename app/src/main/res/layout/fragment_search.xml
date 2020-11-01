@@ -40,7 +40,14 @@
                 android:paddingRight="20dp"
                 android:text="선별진료소를 검색해보세요"
                 android:textSize="16sp" />
+
         </LinearLayout>
+
+        <Button
+            android:id="@+id/openApiButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="url파싱" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

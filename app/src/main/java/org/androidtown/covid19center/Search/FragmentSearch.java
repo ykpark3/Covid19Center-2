@@ -6,11 +6,14 @@ import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
+import org.androidtown.covid19center.Network.ApiExplorer;
 import org.androidtown.covid19center.R;
 import org.androidtown.covid19center.Search.List.SearchActivity;
 
@@ -18,7 +21,7 @@ public class FragmentSearch extends Fragment {
 
     private View view;
     private TextView search_textView;
-
+    private Button openApiBtn;
 
 
     @Nullable
@@ -34,8 +37,18 @@ public class FragmentSearch extends Fragment {
     public void onStart() {
 
         search_textView = view.findViewById(R.id.searchBox);
+        openApiBtn = view.findViewById(R.id.openApiButton);
         super.onStart();
         setSearchingBox();
+        openApiBtn.setOnClickListener(new Button.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                ApiExplorer api = new ApiExplorer();
+                Log.d("태순", "클릭");
+                api.mOnClick();
+            }
+        });
     }
 
 
