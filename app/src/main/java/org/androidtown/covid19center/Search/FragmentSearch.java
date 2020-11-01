@@ -3,6 +3,7 @@ package org.androidtown.covid19center.Search;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.androidtown.covid19center.DataBase.AppDatabase;
 import org.androidtown.covid19center.Network.ApiExplorer;
 import org.androidtown.covid19center.R;
 import org.androidtown.covid19center.Search.List.SearchActivity;
@@ -44,10 +46,10 @@ public class FragmentSearch extends Fragment {
 
             @Override
             public void onClick(View view) {
-                ApiExplorer api = new ApiExplorer();
-                Log.d("태순", "클릭");
-                api.mOnClick();
+                AppDatabase db = Room.databaseBuilder(getContext(), AppDatabase.class, "database-name").build();
+                db.clinicDAO().insertAll();
             }
+
         });
     }
 

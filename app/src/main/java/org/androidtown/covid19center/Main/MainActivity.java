@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -14,6 +15,9 @@ import org.androidtown.covid19center.Mypage.FragmentMypage;
 import org.androidtown.covid19center.R;
 import org.androidtown.covid19center.Search.FragmentSearch;
 import org.androidtown.covid19center.SelfCheck.FragmentSelfCheck;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,6 +39,12 @@ public class MainActivity extends AppCompatActivity {
 
         // 초기화면 검색화면으로 설정
         setFragment(FRAGMENT_SEARCH);
+
+        // 데이터베이스 저장
+        AssetManager assetManager = getResources().getAssets();
+//        InputStream inputStream = assetManager.open("clinics.txt");
+
+
     }
 
 
