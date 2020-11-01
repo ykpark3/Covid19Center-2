@@ -2,6 +2,7 @@ package org.androidtown.covid19center.Main;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -16,10 +17,7 @@ import org.androidtown.covid19center.Search.FragmentSearch;
 import org.androidtown.covid19center.SelfCheck.FragmentSelfCheck;
 
 public class MainActivity extends AppCompatActivity {
-
-    static final int FRAGMENT_SEARCH = 0;
-    static final int FRAGMENT_SELF_CHECK = 1;
-    static final int FRAGMENT_MYPAGE = 2;
+    
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
     private FragmentSearch fragmentSearch;
@@ -34,7 +32,8 @@ public class MainActivity extends AppCompatActivity {
         setBottomNavigation();
 
         // 초기화면 검색화면으로 설정
-        setFragment(FRAGMENT_SEARCH);
+        fragmentManager = getSupportFragmentManager();
+        setFragment(fragmentSearch);
     }
 
 
@@ -48,13 +47,13 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.action_search:
-                        setFragment(FRAGMENT_SEARCH);
+                        setFragment(fragmentSearch);
                         break;
                     case R.id.action_self_check:
-                        setFragment(FRAGMENT_SELF_CHECK);
+                        setFragment(fragmentSelfCheck);
                         break;
                     case R.id.action_mypage:
-                        setFragment(FRAGMENT_MYPAGE);
+                        setFragment(fragmentMypage);
                         break;
                 }
 
@@ -68,29 +67,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // 프레그먼트 변경 함수
-    public void setFragment(int fragmentNumber){
+    public void setFragment(Fragment fragment){
 
-        fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
 
-        switch (fragmentNumber){
-
-            case FRAGMENT_SEARCH:
-                fragmentTransaction.replace(R.id.Main_Frame, fragmentSearch);
-                fragmentTransaction.commit();
-                break;
-
-            case FRAGMENT_SELF_CHECK:
-                fragmentTransaction.replace(R.id.Main_Frame, fragmentSelfCheck);
-                fragmentTransaction.commit();
-                break;
-
-            case FRAGMENT_MYPAGE:
-                fragmentTransaction.replace(R.id.Main_Frame, fragmentMypage);
-                fragmentTransaction.commit();
-                break;
-        }
+        fragmentTransaction.replace(R.id.Main_Frame, fragment);
+        fragmentTransaction.commit();
     }
-
 
 }

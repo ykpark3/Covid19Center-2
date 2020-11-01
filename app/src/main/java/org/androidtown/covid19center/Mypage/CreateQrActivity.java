@@ -26,7 +26,7 @@ public class CreateQrActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_qr);
 
         ImageView qr_code = (ImageView)findViewById(R.id.qr_code);
-        text = "hello qrcode!";
+        text = "hello qrcode!"; //원하는 내용 저장
 
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
 

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="org.androidtown.covid19center">
 
-    //카메라 권한
+    <!--    카메라 권한-->
     <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
