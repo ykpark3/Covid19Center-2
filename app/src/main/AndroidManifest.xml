@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="org.androidtown.covid19center">
+
+    //카메라 권한
+    <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
         android:allowBackup="true"
@@ -18,6 +22,10 @@
         </activity>
 
         <activity android:name=".Mypage.CreateQrActivity"/>
+        <activity android:name=".Mypage.ScanQrActivity"/>
+        <activity android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="fullSensor"
+            tools:replace="screenOrientation"/>
 
     </application>
 
