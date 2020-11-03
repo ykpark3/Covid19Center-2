@@ -45,8 +45,6 @@ public class FragmentSearch extends Fragment {
 
             @Override
             public void onClick(View view) {
-                AppDatabase db = Room.databaseBuilder(getContext(), AppDatabase.class, "database-name").build();
-                db.clinicDAO().insertAll();
             }
 
         });
