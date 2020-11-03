@@ -25,7 +25,6 @@ public class FragmentSearch extends Fragment {
     private TextView search_textView;
     private Button openApiBtn;
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)

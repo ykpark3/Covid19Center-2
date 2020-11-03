@@ -4,20 +4,31 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.room.Room;
 
+import android.app.Activity;
 import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import org.androidtown.covid19center.DataBase.AppDatabase;
+import org.androidtown.covid19center.DataBase.Clinic;
+import org.androidtown.covid19center.DataBase.ClinicDAO;
 import org.androidtown.covid19center.Mypage.FragmentMypage;
 import org.androidtown.covid19center.R;
 import org.androidtown.covid19center.Search.FragmentSearch;
 import org.androidtown.covid19center.SelfCheck.FragmentSelfCheck;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.Console;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
     private FragmentMypage fragmentMypage;
     private FragmentSelfCheck fragmentSelfCheck;
     private BottomNavigationView bottomNavigationView; // 바텀 네비게이션 뷰
+    private String inputStream;
+    private String[] change;
+    private String[][] token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,14 +53,43 @@ public class MainActivity extends AppCompatActivity {
 
         // 초기화면 검색화면으로 설정
         setFragment(FRAGMENT_SEARCH);
+        token = new String[630][];
 
-        // 데이터베이스 저장
-        AssetManager assetManager = getResources().getAssets();
-//        InputStream inputStream = assetManager.open("clinics.txt");
+        // db저장
 
+
+
+        try {
+            inputStream = readText("clinics.txt");
+            change = inputStream.split("\\n");
+            divideComma(change);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
+    private String readText(String file) throws IOException {
+        InputStream is = getAssets().open(file);
+
+        int size = is.available();
+
+        byte[] buffer = new byte[size];
+        BufferedReader read;
+        is.read(buffer);
+        is.close();
+
+        String text = new String(buffer);
+        return text;
+    }
+
+    private void divideComma(String[] line){
+        for(int i=0; i<line.length; i++){
+            line[i] = line[i].replaceAll("\t",",");
+            token[i] = line[i].split(",");
+
+        }
+    }
 
     // 바텀 네비게이션 설정
     public void setBottomNavigation(){
