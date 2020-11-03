@@ -75,15 +75,14 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
-        for(int i=0;i<token.length;i++)
-        {
-             db.clinicDao().insert(new Clinic(token[i][0], token[i][1],token[i][2]));
-        }
-
-
         db.clinicDao().getAll().observe(this, clinics -> {
-            textView.setText(clinics.toString());
+            if(clinics.isEmpty()){
+                insertClinics();
+                Log.d("메모리", "비어있었음");
+            } else{
+                Log.d("메모리", "비어있지않았음");
+            }
+
         });
     }
 
@@ -125,8 +124,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void insertClinics(){
 
-
-
+        for(int i=0;i<token.length;i++)
+        {
+            db.clinicDao().insert(new Clinic(token[i][0], token[i][1],token[i][2]));
+        }
 
     }
 
