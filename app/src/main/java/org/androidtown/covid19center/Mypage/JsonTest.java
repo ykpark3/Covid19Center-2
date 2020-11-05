@@ -1,20 +1,14 @@
 package org.androidtown.covid19center.Mypage;
 
 import android.content.res.AssetManager;
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.widget.ImageView;
+import android.view.View;
+import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.MultiFormatWriter;
-import com.google.zxing.WriterException;
-import com.google.zxing.common.BitMatrix;
-import com.journeyapps.barcodescanner.BarcodeEncoder;
-
 import org.androidtown.covid19center.R;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -23,47 +17,19 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class CreateQrActivity extends AppCompatActivity {
-    private ImageView qr_code;
-    private String text;
-    private String qr_data;
+public class JsonTest extends AppCompatActivity {
+
+    TextView tv;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_json_test);
 
-        setContentView(R.layout.activity_create_qr);
-
-        ImageView qr_code = (ImageView)findViewById(R.id.qr_code);
-        text = "hello qrcode!"; //원하는 내용 저장
-
-        //@@@
-        qr_data = getQrData();
-
-
-        MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
-
-        BitMatrix bitMatrix = null;
-
-        try {
-
-            //@@@
-            bitMatrix = multiFormatWriter.encode(qr_data, BarcodeFormat.QR_CODE,200,200);
-
-
-
-//            bitMatrix = multiFormatWriter.encode(text, BarcodeFormat.QR_CODE,200,200);
-            BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
-            Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
-            qr_code.setImageBitmap(bitmap);
-        } catch (WriterException e) {
-            e.printStackTrace();
-        }
+        tv=findViewById(R.id.tv);
     }
 
-    public String getQrData(){
-
-        String data = null;
+    public void clickBtn(View view) {
 
         //json 파일 읽어와서 분석하기
 
@@ -95,14 +61,14 @@ public class CreateQrActivity extends AppCompatActivity {
             String name= jsonObject.getString("name");
             String msg= jsonObject.getString("msg");
 
-            //@@@
-            data = jsonObject.toString();
+            String str = jsonObject.toString();
+
+            tv.setText(str);
 
             //tv.setText("이름 : "+name+"\n"+"메세지 : "+msg);
 
         } catch (IOException e) {e.printStackTrace();} catch (JSONException e) {e.printStackTrace(); }
 
-        return data;
     }
 }
 
