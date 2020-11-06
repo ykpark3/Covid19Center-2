@@ -24,6 +24,7 @@ import org.androidtown.covid19center.DataBase.ClinicDao;
 import org.androidtown.covid19center.Mypage.FragmentMypage;
 import org.androidtown.covid19center.R;
 import org.androidtown.covid19center.Search.FragmentSearch;
+import org.androidtown.covid19center.Search.List.ClinicItem;
 import org.androidtown.covid19center.SelfCheck.FragmentSelfCheck;
 
 import java.io.BufferedReader;
@@ -31,6 +32,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.Console;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     private String inputStream;
     private String[] change;
     private String[][] token;
+    ArrayList<ClinicItem> clinicDataList;
     private AppDatabase db;
 
     @Override
@@ -63,10 +66,9 @@ public class MainActivity extends AppCompatActivity {
         setFragment(FRAGMENT_SEARCH);
         token = new String[616][];
 
+        db = AppDatabase.getInstance(getBaseContext());
+
         // db저장
-
-        db = Room.databaseBuilder(this, AppDatabase.class, "clinic-db").allowMainThreadQueries().build();
-
         try {
             inputStream = readText("clinics.txt");
             change = inputStream.split("\\n");
@@ -81,24 +83,9 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("메모리", "비어있었음");
             } else{
                 Log.d("메모리", "비어있지않았음");
+                Log.d("메모리", String.valueOf(clinics.size()));
             }
-
         });
-    }
-
-    private static class InsertAsyncTask extends AsyncTask<Clinic, Void, Void>{
-
-        private ClinicDao clinicDao;
-
-        public InsertAsyncTask(ClinicDao clinicDao){
-            this.clinicDao = clinicDao;
-        }
-
-        @Override
-        protected Void doInBackground(Clinic... clinics) {
-            clinicDao.insert(clinics[0]);
-            return null;
-        }
     }
 
     private String readText(String file) throws IOException {
@@ -127,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
         for(int i=0;i<token.length;i++)
         {
             db.clinicDao().insert(new Clinic(token[i][0], token[i][1],token[i][2]));
+            clinicDataList.add(new ClinicItem(token[i][0], token[i][1],token[i][2]));
         }
 
     }
@@ -184,6 +172,5 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
-
 
 }

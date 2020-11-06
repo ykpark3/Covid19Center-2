@@ -4,12 +4,16 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity
+@Entity(tableName = "clinic")
 public class Clinic {
     @PrimaryKey(autoGenerate = true)
     private int cid; // 병원 id
+
+    @ColumnInfo(name = "clinic_name")
     private String clinicName; // 병원 명
+    @ColumnInfo(name = "clinic_address")
     private String clinicAddress; // 병원 주소
+    @ColumnInfo(name = "clinic_call")
     private String clinicCallNumber; // 병원 전화번호
 
     public String getClinicName(){

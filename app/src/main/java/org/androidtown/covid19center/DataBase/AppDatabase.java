@@ -8,7 +8,25 @@ import android.content.Context;
 
 @Database(entities = {Clinic.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
+    //public abstract ClinicDao clinicDao();
+
+    private static AppDatabase database;
+
+    private static String DATABASE_NAME = "clinic";
+
+    public synchronized static AppDatabase getInstance(Context context){
+        // Check condition
+        if(database == null){
+            database = Room.databaseBuilder(context.getApplicationContext(),
+                    AppDatabase.class,DATABASE_NAME)
+                    .allowMainThreadQueries()
+                    .fallbackToDestructiveMigration()
+                    .build();
+        }
+        return database;
+
+    }
+
+    // Create Dao
     public abstract ClinicDao clinicDao();
-
-
 }
