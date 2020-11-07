@@ -47,7 +47,7 @@
             android:id="@+id/openApiButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="url파싱" />
+            android:text="지도" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

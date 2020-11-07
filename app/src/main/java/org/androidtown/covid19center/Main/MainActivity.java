@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.naver.maps.map.NaverMapSdk;
 
 import org.androidtown.covid19center.DataBase.AppDatabase;
 import org.androidtown.covid19center.DataBase.Clinic;
@@ -67,6 +68,9 @@ public class MainActivity extends AppCompatActivity {
         token = new String[616][];
 
         db = AppDatabase.getInstance(getBaseContext());
+
+        NaverMapSdk.getInstance(this).setClient(
+                new NaverMapSdk.NaverCloudPlatformClient("udi1xytmz6"));
 
         // db저장
         try {
