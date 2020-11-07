@@ -22,11 +22,12 @@ import com.naver.maps.map.NaverMapSdk;
 import com.naver.maps.map.OnMapReadyCallback;
 
 import org.androidtown.covid19center.DataBase.AppDatabase;
-import org.androidtown.covid19center.Map.FragmentMap;
+import org.androidtown.covid19center.Main.OnBackPressedListener;
 import org.androidtown.covid19center.Mypage.FragmentMypage;
 import org.androidtown.covid19center.R;
 import org.androidtown.covid19center.Search.List.SearchActivity;
 
+import java.util.List;
 import java.util.Map;
 
 public class FragmentSearch extends Fragment implements OnMapReadyCallback {
@@ -88,4 +89,5 @@ public class FragmentSearch extends Fragment implements OnMapReadyCallback {
     public void onMapReady(@NonNull NaverMap naverMap) {
 
     }
+
 }

@@ -2,6 +2,7 @@ package org.androidtown.covid19center.Main;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
@@ -15,6 +16,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.naver.maps.map.NaverMapSdk;
@@ -37,7 +39,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnBackPressedListener {
 
     static final int FRAGMENT_SEARCH = 0;
     static final int FRAGMENT_SELF_CHECK = 1;
@@ -54,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
     private String[][] token;
     ArrayList<ClinicItem> clinicDataList;
     private AppDatabase db;
+    private long lastTimeBackPressed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -175,6 +178,27 @@ public class MainActivity extends AppCompatActivity {
                 fragmentTransaction.commit();
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed(){
+
+        List<Fragment> fragmentList = getSupportFragmentManager().getFragments();
+
+        for(Fragment fragment : fragmentList){
+            if(fragment instanceof OnBackPressedListener){
+                ((OnBackPressedListener)fragment).onBackPressed();
+                return;
+            }
+        }
+
+        if(System.currentTimeMillis() - lastTimeBackPressed < 1500){
+            finish();
+            return;
+        }
+
+        lastTimeBackPressed = System.currentTimeMillis();
+        Toast.makeText(this,"'뒤로' 버튼을 한 번 더 누르면 종료됩니다.",Toast.LENGTH_SHORT).show();
     }
 
 }
