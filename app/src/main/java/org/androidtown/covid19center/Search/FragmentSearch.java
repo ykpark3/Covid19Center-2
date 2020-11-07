@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.room.Room;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,7 +23,9 @@ import com.naver.maps.map.NaverMapSdk;
 import com.naver.maps.map.OnMapReadyCallback;
 
 import org.androidtown.covid19center.DataBase.AppDatabase;
+import org.androidtown.covid19center.Main.MainActivity;
 import org.androidtown.covid19center.Main.OnBackPressedListener;
+import org.androidtown.covid19center.Map.MapActivity;
 import org.androidtown.covid19center.Mypage.FragmentMypage;
 import org.androidtown.covid19center.R;
 import org.androidtown.covid19center.Search.List.SearchActivity;
@@ -30,11 +33,14 @@ import org.androidtown.covid19center.Search.List.SearchActivity;
 import java.util.List;
 import java.util.Map;
 
-public class FragmentSearch extends Fragment implements OnMapReadyCallback {
+public class FragmentSearch extends Fragment{
 
     private View view;
     private TextView search_textView;
     private Button openApiBtn;
+    MapFragment mapFragment;
+    private View.OnKeyListener mOnKeyBackPressedListener;
+
 
     @Nullable
     @Override
@@ -59,17 +65,8 @@ public class FragmentSearch extends Fragment implements OnMapReadyCallback {
 
             @Override
             public void onClick(View view) {
-
-                getActivity().setContentView(R.layout.fragment_map);
-                FragmentManager fm = getActivity().getSupportFragmentManager();
-                MapFragment mapFragment = (MapFragment) fm.findFragmentById(R.id.map_fragment);
-
-                if (mapFragment == null) {
-                    mapFragment = MapFragment.newInstance();
-                    fm.beginTransaction().add(R.id.map_fragment, mapFragment).commit();
-                }
-
-                mapFragment.getMapAsync(FragmentSearch.this);
+                Intent intent = new Intent(getContext(), MapActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -82,12 +79,6 @@ public class FragmentSearch extends Fragment implements OnMapReadyCallback {
                 startActivity(intent);
             }
         });
-    }
-
-
-    @Override
-    public void onMapReady(@NonNull NaverMap naverMap) {
-
     }
 
 }

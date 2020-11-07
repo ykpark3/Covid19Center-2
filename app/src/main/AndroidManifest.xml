@@ -12,6 +12,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         android:networkSecurityConfig="@xml/network_config">
+        <activity android:name=".Map.MapActivity"></activity>
         <activity android:name=".Search.List.SearchActivity"></activity>
         <activity android:name=".Main.MainActivity">
             <intent-filter>
