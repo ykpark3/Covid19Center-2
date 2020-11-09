@@ -26,6 +26,8 @@ import org.androidtown.covid19center.DataBase.Clinic;
 import org.androidtown.covid19center.DataBase.ClinicDao;
 import org.androidtown.covid19center.Mypage.FragmentMypage;
 import org.androidtown.covid19center.R;
+import org.androidtown.covid19center.Retrofit.Post;
+import org.androidtown.covid19center.Retrofit.RetrofitApi;
 import org.androidtown.covid19center.Search.FragmentSearch;
 import org.androidtown.covid19center.Search.List.ClinicItem;
 import org.androidtown.covid19center.SelfCheck.FragmentSelfCheck;
@@ -37,7 +39,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity implements OnBackPressedListener {
 
@@ -69,6 +79,9 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
         // 초기화면 검색화면으로 설정
         setFragment(FRAGMENT_SEARCH);
         token = new String[616][];
+
+        Thread thread = new NaverApi();
+        thread.start();
 
         db = AppDatabase.getInstance(getBaseContext());
 
@@ -201,4 +214,29 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
         Toast.makeText(this,"'뒤로' 버튼을 한 번 더 누르면 종료됩니다.",Toast.LENGTH_SHORT).show();
     }
 
+    private void createNaverApi() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://naveropenapi.apigw.ntruss.com")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        RetrofitApi retrofitApi = retrofit.create(RetrofitApi.class);
+
+        retrofitApi.getData("0").enqueue(new Callback<Post>() {
+            @Override
+            public void onResponse(Call<Post> call, Response<Post> response) {
+                Post data = response.body();
+                Log.d("TEST", "성공성공");
+                Log.d("TEST", String.valueOf(data.getX()));
+                //Log.d("TEST", data.get(0).getX());
+            }
+
+            @Override
+            public void onFailure(Call<Post> call, Throwable t) {
+
+            }
+
+
+        });
+    }
 }

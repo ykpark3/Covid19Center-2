@@ -8,7 +8,6 @@ import androidx.room.PrimaryKey;
 public class Clinic {
     @PrimaryKey(autoGenerate = true)
     private int cid; // 병원 id
-
     @ColumnInfo(name = "clinic_name")
     private String clinicName; // 병원 명
     @ColumnInfo(name = "clinic_address")
