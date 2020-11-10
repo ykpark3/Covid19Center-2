@@ -30,8 +30,8 @@ public class FragmentMypage extends Fragment {
         reservation_qr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                 Qr코드 생성 activity로 intent
-                Intent intent = new Intent(getActivity(), JsonTest.class);
+                //Qr코드 생성 activity로 intent
+                Intent intent = new Intent(getActivity(), CreateQrActivity.class);
                 startActivity(intent);
             }
         });
@@ -39,8 +39,8 @@ public class FragmentMypage extends Fragment {
         medical_records.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Qr코드 스캔 activity로 intent
-//                Intent intent = new Intent(getActivity(), ScanQrActivity.class);
+                //진료기록 액티비티로 수정해야됨!!
+//                Intent intent = new Intent(getActivity(), JsonTest.class);
 //                startActivity(intent);
             }
         });

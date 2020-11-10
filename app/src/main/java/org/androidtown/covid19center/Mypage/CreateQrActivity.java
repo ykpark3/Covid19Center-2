@@ -25,7 +25,7 @@ import java.io.InputStreamReader;
 
 public class CreateQrActivity extends AppCompatActivity {
     private ImageView qr_code;
-    private String text;
+//    private String text;
     private String qr_data;
 
     @Override
@@ -35,10 +35,11 @@ public class CreateQrActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_qr);
 
         ImageView qr_code = (ImageView)findViewById(R.id.qr_code);
-        text = "hello qrcode!"; //원하는 내용 저장
+//        text = "hello qrcode!"; //원하는 내용 저장
 
         //@@@
-        qr_data = getQrData();
+        qr_data = getQrData();//원하는 내용 저장
+
 
 
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
@@ -48,9 +49,8 @@ public class CreateQrActivity extends AppCompatActivity {
         try {
 
             //@@@
+            //qr코드에 문진표 json 저장해야됨!
             bitMatrix = multiFormatWriter.encode(qr_data, BarcodeFormat.QR_CODE,200,200);
-
-
 
 //            bitMatrix = multiFormatWriter.encode(text, BarcodeFormat.QR_CODE,200,200);
             BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
@@ -61,6 +61,7 @@ public class CreateQrActivity extends AppCompatActivity {
         }
     }
 
+    //Qr코드에 넣을 문진표 json값 가져오기
     public String getQrData(){
 
         String data = null;
@@ -71,7 +72,7 @@ public class CreateQrActivity extends AppCompatActivity {
         //창고관리자(AssetManager) 얻어오기
         AssetManager assetManager= getAssets();
 
-        //assets/ test.json 파일 읽기 위한 InputStream
+        //assets/ qr.json 파일 읽기 위한 InputStream
         try {
             InputStream is= assetManager.open("jsons/qr.json");
             InputStreamReader isr= new InputStreamReader(is);
@@ -87,19 +88,16 @@ public class CreateQrActivity extends AppCompatActivity {
             String jsonData= buffer.toString();
 
             //읽어온 json문자열 확인
-            //tv.setText(jsonData);
-
             //json 분석
             //json 객체 생성
             JSONObject jsonObject= new JSONObject(jsonData);
             String name= jsonObject.getString("name");
             String msg= jsonObject.getString("msg");
 
-            //@@@
-            data = jsonObject.toString();
-
             //tv.setText("이름 : "+name+"\n"+"메세지 : "+msg);
 
+            //@@@
+            data = jsonObject.toString();
         } catch (IOException e) {e.printStackTrace();} catch (JSONException e) {e.printStackTrace(); }
 
         return data;
