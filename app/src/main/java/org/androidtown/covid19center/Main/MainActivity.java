@@ -1,53 +1,33 @@
 package org.androidtown.covid19center.Main;
 
+import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
-import androidx.room.Room;
-
-import android.app.Activity;
-import android.content.res.AssetManager;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.naver.maps.map.NaverMapSdk;
 
 import org.androidtown.covid19center.DataBase.AppDatabase;
 import org.androidtown.covid19center.DataBase.Clinic;
-import org.androidtown.covid19center.DataBase.ClinicDao;
 import org.androidtown.covid19center.Mypage.FragmentMypage;
 import org.androidtown.covid19center.R;
-import org.androidtown.covid19center.Retrofit.Post;
-import org.androidtown.covid19center.Retrofit.RetrofitApi;
 import org.androidtown.covid19center.Search.FragmentSearch;
 import org.androidtown.covid19center.Search.List.ClinicItem;
 import org.androidtown.covid19center.SelfCheck.FragmentSelfCheck;
 
 import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
-import java.io.Console;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity implements OnBackPressedListener {
 
@@ -64,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
     private String inputStream;
     private String[] change;
     private String[][] token;
+    private String address;
     ArrayList<ClinicItem> clinicDataList;
     private AppDatabase db;
     private long lastTimeBackPressed;
@@ -78,15 +59,13 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
 
         // 초기화면 검색화면으로 설정
         setFragment(FRAGMENT_SEARCH);
+        // 메모장 저장
         token = new String[616][];
-
-        Thread thread = new NaverApi();
-        thread.start();
 
         db = AppDatabase.getInstance(getBaseContext());
 
         NaverMapSdk.getInstance(this).setClient(
-                new NaverMapSdk.NaverCloudPlatformClient("udi1xytmz6"));
+                new NaverMapSdk.NaverCloudPlatformClient(NaverConsts.CLIENT_ID));
 
         // db저장
         try {
@@ -106,6 +85,16 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
                 Log.d("메모리", String.valueOf(clinics.size()));
             }
         });
+
+//        // geocode 불러오는 코드
+//        for(int i=0; i<token.length;i++)
+//        {
+//            address = token[i][1];
+//            Thread thread = new NaverApi(address);
+//            thread.start();
+//        }
+
+
     }
 
     private String readText(String file) throws IOException {
@@ -214,29 +203,6 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
         Toast.makeText(this,"'뒤로' 버튼을 한 번 더 누르면 종료됩니다.",Toast.LENGTH_SHORT).show();
     }
 
-    private void createNaverApi() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://naveropenapi.apigw.ntruss.com")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        RetrofitApi retrofitApi = retrofit.create(RetrofitApi.class);
-
-        retrofitApi.getData("0").enqueue(new Callback<Post>() {
-            @Override
-            public void onResponse(Call<Post> call, Response<Post> response) {
-                Post data = response.body();
-                Log.d("TEST", "성공성공");
-                Log.d("TEST", String.valueOf(data.getX()));
-                //Log.d("TEST", data.get(0).getX());
-            }
-
-            @Override
-            public void onFailure(Call<Post> call, Throwable t) {
-
-            }
 
 
-        });
-    }
 }

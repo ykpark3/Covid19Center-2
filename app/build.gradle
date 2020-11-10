@@ -55,9 +55,5 @@ dependencies {
     implementation('com.naver.maps:map-sdk:3.10.1') {
         exclude group: 'com.android.support'
     }
-    // 레트로 핏 사용
-    implementation 'com.squareup.retrofit2:retrofit:2.6.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
-    implementation 'com.google.code.gson:gson:2.8.4'
 
 }

@@ -2,7 +2,6 @@ package org.androidtown.covid19center.Main;
 
 import android.util.Log;
 
-import org.androidtown.covid19center.Retrofit.NaverConsts;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,28 +19,36 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class NaverApi extends Thread {
-    public void run(){
+
+    static String NaverAddress = null;
+
+    public NaverApi(String address) {
+        NaverAddress = address;
+    }
+
+    public void run() {
         main();
     }
 
-    public static void main(){
+    public static void main() {
 
         String text = null;
         try {
-            text = URLEncoder.encode("충남 공주시 교동 120 보건소", "UTF-8");
+            text = URLEncoder.encode(NaverAddress, "UTF-8");
         } catch (UnsupportedEncodingException e){
             throw new RuntimeException("검색어 인코딩 실패", e);
         }
 
-        String apiURL = "https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query="+text;
+        String apiURL = NaverConsts.GEOCORD_URL+text;
 
         Map<String, String> requestHeaders =new HashMap<>();
-        requestHeaders.put("X-NCP-APIGW-API-KEY-ID", "udi1xytmz6");
-        requestHeaders.put("X-NCP-APIGW-API-KEY", "Shmsa6nay8pdftdCUOWBGu57nmX0aZ7H6vEMzXHx");
+        requestHeaders.put("X-NCP-APIGW-API-KEY-ID", NaverConsts.CLIENT_ID);
+        requestHeaders.put("X-NCP-APIGW-API-KEY", NaverConsts.CLIENT_SECRET);
         String responseBody = get(apiURL, requestHeaders);
 
         parseData(responseBody);
     }
+
 
     private static String get(String apiUrl, Map<String, String> requestHeaders){
         HttpURLConnection con = connect(apiUrl);
@@ -53,16 +60,14 @@ public class NaverApi extends Thread {
             }
 
             int responseCode = con.getResponseCode();
-            Log.d("과정1", String.valueOf(responseCode));
+
             if(responseCode == HttpURLConnection.HTTP_OK){
-                Log.d("과정", String.valueOf(con.getInputStream()));
                 return readBody(con.getInputStream());
             } else{
                 return readBody(con.getErrorStream());
             }
 
         } catch (IOException e){
-            Log.d("과정2", String.valueOf(e));
             throw new RuntimeException("API 요청과 응답 실패", e);
         } finally {
             con.disconnect();
@@ -75,10 +80,8 @@ public class NaverApi extends Thread {
             URL url = new URL(apiUrl);
             return (HttpURLConnection)url.openConnection();
         } catch (MalformedURLException e){
-            Log.d("과정3", String.valueOf(e));
             throw new RuntimeException("API URL이 잘못되었습니다. : " + apiUrl, e);
         } catch (IOException e){
-            Log.d("과정4", String.valueOf(e));
             throw new RuntimeException("연결이 실패했습니다. :" + apiUrl, e);
         }
     }
@@ -96,14 +99,15 @@ public class NaverApi extends Thread {
 
             return responseBody.toString();
         } catch (IOException e) {
-            Log.d("과정5", String.valueOf(e));
-            throw new RuntimeException("API 응답을 읽는데 실패했습니다.", e);
+            throw new RuntimeException("error readBody");
         }
     }
 
     private static void parseData(String responseBody) {
         String x;
         String y;
+        String name;
+        String name2;
         JSONObject jsonObject = null;
         try {
             jsonObject = new JSONObject(responseBody);
@@ -113,13 +117,16 @@ public class NaverApi extends Thread {
                 JSONObject item = jsonArray.getJSONObject(i);
                 x = item.getString("x");
                 y = item.getString("y");
+                name = item.getString("roadAddress");
+                name2 = item.getString("jibunAddress");
                 Log.d("과정?","TITLE : " + x);
                 Log.d("과정?","TITLE : " + y);
-                System.out.println("TITLE : " + y);
+                Log.d("과정?","TITLE : " + name);
+                Log.d("과정?","TITLE : " + name2);
             }
         } catch (JSONException e) {
-            Log.d("과정6", String.valueOf(e));
             e.printStackTrace();
         }
     }
 }
+
