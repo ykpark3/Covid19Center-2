@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="org.androidtown.covid19center">
+    <!-- http 프로토콜 통신 permission 받기  -->
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <!--    카메라 권한-->
     <uses-permission android:name="android.permission.CAMERA"/>
@@ -13,20 +15,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:hardwareAccelerated="true">
+        android:usesCleartextTraffic="true"
+        android:hardwareAccelerated="true"
+        android:networkSecurityConfig="@xml/network_config">
+
+        <activity android:name=".Map.MapActivity"></activity>
+        <activity android:name=".Search.List.SearchActivity"></activity>
+
+
         <activity android:name=".Main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="udi1xytmz6" />
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_TYPE"
+            android:value="gov" />
         <activity android:name=".Mypage.CreateQrActivity"/>
         <activity android:name=".Mypage.ScanQrActivity"/>
         <activity android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="fullSensor"
             tools:replace="screenOrientation"/>
-
     </application>
+
 
 </manifest>
