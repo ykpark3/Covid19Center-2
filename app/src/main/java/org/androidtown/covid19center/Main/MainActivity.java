@@ -30,9 +30,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements OnBackPressedListener{
 
-    static final int FRAGMENT_SEARCH = 0;
-    static final int FRAGMENT_SELF_CHECK = 1;
-    static final int FRAGMENT_MYPAGE = 2;
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
     private FragmentSearch fragmentSearch;
@@ -53,7 +50,9 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
         setContentView(R.layout.activity_main);
         setBottomNavigation();
 
-        setFragment(FRAGMENT_SEARCH);
+        // 초기화면 검색화면으로 설정
+        fragmentManager = getSupportFragmentManager();
+        setFragment(fragmentSearch);
 
         // 메모장 저장
         token = new String[616][];
@@ -133,13 +132,13 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.action_search:
-                        setFragment(FRAGMENT_SEARCH);
+                        setFragment(fragmentSearch);
                         break;
                     case R.id.action_self_check:
-                        setFragment(FRAGMENT_SELF_CHECK);
+                        setFragment(fragmentSelfCheck);
                         break;
                     case R.id.action_mypage:
-                        setFragment(FRAGMENT_MYPAGE);
+                        setFragment(fragmentMypage);
                         break;
                 }
 
@@ -147,37 +146,19 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
             }
         });
 
-
         fragmentSearch = new FragmentSearch();
         fragmentSelfCheck = new FragmentSelfCheck();
         fragmentMypage = new FragmentMypage();
     }
 
     // 프레그먼트 변경 함수
-    public void setFragment(int fragmentNumber){
+    public void setFragment(Fragment fragment){
 
-        fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
 
-        switch (fragmentNumber){
-
-            case FRAGMENT_SEARCH:
-                fragmentTransaction.replace(R.id.Main_Frame, fragmentSearch);
-                fragmentTransaction.commit();
-                break;
-
-            case FRAGMENT_SELF_CHECK:
-                fragmentTransaction.replace(R.id.Main_Frame, fragmentSelfCheck);
-                fragmentTransaction.commit();
-                break;
-
-            case FRAGMENT_MYPAGE:
-                fragmentTransaction.replace(R.id.Main_Frame, fragmentMypage);
-                fragmentTransaction.commit();
-                break;
-        }
+        fragmentTransaction.replace(R.id.Main_Frame, fragment);
+        fragmentTransaction.commit();
     }
-
 
     @Override
     public void onBackPressed(){
@@ -199,8 +180,4 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
         lastTimeBackPressed = System.currentTimeMillis();
         Toast.makeText(this,"'뒤로' 버튼을 한 번 더 누르면 종료됩니다.",Toast.LENGTH_SHORT).show();
     }
-
-
-
-
 }
