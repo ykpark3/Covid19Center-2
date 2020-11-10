@@ -22,24 +22,17 @@ import org.androidtown.covid19center.R;
 import org.androidtown.covid19center.Search.FragmentSearch;
 import org.androidtown.covid19center.Search.List.ClinicItem;
 import org.androidtown.covid19center.SelfCheck.FragmentSelfCheck;
-
-<<<<<<< HEAD
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements OnBackPressedListener {
+public class MainActivity extends AppCompatActivity implements OnBackPressedListener{
 
     static final int FRAGMENT_SEARCH = 0;
     static final int FRAGMENT_SELF_CHECK = 1;
     static final int FRAGMENT_MYPAGE = 2;
-    private TextView textView;
-=======
-public class MainActivity extends AppCompatActivity {
-    
->>>>>>> ce50da3e3834843e84e9b3a5fd01044834ec7d67
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
     private FragmentSearch fragmentSearch;
@@ -60,13 +53,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setBottomNavigation();
 
-        textView = findViewById(R.id.textView2);
-
-        // 초기화면 검색화면으로 설정
-<<<<<<< HEAD
         setFragment(FRAGMENT_SEARCH);
+
         // 메모장 저장
         token = new String[616][];
+        clinicDataList = new ArrayList<ClinicItem>();
 
         db = AppDatabase.getInstance(getBaseContext());
 
@@ -85,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
         db.clinicDao().getAll().observe(this, clinics -> {
             if(clinics.isEmpty()){
                 insertClinics();
-                Log.d("메모리", "비어있었음");
             } else{
                 Log.d("메모리", "비어있지않았음");
                 Log.d("메모리", String.valueOf(clinics.size()));
@@ -100,11 +90,6 @@ public class MainActivity extends AppCompatActivity {
 //            thread.start();
 //        }
 
-
-=======
-        fragmentManager = getSupportFragmentManager();
-        setFragment(fragmentSearch);
->>>>>>> ce50da3e3834843e84e9b3a5fd01044834ec7d67
     }
 
     private String readText(String file) throws IOException {
@@ -148,13 +133,13 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.action_search:
-                        setFragment(fragmentSearch);
+                        setFragment(FRAGMENT_SEARCH);
                         break;
                     case R.id.action_self_check:
-                        setFragment(fragmentSelfCheck);
+                        setFragment(FRAGMENT_SELF_CHECK);
                         break;
                     case R.id.action_mypage:
-                        setFragment(fragmentMypage);
+                        setFragment(FRAGMENT_MYPAGE);
                         break;
                 }
 
@@ -162,21 +147,38 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         fragmentSearch = new FragmentSearch();
         fragmentSelfCheck = new FragmentSelfCheck();
         fragmentMypage = new FragmentMypage();
     }
 
     // 프레그먼트 변경 함수
-    public void setFragment(Fragment fragment){
+    public void setFragment(int fragmentNumber){
 
+        fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
 
-        fragmentTransaction.replace(R.id.Main_Frame, fragment);
-        fragmentTransaction.commit();
+        switch (fragmentNumber){
+
+            case FRAGMENT_SEARCH:
+                fragmentTransaction.replace(R.id.Main_Frame, fragmentSearch);
+                fragmentTransaction.commit();
+                break;
+
+            case FRAGMENT_SELF_CHECK:
+                fragmentTransaction.replace(R.id.Main_Frame, fragmentSelfCheck);
+                fragmentTransaction.commit();
+                break;
+
+            case FRAGMENT_MYPAGE:
+                fragmentTransaction.replace(R.id.Main_Frame, fragmentMypage);
+                fragmentTransaction.commit();
+                break;
+        }
     }
 
-<<<<<<< HEAD
+
     @Override
     public void onBackPressed(){
 
@@ -200,6 +202,5 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-=======
->>>>>>> ce50da3e3834843e84e9b3a5fd01044834ec7d67
+
 }

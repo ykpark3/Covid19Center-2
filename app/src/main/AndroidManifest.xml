@@ -15,36 +15,31 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-<<<<<<< HEAD
         android:usesCleartextTraffic="true"
+        android:hardwareAccelerated="true"
         android:networkSecurityConfig="@xml/network_config">
+
         <activity android:name=".Map.MapActivity"></activity>
         <activity android:name=".Search.List.SearchActivity"></activity>
-=======
-        android:hardwareAccelerated="true">
->>>>>>> ce50da3e3834843e84e9b3a5fd01044834ec7d67
+
+
         <activity android:name=".Main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="udi1xytmz6" />
         <meta-data
             android:name="com.naver.maps.map.CLIENT_TYPE"
             android:value="gov" />
-=======
-
         <activity android:name=".Mypage.CreateQrActivity"/>
         <activity android:name=".Mypage.ScanQrActivity"/>
         <activity android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="fullSensor"
             tools:replace="screenOrientation"/>
-
->>>>>>> ce50da3e3834843e84e9b3a5fd01044834ec7d67
     </application>
 
 
