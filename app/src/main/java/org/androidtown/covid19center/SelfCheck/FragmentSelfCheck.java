@@ -19,7 +19,8 @@ public class FragmentSelfCheck extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
-        view = inflater.inflate(R.layout.fragment_self_check,container,false);
+//        view = inflater.inflate(R.layout.fragment_self_check,container,false);
+        view = inflater.inflate(R.layout.activity_questionnaire,container,false);
         return view;
     }
 }

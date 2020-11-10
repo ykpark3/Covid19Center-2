@@ -23,6 +23,7 @@ import org.androidtown.covid19center.Search.FragmentSearch;
 import org.androidtown.covid19center.Search.List.ClinicItem;
 import org.androidtown.covid19center.SelfCheck.FragmentSelfCheck;
 
+<<<<<<< HEAD
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -35,6 +36,10 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
     static final int FRAGMENT_SELF_CHECK = 1;
     static final int FRAGMENT_MYPAGE = 2;
     private TextView textView;
+=======
+public class MainActivity extends AppCompatActivity {
+    
+>>>>>>> ce50da3e3834843e84e9b3a5fd01044834ec7d67
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
     private FragmentSearch fragmentSearch;
@@ -58,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
         textView = findViewById(R.id.textView2);
 
         // 초기화면 검색화면으로 설정
+<<<<<<< HEAD
         setFragment(FRAGMENT_SEARCH);
         // 메모장 저장
         token = new String[616][];
@@ -95,6 +101,10 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
 //        }
 
 
+=======
+        fragmentManager = getSupportFragmentManager();
+        setFragment(fragmentSearch);
+>>>>>>> ce50da3e3834843e84e9b3a5fd01044834ec7d67
     }
 
     private String readText(String file) throws IOException {
@@ -138,13 +148,13 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.action_search:
-                        setFragment(FRAGMENT_SEARCH);
+                        setFragment(fragmentSearch);
                         break;
                     case R.id.action_self_check:
-                        setFragment(FRAGMENT_SELF_CHECK);
+                        setFragment(fragmentSelfCheck);
                         break;
                     case R.id.action_mypage:
-                        setFragment(FRAGMENT_MYPAGE);
+                        setFragment(fragmentMypage);
                         break;
                 }
 
@@ -158,30 +168,15 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
     }
 
     // 프레그먼트 변경 함수
-    public void setFragment(int fragmentNumber){
+    public void setFragment(Fragment fragment){
 
-        fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
 
-        switch (fragmentNumber){
-
-            case FRAGMENT_SEARCH:
-                fragmentTransaction.replace(R.id.Main_Frame, fragmentSearch);
-                fragmentTransaction.commit();
-                break;
-
-            case FRAGMENT_SELF_CHECK:
-                fragmentTransaction.replace(R.id.Main_Frame, fragmentSelfCheck);
-                fragmentTransaction.commit();
-                break;
-
-            case FRAGMENT_MYPAGE:
-                fragmentTransaction.replace(R.id.Main_Frame, fragmentMypage);
-                fragmentTransaction.commit();
-                break;
-        }
+        fragmentTransaction.replace(R.id.Main_Frame, fragment);
+        fragmentTransaction.commit();
     }
 
+<<<<<<< HEAD
     @Override
     public void onBackPressed(){
 
@@ -205,4 +200,6 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
 
 
 
+=======
+>>>>>>> ce50da3e3834843e84e9b3a5fd01044834ec7d67
 }
