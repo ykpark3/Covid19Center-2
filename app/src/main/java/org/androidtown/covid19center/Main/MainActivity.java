@@ -13,7 +13,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.naver.maps.geometry.LatLng;
+import com.naver.maps.geometry.LatLngBounds;
+import com.naver.maps.map.NaverMap;
 import com.naver.maps.map.NaverMapSdk;
+import com.naver.maps.map.overlay.Marker;
 
 import org.androidtown.covid19center.DataBase.AppDatabase;
 import org.androidtown.covid19center.DataBase.Clinic;
@@ -56,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
         setFragment(FRAGMENT_SEARCH);
 
         // 메모장 저장
-        token = new String[616][];
+        token = new String[617][];
         clinicDataList = new ArrayList<ClinicItem>();
 
         db = AppDatabase.getInstance(getBaseContext());
@@ -86,9 +90,17 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
 //        for(int i=0; i<token.length;i++)
 //        {
 //            address = token[i][1];
-//            Thread thread = new NaverApi(address);
-//            thread.start();
+//
+//            try {
+//                Thread thread = new NaverApi(address);
+//                thread.start();
+//                thread.sleep(50);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//
 //        }
+
 
     }
 
@@ -117,8 +129,9 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
 
         for(int i=0;i<token.length;i++)
         {
-            db.clinicDao().insert(new Clinic(token[i][0], token[i][1],token[i][2]));
-            clinicDataList.add(new ClinicItem(token[i][0], token[i][1],token[i][2]));
+            Log.d("태순",String.valueOf(i));
+            db.clinicDao().insert(new Clinic(token[i][0], token[i][1],token[i][2], token[i][3], token[i][4]));
+            clinicDataList.add(new ClinicItem(token[i][0], token[i][1],token[i][2], token[i][3], token[i][4]));
         }
 
     }
@@ -177,6 +190,7 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
                 break;
         }
     }
+
 
 
     @Override

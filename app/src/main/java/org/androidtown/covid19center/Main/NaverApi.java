@@ -123,6 +123,7 @@ public class NaverApi extends Thread {
                 Log.d("과정?","TITLE : " + y);
                 Log.d("과정?","TITLE : " + name);
                 Log.d("과정?","TITLE : " + name2);
+                Log.d("과정?","---------------------");
             }
         } catch (JSONException e) {
             e.printStackTrace();
