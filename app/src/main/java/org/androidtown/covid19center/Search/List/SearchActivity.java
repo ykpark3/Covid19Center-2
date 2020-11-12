@@ -15,6 +15,8 @@ import org.androidtown.covid19center.Main.MainActivity;
 import org.androidtown.covid19center.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
 
@@ -25,12 +27,14 @@ public class SearchActivity extends AppCompatActivity {
     private Handler mHandler = null;
     private AppDatabase db;
     private ListView listView;
+    private List<Double> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+
         clinicSearch = findViewById(R.id.editClinicSearch);
         clinicDataList = new ArrayList<ClinicItem>();
         copyList = new ArrayList<ClinicItem>();
@@ -113,19 +117,26 @@ public class SearchActivity extends AppCompatActivity {
     {
         db = AppDatabase.getInstance(getBaseContext());
 
+        DistanceComparator comparator = new DistanceComparator(); // 비교
+
         db.clinicDao().getAll().observe(this, clinics -> {
 
-            for(int i=0; i<clinics.size()-1;i++)
+            for(int i=0; i<clinics.size()-1; i++)
             {
-                clinicDataList.add(new ClinicItem(clinics.get(i).getClinicName(),clinics.get(i).getClinicCallNumber(), clinics.get(i).getClinicAddress(), clinics.get(i).getX(), clinics.get(i).getY()));
-                Log.d("태순", String.valueOf(i));
-                Log.d("태순", String.valueOf(clinicDataList.get(i).getClinicDistance()));
+                ClinicItem clinicItem = new ClinicItem(clinics.get(i).getClinicName(),clinics.get(i).getClinicCallNumber(), clinics.get(i).getClinicAddress(), clinics.get(i).getX(), clinics.get(i).getY());
+
+                if(clinicItem.getClinicDistance() < 20000){
+                    clinicDataList.add(clinicItem);
+                }
             }
+
+            Collections.sort(clinicDataList, comparator);
 
             myAdapter = new ClinicAdapter(this,clinicDataList); // 진료소 리스트 관리할 어뎁터 생성
             listView.setAdapter(myAdapter); // 리스트뷰에 어뎁터 탑제
             copyList.addAll(clinicDataList);
             myAdapter.notifyDataSetChanged();
+
         });
 
     }
