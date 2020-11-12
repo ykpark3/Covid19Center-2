@@ -9,10 +9,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import com.naver.maps.geometry.LatLng;
-import com.naver.maps.geometry.LatLngBounds;
 import com.naver.maps.map.MapFragment;
 import com.naver.maps.map.NaverMap;
 import com.naver.maps.map.OnMapReadyCallback;
+import com.naver.maps.map.overlay.InfoWindow;
 import com.naver.maps.map.overlay.Marker;
 
 import org.androidtown.covid19center.DataBase.AppDatabase;
@@ -50,6 +50,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     public void onMapReady(@NonNull NaverMap naverMap) {
 
         List<Marker> markers = new ArrayList<>();
+        InfoWindow infoWindow = new InfoWindow();
 
         db = AppDatabase.getInstance(getBaseContext());
 
@@ -59,31 +60,40 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         db.clinicDao().getAll().observe(this, clinics -> {
 
-            for(int i=0; i<616;i++)
-            {
+            for (int i = 0; i < clinics.size() - 1; i++) {
                 Marker marker = new Marker();
                 //clinicDataList.add(new ClinicItem(clinics.get(i).getClinicName(),clinics.get(i).getClinicCallNumber(), clinics.get(i).getClinicAddress(), clinics.get(i).getX(), clinics.get(i).getY()));
+                marker.setTag(clinics.get(i).getClinicName());
+                marker.setWidth(50);
+                marker.setHeight(80);
                 marker.setPosition(new LatLng(Double.parseDouble(clinics.get(i).getY()), Double.parseDouble(clinics.get(i).getX())));
+                marker.setOnClickListener(overlay ->{
+                    infoWindow.open(marker);
+                    return true;
+                });
                 Log.d("순서", String.valueOf(Double.parseDouble(clinics.get(i).getY())));
-                markers.add(marker);
 
+                markers.add(marker);
                 number++;
             }
-            Log.d("순서",String.valueOf(number));
-            if(number == 616){
-                for(Marker marker :markers){
+
+            Log.d("순서", String.valueOf(number));
+
+            if (number == 616) {
+                for (Marker marker : markers) {
                     marker.setMap(naverMap);
                 }
             }
-
         });
 
 
-//        for(int i=0; i<clinicDataList.size();i++){
-//            marker.setPosition(new LatLng(Double.parseDouble(clinicDataList.get(i).getX()), Double.parseDouble(clinicDataList.get(i).getY())));
-//        }
-//
-
+        infoWindow.setAdapter(new InfoWindow.DefaultTextAdapter(getBaseContext()) {
+            @NonNull
+            @Override
+            public CharSequence getText(@NonNull InfoWindow infoWindow) {
+                return (CharSequence)infoWindow.getMarker().getTag();
+            }
+        });
 
     }
 

@@ -58,5 +58,6 @@ dependencies {
 
     //qr코드
     implementation 'com.journeyapps:zxing-android-embedded:3.6.0'
-
+    // 가속도 센서, 지자기
+    implementation 'com.google.android.gms:play-services-location:16.0.0'
 }
