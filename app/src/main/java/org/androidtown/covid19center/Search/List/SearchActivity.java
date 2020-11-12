@@ -115,9 +115,11 @@ public class SearchActivity extends AppCompatActivity {
 
         db.clinicDao().getAll().observe(this, clinics -> {
 
-            for(int i=0; i<clinics.size();i++)
+            for(int i=0; i<clinics.size()-1;i++)
             {
                 clinicDataList.add(new ClinicItem(clinics.get(i).getClinicName(),clinics.get(i).getClinicCallNumber(), clinics.get(i).getClinicAddress(), clinics.get(i).getX(), clinics.get(i).getY()));
+                Log.d("태순", String.valueOf(i));
+                Log.d("태순", String.valueOf(clinicDataList.get(i).getClinicDistance()));
             }
 
             myAdapter = new ClinicAdapter(this,clinicDataList); // 진료소 리스트 관리할 어뎁터 생성
