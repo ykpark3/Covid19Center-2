@@ -38,18 +38,15 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
-        set();
         setContentView(R.layout.fragment_map);
         FragmentManager fm = getSupportFragmentManager();
         mapFragment = (MapFragment) fm.findFragmentById(R.id.map);
-        Log.d("테스트","4");
 
         if (mapFragment == null) {
             mapFragment = MapFragment.newInstance();
             fm.beginTransaction().replace(R.id.map, mapFragment).commit();
-            Log.d("테스트","6");
         }
-        Log.d("테스트","5");
+
         locationSource = new FusedLocationSource(this, LOCATTION_PERMISSION_REQUEST_CODE);
         mapFragment.getMapAsync(MapActivity.this);
 
@@ -59,11 +56,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions,  @NonNull int[] grantResults) {
-        Log.d("테스트","2");
+
         if (locationSource.onRequestPermissionsResult(
                 requestCode, permissions, grantResults)) {
             if (!locationSource.isActivated()) { // 권한 거부됨
-                Log.d("테스트","1");
                 naverMap.setLocationTrackingMode(LocationTrackingMode.None);
             }
             return;
@@ -74,7 +70,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     @Override
     public void onMapReady(@NonNull NaverMap naverMap) {
-        Log.d("테스트","3");
         this.naverMap = naverMap;
         naverMap.setLocationSource(locationSource);
         naverMap.setLocationTrackingMode(LocationTrackingMode.Follow);
@@ -100,13 +95,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     infoWindow.open(marker);
                     return true;
                 });
-                Log.d("순서", String.valueOf(Double.parseDouble(clinics.get(i).getY())));
 
                 markers.add(marker);
                 number++;
             }
-
-            Log.d("순서", String.valueOf(number));
 
             if (number == 616) {
                 for (Marker marker : markers) {
@@ -114,7 +106,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 }
             }
         });
-
 
         infoWindow.setAdapter(new InfoWindow.DefaultTextAdapter(getBaseContext()) {
             @NonNull
@@ -126,7 +117,4 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     }
 
-    private void set(){
-
-    }
 }

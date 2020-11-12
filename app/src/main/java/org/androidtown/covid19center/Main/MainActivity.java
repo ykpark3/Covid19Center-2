@@ -1,26 +1,29 @@
 package org.androidtown.covid19center.Main;
 
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.naver.maps.geometry.LatLng;
-import com.naver.maps.geometry.LatLngBounds;
-import com.naver.maps.map.NaverMap;
 import com.naver.maps.map.NaverMapSdk;
-import com.naver.maps.map.overlay.Marker;
 
 import org.androidtown.covid19center.DataBase.AppDatabase;
 import org.androidtown.covid19center.DataBase.Clinic;
+import org.androidtown.covid19center.Map.LocationConsts;
 import org.androidtown.covid19center.Mypage.FragmentMypage;
 import org.androidtown.covid19center.R;
 import org.androidtown.covid19center.Search.FragmentSearch;
@@ -37,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
     static final int FRAGMENT_SEARCH = 0;
     static final int FRAGMENT_SELF_CHECK = 1;
     static final int FRAGMENT_MYPAGE = 2;
+    LocationManager locationManager;
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
     private FragmentSearch fragmentSearch;
@@ -58,8 +62,27 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
         setBottomNavigation();
 
         setFragment(FRAGMENT_SEARCH);
-
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         // 메모장 저장
+        saveData();
+        setLocation();
+
+    }
+
+    private void setLocation(){
+        if ( Build.VERSION.SDK_INT >= 23 &&
+                ContextCompat.checkSelfPermission( getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED ) {
+            ActivityCompat.requestPermissions( MainActivity.this, new String[] {  android.Manifest.permission.ACCESS_FINE_LOCATION  },
+                    0 );
+        }
+        else{
+            Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+             LocationConsts.NOW_X = location.getLongitude();
+            LocationConsts.NOW_Y = location.getLatitude();
+        }
+    }
+
+    private void saveData(){
         token = new String[617][];
         clinicDataList = new ArrayList<ClinicItem>();
 
@@ -100,7 +123,6 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
 //            }
 //
 //        }
-
 
     }
 
