@@ -10,6 +10,8 @@
 
     <!--메인 색상 아직 미정...-->
     <color name="colorLightGreen">#A4D96C</color>
-
-
+    <!-- 검정색 추가-->
+    <color name="colorBlack">#000000</color>
+    <!-- 하얀색 추가-->
+    <color name="colorWhite">#ffffff</color>
 </resources>

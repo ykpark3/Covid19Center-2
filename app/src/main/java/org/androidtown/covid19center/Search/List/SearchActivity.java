@@ -136,7 +136,6 @@ public class SearchActivity extends AppCompatActivity {
             listView.setAdapter(myAdapter); // 리스트뷰에 어뎁터 탑제
             copyList.addAll(clinicDataList);
             myAdapter.notifyDataSetChanged();
-
         });
 
     }

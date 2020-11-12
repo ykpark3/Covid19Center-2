@@ -46,7 +46,6 @@ public class ClinicAdapter extends BaseAdapter {
         TextView clinicAddress = (TextView)view.findViewById(R.id.textAddress);
         TextView clinicDistance = (TextView)view.findViewById(R.id.textDistance);
 
-
         clinicName.setText(clinics.get(position).getClinicName());
         clinicCallNumber.setText(clinics.get(position).getClinicCallNumber());
         clinicAddress.setText(clinics.get(position).getClinicAddress());
