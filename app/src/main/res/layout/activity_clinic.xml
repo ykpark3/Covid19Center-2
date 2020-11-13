@@ -24,6 +24,7 @@
                 android:background="@color/colorLightGray" />
 
             <TextView
+                android:id="@+id/text_clinicName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -53,6 +54,7 @@
                 android:textSize="20dp" />
 
             <TextView
+                android:id="@+id/text_clinic_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -74,6 +76,7 @@
                 android:textSize="20dp" />
 
             <TextView
+                android:id="@+id/text_clinic_call_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -100,13 +103,12 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/service_add_button_ativity_detail"
+        android:id="@+id/button_book"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="@color/colorLightGreen"
         android:fontFamily="@font/fontstyle"
-        android:onClick="addServiceButton"
         android:text="예약하기"
         android:textColor="@color/colorLightGray"
         android:textSize="20dp" />

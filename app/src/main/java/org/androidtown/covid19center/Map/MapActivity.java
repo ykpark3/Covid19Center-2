@@ -100,7 +100,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 number++;
             }
 
-            if (number == 616) {
+            if (number == 615) {
                 for (Marker marker : markers) {
                     marker.setMap(naverMap);
                 }

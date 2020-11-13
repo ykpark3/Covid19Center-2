@@ -50,8 +50,7 @@ dependencies {
     // 네이버 지도 SDK
     implementation'com.naver.maps:map-sdk:3.10.1'
 
-    implement
-    ation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
 
     implementation('com.naver.maps:map-sdk:3.10.1') {
         exclude group: 'com.android.support'

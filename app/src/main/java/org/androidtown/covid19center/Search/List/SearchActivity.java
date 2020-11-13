@@ -1,5 +1,6 @@
 package org.androidtown.covid19center.Search.List;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -13,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import org.androidtown.covid19center.DataBase.AppDatabase;
 import org.androidtown.covid19center.Main.MainActivity;
 import org.androidtown.covid19center.R;
+import org.androidtown.covid19center.Search.ClinicActivity;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -72,9 +74,12 @@ public class SearchActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView parent, View v, int position, long id){
-                // Intent intent = new Intent(getApplicationContext(), MoviePageActivity.class);
-                // intent.putExtra("group", position);
-                // startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(), ClinicActivity.class);
+                intent.putExtra("clinicName", clinicDataList.get(position).getClinicName());
+                intent.putExtra("clinicAddress", clinicDataList.get(position).getClinicAddress());
+                intent.putExtra("clinicCallNumber", clinicDataList.get(position).getClinicCallNumber());
+                intent.putExtra("clinicDistance", clinicDataList.get(position).getClinicDistance());
+                startActivity(intent);
             }
         });
 

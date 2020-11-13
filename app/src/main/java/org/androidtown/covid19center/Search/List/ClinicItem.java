@@ -24,6 +24,16 @@ public class ClinicItem {
         this.clinicDistance = new LocationInfo(LocationConsts.NOW_X, LocationConsts.NOW_Y, Double.parseDouble(x), Double.parseDouble(y)).getDistance();
     }
 
+    public ClinicItem(String clinicName, String clinicCallNumber, String clinicDistance, String x, String y, String start) {
+        this.clinicName = clinicName;
+        this.clinicCallNumber = clinicCallNumber;
+        this.clinicAddress = clinicDistance;
+        this.x = x;
+        this.y = y;
+        this.clinicDistance = 1;
+    }
+
+
     public String getX() {
         return x;
     }

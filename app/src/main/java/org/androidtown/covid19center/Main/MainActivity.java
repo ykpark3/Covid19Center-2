@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
         }
         else{
             Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-             LocationConsts.NOW_X = location.getLongitude();
+            LocationConsts.NOW_X = location.getLongitude();
             LocationConsts.NOW_Y = location.getLatitude();
         }
     }
