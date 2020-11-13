@@ -7,6 +7,10 @@
 
     <!--    카메라 권한-->
     <uses-permission android:name="android.permission.CAMERA"/>
+    <!--    retrofit 사용을 위한 인터넷 사용권한 추가-->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
 
     <application
         android:allowBackup="true"
@@ -35,11 +39,12 @@
         <meta-data
             android:name="com.naver.maps.map.CLIENT_TYPE"
             android:value="gov" />
-        <activity android:name=".Mypage.CreateQrActivity"/>
-        <activity android:name=".Mypage.ScanQrActivity"/>
+        <activity android:name=".Mypage.CreateQr"/>
+        <activity android:name=".Mypage.ScanQr"/>
         <activity android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="fullSensor"
             tools:replace="screenOrientation"/>
+        <activity android:name=".SelfCheck.SelfCheckResultActivity"/>
     </application>
 
 

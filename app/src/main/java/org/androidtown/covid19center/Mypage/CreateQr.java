@@ -23,7 +23,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class CreateQrActivity extends AppCompatActivity {
+public class CreateQr extends AppCompatActivity {
     private ImageView qr_code;
 //    private String text;
     private String qr_data;
