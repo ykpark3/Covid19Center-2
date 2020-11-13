@@ -128,7 +128,7 @@ public class SearchActivity extends AppCompatActivity {
 
             for(int i=0; i<clinics.size()-1; i++)
             {
-                ClinicItem clinicItem = new ClinicItem(clinics.get(i).getClinicName(),clinics.get(i).getClinicCallNumber(), clinics.get(i).getClinicAddress(), clinics.get(i).getX(), clinics.get(i).getY());
+                ClinicItem clinicItem = new ClinicItem(clinics.get(i).getClinicName(),clinics.get(i).getClinicCallNumber(), clinics.get(i).getClinicAddress(), clinics.get(i).getX(), clinics.get(i).getY(), "yes");
 
                 if(clinicItem.getClinicDistance() < 20000){
                     clinicDataList.add(clinicItem);

@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
     static final int FRAGMENT_SEARCH = 0;
     static final int FRAGMENT_SELF_CHECK = 1;
     static final int FRAGMENT_MYPAGE = 2;
-    LocationManager locationManager;
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
     private FragmentSearch fragmentSearch;
@@ -62,28 +61,16 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
         setBottomNavigation();
 
         setFragment(FRAGMENT_SEARCH);
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
         // 메모장 저장
         saveData();
-        setLocation();
+
 
     }
 
-    private void setLocation(){
-        if ( Build.VERSION.SDK_INT >= 23 &&
-                ContextCompat.checkSelfPermission( getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED ) {
-            ActivityCompat.requestPermissions( MainActivity.this, new String[] {  android.Manifest.permission.ACCESS_FINE_LOCATION  },
-                    0 );
-        }
-        else{
-            Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            LocationConsts.NOW_X = location.getLongitude();
-            LocationConsts.NOW_Y = location.getLatitude();
-        }
-    }
 
     private void saveData(){
-        token = new String[617][];
+        token = new String[616][];
         clinicDataList = new ArrayList<ClinicItem>();
 
         db = AppDatabase.getInstance(getBaseContext());

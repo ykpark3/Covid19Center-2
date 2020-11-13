@@ -21,7 +21,7 @@ public class ClinicItem {
         this.x = x;
         this.y = y;
         this.clinicDistance = 0;
-        this.clinicDistance = new LocationInfo(LocationConsts.NOW_X, LocationConsts.NOW_Y, Double.parseDouble(x), Double.parseDouble(y)).getDistance();
+
     }
 
     public ClinicItem(String clinicName, String clinicCallNumber, String clinicDistance, String x, String y, String start) {
@@ -31,6 +31,7 @@ public class ClinicItem {
         this.x = x;
         this.y = y;
         this.clinicDistance = 1;
+        this.clinicDistance = new LocationInfo(LocationConsts.NOW_X, LocationConsts.NOW_Y, Double.parseDouble(x), Double.parseDouble(y)).getDistance();
     }
 
 
