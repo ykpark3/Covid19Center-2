@@ -1,7 +1,12 @@
 package org.androidtown.covid19center.Map;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,7 +23,9 @@ import com.naver.maps.map.overlay.Marker;
 import com.naver.maps.map.util.FusedLocationSource;
 
 import org.androidtown.covid19center.DataBase.AppDatabase;
+import org.androidtown.covid19center.Main.MainActivity;
 import org.androidtown.covid19center.R;
+import org.androidtown.covid19center.Search.ClinicActivity;
 import org.androidtown.covid19center.Search.List.ClinicItem;
 
 import java.util.ArrayList;
@@ -33,6 +40,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private int number;
     private FusedLocationSource locationSource;
     private NaverMap naverMap;
+    private Button button;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,6 +49,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         setContentView(R.layout.fragment_map);
         FragmentManager fm = getSupportFragmentManager();
         mapFragment = (MapFragment) fm.findFragmentById(R.id.map);
+        button = findViewById(R.id.map_button);
+
+        button.setVisibility(View.GONE);
+        //bottomLayout.setVisibility(View.GONE);
 
         if (mapFragment == null) {
             mapFragment = MapFragment.newInstance();
@@ -82,6 +94,16 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         number = 0;
 
+        button.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ClinicActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         db.clinicDao().getAll().observe(this, clinics -> {
 
             for (int i = 0; i < clinics.size() - 1; i++) {
@@ -91,11 +113,21 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 marker.setWidth(50);
                 marker.setHeight(80);
                 marker.setPosition(new LatLng(Double.parseDouble(clinics.get(i).getY()), Double.parseDouble(clinics.get(i).getX())));
+
                 marker.setOnClickListener(overlay ->{
-                    infoWindow.open(marker);
-                    return true;
+
+                    if(marker.getInfoWindow() == null){
+                        infoWindow.open(marker);
+                        button.setVisibility(View.VISIBLE);
+                    } else{
+                        infoWindow.close();
+                        button.setVisibility(View.GONE);
+                    }
+
+                        return true;
                 });
 
+                infoWindow.close();
                 markers.add(marker);
                 number++;
             }
