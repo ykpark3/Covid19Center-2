@@ -41,6 +41,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private FusedLocationSource locationSource;
     private NaverMap naverMap;
     private Button button;
+    private String[] clinicInfo;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,7 +50,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         setContentView(R.layout.fragment_map);
         FragmentManager fm = getSupportFragmentManager();
         mapFragment = (MapFragment) fm.findFragmentById(R.id.map);
+        clinicInfo = new String[3];
         button = findViewById(R.id.map_button);
+
 
         button.setVisibility(View.GONE);
         //bottomLayout.setVisibility(View.GONE);
@@ -110,15 +113,32 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 Marker marker = new Marker();
                 //clinicDataList.add(new ClinicItem(clinics.get(i).getClinicName(),clinics.get(i).getClinicCallNumber(), clinics.get(i).getClinicAddress(), clinics.get(i).getX(), clinics.get(i).getY()));
                 marker.setTag(clinics.get(i).getClinicName());
+                marker.setCaptionText(clinics.get(i).getClinicName()+","+clinics.get(i).getClinicCallNumber()+","+clinics.get(i).getClinicAddress());
                 marker.setWidth(50);
                 marker.setHeight(80);
                 marker.setPosition(new LatLng(Double.parseDouble(clinics.get(i).getY()), Double.parseDouble(clinics.get(i).getX())));
-
                 marker.setOnClickListener(overlay ->{
 
                     if(marker.getInfoWindow() == null){
+
+                        clinicInfo = passClinicsInfo(marker.getCaptionText());
                         infoWindow.open(marker);
                         button.setVisibility(View.VISIBLE);
+                        button.setOnClickListener(new View.OnClickListener(){
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(
+                                        getApplicationContext(), // 현재 화면의 제어권자
+                                        ClinicActivity.class); // 다음 넘어갈 클래스 지정
+                                intent.putExtra("clinicName", clinicInfo[0]);
+                                intent.putExtra("clinicAddress", clinicInfo[1]);
+                                intent.putExtra("clinicCallNumber", clinicInfo[2]);
+                                intent.putExtra("clinicDistance", 0);
+                                startActivity(intent);
+                                finish();
+                            }
+                        });
+
                     } else{
                         infoWindow.close();
                         button.setVisibility(View.GONE);
@@ -147,6 +167,13 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             }
         });
 
+    }
+
+    private String[] passClinicsInfo(String info){
+        String[] clinicInfoArray = new String[3];
+        clinicInfoArray = info.split(",");
+
+        return clinicInfoArray;
     }
 
 }
