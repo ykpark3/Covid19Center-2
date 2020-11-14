@@ -1,6 +1,9 @@
 package org.androidtown.covid19center.Search.List;
 
+<<<<<<< HEAD
 import android.content.Intent;
+=======
+>>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -12,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 import org.androidtown.covid19center.DataBase.AppDatabase;
+<<<<<<< HEAD
 import org.androidtown.covid19center.Main.MainActivity;
 import org.androidtown.covid19center.R;
 import org.androidtown.covid19center.Search.ClinicActivity;
@@ -19,6 +23,11 @@ import org.androidtown.covid19center.Search.ClinicActivity;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+=======
+import org.androidtown.covid19center.R;
+
+import java.util.ArrayList;
+>>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
 
 public class SearchActivity extends AppCompatActivity {
 
@@ -29,14 +38,20 @@ public class SearchActivity extends AppCompatActivity {
     private Handler mHandler = null;
     private AppDatabase db;
     private ListView listView;
+<<<<<<< HEAD
     private List<Double> list;
+=======
+>>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
         clinicSearch = findViewById(R.id.editClinicSearch);
         clinicDataList = new ArrayList<ClinicItem>();
         copyList = new ArrayList<ClinicItem>();
@@ -74,12 +89,18 @@ public class SearchActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView parent, View v, int position, long id){
+<<<<<<< HEAD
                 Intent intent = new Intent(getApplicationContext(), ClinicActivity.class);
                 intent.putExtra("clinicName", clinicDataList.get(position).getClinicName());
                 intent.putExtra("clinicAddress", clinicDataList.get(position).getClinicAddress());
                 intent.putExtra("clinicCallNumber", clinicDataList.get(position).getClinicCallNumber());
                 intent.putExtra("clinicDistance", clinicDataList.get(position).getClinicDistance());
                 startActivity(intent);
+=======
+                // Intent intent = new Intent(getApplicationContext(), MoviePageActivity.class);
+                // intent.putExtra("group", position);
+                // startActivity(intent);
+>>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
             }
         });
 
@@ -122,6 +143,7 @@ public class SearchActivity extends AppCompatActivity {
     {
         db = AppDatabase.getInstance(getBaseContext());
 
+<<<<<<< HEAD
         DistanceComparator comparator = new DistanceComparator(); // 비교
 
         db.clinicDao().getAll().observe(this, clinics -> {
@@ -137,6 +159,15 @@ public class SearchActivity extends AppCompatActivity {
 
             Collections.sort(clinicDataList, comparator);
 
+=======
+        db.clinicDao().getAll().observe(this, clinics -> {
+
+            for(int i=0; i<clinics.size();i++)
+            {
+                clinicDataList.add(new ClinicItem(clinics.get(i).getClinicName(),clinics.get(i).getClinicCallNumber(), clinics.get(i).getClinicAddress()));
+            }
+
+>>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
             myAdapter = new ClinicAdapter(this,clinicDataList); // 진료소 리스트 관리할 어뎁터 생성
             listView.setAdapter(myAdapter); // 리스트뷰에 어뎁터 탑제
             copyList.addAll(clinicDataList);

@@ -43,13 +43,20 @@ public class ClinicAdapter extends BaseAdapter {
         View view = mLayoutInflater.inflate(R.layout.clinic_item_list, null);
         TextView clinicName = (TextView)view.findViewById(R.id.textClinic);
         TextView clinicCallNumber = (TextView)view.findViewById(R.id.textCallNumber);
+<<<<<<< HEAD
         TextView clinicAddress = (TextView)view.findViewById(R.id.textAddress);
+=======
+>>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
         TextView clinicDistance = (TextView)view.findViewById(R.id.textDistance);
 
         clinicName.setText(clinics.get(position).getClinicName());
         clinicCallNumber.setText(clinics.get(position).getClinicCallNumber());
+<<<<<<< HEAD
         clinicAddress.setText(clinics.get(position).getClinicAddress());
         clinicDistance.setText(String.format("%.1f",clinics.get(position).getClinicDistance()/1000)+"km");
+=======
+        clinicDistance.setText(clinics.get(position).getClinicDistance());
+>>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
 
         return view;
     }

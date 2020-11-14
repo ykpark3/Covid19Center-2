@@ -1,5 +1,6 @@
 package org.androidtown.covid19center.Main;
 
+<<<<<<< HEAD
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -8,6 +9,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+=======
+import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
+import android.widget.TextView;
+>>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,7 +30,10 @@ import com.naver.maps.map.NaverMapSdk;
 
 import org.androidtown.covid19center.DataBase.AppDatabase;
 import org.androidtown.covid19center.DataBase.Clinic;
+<<<<<<< HEAD
 import org.androidtown.covid19center.Map.LocationConsts;
+=======
+>>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
 import org.androidtown.covid19center.Mypage.FragmentMypage;
 import org.androidtown.covid19center.R;
 import org.androidtown.covid19center.Search.FragmentSearch;
@@ -35,11 +45,16 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD
 public class MainActivity extends AppCompatActivity implements OnBackPressedListener{
 
     static final int FRAGMENT_SEARCH = 0;
     static final int FRAGMENT_SELF_CHECK = 1;
     static final int FRAGMENT_MYPAGE = 2;
+=======
+public class MainActivity extends AppCompatActivity implements OnBackPressedListener {
+
+>>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
     private FragmentSearch fragmentSearch;
@@ -60,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
         setContentView(R.layout.activity_main);
         setBottomNavigation();
 
+<<<<<<< HEAD
         setFragment(FRAGMENT_SEARCH);
 
         // 메모장 저장
@@ -70,6 +86,13 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
 
 
     private void saveData(){
+=======
+        // 초기화면 검색화면으로 설정
+        fragmentManager = getSupportFragmentManager();
+        setFragment(fragmentSearch);
+
+        // 메모장 저장
+>>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
         token = new String[616][];
         clinicDataList = new ArrayList<ClinicItem>();
 
@@ -100,6 +123,7 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
 //        for(int i=0; i<token.length;i++)
 //        {
 //            address = token[i][1];
+<<<<<<< HEAD
 //
 //            try {
 //                Thread thread = new NaverApi(address);
@@ -134,13 +158,47 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
         }
     }
 
+=======
+//            Thread thread = new NaverApi(address);
+//            thread.start();
+//        }
+
+    }
+
+    private String readText(String file) throws IOException {
+        InputStream is = getAssets().open(file);
+
+        int size = is.available();
+
+        byte[] buffer = new byte[size];
+        BufferedReader read;
+        is.read(buffer);
+        is.close();
+
+        String text = new String(buffer);
+        return text;
+    }
+
+    private void divideComma(String[] line){
+        for(int i=0; i<line.length; i++){
+            line[i] = line[i].replaceAll("\t",",");
+            token[i] = line[i].split(",");
+        }
+    }
+
+>>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
     private void insertClinics(){
 
         for(int i=0;i<token.length;i++)
         {
+<<<<<<< HEAD
             Log.d("태순",String.valueOf(i));
             db.clinicDao().insert(new Clinic(token[i][0], token[i][1],token[i][2], token[i][3], token[i][4]));
             clinicDataList.add(new ClinicItem(token[i][0], token[i][1],token[i][2], token[i][3], token[i][4]));
+=======
+            db.clinicDao().insert(new Clinic(token[i][0], token[i][1],token[i][2]));
+            clinicDataList.add(new ClinicItem(token[i][0], token[i][1],token[i][2]));
+>>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
         }
 
     }
@@ -200,8 +258,11 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
         }
     }
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
     @Override
     public void onBackPressed(){
 
@@ -222,8 +283,11 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
         lastTimeBackPressed = System.currentTimeMillis();
         Toast.makeText(this,"'뒤로' 버튼을 한 번 더 누르면 종료됩니다.",Toast.LENGTH_SHORT).show();
     }
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
 }

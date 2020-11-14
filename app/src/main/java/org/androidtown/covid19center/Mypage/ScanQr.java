@@ -12,7 +12,7 @@ import com.google.zxing.integration.android.IntentResult;
 
 import org.androidtown.covid19center.R;
 
-public class ScanQrActivity extends AppCompatActivity {
+public class ScanQr extends AppCompatActivity {
     private IntentIntegrator qrScan;
 
     @Override

@@ -8,7 +8,11 @@
 
 
     <LinearLayout
+<<<<<<< HEAD
         android:layout_width="260dp"
+=======
+        android:layout_width="wrap_content"
+>>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingLeft="20dp"
@@ -19,6 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="대전성모병원"
+<<<<<<< HEAD
             android:textSize="16dp"
             android:textStyle="bold" />
 
@@ -30,16 +35,37 @@
             android:text="주소"
             android:textColor="@android:color/darker_gray"
             android:textSize="14dp" />
+=======
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textCallNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="042-331-0882"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="14sp" />
+>>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
 
     </LinearLayout>
 
     <LinearLayout
+<<<<<<< HEAD
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="right"
         android:orientation="vertical"
         android:paddingLeft="10dp"
         android:paddingRight="10dp">
+=======
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:orientation="horizontal"
+        android:paddingLeft="30dp">
+>>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
 
         <TextView
             android:id="@+id/textDistance"
@@ -49,6 +75,7 @@
             android:layout_weight="10"
             android:text="100m"
             android:textSize="14sp" />
+<<<<<<< HEAD
 
         <TextView
             android:id="@+id/textCallNumber"
@@ -58,6 +85,8 @@
             android:layout_weight="10"
             android:text="042-331-0882"
             android:textSize="14sp" />
+=======
+>>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
     </LinearLayout>
 </LinearLayout>
 

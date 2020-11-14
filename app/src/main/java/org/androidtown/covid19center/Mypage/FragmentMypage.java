@@ -31,7 +31,7 @@ public class FragmentMypage extends Fragment {
             @Override
             public void onClick(View view) {
                 //Qr코드 생성 activity로 intent
-                Intent intent = new Intent(getActivity(), CreateQrActivity.class);
+                Intent intent = new Intent(getActivity(), CreateQr.class);
                 startActivity(intent);
             }
         });
@@ -52,7 +52,7 @@ public class FragmentMypage extends Fragment {
             @Override
             public void onClick(View view) {
                 // Qr코드 생성 activity로 intent
-                Intent intent = new Intent(getActivity(), CreateQrActivity.class);
+                Intent intent = new Intent(getActivity(), CreateQr.class);
                 startActivity(intent);
             }
         });
@@ -61,7 +61,7 @@ public class FragmentMypage extends Fragment {
             @Override
             public void onClick(View view) {
                 // Qr코드 스캔 activity로 intent
-                Intent intent = new Intent(getActivity(), ScanQrActivity.class);
+                Intent intent = new Intent(getActivity(), ScanQr.class);
                 startActivity(intent);
             }
         });

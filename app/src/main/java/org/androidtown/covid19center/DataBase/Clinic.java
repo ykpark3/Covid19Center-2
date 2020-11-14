@@ -14,10 +14,13 @@ public class Clinic {
     private String clinicAddress; // 병원 주소
     @ColumnInfo(name = "clinic_call")
     private String clinicCallNumber; // 병원 전화번호
+<<<<<<< HEAD
     @ColumnInfo(name = "clinic_x")
     private String x; // 병원 x좌표
     @ColumnInfo(name = "clinic_y")
     private String y; // 병원 y좌표
+=======
+>>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
 
     public String getClinicName(){
         return clinicName;
@@ -35,17 +38,25 @@ public class Clinic {
         return cid;
     }
 
+<<<<<<< HEAD
     public Clinic(String clinicName, String clinicAddress, String clinicCallNumber, String x, String y){
         this.clinicName = clinicName;
         this.clinicAddress = clinicAddress;
         this.clinicCallNumber = clinicCallNumber;
         this.x = x;
         this.y = y;
+=======
+    public Clinic(String clinicName, String clinicAddress, String clinicCallNumber){
+        this.clinicName = clinicName;
+        this.clinicAddress = clinicAddress;
+        this.clinicCallNumber = clinicCallNumber;
+>>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
     }
 
     public Clinic() {
     }
 
+<<<<<<< HEAD
     public String getX() {
         return x;
     }
@@ -62,6 +73,8 @@ public class Clinic {
         this.y = y;
     }
 
+=======
+>>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
     @Override
     public String toString() {
         return "Clinic{" +
@@ -69,8 +82,11 @@ public class Clinic {
                 ", clinicName='" + clinicName + '\'' +
                 ", clinicAddress='" + clinicAddress + '\'' +
                 ", clinicCallNumber='" + clinicCallNumber + '\'' +
+<<<<<<< HEAD
                 ", x='" + x + '\'' +
                 ", y='" + y + '\'' +
+=======
+>>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
                 '}';
     }
 

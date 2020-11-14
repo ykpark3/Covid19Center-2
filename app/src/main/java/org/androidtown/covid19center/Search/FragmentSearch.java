@@ -11,10 +11,13 @@ import androidx.room.Room;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+<<<<<<< HEAD
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
+=======
+>>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,7 +34,10 @@ import com.naver.maps.map.OnMapReadyCallback;
 import org.androidtown.covid19center.DataBase.AppDatabase;
 import org.androidtown.covid19center.Main.MainActivity;
 import org.androidtown.covid19center.Main.OnBackPressedListener;
+<<<<<<< HEAD
 import org.androidtown.covid19center.Map.LocationConsts;
+=======
+>>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
 import org.androidtown.covid19center.Map.MapActivity;
 import org.androidtown.covid19center.Mypage.FragmentMypage;
 import org.androidtown.covid19center.R;
@@ -47,7 +53,11 @@ public class FragmentSearch extends Fragment{
     private Button openApiBtn;
     MapFragment mapFragment;
     private View.OnKeyListener mOnKeyBackPressedListener;
+<<<<<<< HEAD
     LocationManager locationManager;
+=======
+
+>>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
 
     @Nullable
     @Override
@@ -69,8 +79,11 @@ public class FragmentSearch extends Fragment{
 
         setSearchingBox();
 
+<<<<<<< HEAD
         locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
+=======
+>>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
         openApiBtn.setOnClickListener(new Button.OnClickListener() {
 
             @Override
@@ -85,12 +98,18 @@ public class FragmentSearch extends Fragment{
         search_textView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+<<<<<<< HEAD
                 setLocation();
 
+=======
+                Intent intent = new Intent(getActivity(), SearchActivity.class);
+                startActivity(intent);
+>>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
             }
         });
     }
 
+<<<<<<< HEAD
     private void setLocation(){
         if ( Build.VERSION.SDK_INT >= 23 &&
                 ContextCompat.checkSelfPermission( getActivity().getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED ) {
@@ -106,4 +125,6 @@ public class FragmentSearch extends Fragment{
         }
     }
 
+=======
+>>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
 }
