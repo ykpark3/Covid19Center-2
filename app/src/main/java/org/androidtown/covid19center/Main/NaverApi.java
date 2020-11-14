@@ -119,18 +119,9 @@ public class NaverApi extends Thread {
                 y = item.getString("y");
                 name = item.getString("roadAddress");
                 name2 = item.getString("jibunAddress");
-                Log.d("과정?","TITLE : " + x);
-                Log.d("과정?","TITLE : " + y);
-                Log.d("과정?","TITLE : " + name);
-                Log.d("과정?","TITLE : " + name2);
-<<<<<<< HEAD
-                Log.d("과정?","---------------------");
-=======
->>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 }
-

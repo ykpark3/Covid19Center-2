@@ -7,15 +7,10 @@
 
     <!--    카메라 권한-->
     <uses-permission android:name="android.permission.CAMERA"/>
-<<<<<<< HEAD
+
     <!--    위치 권한-->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-=======
-    <!--    retrofit 사용을 위한 인터넷 사용권한 추가-->
-    <uses-permission android:name="android.permission.INTERNET" />
 
-
->>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
 
     <application
         android:allowBackup="true"
@@ -31,10 +26,6 @@
         <activity android:name=".Map.MapActivity"></activity>
         <activity android:name=".Search.List.SearchActivity"></activity>
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
         <activity android:name=".Main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,21 +38,16 @@
         <meta-data
             android:name="com.naver.maps.map.CLIENT_TYPE"
             android:value="gov" />
-<<<<<<< HEAD
-        <activity android:name=".Mypage.CreateQrActivity"/>
-        <activity android:name=".Mypage.ScanQrActivity"/>
-        <activity android:name="com.journeyapps.barcodescanner.CaptureActivity"
-            android:screenOrientation="fullSensor"
-            tools:replace="screenOrientation"/>
-        <activity android:name=".Search.ClinicActivity"/>
-=======
+
         <activity android:name=".Mypage.CreateQr"/>
         <activity android:name=".Mypage.ScanQr"/>
         <activity android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="fullSensor"
             tools:replace="screenOrientation"/>
+        <activity android:name=".Search.ClinicActivity"/>
+
         <activity android:name=".SelfCheck.SelfCheckResultActivity"/>
->>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
+
     </application>
 
 

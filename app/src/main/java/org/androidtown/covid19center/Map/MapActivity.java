@@ -1,23 +1,15 @@
 package org.androidtown.covid19center.Map;
 
-<<<<<<< HEAD
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-=======
-import android.os.Bundle;
->>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
-<<<<<<< HEAD
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.LocationTrackingMode;
 import com.naver.maps.map.MapFragment;
@@ -28,25 +20,17 @@ import com.naver.maps.map.overlay.Marker;
 import com.naver.maps.map.util.FusedLocationSource;
 
 import org.androidtown.covid19center.DataBase.AppDatabase;
-import org.androidtown.covid19center.Main.MainActivity;
 import org.androidtown.covid19center.R;
 import org.androidtown.covid19center.Search.ClinicActivity;
 import org.androidtown.covid19center.Search.List.ClinicItem;
 
 import java.util.ArrayList;
 import java.util.List;
-=======
-import com.naver.maps.map.MapFragment;
-import com.naver.maps.map.NaverMap;
-import com.naver.maps.map.OnMapReadyCallback;
-
-import org.androidtown.covid19center.R;
->>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     MapFragment mapFragment;
-<<<<<<< HEAD
+
     private static final int LOCATTION_PERMISSION_REQUEST_CODE = 1000;
     private AppDatabase db;
     private ArrayList<ClinicItem> clinicDataList; // 진료소 담을 리스트 생성
@@ -55,14 +39,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private NaverMap naverMap;
     private Button button;
     private String[] clinicInfo;
-=======
->>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
-<<<<<<< HEAD
+
         setContentView(R.layout.fragment_map);
         FragmentManager fm = getSupportFragmentManager();
         mapFragment = (MapFragment) fm.findFragmentById(R.id.map);
@@ -71,19 +53,13 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
 
         button.setVisibility(View.GONE);
-=======
 
-        setContentView(R.layout.fragment_map);
-        FragmentManager fm = getSupportFragmentManager();
-        mapFragment = (MapFragment) fm.findFragmentById(R.id.map);
->>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
 
         if (mapFragment == null) {
             mapFragment = MapFragment.newInstance();
             fm.beginTransaction().replace(R.id.map, mapFragment).commit();
         }
 
-<<<<<<< HEAD
         locationSource = new FusedLocationSource(this, LOCATTION_PERMISSION_REQUEST_CODE);
         mapFragment.getMapAsync(MapActivity.this);
 
@@ -103,14 +79,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
         super.onRequestPermissionsResult(
                 requestCode, permissions, grantResults);
-=======
-        mapFragment.getMapAsync(MapActivity.this);
->>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
+
     }
 
     @Override
     public void onMapReady(@NonNull NaverMap naverMap) {
-<<<<<<< HEAD
         this.naverMap = naverMap;
         naverMap.setLocationSource(locationSource);
         naverMap.setLocationTrackingMode(LocationTrackingMode.Follow);
@@ -200,11 +173,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private String[] passClinicsInfo(String info){
         String[] clinicInfoArray = new String[3];
         clinicInfoArray = info.split(",");
-
         return clinicInfoArray;
-=======
-
->>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
     }
+
 
 }

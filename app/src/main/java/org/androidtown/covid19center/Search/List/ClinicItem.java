@@ -1,16 +1,12 @@
 package org.androidtown.covid19center.Search.List;
 
-<<<<<<< HEAD
 import org.androidtown.covid19center.Map.LocationConsts;
 import org.androidtown.covid19center.Map.LocationInfo;
 
-=======
->>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
 public class ClinicItem {
 
     private String clinicName; // 진료소 명
     private String clinicCallNumber; // 진료소 전화번호
-<<<<<<< HEAD
     private String clinicAddress;     // 진료소 주소
     private double clinicDistance;
     private String x;     // 진료소 떨어진 거리
@@ -71,25 +67,6 @@ public class ClinicItem {
         this.clinicAddress = clinicAddress;
     }
 
-=======
-    private String clinicDistance;     // 진료소 떨어진 거리
-
-    //생성자 초기화
-    public ClinicItem(String clinicName, String clinicCallNumber, String clinicDistance) {
-        this.clinicName = clinicName;
-        this.clinicCallNumber = clinicCallNumber;
-        this.clinicDistance = clinicDistance;
-    }
-
-    public String getClinicDistance() {
-        return clinicDistance;
-    }
-
-    public void setClinicDistance(String clinicDistance) {
-        this.clinicDistance = clinicDistance;
-    }
-
->>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
     public String getClinicCallNumber() {
         return clinicCallNumber;
     }
@@ -105,8 +82,5 @@ public class ClinicItem {
     public void setClinicName(String clinicName) {
         this.clinicName = clinicName;
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> 24cf7a1044cc358d297d13b496581957c0c86d0e
 }
