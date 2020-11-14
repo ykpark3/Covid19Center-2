@@ -55,7 +55,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
 
         button.setVisibility(View.GONE);
-        //bottomLayout.setVisibility(View.GONE);
 
         if (mapFragment == null) {
             mapFragment = MapFragment.newInstance();
@@ -113,7 +112,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 Marker marker = new Marker();
                 //clinicDataList.add(new ClinicItem(clinics.get(i).getClinicName(),clinics.get(i).getClinicCallNumber(), clinics.get(i).getClinicAddress(), clinics.get(i).getX(), clinics.get(i).getY()));
                 marker.setTag(clinics.get(i).getClinicName());
-                marker.setCaptionText(clinics.get(i).getClinicName()+","+clinics.get(i).getClinicCallNumber()+","+clinics.get(i).getClinicAddress());
+                //marker.setCaptionText(clinics.get(i).getClinicName()+","+clinics.get(i).getClinicCallNumber()+","+clinics.get(i).getClinicAddress());
+                marker.setSubCaptionText(clinics.get(i).getClinicName()+","+clinics.get(i).getClinicCallNumber()+","+clinics.get(i).getClinicAddress());
+
                 marker.setWidth(50);
                 marker.setHeight(80);
                 marker.setPosition(new LatLng(Double.parseDouble(clinics.get(i).getY()), Double.parseDouble(clinics.get(i).getX())));
@@ -121,7 +122,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                     if(marker.getInfoWindow() == null){
 
-                        clinicInfo = passClinicsInfo(marker.getCaptionText());
+                        clinicInfo = passClinicsInfo(marker.getSubCaptionText());
                         infoWindow.open(marker);
                         button.setVisibility(View.VISIBLE);
                         button.setOnClickListener(new View.OnClickListener(){
