@@ -28,7 +28,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements OnBackPressedListener{
+public class MainActivity extends AppCompatActivity implements OnBackPressedListener {
 
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;

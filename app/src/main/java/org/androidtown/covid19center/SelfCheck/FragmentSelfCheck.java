@@ -2,10 +2,14 @@ package org.androidtown.covid19center.SelfCheck;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +31,16 @@ public class FragmentSelfCheck extends Fragment {
     private CheckBox sore_throat;
     private Button submit;
 
-    int check_num = 0;  //자가진단 체크한 증상 개수
+    public int check_num = 0;  //자가진단 체크한 증상 개수
+
+    private OnCheckNumListener onCheckNumListener;
+
+    private AppCompatActivity activity;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Nullable
     @Override
@@ -44,6 +57,78 @@ public class FragmentSelfCheck extends Fragment {
         sore_throat = view.findViewById(R.id.self_check_sore_throat);
 
         submit = view.findViewById(R.id.self_check_submit);
+
+//        submit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (fever.isChecked()) {
+//                    check_num++;
+//                }
+//                if(muscle_ache.isChecked()){
+//                    check_num++;
+//                }
+//                if(cough.isChecked()){
+//                    check_num++;
+//                }
+//                if(sputum.isChecked()){
+//                    check_num++;
+//                }
+//                if(chill.isChecked()){
+//                    check_num++;
+//                }
+//                if(dyspnea.isChecked()){
+//                    check_num++;
+//                }
+//                if(sore_throat.isChecked()){
+//                    check_num++;
+//                }
+////                Toast.makeText(getContext(), "checknum : " + check_num, Toast.LENGTH_SHORT).show();
+//
+////                //자가진단표 체크한 개수 resultActivity에 전달
+//                onCheckNumListener.onCheckNumSet(check_num);
+////                ((OnCheckNumListener)activity).onCheckNumSet(check_num);
+//
+////                //자가진단 결과 액티비티 intent
+//                Intent intent = new Intent(getActivity(), SelfCheckResultActivity.class);
+//                intent.putExtra("checkNum", check_num);
+//                startActivity(intent);
+//
+//            }
+//        });
+
+        return view;
+    }
+
+    public interface OnCheckNumListener{
+        void onCheckNumSet(int check_num);
+    }
+
+//    @Override
+//    public void onAttach(@NonNull Context context) {
+//        super.onAttach(context);
+//
+//        if (context instanceof OnCheckNumListener) {
+//            onCheckNumListener = (OnCheckNumListener) context;
+//
+////            //자가진단 결과 액티비티 intent
+////            Intent intent = new Intent(getActivity(), SelfCheckResultActivity.class);
+////            startActivity(intent);
+//        }
+//
+//        else {
+//            throw new RuntimeException(context.toString() + " must implement OnCheckNumListener");
+//        }
+//    }
+//
+//    @Override
+//    public void onDetach() {
+//        super.onDetach();
+//        onCheckNumListener = null;
+//    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,33 +154,20 @@ public class FragmentSelfCheck extends Fragment {
                 if(sore_throat.isChecked()){
                     check_num++;
                 }
-                Toast.makeText(getContext(), "checknum : " + check_num, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), "checknum : " + check_num, Toast.LENGTH_SHORT).show();
 
-                //자가진단 결과 액티비티 intent
+//                //자가진단표 체크한 개수 resultActivity에 전달
+//                onCheckNumListener.onCheckNumSet(check_num);
+//                ((OnCheckNumListener)activity).onCheckNumSet(check_num);
+
+                Log.d("checknum~~@@", String.valueOf(check_num));
+
+//                //자가진단 결과 액티비티 intent
                 Intent intent = new Intent(getActivity(), SelfCheckResultActivity.class);
+                intent.putExtra("checkNum", check_num);
                 startActivity(intent);
+
             }
         });
-
-
-//        //이거 안쓸거임 버려 개구려..
-//        fever.setOnCheckedChangeListener(this);
-//        muscle_ache.setOnCheckedChangeListener(this);
-//        cough.setOnCheckedChangeListener(this);
-//        sputum.setOnCheckedChangeListener(this);
-//        chill.setOnCheckedChangeListener(this);
-//        dyspnea.setOnCheckedChangeListener(this);
-//        sore_throat.setOnCheckedChangeListener(this);
-
-//        LinearLayout layout = view.findViewById(R.id.self_check_layout);
-//        layout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                onCheckBoxClicked(v);
-//            }
-//        });
-
-        return view;
     }
-
 }
