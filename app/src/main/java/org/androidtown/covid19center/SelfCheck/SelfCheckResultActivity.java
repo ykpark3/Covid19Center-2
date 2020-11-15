@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.androidtown.covid19center.R;
 
-public class SelfCheckResultActivity extends AppCompatActivity implements FragmentSelfCheck.OnCheckNumListener {
+public class SelfCheckResultActivity extends AppCompatActivity {
 
     public int mCheckNum;
 
@@ -23,15 +23,13 @@ public class SelfCheckResultActivity extends AppCompatActivity implements Fragme
 
         setContentView(R.layout.activity_self_check_result);
 
-        mCheckNum = 999;
-
         Intent intent = getIntent();
-        mCheckNum = intent.getExtras().getInt("checkNum");
+        mCheckNum = intent.getExtras().getInt("checkNum");  //자가진단 체크 개수 전달받기
 
-        changeView(0);
+        changeView(mCheckNum);
     }
 
-    private void changeView(int index) {
+    private void changeView(int check_num) {
         // LayoutInflater 초기화.
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -41,31 +39,36 @@ public class SelfCheckResultActivity extends AppCompatActivity implements Fragme
             frame.removeViewAt(0);
         }
 
+        //임시 확인용!!
         Toast.makeText(this, "checknum : " + mCheckNum, Toast.LENGTH_SHORT).show();
-
 
         // XML에 작성된 레이아웃을 View 객체로 변환.
         View view = null ;
-        switch (index) {
-            case 0 :
+        switch (check_num) {
+            case 0:{
                 view = inflater.inflate(R.layout.self_result_page1, frame, false) ;
                 break ;
-            case 1 :
+            }
+
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:{
                 view = inflater.inflate(R.layout.self_result_page2, frame, false) ;
                 break ;
-            case 2 :
-                view = inflater.inflate(R.layout.self_result_page2, frame, false) ;
+            }
+
+            default:
+            {
+                view = inflater.inflate(R.layout.self_result_page3, frame, false) ;
                 break ;
+            }
         }
 
         // FrameLayout에 뷰 추가.
         if (view != null) {
             frame.addView(view) ;
         }
-    }
-
-    @Override
-    public void onCheckNumSet(int check_num) {
-        mCheckNum = check_num;
     }
 }

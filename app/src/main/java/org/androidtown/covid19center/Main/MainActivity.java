@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+
 public class MainActivity extends AppCompatActivity implements OnBackPressedListener {
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
     }
 
 
-    private void saveData(){
+    private void saveData() {
 
         // 초기화면 검색화면으로 설정
         fragmentManager = getSupportFragmentManager();
@@ -80,9 +81,9 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
         }
 
         db.clinicDao().getAll().observe(this, clinics -> {
-            if(clinics.isEmpty()){
+            if (clinics.isEmpty()) {
                 insertClinics();
-            } else{
+            } else {
                 Log.d("메모리", "비어있지않았음");
                 Log.d("메모리", String.valueOf(clinics.size()));
             }
@@ -119,21 +120,20 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
         return text;
     }
 
-    private void divideComma(String[] line){
-        for(int i=0; i<line.length; i++){
-            line[i] = line[i].replaceAll("\t",",");
+    private void divideComma(String[] line) {
+        for (int i = 0; i < line.length; i++) {
+            line[i] = line[i].replaceAll("\t", ",");
             token[i] = line[i].split(",");
         }
     }
 
-    private void insertClinics(){
+    private void insertClinics() {
 
-        for(int i=0;i<token.length;i++)
-        {
+        for (int i = 0; i < token.length; i++) {
 
-            Log.d("태순",String.valueOf(i));
-            db.clinicDao().insert(new Clinic(token[i][0], token[i][1],token[i][2], token[i][3], token[i][4]));
-            clinicDataList.add(new ClinicItem(token[i][0], token[i][1],token[i][2], token[i][3], token[i][4]));
+            Log.d("태순", String.valueOf(i));
+            db.clinicDao().insert(new Clinic(token[i][0], token[i][1], token[i][2], token[i][3], token[i][4]));
+            clinicDataList.add(new ClinicItem(token[i][0], token[i][1], token[i][2], token[i][3], token[i][4]));
 
 
         }
@@ -141,14 +141,14 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
     }
 
     // 바텀 네비게이션 설정
-    public void setBottomNavigation(){
+    public void setBottomNavigation() {
         bottomNavigationView = findViewById(R.id.bottomNavi);
 
         // 프레그먼트 선택 시 이벤트 처리 함수
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.action_search:
                         setFragment(fragmentSearch);
                         break;
@@ -180,24 +180,24 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
 
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
 
         List<Fragment> fragmentList = getSupportFragmentManager().getFragments();
 
-        for(Fragment fragment : fragmentList){
-            if(fragment instanceof OnBackPressedListener){
-                ((OnBackPressedListener)fragment).onBackPressed();
+        for (Fragment fragment : fragmentList) {
+            if (fragment instanceof OnBackPressedListener) {
+                ((OnBackPressedListener) fragment).onBackPressed();
                 return;
             }
         }
 
-        if(System.currentTimeMillis() - lastTimeBackPressed < 1500){
+        if (System.currentTimeMillis() - lastTimeBackPressed < 1500) {
             finish();
             return;
         }
 
         lastTimeBackPressed = System.currentTimeMillis();
-        Toast.makeText(this,"'뒤로' 버튼을 한 번 더 누르면 종료됩니다.",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "'뒤로' 버튼을 한 번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
     }
 
 }
