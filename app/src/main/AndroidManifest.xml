@@ -47,7 +47,8 @@
         <activity android:name=".Search.ClinicActivity"/>
 
         <activity android:name=".SelfCheck.SelfCheckResultActivity"/>
-        <activity android:name=".Hospital.ActivityReservationManagement"/>
+        <activity android:name=".Hospital.ReservationManagementActivity"/>
+        <activity android:name=".Mypage.MedicalRecordActivity"/>
     </application>
 
 

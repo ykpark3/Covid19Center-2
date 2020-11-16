@@ -47,7 +47,7 @@ public class FragmentHospital extends Fragment {
             @Override
             public void onClick(View v) {
                 //예약 관리 activity intnet
-                Intent intent = new Intent(getContext(), ActivityReservationManagement.class);
+                Intent intent = new Intent(getContext(), ReservationManagementActivity.class);
                 startActivity(intent);
             }
         });

@@ -17,7 +17,6 @@ import com.naver.maps.map.NaverMapSdk;
 
 import org.androidtown.covid19center.DataBase.AppDatabase;
 import org.androidtown.covid19center.DataBase.Clinic;
-import org.androidtown.covid19center.Hospital.ActivityReservationManagement;
 import org.androidtown.covid19center.Hospital.FragmentHospital;
 import org.androidtown.covid19center.Mypage.FragmentMypage;
 import org.androidtown.covid19center.R;

@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import org.androidtown.covid19center.R;
 
 //의료진용 예약 관리 페이지
-public class ActivityReservationManagement extends AppCompatActivity {
+public class ReservationManagementActivity extends AppCompatActivity {
 
     AppCompatActivity activity = this;
 
