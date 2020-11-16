@@ -34,4 +34,3 @@ public interface ClinicDao {
     void update(int sID,String sText);
 
 }
-

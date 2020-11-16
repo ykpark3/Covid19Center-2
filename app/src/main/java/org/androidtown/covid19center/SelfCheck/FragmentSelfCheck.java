@@ -20,8 +20,8 @@ import android.widget.Toast;
 import org.androidtown.covid19center.R;
 
 public class FragmentSelfCheck extends Fragment {
-    private View view;
 
+    private View view;
     private CheckBox fever;
     private CheckBox muscle_ache;
     private CheckBox cough;
@@ -46,7 +46,7 @@ public class FragmentSelfCheck extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_self_check, container, false);
-//        view = inflater.inflate(R.layout.activity_questionnaire,container,false);
+        view = inflater.inflate(R.layout.activity_questionnaire,container,false);
 
         fever = view.findViewById(R.id.self_check_fever);
         muscle_ache = view.findViewById(R.id.self_check_muscle_ache);
