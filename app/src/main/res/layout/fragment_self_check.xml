@@ -1,107 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/colorWhite">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="30dp"
-        android:text="코로나19 자가진단"
-        android:textColor="@android:color/black"
-        android:textSize="20dp" />
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/self_check_layout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="9"
-        android:orientation="vertical"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="15dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            android:text="해당되는 증상에 모두 체크하세요."
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="30dp"
+            android:text="코로나19 자가진단"
             android:textColor="@android:color/black"
-            android:textSize="17dp" />
+            android:textSize="20dp" />
 
-        <CheckBox
-            android:id="@+id/self_check_fever"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:textSize="15dp"
-            android:text="37.5ºC 이상 열"/>
+        <LinearLayout
+            android:id="@+id/self_check_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="15dp"
+            android:layout_weight="9"
+            android:orientation="vertical">
 
-        <CheckBox
-            android:id="@+id/self_check_muscle_ache"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:textSize="15dp"
-            android:text="전신통/근육통"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:text="해당되는 증상에 모두 체크하세요."
+                android:textColor="@android:color/black"
+                android:textSize="17dp" />
 
-        <CheckBox
-            android:id="@+id/self_check_cough"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:textSize="15dp"
-            android:text="기침"/>
+            <CheckBox
+                android:id="@+id/self_check_fever"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:text="37.5ºC 이상 열"
+                android:textSize="15dp" />
 
-        <CheckBox
-            android:id="@+id/self_check_sputum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:textSize="15dp"
-            android:text="가래"/>
+            <CheckBox
+                android:id="@+id/self_check_muscle_ache"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:text="전신통/근육통"
+                android:textSize="15dp" />
 
-        <CheckBox
-            android:id="@+id/self_check_chill"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:textSize="15dp"
-            android:text="오한"/>
+            <CheckBox
+                android:id="@+id/self_check_cough"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:text="기침"
+                android:textSize="15dp" />
 
-        <CheckBox
-            android:id="@+id/self_check_dyspnea"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:textSize="15dp"
-            android:text="호흡곤란"/>
+            <CheckBox
+                android:id="@+id/self_check_sputum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:text="가래"
+                android:textSize="15dp" />
 
-        <CheckBox
-            android:id="@+id/self_check_sore_throat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            <CheckBox
+                android:id="@+id/self_check_chill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:text="오한"
+                android:textSize="15dp" />
+
+            <CheckBox
+                android:id="@+id/self_check_dyspnea"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:text="호흡곤란"
+                android:textSize="15dp" />
+
+            <CheckBox
+                android:id="@+id/self_check_sore_throat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:text="인후통"
+                android:textSize="15dp" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/self_check_submit"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:layout_marginBottom="15dp"
-            android:textSize="15dp"
-            android:text="인후통"/>
+            android:layout_weight="1"
+            android:background="@drawable/background_purple_rectangle"
+            android:text="제출"
+            android:textColor="@android:color/black"
+            android:textSize="15dp" />
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/self_check_submit"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_marginBottom="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:text="제출"
-        android:textSize="15dp"
-        android:textColor="@android:color/black"
-        android:background="@drawable/background_purple_rectangle"/>
+<!--    <com.airbnb.lottie.LottieAnimationView-->
+<!--        android:id="@+id/animation_check"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:paddingTop="8dp"-->
+<!--        app:lottie_fileName="animation_check.json"-->
+<!--        app:lottie_loop="true"-->
+<!--        app:lottie_autoPlay="true" />-->
 
-</LinearLayout>
+</FrameLayout>

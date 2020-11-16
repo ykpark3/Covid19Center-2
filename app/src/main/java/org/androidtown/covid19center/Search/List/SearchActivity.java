@@ -11,9 +11,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import org.androidtown.covid19center.DataBase.AppDatabase;
-import org.androidtown.covid19center.Main.MainActivity;
 import org.androidtown.covid19center.R;
 import org.androidtown.covid19center.Search.ClinicActivity;
 

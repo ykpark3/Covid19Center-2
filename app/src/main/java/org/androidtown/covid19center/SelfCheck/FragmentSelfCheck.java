@@ -20,8 +20,8 @@ import android.widget.Toast;
 import org.androidtown.covid19center.R;
 
 public class FragmentSelfCheck extends Fragment {
-    private View view;
 
+    private View view;
     private CheckBox fever;
     private CheckBox muscle_ache;
     private CheckBox cough;

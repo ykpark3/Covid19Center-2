@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements OnBackPressedListener {
+    ArrayList<ClinicItem> clinicDataList;
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
     private FragmentSearch fragmentSearch;
@@ -42,7 +43,6 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
     private String[] change;
     private String[][] token;
     private String address;
-    ArrayList<ClinicItem> clinicDataList;
     private AppDatabase db;
     private long lastTimeBackPressed;
 
@@ -152,8 +152,7 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.action_search:
-//                        setFragment(fragmentSearch);
-                        setFragment(fragmentHospital);
+                        setFragment(fragmentSearch);
                         break;
                     case R.id.action_self_check:
                         setFragment(fragmentSelfCheck);
@@ -204,6 +203,4 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
         Toast.makeText(this, "'뒤로' 버튼을 한 번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
     }
 
-
-    
 }

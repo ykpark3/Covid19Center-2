@@ -9,8 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.androidtown.covid19center.R;
 
-import java.util.ArrayList;
-
 public class ClinicActivity extends AppCompatActivity {
 
 

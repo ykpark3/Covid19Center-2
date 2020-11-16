@@ -1,9 +1,5 @@
 package org.androidtown.covid19center.Mypage;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,7 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import org.androidtown.covid19center.QrCode.CreateQr;
 import org.androidtown.covid19center.QrCode.ScanQr;
 import org.androidtown.covid19center.R;

@@ -1,54 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Search.FragmentSearch"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    tools:context=".Search.FragmentSearch">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="100dp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="150dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/searchBox"
+            android:layout_width="357dp"
+            android:layout_height="56dp"
+            android:layout_gravity="center"
+            android:background="@drawable/rectengle_shape"
+            android:clickable="true"
+            android:drawableRight="@drawable/ic_baseline_search_24"
+            android:drawableTint="@color/colorMain"
+            android:gravity="center|left"
+            android:paddingLeft="35dp"
+            android:paddingRight="20dp"
+            android:text="선별진료소를 검색해보세요"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="100dp" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@drawable/shadow"
-            android:orientation="vertical"
-            android:paddingBottom="5dp">
-
-            <TextView
-                android:id="@+id/searchBox"
-                android:layout_width="357dp"
-                android:layout_height="56dp"
-                android:layout_gravity="center"
-                android:background="@drawable/rectengle_shape"
-                android:clickable="true"
-                android:drawableRight="@drawable/ic_baseline_search_24"
-                android:gravity="center|left"
-                android:paddingLeft="35dp"
-                android:paddingRight="20dp"
-                android:text="선별진료소를 검색해보세요"
-                android:textSize="16sp" />
-
-        </LinearLayout>
+        android:layout_gravity="bottom"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/openApiButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="지도" />
+            android:layout_width="wrap_content"
+            android:layout_height="110dp"
+            android:layout_marginTop="190dp"
+            android:background="@drawable/main_button_layout"
+            android:drawableLeft="@drawable/ic_baseline_gps_fixed_24"
+            android:drawableRight="@drawable/ic_baseline_map_arrow_right_24"
+            android:drawablePadding="@android:dimen/app_icon_size"
+            android:gravity="left|center_vertical"
+            android:paddingLeft="30dp"
+            android:paddingRight="25dp"
+            android:text="내 주변 선별진료소 찾기"
+            android:textSize="18sp" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@color/colorLightGray" />
+
+        <Button
+            android:id="@+id/openApiButton2"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/main_button_layout"
+            android:drawableLeft="@drawable/ic_main_qr_code_scanner_24"
+            android:drawableRight="@drawable/ic_baseline_map_arrow_right_24"
+            android:drawablePadding="@android:dimen/app_icon_size"
+            android:gravity="left|center_vertical"
+            android:paddingLeft="30dp"
+            android:paddingRight="25dp"
+            android:text="진료 QR코드 불러오기 "
+            android:textSize="18sp" />
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
