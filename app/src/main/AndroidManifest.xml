@@ -39,15 +39,16 @@
             android:name="com.naver.maps.map.CLIENT_TYPE"
             android:value="gov" />
 
-        <activity android:name=".Mypage.CreateQr"/>
-        <activity android:name=".Mypage.ScanQr"/>
+        <activity android:name=".QrCode.CreateQr"/>
+        <activity android:name=".QrCode.ScanQr"/>
         <activity android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="fullSensor"
             tools:replace="screenOrientation"/>
         <activity android:name=".Search.ClinicActivity"/>
 
         <activity android:name=".SelfCheck.SelfCheckResultActivity"/>
-
+        <activity android:name=".Hospital.ReservationManagementActivity"/>
+        <activity android:name=".Mypage.MedicalRecordActivity"/>
     </application>
 
 

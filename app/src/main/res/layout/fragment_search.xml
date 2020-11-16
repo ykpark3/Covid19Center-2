@@ -74,7 +74,7 @@
             android:layout_height="110dp"
             android:layout_gravity="bottom"
             android:background="@drawable/main_button_layout"
-            android:drawableLeft="@drawable/ic_baseline_qr_code_scanner_24"
+            android:drawableLeft="@drawable/ic_main_qr_code_scanner_24"
             android:drawableRight="@drawable/ic_baseline_map_arrow_right_24"
             android:drawablePadding="@android:dimen/app_icon_size"
             android:gravity="left|center_vertical"

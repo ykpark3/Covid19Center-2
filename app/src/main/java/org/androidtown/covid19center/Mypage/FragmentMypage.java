@@ -7,11 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
+import org.androidtown.covid19center.QrCode.CreateQr;
+import org.androidtown.covid19center.QrCode.ScanQr;
 import org.androidtown.covid19center.R;
 
 public class FragmentMypage extends Fragment {
@@ -40,8 +40,8 @@ public class FragmentMypage extends Fragment {
             @Override
             public void onClick(View view) {
                 //진료기록 액티비티로 수정해야됨!!
-//                Intent intent = new Intent(getActivity(), JsonTest.class);
-//                startActivity(intent);
+                Intent intent = new Intent(getActivity(), MedicalRecordActivity.class);
+                startActivity(intent);
             }
         });
 

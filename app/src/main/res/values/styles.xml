@@ -5,7 +5,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <!--상단바 색상 변경-->
         <item name="colorPrimaryDark">@android:color/darker_gray</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorMain</item>
 
         <!--  타이틀 바 없애기    -->
         <item name="windowActionBar">false</item>

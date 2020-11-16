@@ -9,6 +9,6 @@
         android:background="#FF9800"
         android:gravity="center"
         android:id="@+id/text2"
-        android:text="TEXT 2" />
+        android:text="의심해볼 만한 증상들이 있어요." />
 
 </LinearLayout>
