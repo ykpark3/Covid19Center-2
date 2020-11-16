@@ -1,4 +1,4 @@
-package org.androidtown.covid19center.Mypage;
+package org.androidtown.covid19center.QrCode;
 
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;

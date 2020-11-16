@@ -1,4 +1,4 @@
-package org.androidtown.covid19center.Mypage;
+package org.androidtown.covid19center.QrCode;
 
 import android.content.Intent;
 import android.os.Bundle;

@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import org.androidtown.covid19center.QrCode.CreateQr;
+import org.androidtown.covid19center.QrCode.ScanQr;
 import org.androidtown.covid19center.R;
 
 public class FragmentMypage extends Fragment {

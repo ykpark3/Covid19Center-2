@@ -8,8 +8,8 @@
     <!-- 옅은 회색 추가  -->
     <color name="colorLightGray">#CFD8DC</color>
 
-    <!--메인 색상 아직 미정...-->
-    <color name="colorLightGreen">#A4D96C</color>
+    <!--메인 색상-->
+    <color name="colorMain">#7c80ee</color>
     <!-- 검정색 추가-->
     <color name="colorBlack">#000000</color>
     <!-- 하얀색 추가-->

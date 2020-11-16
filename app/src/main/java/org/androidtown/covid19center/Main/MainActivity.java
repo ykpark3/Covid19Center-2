@@ -17,6 +17,8 @@ import com.naver.maps.map.NaverMapSdk;
 
 import org.androidtown.covid19center.DataBase.AppDatabase;
 import org.androidtown.covid19center.DataBase.Clinic;
+import org.androidtown.covid19center.Hospital.ActivityReservationManagement;
+import org.androidtown.covid19center.Hospital.FragmentHospital;
 import org.androidtown.covid19center.Mypage.FragmentMypage;
 import org.androidtown.covid19center.R;
 import org.androidtown.covid19center.Search.FragmentSearch;
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
     private FragmentSearch fragmentSearch;
     private FragmentMypage fragmentMypage;
     private FragmentSelfCheck fragmentSelfCheck;
+    private FragmentHospital fragmentHospital;
     private BottomNavigationView bottomNavigationView; // 바텀 네비게이션 뷰
     private String inputStream;
     private String[] change;
@@ -150,7 +153,8 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.action_search:
-                        setFragment(fragmentSearch);
+//                        setFragment(fragmentSearch);
+                        setFragment(fragmentHospital);
                         break;
                     case R.id.action_self_check:
                         setFragment(fragmentSelfCheck);
@@ -167,6 +171,7 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
         fragmentSearch = new FragmentSearch();
         fragmentSelfCheck = new FragmentSelfCheck();
         fragmentMypage = new FragmentMypage();
+        fragmentHospital = new FragmentHospital();
     }
 
     // 프레그먼트 변경 함수
