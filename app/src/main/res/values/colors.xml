@@ -7,6 +7,8 @@
     <color name="colorVioletRed">#51032d</color>
     <!-- 옅은 회색 추가  -->
     <color name="colorLightGray">#CFD8DC</color>
+    <!-- 진 회색 추가  -->
+    <color name="colorDarkGray">#606060</color>
     <!--메인 색상-->
     <color name="colorMain">#7c80ee</color>
     <!-- 검정색 추가-->
