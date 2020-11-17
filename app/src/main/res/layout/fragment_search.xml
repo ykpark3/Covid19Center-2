@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="@color/colorWhite"
     android:orientation="vertical"
     tools:context=".Search.FragmentSearch">
 
@@ -47,6 +47,8 @@
         android:orientation="vertical">
 
         <Button
+            android:outlineAmbientShadowColor="@color/colorWhite"
+            android:outlineSpotShadowColor="@color/colorWhite"
             android:id="@+id/openApiButton"
             android:layout_width="wrap_content"
             android:layout_height="110dp"
@@ -69,6 +71,8 @@
             android:background="@color/colorLightGray" />
 
         <Button
+            android:outlineAmbientShadowColor="@color/colorWhite"
+            android:outlineSpotShadowColor="@color/colorWhite"
             android:id="@+id/openApiButton2"
             android:layout_width="match_parent"
             android:layout_height="110dp"
