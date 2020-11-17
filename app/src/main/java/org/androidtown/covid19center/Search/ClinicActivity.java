@@ -1,10 +1,12 @@
 package org.androidtown.covid19center.Search;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -43,9 +45,11 @@ public class ClinicActivity extends AppCompatActivity implements OnMapReadyCallb
     private FusedLocationSource locationSource;
     private NaverMap naverMap;
     private Button button;
+    private ImageButton callButton;
     private double x;
     private double y;
     private String[] clinicInfo;
+    private String callNumber;
     private TextView clinicName;
     private TextView clinicAddress;
     private TextView clinicCallNumber;
@@ -70,6 +74,17 @@ public class ClinicActivity extends AppCompatActivity implements OnMapReadyCallb
 
         locationSource = new FusedLocationSource(this, LOCATTION_PERMISSION_REQUEST_CODE);
         mapFragment.getMapAsync(ClinicActivity.this);
+
+        callButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:"+callNumber));
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -99,6 +114,7 @@ public class ClinicActivity extends AppCompatActivity implements OnMapReadyCallb
         clinicAddress = findViewById(R.id.text_clinic_address);
         clinicCallNumber = findViewById(R.id.text_clinic_call_number);
         button = findViewById(R.id.button_book);
+        callButton = findViewById(R.id.callButton);
     }
 
     private void setIntentInfomation () {
@@ -111,6 +127,9 @@ public class ClinicActivity extends AppCompatActivity implements OnMapReadyCallb
         clinicAddress.setText(stringTemp);
 
         stringTemp = intent.getExtras().getString("clinicCallNumber");
+        callNumber = stringTemp;
+        callNumber = callNumber.replace("-","");
+        Log.d("test",callNumber);
         clinicCallNumber.setText(stringTemp);
 
         stringTemp = intent.getExtras().getString("clinicX");
