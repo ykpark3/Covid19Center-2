@@ -48,12 +48,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         setContentView(R.layout.fragment_map);
         FragmentManager fm = getSupportFragmentManager();
         mapFragment = (MapFragment) fm.findFragmentById(R.id.map);
-        clinicInfo = new String[3];
+        clinicInfo = new String[5];
         button = findViewById(R.id.map_button);
-
-
+        
         button.setVisibility(View.GONE);
-
 
         if (mapFragment == null) {
             mapFragment = MapFragment.newInstance();
@@ -79,7 +77,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
         super.onRequestPermissionsResult(
                 requestCode, permissions, grantResults);
-
     }
 
     @Override
@@ -113,8 +110,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 //clinicDataList.add(new ClinicItem(clinics.get(i).getClinicName(),clinics.get(i).getClinicCallNumber(), clinics.get(i).getClinicAddress(), clinics.get(i).getX(), clinics.get(i).getY()));
                 marker.setTag(clinics.get(i).getClinicName());
                 //marker.setCaptionText(clinics.get(i).getClinicName()+","+clinics.get(i).getClinicCallNumber()+","+clinics.get(i).getClinicAddress());
-                marker.setSubCaptionText(clinics.get(i).getClinicName()+","+clinics.get(i).getClinicCallNumber()+","+clinics.get(i).getClinicAddress());
-
+                marker.setSubCaptionText(clinics.get(i).getClinicName()+","+clinics.get(i).getClinicCallNumber()+","+clinics.get(i).getClinicAddress()+","+clinics.get(i).getX()+","+clinics.get(i).getY());
                 marker.setWidth(50);
                 marker.setHeight(80);
                 marker.setPosition(new LatLng(Double.parseDouble(clinics.get(i).getY()), Double.parseDouble(clinics.get(i).getX())));
@@ -134,6 +130,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                 intent.putExtra("clinicName", clinicInfo[0]);
                                 intent.putExtra("clinicAddress", clinicInfo[1]);
                                 intent.putExtra("clinicCallNumber", clinicInfo[2]);
+                                intent.putExtra("clinicX", clinicInfo[3]);
+                                intent.putExtra("clinicY", clinicInfo[4]);
                                 intent.putExtra("clinicDistance", 0);
                                 startActivity(intent);
                                 finish();
@@ -171,7 +169,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
     private String[] passClinicsInfo(String info){
-        String[] clinicInfoArray = new String[3];
+        String[] clinicInfoArray = new String[5];
         clinicInfoArray = info.split(",");
         return clinicInfoArray;
     }

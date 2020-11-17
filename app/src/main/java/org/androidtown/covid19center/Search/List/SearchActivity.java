@@ -81,6 +81,10 @@ public class SearchActivity extends AppCompatActivity {
                 intent.putExtra("clinicAddress", clinicDataList.get(position).getClinicAddress());
                 intent.putExtra("clinicCallNumber", clinicDataList.get(position).getClinicCallNumber());
                 intent.putExtra("clinicDistance", clinicDataList.get(position).getClinicDistance());
+                intent.putExtra("clinicX", clinicDataList.get(position).getX());
+                intent.putExtra("clinicY", clinicDataList.get(position).getY());
+                Log.d("test1", "X"+clinicDataList.get(position).getX());
+                Log.d("test1", "Y"+clinicDataList.get(position).getY());
                 startActivity(intent);
             }
         });

@@ -27,7 +27,7 @@ public class ClinicAdapter extends BaseAdapter {
     public int getCount() {
         return clinics.size();
     }
-    
+
     @Override
     public Object getItem(int i) {
         return clinics.get(i);

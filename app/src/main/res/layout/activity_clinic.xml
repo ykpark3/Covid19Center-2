@@ -17,12 +17,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="190dp"
-                android:scaleType="fitXY"
-                android:background="@color/colorLightGray" />
-
             <TextView
                 android:id="@+id/text_clinicName"
                 android:layout_width="wrap_content"
@@ -93,10 +87,10 @@
                 android:layout_marginTop="40dp"
                 android:background="@color/colorLightGray" />
 
-            <Space
+            <FrameLayout
+                android:id="@+id/childMap"
                 android:layout_width="match_parent"
-                android:layout_height="20dp" />
-
+                android:layout_height="400dp"></FrameLayout>
 
         </LinearLayout>
 
