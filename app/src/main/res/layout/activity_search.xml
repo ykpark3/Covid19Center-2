@@ -27,7 +27,6 @@
             android:drawableRight="@drawable/ic_baseline_search_24"
             android:gravity="center|left"
             android:hint="선별진료소를 검색해보세요"
-            
             android:paddingLeft="34dp"
             android:paddingRight="20dp"
             android:textSize="17sp" />
