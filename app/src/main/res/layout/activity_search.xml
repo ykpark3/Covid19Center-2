@@ -24,7 +24,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:layout_weight="1"
             android:drawableRight="@drawable/ic_baseline_search_24"
             android:gravity="center|left"
             android:hint="선별진료소를 검색해보세요"
@@ -35,6 +34,8 @@
 
     <ListView
         android:id="@+id/clinicListView"
+        android:divider="@color/colorBlack"
+        android:dividerHeight="0.5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
     </LinearLayout>
