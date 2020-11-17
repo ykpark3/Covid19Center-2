@@ -75,6 +75,7 @@ public class ClinicActivity extends AppCompatActivity implements OnMapReadyCallb
         locationSource = new FusedLocationSource(this, LOCATTION_PERMISSION_REQUEST_CODE);
         mapFragment.getMapAsync(ClinicActivity.this);
 
+        // 전화번호 거는 코드
         callButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
