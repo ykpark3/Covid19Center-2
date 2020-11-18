@@ -49,6 +49,7 @@ public class ClinicActivity extends AppCompatActivity implements OnMapReadyCallb
     private double y;
     private String[] clinicInfo;
     private String callNumber;
+    private String clinicNameTmp;
     private TextView clinicName;
     private TextView clinicAddress;
     private TextView clinicCallNumber;
@@ -82,6 +83,16 @@ public class ClinicActivity extends AppCompatActivity implements OnMapReadyCallb
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_DIAL);
                 intent.setData(Uri.parse("tel:"+callNumber));
+                startActivity(intent);
+            }
+        });
+
+        // 예약 페이지 넘어가는 코드
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ClinicActivity.class);
+                intent.putExtra("clinicName",clinicNameTmp);
                 startActivity(intent);
             }
         });
@@ -122,6 +133,7 @@ public class ClinicActivity extends AppCompatActivity implements OnMapReadyCallb
 
         stringTemp = intent.getExtras().getString("clinicName");
         clinicName.setText(stringTemp);
+        clinicNameTmp = stringTemp;
 
         stringTemp = intent.getExtras().getString("clinicAddress");
         clinicAddress.setText(stringTemp);
