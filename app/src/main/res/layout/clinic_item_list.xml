@@ -20,6 +20,7 @@
             android:layout_height="wrap_content"
             android:text="대전성모병원"
             android:textSize="16dp"
+            android:textColor="@color/colorMain"
             android:textStyle="bold" />
 
         <TextView
@@ -28,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="주소"
-            android:textColor="@android:color/darker_gray"
+            android:textColor="@color/colorBlack"
             android:textSize="14dp" />
 
     </LinearLayout>
@@ -49,6 +50,7 @@
             android:layout_gravity="center"
             android:layout_weight="10"
             android:text="100m"
+            android:textColor="@color/colorBlack"
             android:textSize="14sp" />
 
         <TextView
@@ -58,6 +60,7 @@
             android:layout_gravity="center"
             android:layout_weight="10"
             android:text="042-331-0882"
+            android:textColor="@color/colorBlack"
             android:textSize="14sp" />
 
     </LinearLayout>

@@ -46,7 +46,6 @@ public class FragmentSelfCheck extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_self_check, container, false);
-
         fever = view.findViewById(R.id.self_check_fever);
         muscle_ache = view.findViewById(R.id.self_check_muscle_ache);
         cough = view.findViewById(R.id.self_check_cough);
