@@ -17,6 +17,9 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
+import com.airbnb.lottie.L;
+import com.airbnb.lottie.LottieAnimationView;
+
 import org.androidtown.covid19center.R;
 
 public class FragmentSelfCheck extends Fragment {
@@ -30,6 +33,7 @@ public class FragmentSelfCheck extends Fragment {
     private CheckBox dyspnea;
     private CheckBox sore_throat;
     private Button submit;
+//    private LottieAnimationView loading;
 
     public int check_num = 0;  //자가진단 체크한 증상 개수
 
@@ -53,11 +57,9 @@ public class FragmentSelfCheck extends Fragment {
 
         submit = view.findViewById(R.id.self_check_submit);
 
-        return view;
-    }
+//        loading = view.findViewById(R.id.animation_check);
 
-    public interface OnCheckNumListener{
-        void onCheckNumSet(int check_num);
+        return view;
     }
 
     @Override
@@ -67,6 +69,7 @@ public class FragmentSelfCheck extends Fragment {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (fever.isChecked()) {
                     check_num++;
                 }
