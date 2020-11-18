@@ -15,7 +15,6 @@
             android:textColor="@color/colorBlack"
             android:textSize="15dp"
             android:layout_gravity="center"/>
-
     </FrameLayout>
 
     <FrameLayout

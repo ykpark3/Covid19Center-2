@@ -153,6 +153,10 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
                 switch (item.getItemId()) {
                     case R.id.action_search:
                         setFragment(fragmentSearch);
+<<<<<<< HEAD
+=======
+//                        setFragment(fragmentHospital);
+>>>>>>> 717dc4d0f4dba81316ecdb2065b985895a39ee14
                         break;
                     case R.id.action_self_check:
                         setFragment(fragmentSelfCheck);

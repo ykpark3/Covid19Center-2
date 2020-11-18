@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
@@ -18,8 +19,10 @@ import org.androidtown.covid19center.R;
 //qr스캔, 예약관리 버튼
 public class FragmentHospital extends Fragment {
 
-    private LinearLayout qr_scan;
-    private LinearLayout reservation;
+//    private LinearLayout qr_scan;
+//    private LinearLayout reservation;
+    private FrameLayout qr_scan;
+    private FrameLayout reservation;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,10 +32,10 @@ public class FragmentHospital extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_hospital, container, false);
+        View view = inflater.inflate(R.layout.fragment_hospital2, container, false);
 
-        qr_scan = view.findViewById(R.id.hospital_qr_scan);
-        reservation = view.findViewById(R.id.hospital_reservation);
+        qr_scan = view.findViewById(R.id.hospital_qr_scan2);
+        reservation = view.findViewById(R.id.hospital_reservation2);
 
         qr_scan.setOnClickListener(new View.OnClickListener() {
             @Override

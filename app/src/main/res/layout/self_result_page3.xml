@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/green_check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        app:lottie_fileName="lottie/red_check.json"
+        app:lottie_loop="false"
+        app:lottie_autoPlay="true" />
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/holo_red_light"
-        android:gravity="center"
-        android:id="@+id/text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:id="@+id/text1"
+        android:textColor="@color/colorBlack"
+        android:textSize="20dp"
         android:text="의심 증상이 많아 주의가 필요합니다!" />
+<!--    android:background="@android:color/holo_red_light"-->
 
 </LinearLayout>
