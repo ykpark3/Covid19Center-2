@@ -24,13 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-<<<<<<< HEAD
             android:drawableRight="@drawable/ic_baseline_search_24"
-=======
-            android:layout_weight="1"
-
-            android:drawableRight="@android:drawable/ic_search_category_default"
->>>>>>> 717dc4d0f4dba81316ecdb2065b985895a39ee14
             android:gravity="center|left"
             android:hint="선별진료소를 검색해보세요"
             android:paddingLeft="34dp"

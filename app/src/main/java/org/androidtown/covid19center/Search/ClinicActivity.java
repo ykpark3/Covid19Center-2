@@ -30,15 +30,10 @@ import org.androidtown.covid19center.DataBase.AppDatabase;
 import org.androidtown.covid19center.R;
 import org.androidtown.covid19center.Search.ClinicActivity;
 import org.androidtown.covid19center.Search.List.ClinicItem;
-
-<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 
 public class ClinicActivity extends AppCompatActivity implements OnMapReadyCallback {
-=======
-public class ClinicActivity extends AppCompatActivity {
->>>>>>> 717dc4d0f4dba81316ecdb2065b985895a39ee14
 
     MapFragment mapFragment;
 

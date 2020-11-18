@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
 android:color="@color/colorLightGray">
 <item>
@@ -8,12 +7,3 @@ android:color="@color/colorLightGray">
     </shape>
 </item>
 </ripple>
-=======
-<?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle" >
-    <solid android:color="@color/colorWhite" />
-
-</shape>
-
->>>>>>> 717dc4d0f4dba81316ecdb2065b985895a39ee14
