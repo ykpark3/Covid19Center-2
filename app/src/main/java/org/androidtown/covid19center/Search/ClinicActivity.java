@@ -91,7 +91,7 @@ public class ClinicActivity extends AppCompatActivity implements OnMapReadyCallb
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ClinicActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ReservationActivity.class);
                 intent.putExtra("clinicName",clinicNameTmp);
                 startActivity(intent);
             }
@@ -140,7 +140,7 @@ public class ClinicActivity extends AppCompatActivity implements OnMapReadyCallb
 
         stringTemp = intent.getExtras().getString("clinicCallNumber");
         callNumber = stringTemp;
-        callNumber = callNumber.replace("-","");
+
         Log.d("test",callNumber);
         clinicCallNumber.setText(stringTemp);
 
