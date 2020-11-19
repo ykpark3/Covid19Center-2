@@ -54,11 +54,14 @@ public class ListAdapter extends BaseAdapter {
 
         TextView user_id = (TextView)view.findViewById(R.id.listview_user_id);
         TextView hospital = (TextView)view.findViewById(R.id.listview_hospital);
+        TextView date = (TextView)view.findViewById(R.id.listview_date);
+        TextView time = (TextView)view.findViewById(R.id.listview_time);
 
 
         user_id.setText(list.get(position).getUser_id());
         hospital.setText(list.get(position).getHospital_name());
-
+        date.setText(list.get(position).getDate());
+        time.setText(list.get(position).getTime());
 
         return view;
     }
