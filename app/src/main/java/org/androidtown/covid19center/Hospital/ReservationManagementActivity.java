@@ -14,11 +14,18 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.androidtown.covid19center.R;
+import org.androidtown.covid19center.Server.ReservationVO;
+
+import java.util.ArrayList;
+import java.util.List;
 
 //의료진용 예약 관리 페이지
 public class ReservationManagementActivity extends AppCompatActivity {
 
     AppCompatActivity activity = this;
+
+    //임시 리스트
+    ArrayList<ReservationVO> reservationList;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,5 +42,16 @@ public class ReservationManagementActivity extends AppCompatActivity {
                 Toast.makeText(activity, year + "." + month + "." + dayOfMonth, Toast.LENGTH_SHORT).show();
             }
         });
+
+        //임시 예약 환자 리스트 생성
+        initList();
+    }
+
+    public void initList(){
+        reservationList = new ArrayList<ReservationVO>();
+
+        reservationList.add(0, new ReservationVO("user1", 1, "hospital_1", "11:30", "11.19"));
+        reservationList.add(1, new ReservationVO("user2", 2, "hospital_2", "11:30", "11.19"));
+        reservationList.add(2, new ReservationVO("user3", 3, "hospital_3", "11:30", "11.19"));
     }
 }

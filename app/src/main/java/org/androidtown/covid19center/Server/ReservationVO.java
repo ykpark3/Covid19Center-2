@@ -1,5 +1,7 @@
 package org.androidtown.covid19center.Server;
 
+import java.util.List;
+
 public class ReservationVO {
     String user_id;
     int questionnaire_seq;
@@ -14,7 +16,6 @@ public class ReservationVO {
         this.time = time;
         this.date = date;
     }
-
 
     public String getUser_id() {
         return user_id;
@@ -50,5 +51,4 @@ public class ReservationVO {
     public void setDate(String date) {
         this.date = date;
     }
-
 }
