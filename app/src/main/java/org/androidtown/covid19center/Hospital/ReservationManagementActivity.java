@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
 import android.widget.FrameLayout;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -31,6 +32,9 @@ public class ReservationManagementActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //임시 예약 환자 리스트 생성
+        initList();
+
         setContentView(R.layout.activity_reservation_management);
 
         CalendarView calendarView = findViewById(R.id.hospital_calendar);
@@ -43,8 +47,10 @@ public class ReservationManagementActivity extends AppCompatActivity {
             }
         });
 
-        //임시 예약 환자 리스트 생성
-        initList();
+        ListView listView = findViewById(R.id.reservation_listview);
+        final ListAdapter listAdapter = new ListAdapter(this,reservationList);
+
+        listView.setAdapter(listAdapter);
     }
 
     public void initList(){
