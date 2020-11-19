@@ -23,15 +23,18 @@
         android:hardwareAccelerated="true"
         android:networkSecurityConfig="@xml/network_config">
 
-        <activity android:name=".Map.MapActivity"></activity>
-        <activity android:name=".Search.List.SearchActivity"></activity>
-
-        <activity android:name=".Main.MainActivity">
+        <activity android:name=".Server.CalendarActivity"></activity>
+        <activity android:name=".Login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Map.MapActivity"></activity>
+        <activity android:name=".Search.List.SearchActivity"></activity>
+
+        <activity android:name=".Main.MainActivity"></activity>
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="udi1xytmz6" />
