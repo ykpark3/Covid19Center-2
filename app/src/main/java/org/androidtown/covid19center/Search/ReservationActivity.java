@@ -59,7 +59,6 @@ public class ReservationActivity extends AppCompatActivity {
         calendarView = findViewById(R.id.reservation_calendarView);
         clinicDate = findViewById(R.id.reservation_date_text);
         setCalenderView();
-        setTimeListView();
     }
 
     private void setCalenderView(){
@@ -69,6 +68,7 @@ public class ReservationActivity extends AppCompatActivity {
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 month += 1;
                 clinicDate.setText(String.format("%d년 %d월 %d일", year, month, dayOfMonth));
+                setTimeListView();
             }
         });
     }
@@ -78,12 +78,17 @@ public class ReservationActivity extends AppCompatActivity {
 
         stringTemp = intent.getExtras().getString("clinicName");
         clinicName.setText(stringTemp);
-    }
 
-    private void setTimeListView(){
         listView = findViewById(R.id.time_listView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         listView.setLayoutManager(layoutManager);
+
+        TimeListDecoration decoration = new TimeListDecoration();
+        listView.addItemDecoration(decoration);
+
+    }
+
+    private void setTimeListView(){
 
         ArrayList<String> itemList = new ArrayList<>();
         itemList.add("08:00");
@@ -101,12 +106,9 @@ public class ReservationActivity extends AppCompatActivity {
         adapter = new MyAdapter(this, itemList, onClickItem);
         listView.setAdapter(adapter);
 
-        TimeListDecoration decoration = new TimeListDecoration();
-        listView.addItemDecoration(decoration);
     }
 
     private View.OnClickListener onClickItem = new View.OnClickListener(){
-
 
         @Override
         public void onClick(View v) {
