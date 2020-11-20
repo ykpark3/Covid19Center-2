@@ -2,11 +2,10 @@
 <Button xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/time_button_item"
-    android:layout_width="100dp"
-    android:layout_height="70dp"
-    android:background="@color/colorDarkGray"
+    android:layout_width="50dp"
+    android:layout_height="30dp"
+    android:background="@drawable/round_button_background"
     android:gravity="center"
     android:text="18:00"
     android:textColor="@android:color/black"
-    android:textSize="30sp"
-    tools:textColor="@color/colorWhite" />
+    android:textSize="10sp" />

@@ -1,12 +1,16 @@
 package org.androidtown.covid19center.Search.Time;
 
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.androidtown.covid19center.R;
@@ -37,6 +41,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        Log.d("0133", "123");
         String item = itemList.get(position);
         holder.button.setText(item);
         holder.button.setTag(item);
@@ -57,6 +62,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             super(itemView);
 
             button = itemView.findViewById(R.id.time_button_item);
+
         }
+
     }
 }

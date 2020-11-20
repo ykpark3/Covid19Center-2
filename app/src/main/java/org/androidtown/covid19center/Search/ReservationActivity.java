@@ -1,7 +1,10 @@
 package org.androidtown.covid19center.Search;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.CalendarView;
 import android.widget.TextView;
@@ -10,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,11 +33,17 @@ public class ReservationActivity extends AppCompatActivity {
     private CalendarView calendarView;
     private String stringTemp;
     private RecyclerView listView;
+    private ArrayList<String> copyListView;
+    private ArrayList<View> views;
+    private View tmpView;
     private MyAdapter adapter;
+    private SparseBooleanArray mSelectedItems = new SparseBooleanArray(0);
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        views = new ArrayList<>();
+
         setLayoutElement();
         setIntentInfomation();
     }
@@ -77,12 +87,16 @@ public class ReservationActivity extends AppCompatActivity {
 
         ArrayList<String> itemList = new ArrayList<>();
         itemList.add("08:00");
+        itemList.add("09:00");
         itemList.add("10:00");
+        itemList.add("11:00");
         itemList.add("12:00");
+        itemList.add("13:00");
         itemList.add("14:00");
+        itemList.add("15:00");
         itemList.add("16:00");
+        itemList.add("17:00");
         itemList.add("18:00");
-        itemList.add("20:00");
 
         adapter = new MyAdapter(this, itemList, onClickItem);
         listView.setAdapter(adapter);
@@ -93,9 +107,34 @@ public class ReservationActivity extends AppCompatActivity {
 
     private View.OnClickListener onClickItem = new View.OnClickListener(){
 
+
         @Override
         public void onClick(View v) {
-            String str = (String) v.getTag();
+
+            int str = v.hashCode();
+
+            if(mSelectedItems.get(str,false)){
+                mSelectedItems.put(str, false);
+                Log.d("0131", String.valueOf(str));
+                v.setBackgroundResource(R.drawable.round_button_background);
+            } else {
+                mSelectedItems.put(str, true);
+
+                views.add(v);
+
+//                for (int i=0; i<views.size(); i++){
+//                    views.get(i).setBackgroundResource(R.drawable.round_button_background);
+//                }
+
+                views.get(0).setBackgroundResource(R.drawable.round_button_background);
+
+                if(views.size() > 1){
+                    views.remove(0);
+                }
+                Log.d("0131", String.valueOf(views.size()));
+                v.setBackgroundResource(R.drawable.on_round_button_background);
+            }
+            mSelectedItems.clear();
         }
     };
 
