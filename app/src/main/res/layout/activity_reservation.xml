@@ -33,7 +33,7 @@
             android:layout_marginTop="30dp"
             android:text="건국대학교병원"
             android:textColor="@color/colorBlack"
-            tools:textSize="22dp" />
+            tools:textSize="22sp" />
 
         <CalendarView
             android:id="@+id/reservation_calendarView"
@@ -56,6 +56,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="2020년 11월 19일" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/time_listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 
