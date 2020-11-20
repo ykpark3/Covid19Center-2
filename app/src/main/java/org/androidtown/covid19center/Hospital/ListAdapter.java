@@ -18,10 +18,12 @@ public class ListAdapter extends BaseAdapter {
     Context mContext = null;
     LayoutInflater mLayoutInflater = null;
     ArrayList<ReservationVO> list;
+    String date;
 
-    public ListAdapter(Context context, ArrayList<ReservationVO> data) {
+    public ListAdapter(Context context, ArrayList<ReservationVO> data, String date) {
         mContext = context;
         list = data;
+        this.date = date;
         mLayoutInflater = LayoutInflater.from(mContext);
     }
 
@@ -31,9 +33,7 @@ public class ListAdapter extends BaseAdapter {
     }
 
     @Override
-    public long getItemId(int position) {
-        return position;
-    }
+    public long getItemId(int position) { return position; }
 
     @Override
     public ReservationVO getItem(int position) {
@@ -44,24 +44,18 @@ public class ListAdapter extends BaseAdapter {
     public View getView(int position, View converView, ViewGroup parent) {
         View view = mLayoutInflater.inflate(R.layout.listview_reservation, null);
 
-//        ImageView imageView = (ImageView)view.findViewById(R.id.poster);
-//        TextView movieName = (TextView)view.findViewById(R.id.movieName);
-//        TextView grade = (TextView)view.findViewById(R.id.grade);
-//
-//        imageView.setImageResource(sample.get(position).getPoster());
-//        movieName.setText(sample.get(position).getMovieName());
-//        grade.setText(sample.get(position).getGrade());
-
-        TextView user_id = (TextView)view.findViewById(R.id.listview_user_id);
-        TextView hospital = (TextView)view.findViewById(R.id.listview_hospital);
-        TextView date = (TextView)view.findViewById(R.id.listview_date);
-        TextView time = (TextView)view.findViewById(R.id.listview_time);
+        TextView listview_user_id = (TextView)view.findViewById(R.id.listview_user_id);
+        TextView listview_hospital = (TextView)view.findViewById(R.id.listview_hospital);
+        TextView listview_date = (TextView)view.findViewById(R.id.listview_date);
+        TextView listview_time = (TextView)view.findViewById(R.id.listview_time);
 
 
-        user_id.setText(list.get(position).getUser_id());
-        hospital.setText(list.get(position).getHospital_name());
-        date.setText(list.get(position).getDate());
-        time.setText(list.get(position).getTime());
+        if(date.equals(list.get(position).getDate())) {
+            listview_user_id.setText(list.get(position).getUser_id());
+            listview_hospital.setText(list.get(position).getHospital_name());
+            listview_date.setText(list.get(position).getDate());
+            listview_time.setText(list.get(position).getTime());
+        }
 
         return view;
     }
