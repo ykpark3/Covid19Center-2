@@ -44,7 +44,7 @@ public class SubTimeAdapter extends BaseAdapter {
         } else{
             view = (SubTimeItemView) convertView;
         }
-        Log.d("1907", items.get(position).subTime);
+
         view.setName(items.get(position).subTime);
 
         return view;

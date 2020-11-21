@@ -42,20 +42,24 @@ public class ReservationActivity extends AppCompatActivity {
     private RecyclerView listView;
     private ArrayList<String> copyListView;
     private ArrayList<View> views;
+    private ArrayList<View> timeViews;
     private View tmpView;
     private MyAdapter adapter;
     private SubTimeAdapter subTimeAdapter;
     private SparseBooleanArray mSelectedItems = new SparseBooleanArray(0);
+    private SparseBooleanArray mSelectedTimeItems = new SparseBooleanArray(0);
     private ArrayList<String> listTime;
+    private StringBuffer timeStringBuffer;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         views = new ArrayList<>();
-
+        timeViews = new ArrayList<>();
         setLayoutElement();
         setIntentInfomation();
         subTimeAdapter = new SubTimeAdapter(getApplicationContext());
+        timeStringBuffer = new StringBuffer();
     }
 
     @Override
@@ -95,7 +99,6 @@ public class ReservationActivity extends AppCompatActivity {
 
         TimeListDecoration decoration = new TimeListDecoration();
         listView.addItemDecoration(decoration);
-
     }
 
     private void setTimeListView(){
@@ -145,18 +148,12 @@ public class ReservationActivity extends AppCompatActivity {
             } else {
                 mSelectedItems.put(str, true);
                 views.add(v);
-//                for (int i=0; i<views.size(); i++){
-//                    views.get(i).setBackgroundResource(R.drawable.round_button_background);
-//                }
 
                 views.get(0).setBackgroundResource(R.drawable.round_button_background);
 
                 if(views.size() > 1){
                     views.remove(0);
                 }
-
-                Log.d("0131", String.valueOf(views.size()));
-
                 v.setBackgroundResource(R.drawable.on_round_button_background);
             }
 
@@ -174,12 +171,17 @@ public class ReservationActivity extends AppCompatActivity {
         setListTime(time, listTime);
 
         gridView.setAdapter(subTimeAdapter);
-        subTimeAdapter.notifyDataSetChanged();
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(), "선택 :"+listTime.get(position), Toast.LENGTH_LONG).show();
+                view.setBackgroundResource(R.color.colorMain);
+                timeViews.add(view);
+
+                if(timeViews.size() > 1){
+                    timeViews.get(0).setBackgroundResource(R.color.colorLightGray);
+                    timeViews.clear();
+                }
             }
         });
     }
@@ -189,23 +191,25 @@ public class ReservationActivity extends AppCompatActivity {
         int[] plusTime = new int[]{0,15,30,45};
         int time = num * 100;
         String timeString = null;
-        subTimeAdapter.clearItem();
 
+
+        subTimeAdapter.clearItem();
 
         for(int i=0; i<plusTime.length; i++) {
 
             timeString = String.valueOf(time + plusTime[i]);
+            timeStringBuffer.append(timeString);
 
             if(Integer.parseInt(timeString) < 1000){
-                timeString = "0"+timeString;
+                timeStringBuffer.insert(0,"0");
             }
 
-            subTimeAdapter.addItem(new SubTimeItem(timeString));
+            timeStringBuffer.insert(2, ":");
+
+            subTimeAdapter.addItem(new SubTimeItem(String.valueOf(timeStringBuffer)));
 
             stringTime.add(timeString);
+            timeStringBuffer.delete(0,5);
         }
-
     }
-
-
 }
