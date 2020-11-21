@@ -7,29 +7,36 @@
         android:id="@+id/listview_user_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="20dp"
         android:textColor="@color/colorBlack"/>
 
     <TextView
         android:id="@+id/listview_hospital"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="20dp"
         android:textColor="@color/colorBlack"/>
 
     <TextView
         android:id="@+id/listview_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="20dp"
         android:textColor="@color/colorBlack"/>
 
     <TextView
         android:id="@+id/listview_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="20dp"
         android:textColor="@color/colorBlack"/>
 
+    <Button
+        android:id="@+id/button_completion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="진료 완료"
+        android:textColor="@color/colorBlack"
+        android:textSize="10dp"/>
 
 </LinearLayout>

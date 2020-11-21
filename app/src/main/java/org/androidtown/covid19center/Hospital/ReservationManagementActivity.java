@@ -33,6 +33,7 @@ public class ReservationManagementActivity extends AppCompatActivity {
 
     //임시 리스트
     ArrayList<ReservationVO> reservationList;
+    ArrayList<ReservationVO> selectedList;
 
     String date; //캘린더에서 선택한 날짜
 
@@ -51,23 +52,31 @@ public class ReservationManagementActivity extends AppCompatActivity {
         date = new SimpleDateFormat("MM.dd", Locale.getDefault()).format(currentTime);
         Log.d("date확인", date);
 
+        //오늘 날짜 예약 리스트 받아오기
+        selectListItem();
+
+        ListView listView = findViewById(R.id.reservation_listview);
+        ListAdapter listAdapter = new ListAdapter(this,selectedList, date);
+
+        listView.setAdapter(listAdapter);
+
+        //날짜 클릭시 날짜별 환자 리스트로 리스트뷰 갱신
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 month += 1;
 
                 date = month + "." +  dayOfMonth;
+
+                //날짜별 환자 리스트 받아오기
+                selectListItem();
+                listAdapter.updateItem(selectedList);
+                listAdapter.notifyDataSetChanged();
             }
         });
-
-        ListView listView = findViewById(R.id.reservation_listview);
-        final ListAdapter listAdapter = new ListAdapter(this,reservationList, date);
-
-        listView.setAdapter(listAdapter);
-
-        //날짜 클릭시 리스트뷰 갱신해야 함...! 추가하기@@@
     }
 
+    //임시 예약 데이터@@
     public void initList(){
         reservationList = new ArrayList<ReservationVO>();
 
@@ -76,5 +85,15 @@ public class ReservationManagementActivity extends AppCompatActivity {
         reservationList.add(2, new ReservationVO("user3", 3, "hospital_3", "11:30", "11.19"));
         reservationList.add(3, new ReservationVO("user3", 3, "hospital_3", "11:30", "11.20"));
         reservationList.add(4, new ReservationVO("user3", 3, "hospital_3", "11:30", "11.21"));
+    }
+
+    public void selectListItem(){
+        selectedList = new ArrayList<ReservationVO>();
+
+        for (int i=0;i<reservationList.size();i++){
+            if(reservationList.get(i).getDate().equals(date)){
+                selectedList.add(selectedList.size(),reservationList.get(i));
+            }
+        }
     }
 }
