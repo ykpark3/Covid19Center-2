@@ -1,10 +1,12 @@
 package org.androidtown.covid19center.Hospital;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.androidtown.covid19center.R;
@@ -53,6 +55,16 @@ public class ListAdapter extends BaseAdapter {
         listview_hospital.setText(list.get(position).getHospital_name());
         listview_date.setText(list.get(position).getDate());
         listview_time.setText(list.get(position).getTime());
+
+
+        Button finish_button = view.findViewById(R.id.finish_button);
+        finish_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, ManagementPopupActivity.class);
+                mContext.startActivity(intent);
+            }
+        });
 
         return view;
     }

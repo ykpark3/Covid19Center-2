@@ -53,6 +53,8 @@
         <activity android:name=".Hospital.ReservationManagementActivity"/>
         <activity android:name=".Mypage.MedicalRecordActivity"/>
         <activity android:name=".Search.ReservationActivity"/>
+        <activity android:name=".Hospital.ManagementPopupActivity"
+            android:theme="@style/PopupTheme" android:screenOrientation="portrait"/>
     </application>
 
 
