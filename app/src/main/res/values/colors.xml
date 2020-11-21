@@ -6,7 +6,7 @@
     <!-- 자주색 추가   -->
     <color name="colorVioletRed">#51032d</color>
     <!-- 옅은 회색 추가  -->
-    <color name="colorLightGray">#CFD8DC</color>
+    <color name="colorLightGray">#E2E2E2</color>
     <!-- 진 회색 추가  -->
     <color name="colorDarkGray">#606060</color>
 
