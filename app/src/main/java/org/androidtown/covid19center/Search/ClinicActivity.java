@@ -49,10 +49,8 @@ public class ClinicActivity extends AppCompatActivity implements OnMapReadyCallb
     private double y;
     private String[] clinicInfo;
     private String callNumber;
-<<<<<<< HEAD
+
     private String clinicNameTmp;
-=======
->>>>>>> c1fd47697b6364c9c614c9c3fd1ef6c032ec8113
     private TextView clinicName;
     private TextView clinicAddress;
     private TextView clinicCallNumber;
@@ -90,7 +88,6 @@ public class ClinicActivity extends AppCompatActivity implements OnMapReadyCallb
             }
         });
 
-<<<<<<< HEAD
         // 예약 페이지 넘어가는 코드
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,9 +97,6 @@ public class ClinicActivity extends AppCompatActivity implements OnMapReadyCallb
                 startActivity(intent);
             }
         });
-
-=======
->>>>>>> c1fd47697b6364c9c614c9c3fd1ef6c032ec8113
     }
 
 
@@ -110,7 +104,6 @@ public class ClinicActivity extends AppCompatActivity implements OnMapReadyCallb
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions,  @NonNull int[] grantResults) {
 
-<<<<<<< HEAD
     }
 
     @Override
@@ -127,24 +120,6 @@ public class ClinicActivity extends AppCompatActivity implements OnMapReadyCallb
 
     }
 
-=======
-    }
-
-    @Override
-    public void onMapReady(@NonNull NaverMap naverMap) {
-        CameraUpdate cameraUpdate = CameraUpdate.scrollTo(new LatLng(y, x));
-        naverMap.moveCamera(cameraUpdate);
-
-        Marker marker = new Marker();
-        marker.setWidth(40);
-        marker.setHeight(60);
-        marker.setPosition(new LatLng(y,x));
-
-        marker.setMap(naverMap);
-
-    }
-
->>>>>>> c1fd47697b6364c9c614c9c3fd1ef6c032ec8113
     private void setLayoutElement () {
         clinicName = findViewById(R.id.text_clinicName);
         clinicAddress = findViewById(R.id.text_clinic_address);
@@ -165,11 +140,7 @@ public class ClinicActivity extends AppCompatActivity implements OnMapReadyCallb
 
         stringTemp = intent.getExtras().getString("clinicCallNumber");
         callNumber = stringTemp;
-<<<<<<< HEAD
 
-=======
-        callNumber = callNumber.replace("-","");
->>>>>>> c1fd47697b6364c9c614c9c3fd1ef6c032ec8113
         Log.d("test",callNumber);
         clinicCallNumber.setText(stringTemp);
 
