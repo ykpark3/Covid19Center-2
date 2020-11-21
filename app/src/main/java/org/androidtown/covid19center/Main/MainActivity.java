@@ -152,8 +152,7 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.action_search:
-//                        setFragment(fragmentSearch);
-                        setFragment(fragmentHospital);
+                        setFragment(fragmentSearch);
                         break;
                     case R.id.action_self_check:
                         setFragment(fragmentSelfCheck);
