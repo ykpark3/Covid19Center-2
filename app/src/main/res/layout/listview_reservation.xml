@@ -35,6 +35,7 @@
         android:id="@+id/button_completion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
         android:text="진료 완료"
         android:textColor="@color/colorBlack"
         android:textSize="10dp"/>

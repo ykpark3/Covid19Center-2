@@ -85,6 +85,8 @@ public class ReservationManagementActivity extends AppCompatActivity {
         reservationList.add(2, new ReservationVO("user3", 3, "hospital_3", "11:30", "11.19"));
         reservationList.add(3, new ReservationVO("user3", 3, "hospital_3", "11:30", "11.20"));
         reservationList.add(4, new ReservationVO("user3", 3, "hospital_3", "11:30", "11.21"));
+        reservationList.add(5, new ReservationVO("user3", 3, "hospital_3", "11:30", "11.22"));
+        reservationList.add(6, new ReservationVO("user3", 3, "hospital_3", "11:30", "11.23"));
     }
 
     public void selectListItem(){

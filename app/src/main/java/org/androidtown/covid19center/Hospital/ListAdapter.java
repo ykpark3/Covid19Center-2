@@ -18,7 +18,6 @@ public class ListAdapter extends BaseAdapter {
     LayoutInflater mLayoutInflater = null;
     ArrayList<ReservationVO> list;
     String date;
-    int listCount = 0;
 
     public ListAdapter(Context context, ArrayList<ReservationVO> data, String date) {
         mContext = context;
@@ -33,9 +32,7 @@ public class ListAdapter extends BaseAdapter {
     }
 
     @Override
-    public long getItemId(int position) {
-        return position;
-    }
+    public long getItemId(int position) { return position; }
 
     @Override
     public ReservationVO getItem(int position) {
@@ -63,14 +60,12 @@ public class ListAdapter extends BaseAdapter {
     //환자 리스트 추가
     public void addItem(ReservationVO reservationVO) {
         list.add(list.size(), reservationVO);
-        listCount = list.size();
         this.notifyDataSetChanged();
     }
 
     //환자 리스트 날짜별 변경
     public void updateItem(ArrayList<ReservationVO> nList) {
         list = nList;
-        listCount = list.size();
     }
 
 }
