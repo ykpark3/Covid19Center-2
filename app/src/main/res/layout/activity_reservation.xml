@@ -81,9 +81,15 @@
                 <GridView
                     android:id="@+id/reservation_gridView"
                     android:layout_width="match_parent"
-                    android:background="@color/colorLightGray"
                     android:layout_height="match_parent"
-                    android:numColumns="4" />
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:columnWidth="10dp"
+                    android:horizontalSpacing="10dp"
+                    android:numColumns="4"
+                    android:padding="0dp"
+                    android:textAlignment="center"
+                    android:verticalSpacing="10dp" />
             </LinearLayout>
         </ScrollView>
 

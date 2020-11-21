@@ -182,13 +182,9 @@ public class ReservationActivity extends AppCompatActivity {
                 if(timeViews.size() > 1){
                     view.setBackgroundResource(R.color.colorMain);
                     timeViews.get(0).setBackgroundResource(R.color.colorLightGray);
-                    Log.d("2152", String.valueOf(timeViews.get(0)));
-                    Log.d("2152", String.valueOf(timeViews.get(1)));
                     timeViews.clear();
                     timeViews.add(view);
                 }
-                
-
             }
         });
     }

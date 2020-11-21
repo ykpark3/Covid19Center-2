@@ -10,7 +10,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@color/colorLightGray"
         android:text="08:00"
         android:textColor="@color/colorBlack"
         android:textSize="15sp" />
