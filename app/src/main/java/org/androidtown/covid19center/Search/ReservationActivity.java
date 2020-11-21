@@ -177,6 +177,7 @@ public class ReservationActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 view.setBackgroundResource(R.color.colorMain);
                 timeViews.add(view);
+                Log.d("2152", String.valueOf(timeViews.size()));
 
                 if(timeViews.size() > 1){
                     timeViews.get(0).setBackgroundResource(R.color.colorLightGray);

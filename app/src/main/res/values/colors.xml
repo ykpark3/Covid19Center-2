@@ -6,7 +6,11 @@
     <!-- 자주색 추가   -->
     <color name="colorVioletRed">#51032d</color>
     <!-- 옅은 회색 추가  -->
+<<<<<<< HEAD
     <color name="colorLightGray">#E2E2E2</color>
+=======
+    <color name="colorLightGray">#CFD8DC</color>
+>>>>>>> c1fd47697b6364c9c614c9c3fd1ef6c032ec8113
     <!-- 진 회색 추가  -->
     <color name="colorDarkGray">#606060</color>
 
