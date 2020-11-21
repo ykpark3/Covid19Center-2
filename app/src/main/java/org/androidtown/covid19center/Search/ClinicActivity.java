@@ -15,29 +15,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import com.naver.maps.geometry.LatLng;
-import com.naver.maps.map.CameraPosition;
 import com.naver.maps.map.CameraUpdate;
-import com.naver.maps.map.LocationTrackingMode;
 import com.naver.maps.map.MapFragment;
 import com.naver.maps.map.NaverMap;
 import com.naver.maps.map.OnMapReadyCallback;
-import com.naver.maps.map.overlay.InfoWindow;
-import com.naver.maps.map.overlay.LocationOverlay;
 import com.naver.maps.map.overlay.Marker;
 import com.naver.maps.map.util.FusedLocationSource;
 
 import org.androidtown.covid19center.DataBase.AppDatabase;
 import org.androidtown.covid19center.R;
-import org.androidtown.covid19center.Search.ClinicActivity;
 import org.androidtown.covid19center.Search.List.ClinicItem;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public class ClinicActivity extends AppCompatActivity implements OnMapReadyCallback {
 
-    MapFragment mapFragment;
-
     private static final int LOCATTION_PERMISSION_REQUEST_CODE = 1000;
+    MapFragment mapFragment;
     private AppDatabase db;
     private ArrayList<ClinicItem> clinicDataList; // 진료소 담을 리스트 생성
     private int number;
@@ -77,13 +71,13 @@ public class ClinicActivity extends AppCompatActivity implements OnMapReadyCallb
         mapFragment.getMapAsync(ClinicActivity.this);
 
         // 전화번호 거는 코드
-        callButton.setOnClickListener(new View.OnClickListener(){
+        callButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:"+callNumber));
+                intent.setData(Uri.parse("tel:" + callNumber));
                 startActivity(intent);
             }
         });
@@ -93,7 +87,7 @@ public class ClinicActivity extends AppCompatActivity implements OnMapReadyCallb
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ReservationActivity.class);
-                intent.putExtra("clinicName",clinicNameTmp);
+                intent.putExtra("clinicName", clinicNameTmp);
                 startActivity(intent);
             }
         });
@@ -102,7 +96,7 @@ public class ClinicActivity extends AppCompatActivity implements OnMapReadyCallb
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String[] permissions,  @NonNull int[] grantResults) {
+                                           @NonNull String[] permissions, @NonNull int[] grantResults) {
 
     }
 
@@ -114,13 +108,13 @@ public class ClinicActivity extends AppCompatActivity implements OnMapReadyCallb
         Marker marker = new Marker();
         marker.setWidth(40);
         marker.setHeight(60);
-        marker.setPosition(new LatLng(y,x));
+        marker.setPosition(new LatLng(y, x));
 
         marker.setMap(naverMap);
 
     }
 
-    private void setLayoutElement () {
+    private void setLayoutElement() {
         clinicName = findViewById(R.id.text_clinicName);
         clinicAddress = findViewById(R.id.text_clinic_address);
         clinicCallNumber = findViewById(R.id.text_clinic_call_number);
@@ -128,7 +122,7 @@ public class ClinicActivity extends AppCompatActivity implements OnMapReadyCallb
         callButton = findViewById(R.id.callButton);
     }
 
-    private void setIntentInfomation () {
+    private void setIntentInfomation() {
         Intent intent = getIntent(); // 데이터 수신
 
         stringTemp = intent.getExtras().getString("clinicName");
@@ -141,7 +135,7 @@ public class ClinicActivity extends AppCompatActivity implements OnMapReadyCallb
         stringTemp = intent.getExtras().getString("clinicCallNumber");
         callNumber = stringTemp;
 
-        Log.d("test",callNumber);
+        Log.d("test", callNumber);
         clinicCallNumber.setText(stringTemp);
 
         stringTemp = intent.getExtras().getString("clinicX");

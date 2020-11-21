@@ -26,20 +26,19 @@ import org.androidtown.covid19center.Map.MapActivity;
 import org.androidtown.covid19center.R;
 import org.androidtown.covid19center.Search.List.SearchActivity;
 
-public class FragmentSearch extends Fragment{
+public class FragmentSearch extends Fragment {
 
+    MapFragment mapFragment;
+    LocationManager locationManager;
     private View view;
     private TextView search_textView;
     private Button openApiBtn;
-    MapFragment mapFragment;
     private View.OnKeyListener mOnKeyBackPressedListener;
-    LocationManager locationManager;
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
-    {
-        view = inflater.inflate(R.layout.fragment_search,container,false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.fragment_search, container, false);
 
         return view;
     }
@@ -68,8 +67,8 @@ public class FragmentSearch extends Fragment{
         });
     }
 
-    public void setSearchingBox(){
-        search_textView.setOnClickListener(new View.OnClickListener(){
+    public void setSearchingBox() {
+        search_textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setLocation();
@@ -77,13 +76,12 @@ public class FragmentSearch extends Fragment{
         });
     }
 
-    private void setLocation(){
-        if ( Build.VERSION.SDK_INT >= 23 &&
-                ContextCompat.checkSelfPermission( getActivity().getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED ) {
-            ActivityCompat.requestPermissions( this.getActivity(), new String[] {  android.Manifest.permission.ACCESS_FINE_LOCATION  },
-                    0 );
-        }
-        else{
+    private void setLocation() {
+        if (Build.VERSION.SDK_INT >= 23 &&
+                ContextCompat.checkSelfPermission(getActivity().getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this.getActivity(), new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                    0);
+        } else {
             Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
             LocationConsts.NOW_X = location.getLongitude();
             LocationConsts.NOW_Y = location.getLatitude();
