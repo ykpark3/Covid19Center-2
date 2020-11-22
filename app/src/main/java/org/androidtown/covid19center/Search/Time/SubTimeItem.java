@@ -4,15 +4,17 @@ public class SubTimeItem {
 
     String subTime;
 
-    public SubTimeItem(String subTime){
+
+    public SubTimeItem(String subTime) {
         this.subTime = subTime;
     }
 
-    public String getSubTime(){
+    public String getSubTime() {
         return subTime;
     }
 
-    public void setSubTime(String subTime){
+    public void setSubTime(String subTime) {
+
         this.subTime = subTime;
     }
 

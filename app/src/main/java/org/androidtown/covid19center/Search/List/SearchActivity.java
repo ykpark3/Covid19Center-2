@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,6 +33,7 @@ public class SearchActivity extends AppCompatActivity {
     private AppDatabase db;
     private ListView listView;
     private List<Double> list;
+    private ImageButton backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
 
         clinicSearch = findViewById(R.id.editClinicSearch);
+        backButton = findViewById(R.id.search_backButton);
         clinicDataList = new ArrayList<ClinicItem>();
         copyList = new ArrayList<ClinicItem>();
         listView = (ListView)findViewById(R.id.clinicListView); // 리스트뷰 생성
@@ -50,6 +53,13 @@ public class SearchActivity extends AppCompatActivity {
         searchInClinic();
 
         addClinicList();
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 
     private void searchInClinic(){

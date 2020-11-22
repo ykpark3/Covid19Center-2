@@ -1,6 +1,10 @@
 package org.androidtown.covid19center.Login;
 
+import android.content.Context;
 import android.content.Intent;
+import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -31,12 +35,21 @@ public class LoginActivity extends AppCompatActivity {
     EditText idEditText, passwordEditText;
     Button loginButton;
     private ServiceApi service;
+    private Context mcontext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // 네트워크가 켜져있으면 동작
+        if(checkNetworkSetting() == 1){
+            setLoginInfomation();
+        }
+
+    }
+
+    public void setLoginInfomation(){
         service = RetrofitClient.getClient().create(ServiceApi.class);
 
         idEditText = findViewById(R.id.idEditText);
@@ -69,6 +82,44 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+    }
+
+    public int checkNetworkSetting(){
+        mcontext = getApplicationContext();
+
+        if(getOnline_23() == 0){
+
+            Intent intent = new Intent(getApplicationContext(), DataWarningActivity.class);
+            startActivity(intent);
+            finish();
+        } else{
+            return 1;
+        }
+        return 0;
+    }
+
+    public int getOnline_23(){
+        int ret_code = 0;
+
+        ConnectivityManager cm = (ConnectivityManager) mcontext.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        if (activeNetwork != null) {
+            if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI && activeNetwork.isConnectedOrConnecting()) {
+                // wifi 연결중
+                return 1;
+            } else if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE && activeNetwork.isConnectedOrConnecting()) {
+                // 모바일 네트워크 연결중
+                return 2;
+            }
+            else {
+                // 네트워크 오프라인 상태.
+                return 0;
+            }
+        } else {
+            //네트워크 없는 상태
+            return 0;
+        }
 
     }
 
@@ -130,4 +181,5 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
 }

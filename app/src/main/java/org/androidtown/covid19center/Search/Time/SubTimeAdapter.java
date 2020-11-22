@@ -1,12 +1,16 @@
 package org.androidtown.covid19center.Search.Time;
 
 import android.content.Context;
-import android.util.Log;
+
+import android.view.Gravity;
+
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import androidx.core.content.ContextCompat;
+
+import org.androidtown.covid19center.R;
+
 
 import java.util.ArrayList;
 
@@ -15,7 +19,9 @@ public class SubTimeAdapter extends BaseAdapter {
     ArrayList<SubTimeItem> items = new ArrayList<SubTimeItem>();
     Context context;
 
-    public SubTimeAdapter(Context context){
+
+    public SubTimeAdapter(Context context) {
+
         this.context = context;
     }
 
@@ -39,9 +45,14 @@ public class SubTimeAdapter extends BaseAdapter {
 
         SubTimeItemView view = null;
 
-        if (convertView == null){
+
+        if (convertView == null) {
             view = new SubTimeItemView(context);
-        } else{
+            view.setBackgroundResource(R.color.colorLightGray);
+            view.setPadding(8, 8, 8, 8);
+            view.setGravity(Gravity.CENTER);
+        } else {
+
             view = (SubTimeItemView) convertView;
         }
 

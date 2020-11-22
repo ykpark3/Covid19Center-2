@@ -1,34 +1,33 @@
 package org.androidtown.covid19center.Search;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.SparseBooleanArray;
+import android.util.TypedValue;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.card.MaterialCardView;
-import com.google.android.material.datepicker.MaterialCalendar;
-
 import org.androidtown.covid19center.R;
-import org.androidtown.covid19center.Search.List.ClinicItem;
 import org.androidtown.covid19center.Search.Time.MyAdapter;
 import org.androidtown.covid19center.Search.Time.SubTimeAdapter;
 import org.androidtown.covid19center.Search.Time.SubTimeItem;
-import org.androidtown.covid19center.Search.Time.SubTimeItemView;
+
 import org.androidtown.covid19center.Search.Time.TimeListDecoration;
 
 import java.util.ArrayList;
@@ -37,29 +36,83 @@ public class ReservationActivity extends AppCompatActivity {
 
     private TextView clinicName;
     private TextView clinicDate;
+    private TextView warningMessage;
+    private Button reservationButton;
+    private ImageButton backButton;
     private CalendarView calendarView;
+    private ArrayList<String> reservationTime;
+    private String reservationTimeString;
     private String stringTemp;
     private RecyclerView listView;
-    private ArrayList<String> copyListView;
     private ArrayList<View> views;
     private ArrayList<View> timeViews;
-    private View tmpView;
+    private boolean canNextPage;
     private MyAdapter adapter;
     private SubTimeAdapter subTimeAdapter;
-    private SparseBooleanArray mSelectedItems = new SparseBooleanArray(0);
-    private SparseBooleanArray mSelectedTimeItems = new SparseBooleanArray(0);
+    private final SparseBooleanArray mSelectedItems = new SparseBooleanArray(0);
     private ArrayList<String> listTime;
     private StringBuffer timeStringBuffer;
+    private Context mContext;
+    private EndDialog mEndDialog;
+    private final View.OnClickListener onClickItem = new View.OnClickListener() {
+
+        @Override
+        public void onClick(View v) {
+
+            int str = v.hashCode();
+
+            String time = String.valueOf(v.getTag());
+
+            int passTime;
+            time = time.replace(":", "");
+
+            if (time.substring(0, 1).contains("0")) {
+                time = time.substring(1, 4);
+                passTime = Integer.parseInt(time.substring(0, 1));
+            } else {
+                passTime = Integer.parseInt(time.substring(0, 2));
+            }
+
+
+            if (mSelectedItems.get(str, false)) {
+                mSelectedItems.put(str, false);
+                Log.d("0131", String.valueOf(str));
+                v.setBackgroundResource(R.drawable.round_button_background);
+            } else {
+                mSelectedItems.put(str, true);
+                views.add(v);
+
+                views.get(0).setBackgroundResource(R.drawable.round_button_background);
+
+                if (views.size() > 1) {
+                    views.remove(0);
+                }
+                v.setBackgroundResource(R.drawable.on_round_button_background);
+            }
+
+            mSelectedItems.clear();
+            canNextPage = false;
+            setGridView(passTime);
+        }
+    };
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        reservationTime = new ArrayList<>();
+
         views = new ArrayList<>();
         timeViews = new ArrayList<>();
         setLayoutElement();
         setIntentInfomation();
+
+        setNextButton();
         subTimeAdapter = new SubTimeAdapter(getApplicationContext());
         timeStringBuffer = new StringBuffer();
+        canNextPage = false;
+
     }
 
     @Override
@@ -67,21 +120,58 @@ public class ReservationActivity extends AppCompatActivity {
         super.onStart();
     }
 
-    private void setLayoutElement(){
+
+    private void setLayoutElement() {
         setContentView(R.layout.activity_reservation);
         clinicName = findViewById(R.id.reservation_clinicName);
+        clinicName.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 22);
         calendarView = findViewById(R.id.reservation_calendarView);
-        clinicDate = findViewById(R.id.reservation_date_text);
+        reservationButton = findViewById(R.id.reservation_button);
+        warningMessage = findViewById(R.id.reservation_warning_message);
+        backButton = findViewById(R.id.reservation_backButton);
         setCalenderView();
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 
-    private void setCalenderView(){
+    private void setNextButton(){
+        reservationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(canNextPage){
+
+                    reservationTimeString = reservationTime.get(reservationTime.size()-1);
+
+                    mEndDialog = new EndDialog(ReservationActivity.this, reservationTimeString, String.valueOf(clinicName.getText()));
+
+                    mEndDialog.setCancelable(false);
+
+                    mEndDialog.show();
+
+                } else{
+
+                }
+            }
+        });
+    }
+
+    private void setCalenderView() {
+
 
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 month += 1;
-                clinicDate.setText(String.format("%d년 %d월 %d일", year, month, dayOfMonth));
+
+
+                reservationTime.clear();
+                reservationTime.add(String.format("%d년 %d월 %d일", year, month, dayOfMonth));
+
                 setTimeListView();
             }
         });
@@ -101,7 +191,9 @@ public class ReservationActivity extends AppCompatActivity {
         listView.addItemDecoration(decoration);
     }
 
-    private void setTimeListView(){
+
+    private void setTimeListView() {
+
 
         ArrayList<String> itemList = new ArrayList<>();
 
@@ -121,52 +213,16 @@ public class ReservationActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
     }
 
-    private View.OnClickListener onClickItem = new View.OnClickListener(){
 
-        @Override
-        public void onClick(View v) {
-
-            int str = v.hashCode();
-
-            String time = String.valueOf(v.getTag());
-
-            int passTime;
-            time = time.replace(":", "");
-
-            if(time.substring(0,1).contains("0")){
-                time = time.substring(1,4);
-                passTime = Integer.parseInt(time.substring(0,1));
-            } else{
-                passTime = Integer.parseInt(time.substring(0,2));
-            }
+    private void setGridView(int time) {
 
 
-            if(mSelectedItems.get(str,false)){
-                mSelectedItems.put(str, false);
-                Log.d("0131", String.valueOf(str));
-                v.setBackgroundResource(R.drawable.round_button_background);
-            } else {
-                mSelectedItems.put(str, true);
-                views.add(v);
-
-                views.get(0).setBackgroundResource(R.drawable.round_button_background);
-
-                if(views.size() > 1){
-                    views.remove(0);
-                }
-                v.setBackgroundResource(R.drawable.on_round_button_background);
-            }
-
-            mSelectedItems.clear();
-
-            setGridView(passTime);
-        }
-    };
-
-    private void setGridView(int time){
         GridView gridView = (GridView) findViewById(R.id.reservation_gridView);
         listTime = new ArrayList<>();
         listTime.clear();
+
+
+        warningMessage.setText("예약 가능한 시간만 표시됩니다.");
 
         setListTime(time, listTime);
 
@@ -175,34 +231,53 @@ public class ReservationActivity extends AppCompatActivity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                view.setBackgroundResource(R.color.colorMain);
-                timeViews.add(view);
-                Log.d("2152", String.valueOf(timeViews.size()));
 
-                if(timeViews.size() > 1){
+                if(position == 0)
+                {
+                    reservationTime.add(reservationTime.get(0)+", "+reservationTime.get(1)+"00");
+                } else if(position == 1){
+                    reservationTime.add(reservationTime.get(0)+", "+reservationTime.get(1)+"15");
+                } else if(position == 2){
+                    reservationTime.add(reservationTime.get(0)+", "+reservationTime.get(1)+"30");
+                } else if(position == 3){
+                    reservationTime.add(reservationTime.get(0)+", "+reservationTime.get(1)+"45");
+                }
+
+                canNextPage = true;
+                timeViews.add(view);
+
+                view.setBackgroundResource(R.color.colorMain);
+
+                if (timeViews.size() > 1) {
+                    view.setBackgroundResource(R.color.colorMain);
                     timeViews.get(0).setBackgroundResource(R.color.colorLightGray);
                     timeViews.clear();
+                    timeViews.add(view);
+
                 }
             }
         });
     }
 
-    private void setListTime(int num, ArrayList<String> stringTime){
 
-        int[] plusTime = new int[]{0,15,30,45};
+    private void setListTime(int num, ArrayList<String> stringTime) {
+
+        int[] plusTime = new int[]{0, 15, 30, 45};
         int time = num * 100;
         String timeString = null;
 
-
         subTimeAdapter.clearItem();
 
-        for(int i=0; i<plusTime.length; i++) {
+        for (int i = 0; i < plusTime.length; i++) {
+
 
             timeString = String.valueOf(time + plusTime[i]);
             timeStringBuffer.append(timeString);
 
-            if(Integer.parseInt(timeString) < 1000){
-                timeStringBuffer.insert(0,"0");
+
+            if (Integer.parseInt(timeString) < 1000) {
+                timeStringBuffer.insert(0, "0");
+
             }
 
             timeStringBuffer.insert(2, ":");
@@ -210,7 +285,11 @@ public class ReservationActivity extends AppCompatActivity {
             subTimeAdapter.addItem(new SubTimeItem(String.valueOf(timeStringBuffer)));
 
             stringTime.add(timeString);
-            timeStringBuffer.delete(0,5);
+
+            reservationTime.add(1,String.valueOf(timeStringBuffer.substring(0,3)));
+            timeStringBuffer.delete(0, 5);
         }
+
     }
+
 }
