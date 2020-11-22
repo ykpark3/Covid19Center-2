@@ -39,6 +39,7 @@ public class ClinicActivity extends AppCompatActivity implements OnMapReadyCallb
     private NaverMap naverMap;
     private Button button;
     private ImageButton callButton;
+    private ImageButton backButton;
     private double x;
     private double y;
     private String[] clinicInfo;
@@ -120,6 +121,14 @@ public class ClinicActivity extends AppCompatActivity implements OnMapReadyCallb
         clinicCallNumber = findViewById(R.id.text_clinic_call_number);
         button = findViewById(R.id.button_book);
         callButton = findViewById(R.id.callButton);
+        backButton = findViewById(R.id.clinicInfo_backButton);
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 
     private void setIntentInfomation() {

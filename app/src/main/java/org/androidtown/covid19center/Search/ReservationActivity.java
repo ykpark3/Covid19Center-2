@@ -6,12 +6,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.SparseBooleanArray;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -34,6 +36,7 @@ public class ReservationActivity extends AppCompatActivity {
     private TextView clinicDate;
     private TextView warningMessage;
     private Button reservationButton;
+    private ImageButton backButton;
     private CalendarView calendarView;
     private ArrayList<String> reservationTime;
     private String reservationTimeString;
@@ -113,11 +116,18 @@ public class ReservationActivity extends AppCompatActivity {
     private void setLayoutElement() {
         setContentView(R.layout.activity_reservation);
         clinicName = findViewById(R.id.reservation_clinicName);
+        clinicName.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 22);
         calendarView = findViewById(R.id.reservation_calendarView);
-        clinicDate = findViewById(R.id.reservation_date_text);
         reservationButton = findViewById(R.id.reservation_button);
         warningMessage = findViewById(R.id.reservation_warning_message);
+        backButton = findViewById(R.id.reservation_backButton);
         setCalenderView();
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 
     private void setNextButton(){
@@ -257,4 +267,5 @@ public class ReservationActivity extends AppCompatActivity {
         }
 
     }
+
 }
