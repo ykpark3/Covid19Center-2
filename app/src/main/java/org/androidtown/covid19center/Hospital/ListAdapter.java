@@ -52,10 +52,11 @@ public class ListAdapter extends BaseAdapter {
         TextView listview_time = (TextView) view.findViewById(R.id.listview_time);
 
         listview_user_id.setText(list.get(position).getUser_id());
-        listview_hospital.setText(list.get(position).getHospital_name());
+        //네이밍 수정하기
+        listview_hospital.setText(String.valueOf(list.get(position).getVisited()));
         listview_date.setText(list.get(position).getDate());
-//        listview_time.setText(list.get(position).getTime());
-        listview_time.setText(String.valueOf(list.get(position).getVisited()));
+        listview_time.setText(list.get(position).getTime());
+//        listview_time.setText(String.valueOf(list.get(position).getVisited()));
 
         Button finish_button = view.findViewById(R.id.finish_button);
 

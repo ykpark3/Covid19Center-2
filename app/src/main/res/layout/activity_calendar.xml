@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Server.CalendarActivity">
+    tools:context=".Server.CalendarActivity"
+    android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="의료진 예약 확인 페이지: 캘린더 넣기"
-        tools:layout_editor_absoluteX="182dp"
-        tools:layout_editor_absoluteY="245dp" />
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name = "org.androidtown.covid19center.Hospital.FragmentHospital"
+        android:id="@+id/fragment_hospital">
+    </fragment>
+
 </LinearLayout>
