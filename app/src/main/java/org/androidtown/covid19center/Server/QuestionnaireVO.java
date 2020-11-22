@@ -1,0 +1,134 @@
+package org.androidtown.covid19center.Server;
+
+public class QuestionnaireVO {
+
+    String user_id;
+    int visited;
+    String visited_detail;
+    int contact;
+    String contact_relationship, contact_period;
+    int fever, muscle_ache, sputum, runny_nose, dyspnea, sore_throat;
+    String symptom_start_date;
+
+    public QuestionnaireVO
+            (String user_id,
+             int visited,
+             String visited_detail,
+             int contact,
+             String contact_relationship,
+             String contact_period,
+             int fever,
+             int muscle_ache,
+             int sputum,
+             int runny_nose,
+             int dyspnea,
+             int sore_throat,
+             String symptom_start_date) {
+
+        this.user_id = user_id;
+        this.visited = visited;
+        this.visited_detail = visited_detail;
+        this.contact = contact;
+        this.contact_relationship = contact_relationship;
+        this.contact_period = contact_period;
+        this.fever = fever;
+        this.muscle_ache = muscle_ache;
+        this.sputum = sputum;
+        this.runny_nose = runny_nose;
+        this.dyspnea = dyspnea;
+        this.sore_throat = sore_throat;
+        this.symptom_start_date = symptom_start_date;
+    }
+
+
+    public String getUser_id() {
+        return user_id;
+    }
+    public void setUser_id(String id) {
+        this.user_id = user_id;
+    }
+
+    public int getVisited() {
+        return visited;
+    }
+    public void setVisited(int visited) {
+        this.visited = visited;
+    }
+
+    public String getVisited_detail() {
+        return visited_detail;
+    }
+    public void setVisited_detail(String visited_detail) {
+        this.visited_detail = visited_detail;
+    }
+
+    public int getContact() {
+        return contact;
+    }
+    public void setContact(int contact) {
+        this.contact = contact;
+    }
+
+    public String getContact_relationship() {
+        return contact_relationship;
+    }
+    public void setContact_relationship(String contact_relationship) {
+        this.contact_relationship = contact_relationship;
+    }
+
+    public String getContact_period() {
+        return contact_period;
+    }
+    public void setContact_period(String contact_period) {
+        this.contact_period = contact_period;
+    }
+
+    public int getFever() {
+        return fever;
+    }
+    public void setFever(int fever) {
+        this.fever = fever;
+    }
+
+    public int getMuscle_ache() {
+        return muscle_ache;
+    }
+    public void setMuscle_ache(int muscle_ache) {
+        this.muscle_ache = muscle_ache;
+    }
+
+    public int getSputum() {
+        return sputum;
+    }
+    public void setSputum(int sputum) {
+        this.sputum = sputum;
+    }
+
+    public int getRunny_nose() {
+        return runny_nose;
+    }
+    public void setRunny_nose(int runny_nose) {
+        this.runny_nose = runny_nose;
+    }
+
+    public int getDyspnea() {
+        return dyspnea;
+    }
+    public void setDyspnea(int dyspnea) {
+        this.dyspnea = dyspnea;
+    }
+
+    public int getSore_throat() {
+        return sore_throat;
+    }
+    public void setSore_throat(int sore_throat) {
+        this.sore_throat = sore_throat;
+    }
+
+    public String getSymptom_start_date() {
+        return symptom_start_date;
+    }
+    public void setSymptom_start_date(String symptom_start_date) {
+        this.symptom_start_date = symptom_start_date;
+    }
+}

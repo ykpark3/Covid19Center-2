@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <!-- 자주색 추가   -->
+    <color name="colorVioletRed">#51032d</color>
+    <!-- 옅은 회색 추가  -->
+    <color name="colorLightGray">#CFD8DC</color>
+    <!-- 진 회색 추가  -->
+    <color name="colorDarkGray">#606060</color>
+
+    <!--메인 색상-->
+    <color name="colorMain">#7c80ee</color>
+    <!-- 검정색 추가-->
+    <color name="colorBlack">#000000</color>
+    <!-- 하얀색 추가-->
+    <color name="colorWhite">#ffffff</color>
+</resources>
