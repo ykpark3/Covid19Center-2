@@ -107,5 +107,4 @@ public class ListAdapter extends BaseAdapter {
         list = nList;
         this.notifyDataSetChanged();
     }
-
 }
