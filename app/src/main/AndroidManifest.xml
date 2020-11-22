@@ -27,7 +27,7 @@
         <activity android:name=".Login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+                <action android:name="android.location.PROVIDERS_CHANGED" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
