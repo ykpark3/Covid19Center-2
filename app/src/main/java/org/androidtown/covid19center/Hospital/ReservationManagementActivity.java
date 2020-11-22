@@ -1,6 +1,7 @@
 package org.androidtown.covid19center.Hospital;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -76,6 +77,16 @@ public class ReservationManagementActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        selectedList = null;
+
+        Intent intent2 = getIntent();
+        selectedList = (ArrayList<ReservationVO>)intent2.getSerializableExtra("modifiedList");
+    }
+
     //임시 예약 데이터@@
     public void initList(){
         reservationList = new ArrayList<ReservationVO>();
@@ -83,12 +94,13 @@ public class ReservationManagementActivity extends AppCompatActivity {
         reservationList.add(0, new ReservationVO("user1", 1, "hospital_1", "11:30", "11/19"));
         reservationList.add(1, new ReservationVO("user2", 2, "hospital_2", "11:30", "11/19"));
         reservationList.add(2, new ReservationVO("user3", 3, "hospital_3", "11:30", "11/19"));
-        reservationList.add(3, new ReservationVO("user3", 3, "hospital_3", "11:30", "11/20"));
-        reservationList.add(4, new ReservationVO("user3", 3, "hospital_3", "11:30", "11/21"));
-        reservationList.add(5, new ReservationVO("user3", 3, "hospital_3", "11:30", "11/22"));
-        reservationList.add(6, new ReservationVO("user3", 3, "hospital_3", "11:30", "11/23"));
+        reservationList.add(3, new ReservationVO("user4", 4, "hospital_3", "11:30", "11/20"));
+        reservationList.add(4, new ReservationVO("user5", 5, "hospital_3", "11:30", "11/21"));
+        reservationList.add(5, new ReservationVO("user6", 6, "hospital_3", "11:30", "11/22"));
+        reservationList.add(6, new ReservationVO("user7", 7, "hospital_3", "11:30", "11/23"));
     }
 
+    //해당 날짜의 예약 리스트 select
     public void selectListItem(){
         selectedList = new ArrayList<ReservationVO>();
 

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.androidtown.covid19center.R;
 import org.androidtown.covid19center.Server.ReservationVO;
@@ -50,19 +51,45 @@ public class ListAdapter extends BaseAdapter {
         TextView listview_date = (TextView) view.findViewById(R.id.listview_date);
         TextView listview_time = (TextView) view.findViewById(R.id.listview_time);
 
-
         listview_user_id.setText(list.get(position).getUser_id());
         listview_hospital.setText(list.get(position).getHospital_name());
         listview_date.setText(list.get(position).getDate());
-        listview_time.setText(list.get(position).getTime());
-
+//        listview_time.setText(list.get(position).getTime());
+        listview_time.setText(String.valueOf(list.get(position).getVisited()));
 
         Button finish_button = view.findViewById(R.id.finish_button);
+
+        //진료 완료시 버튼 비활성화
+//        if(list.get(position).getVisited() == true){
+//            finish_button.setClickable(false);
+//        }
+
+        //진료 완료 묻는 팝업창 띄우기
         finish_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, ManagementPopupActivity.class);
-                mContext.startActivity(intent);
+//                Intent intent = new Intent(mContext, ManagementPopupActivity.class);
+//                intent.putExtra("questionnaire_seq", list.get(position).getQuestionnaire_seq());
+//                intent.putExtra("position", position);
+//                intent.putExtra("reservationList", list);
+//                mContext.startActivity(intent);
+
+                ManagementDialog dialog = new ManagementDialog(mContext);
+
+                dialog.setManagementDialogListener(new ManagementDialog.ManagementDialogListener() {
+                    @Override
+                    public void onOkClicked() {
+                        //여기서 true값으로 리스트 값 변경하기!!!!!!!!!!
+                        list.get(position).setVisited(true);
+                        updateItem(list);
+                    }
+
+                    @Override
+                    public void onCancelClicked() {
+
+                    }
+                });
+                dialog.show();
             }
         });
 
@@ -78,6 +105,7 @@ public class ListAdapter extends BaseAdapter {
     //환자 리스트 날짜별 변경
     public void updateItem(ArrayList<ReservationVO> nList) {
         list = nList;
+        this.notifyDataSetChanged();
     }
 
 }

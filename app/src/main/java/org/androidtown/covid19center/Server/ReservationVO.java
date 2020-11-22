@@ -1,6 +1,8 @@
 package org.androidtown.covid19center.Server;
 
-public class ReservationVO {
+import java.io.Serializable;
+
+public class ReservationVO implements Serializable {
     String user_id;
     int questionnaire_seq;
     String hospital_name;
