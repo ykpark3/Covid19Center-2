@@ -88,7 +88,9 @@ public class ClinicActivity extends AppCompatActivity implements OnMapReadyCallb
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ReservationActivity.class);
+
                 intent.putExtra("clinicName", clinicNameTmp);
+
                 startActivity(intent);
             }
         });
@@ -144,7 +146,9 @@ public class ClinicActivity extends AppCompatActivity implements OnMapReadyCallb
         stringTemp = intent.getExtras().getString("clinicCallNumber");
         callNumber = stringTemp;
 
+
         Log.d("test", callNumber);
+
         clinicCallNumber.setText(stringTemp);
 
         stringTemp = intent.getExtras().getString("clinicX");

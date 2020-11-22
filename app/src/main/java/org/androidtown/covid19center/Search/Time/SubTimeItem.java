@@ -4,6 +4,7 @@ public class SubTimeItem {
 
     String subTime;
 
+
     public SubTimeItem(String subTime) {
         this.subTime = subTime;
     }
@@ -13,6 +14,7 @@ public class SubTimeItem {
     }
 
     public void setSubTime(String subTime) {
+
         this.subTime = subTime;
     }
 

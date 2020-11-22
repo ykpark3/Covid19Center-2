@@ -1,13 +1,14 @@
 package org.androidtown.covid19center.Server;
 
-import java.util.List;
+import java.io.Serializable;
 
-public class ReservationVO {
+public class ReservationVO implements Serializable {
     String user_id;
     int questionnaire_seq;
     String hospital_name;
     String time;
     String date;
+    boolean visited = false;
 
     public ReservationVO(String user_id, int questionnaire_seq, String hospital_name, String time, String date) {
         this.user_id = user_id;
@@ -51,4 +52,7 @@ public class ReservationVO {
     public void setDate(String date) {
         this.date = date;
     }
+
+    public boolean getVisited() { return visited; }
+    public void setVisited(boolean visited) { this.visited = visited; }
 }

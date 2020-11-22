@@ -19,6 +19,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,6 +27,7 @@ import org.androidtown.covid19center.R;
 import org.androidtown.covid19center.Search.Time.MyAdapter;
 import org.androidtown.covid19center.Search.Time.SubTimeAdapter;
 import org.androidtown.covid19center.Search.Time.SubTimeItem;
+
 import org.androidtown.covid19center.Search.Time.TimeListDecoration;
 
 import java.util.ArrayList;
@@ -94,24 +96,30 @@ public class ReservationActivity extends AppCompatActivity {
         }
     };
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         reservationTime = new ArrayList<>();
+
         views = new ArrayList<>();
         timeViews = new ArrayList<>();
         setLayoutElement();
         setIntentInfomation();
+
         setNextButton();
         subTimeAdapter = new SubTimeAdapter(getApplicationContext());
         timeStringBuffer = new StringBuffer();
         canNextPage = false;
+
     }
 
     @Override
     protected void onStart() {
         super.onStart();
     }
+
 
     private void setLayoutElement() {
         setContentView(R.layout.activity_reservation);
@@ -154,13 +162,16 @@ public class ReservationActivity extends AppCompatActivity {
 
     private void setCalenderView() {
 
+
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 month += 1;
 
+
                 reservationTime.clear();
                 reservationTime.add(String.format("%d년 %d월 %d일", year, month, dayOfMonth));
+
                 setTimeListView();
             }
         });
@@ -180,7 +191,9 @@ public class ReservationActivity extends AppCompatActivity {
         listView.addItemDecoration(decoration);
     }
 
+
     private void setTimeListView() {
+
 
         ArrayList<String> itemList = new ArrayList<>();
 
@@ -200,13 +213,17 @@ public class ReservationActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
     }
 
+
     private void setGridView(int time) {
+
 
         GridView gridView = (GridView) findViewById(R.id.reservation_gridView);
         listTime = new ArrayList<>();
         listTime.clear();
 
+
         warningMessage.setText("예약 가능한 시간만 표시됩니다.");
+
         setListTime(time, listTime);
 
         gridView.setAdapter(subTimeAdapter);
@@ -214,6 +231,7 @@ public class ReservationActivity extends AppCompatActivity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 if(position == 0)
                 {
                     reservationTime.add(reservationTime.get(0)+", "+reservationTime.get(1)+"00");
@@ -235,10 +253,12 @@ public class ReservationActivity extends AppCompatActivity {
                     timeViews.get(0).setBackgroundResource(R.color.colorLightGray);
                     timeViews.clear();
                     timeViews.add(view);
+
                 }
             }
         });
     }
+
 
     private void setListTime(int num, ArrayList<String> stringTime) {
 
@@ -250,11 +270,14 @@ public class ReservationActivity extends AppCompatActivity {
 
         for (int i = 0; i < plusTime.length; i++) {
 
+
             timeString = String.valueOf(time + plusTime[i]);
             timeStringBuffer.append(timeString);
 
+
             if (Integer.parseInt(timeString) < 1000) {
                 timeStringBuffer.insert(0, "0");
+
             }
 
             timeStringBuffer.insert(2, ":");
@@ -262,6 +285,7 @@ public class ReservationActivity extends AppCompatActivity {
             subTimeAdapter.addItem(new SubTimeItem(String.valueOf(timeStringBuffer)));
 
             stringTime.add(timeString);
+
             reservationTime.add(1,String.valueOf(timeStringBuffer.substring(0,3)));
             timeStringBuffer.delete(0, 5);
         }
