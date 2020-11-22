@@ -32,6 +32,7 @@ public class ReservationActivity extends AppCompatActivity {
 
     private TextView clinicName;
     private TextView clinicDate;
+    private TextView warningMessage;
     private Button reservationButton;
     private CalendarView calendarView;
     private ArrayList<String> reservationTime;
@@ -115,6 +116,7 @@ public class ReservationActivity extends AppCompatActivity {
         calendarView = findViewById(R.id.reservation_calendarView);
         clinicDate = findViewById(R.id.reservation_date_text);
         reservationButton = findViewById(R.id.reservation_button);
+        warningMessage = findViewById(R.id.reservation_warning_message);
         setCalenderView();
     }
 
@@ -146,7 +148,7 @@ public class ReservationActivity extends AppCompatActivity {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 month += 1;
-                clinicDate.setText(String.format("%d년 %d월 %d일", year, month, dayOfMonth));
+
                 reservationTime.clear();
                 reservationTime.add(String.format("%d년 %d월 %d일", year, month, dayOfMonth));
                 setTimeListView();
@@ -194,6 +196,7 @@ public class ReservationActivity extends AppCompatActivity {
         listTime = new ArrayList<>();
         listTime.clear();
 
+        warningMessage.setText("예약 가능한 시간만 표시됩니다.");
         setListTime(time, listTime);
 
         gridView.setAdapter(subTimeAdapter);
