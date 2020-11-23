@@ -58,7 +58,7 @@
         android:background="@color/colorLightGray" />
 
     <Button
-        android:id="@+id/openApiButton2"
+        android:id="@+id/qrButton"
         android:layout_width="match_parent"
         android:layout_height="110dp"
         android:background="@drawable/main_button_layout"

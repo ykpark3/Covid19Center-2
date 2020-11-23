@@ -27,7 +27,6 @@ import java.io.InputStreamReader;
 
 public class CreateQr extends AppCompatActivity {
     private ImageView qr_code;
-    //    private String text;
     private String qr_data;
 
     ReservationVO reservationVO;
@@ -44,7 +43,6 @@ public class CreateQr extends AppCompatActivity {
         setContentView(R.layout.activity_create_qr);
         ImageView qr_code = (ImageView) findViewById(R.id.qr_code);
 
-//        qr_data = getQrData();//원하는 내용 저장
         qr_data = createJson().toString(); //원하는 내용 저장
 
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
@@ -52,7 +50,6 @@ public class CreateQr extends AppCompatActivity {
         BitMatrix bitMatrix = null;
 
         try {
-
             //@@@
             //qr코드에 문진표 json 저장해야됨!
             bitMatrix = multiFormatWriter.encode(qr_data, BarcodeFormat.QR_CODE, 200, 200);
