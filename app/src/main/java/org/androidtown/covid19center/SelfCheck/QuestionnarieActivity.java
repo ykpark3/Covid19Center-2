@@ -29,13 +29,15 @@ public class QuestionnarieActivity extends AppCompatActivity implements NumberPi
     private TextView termTextView;
     private TextView startVirusDateTextView;
     private final Calendar myCalender = Calendar.getInstance();
+    private String clinicName;
+    private String clinicReservationTime;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questionnaire);
         setLayoutElement();
-
+        setIntentInfo();
     }
 
 
@@ -88,6 +90,11 @@ public class QuestionnarieActivity extends AppCompatActivity implements NumberPi
             }
         });
 
+    }
+
+    private void setIntentInfo(){
+        clinicName = getIntent().getExtras().getString("clinicName");
+        clinicReservationTime = getIntent().getExtras().getString("clinicTime");
     }
 
     private void updateLabel(){

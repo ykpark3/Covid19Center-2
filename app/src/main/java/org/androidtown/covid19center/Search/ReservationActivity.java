@@ -168,7 +168,6 @@ public class ReservationActivity extends AppCompatActivity {
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 month += 1;
 
-
                 reservationTime.clear();
                 reservationTime.add(String.format("%d년 %d월 %d일", year, month, dayOfMonth));
 

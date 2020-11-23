@@ -25,8 +25,9 @@
         android:networkSecurityConfig="@xml/network_config">
 
         <activity android:name=".Server.CalendarActivity"></activity>
-        <activity android:name=".Login.LoginActivity"/>
-        <activity android:name=".SelfCheck.QuestionnarieActivity">
+
+        <activity android:name=".SelfCheck.QuestionnarieActivity"/>
+            <activity android:name=".Login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.location.PROVIDERS_CHANGED" />
