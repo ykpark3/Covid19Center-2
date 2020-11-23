@@ -60,9 +60,7 @@ public class EndDialog extends Dialog implements View.OnClickListener {
         textView_message.setText("예약 일자 : " + timeMessage);
         textView_clinic_message.setText("진료소 : " + clinicMessage);
         btn_cancel.setOnClickListener(this);
-
         btn_ok.setOnClickListener(this);
-
     }
 
 

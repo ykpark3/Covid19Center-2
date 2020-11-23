@@ -51,7 +51,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
@@ -63,15 +63,18 @@
                     android:textColor="@android:color/black" />
 
                 <EditText
-                    android:layout_width="100dp"
+                    android:id="@+id/questionnarie_editText_country"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center" />
+
+                    android:layout_gravity="center"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
@@ -82,8 +85,11 @@
                     android:text="입국일: "
                     android:textColor="@android:color/black" />
 
-                <EditText
-                    android:layout_width="100dp"
+                <TextView
+                    android:id="@+id/questionnarie_textView_date"
+                    android:text="@string/entrance_date_text"
+                    android:textColor="@color/colorLightGray"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center" />
 
@@ -116,7 +122,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
@@ -128,15 +134,17 @@
                     android:textColor="@android:color/black" />
 
                 <EditText
-                    android:layout_width="100dp"
+                    android:id="@+id/questionnarie_editText_relation"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center" />
+                    android:layout_gravity="center"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
@@ -147,9 +155,12 @@
                     android:text="접촉 기간: "
                     android:textColor="@android:color/black" />
 
-                <EditText
-                    android:layout_width="100dp"
+                <TextView
+                    android:id="@+id/questionnarie_textView_term"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="@string/term_text"
+                    android:textColor="@color/colorLightGray"
                     android:layout_gravity="center" />
 
             </LinearLayout>
@@ -214,7 +225,10 @@
                     android:layout_height="wrap_content"
                     android:text="증상 발생일: "/>
 
-                <EditText
+                <TextView
+                    android:id="@+id/questionnarie_textView_start_date"
+                    android:textColor="@color/colorLightGray"
+                    android:text="@string/start_date_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 

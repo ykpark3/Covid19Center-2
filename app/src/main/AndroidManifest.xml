@@ -10,6 +10,7 @@
 
     <!--    위치 권한-->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
 
     <application
@@ -24,7 +25,8 @@
         android:networkSecurityConfig="@xml/network_config">
 
         <activity android:name=".Server.CalendarActivity"></activity>
-        <activity android:name=".Login.LoginActivity">
+        <activity android:name=".Login.LoginActivity"/>
+        <activity android:name=".SelfCheck.QuestionnarieActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.location.PROVIDERS_CHANGED" />
@@ -59,6 +61,7 @@
 
         <activity android:name=".Hospital.ManagementPopupActivity"
             android:theme="@style/PopupTheme" android:screenOrientation="portrait"/>
+
 
     </application>
 
