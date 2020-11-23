@@ -40,8 +40,10 @@ public class FragmentMypage extends Fragment {
             @Override
             public void onClick(View view) {
                 //진료기록 액티비티로 수정해야됨!!
-                Intent intent = new Intent(getActivity(), MedicalRecordActivity.class);
+                Intent intent = new Intent(getActivity(), ScanQr.class);
                 startActivity(intent);
+//                Intent intent = new Intent(getActivity(), MedicalRecordActivity.class);
+//                startActivity(intent);
             }
         });
 
