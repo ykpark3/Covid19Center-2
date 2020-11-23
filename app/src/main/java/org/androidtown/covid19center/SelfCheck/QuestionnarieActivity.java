@@ -6,8 +6,10 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 
@@ -31,6 +33,8 @@ public class QuestionnarieActivity extends AppCompatActivity implements NumberPi
     private final Calendar myCalender = Calendar.getInstance();
     private String clinicName;
     private String clinicReservationTime;
+    private ImageButton backButton;
+    private Button nextButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,6 +51,23 @@ public class QuestionnarieActivity extends AppCompatActivity implements NumberPi
         relationEditText = findViewById(R.id.questionnarie_editText_relation);
         termTextView = findViewById(R.id.questionnarie_textView_term);
         startVirusDateTextView = findViewById(R.id.questionnarie_textView_start_date);
+        nextButton = findViewById(R.id.questionnarie_button);
+        backButton = findViewById(R.id.questionnarie_backButton);
+
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 서버에 전달
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
 
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override
