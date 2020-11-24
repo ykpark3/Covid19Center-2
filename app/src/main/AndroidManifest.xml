@@ -10,6 +10,7 @@
 
     <!--    위치 권한-->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
 
     <application
@@ -24,23 +25,20 @@
         android:networkSecurityConfig="@xml/network_config">
 
         <activity android:name=".Server.CalendarActivity"></activity>
-        <activity android:name=".Login.LoginActivity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <action android:name="android.location.PROVIDERS_CHANGED" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+
+        <activity android:name=".SelfCheck.QuestionnarieActivity"/>
+            <activity android:name=".Login.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.location.PROVIDERS_CHANGED" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
         </activity>
         <activity android:name=".Map.MapActivity"></activity>
         <activity android:name=".Search.List.SearchActivity"></activity>
 
-        <activity android:name=".Main.MainActivity">
-            <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <action android:name="android.location.PROVIDERS_CHANGED" />
-            <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".Main.MainActivity"/>
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="udi1xytmz6" />

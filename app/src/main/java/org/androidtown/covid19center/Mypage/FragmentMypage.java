@@ -41,7 +41,8 @@ public class FragmentMypage extends Fragment {
             @Override
             public void onClick(View view) {
                 //진료기록 activity로 intent
-                Intent intent = new Intent(getActivity(), ScanQr.class);
+                //Intent intent = new Intent(getActivity(), ScanQr.class);
+                Intent intent = new Intent(getActivity(), MedicalRecordActivity.class);
                 startActivity(intent);
             }
         });

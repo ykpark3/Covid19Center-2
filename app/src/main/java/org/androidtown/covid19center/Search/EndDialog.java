@@ -4,6 +4,9 @@ import android.app.Dialog;
 
 import android.content.Context;
 
+
+import android.content.Intent;
+
 import android.os.Bundle;
 
 import android.view.View;
@@ -13,6 +16,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import org.androidtown.covid19center.R;
+
+import org.androidtown.covid19center.SelfCheck.QuestionnarieActivity;
+
 
 
 public class EndDialog extends Dialog implements View.OnClickListener {
@@ -84,6 +90,14 @@ public class EndDialog extends Dialog implements View.OnClickListener {
 
 
             case R.id.btn_ok:
+
+
+                Intent intent = new Intent(mContext, QuestionnarieActivity.class);
+
+                intent.putExtra("clinicName", clinicMessage);
+                intent.putExtra("clinicTime", timeMessage);
+
+                mContext.startActivity(intent);
 
                 dismiss();
 

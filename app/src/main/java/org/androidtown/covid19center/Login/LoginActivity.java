@@ -68,7 +68,6 @@ public class LoginActivity extends AppCompatActivity {
 
                 //startLogin(new UsersData(id, password));
                 startLogin(id, password);
-
             }
         });
 
