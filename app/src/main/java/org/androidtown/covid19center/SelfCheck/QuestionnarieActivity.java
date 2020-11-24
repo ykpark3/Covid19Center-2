@@ -97,7 +97,7 @@ public class QuestionnarieActivity extends AppCompatActivity implements NumberPi
 
                 //Log.d("1607", entrance_date+"\n"+isVisited+"\n"+visitedDetail+"\n"+isContected+"\n"+contact_relationship+"\n"+contact_period+"\n"+hasFever+"\n"+hasMuscle_ache+"\n"+hasCough+"\n"+hasSputum+"\n"+hasRunnyNose+"\n"+hasDyspnea+"\n"+ hasSoreThroat+"\n"+symptom_start_date+"\n"+clinicName+"\n"+clinicReservationTime);
                 Toast.makeText(getApplicationContext(), "눌림", Toast.LENGTH_SHORT).show();
-                
+
             }
         });
 
