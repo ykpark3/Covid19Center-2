@@ -19,6 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.androidtown.covid19center.R;
+import org.androidtown.covid19center.Server.QuestionnaireData;
 import org.androidtown.covid19center.Server.ReservationData;
 import org.androidtown.covid19center.Server.RetrofitClient;
 import org.androidtown.covid19center.Server.ServiceApi;
@@ -51,9 +52,8 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
     private ImageButton backButton;
     private Button nextButton;
     private RadioGroup visitedCheck_radioGroup, contact_radioGroup;
-    private Boolean isVisited, isContected, hasFever, hasMuscle_ache, hasCough, hasSputum, hasRunnyNose, hasDyspnea, hasSoreThroat;
+    private Boolean isVisited, isContacted, hasFever, hasMuscle_ache, hasCough, hasSputum, hasRunnyNose, hasDyspnea, hasSoreThroat;
     private CheckBox fever_checkBox, muscle_ache_checkBox, cough_checkBox, sputum_checkBox, runny_nose_checkBox, dyspnea_checkBox, sore_throat_checkBox;
-
 
     private ServiceApi serviceApi;
 
@@ -107,6 +107,9 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
                 //
                 sendReservationData(new ReservationData("userid",111,"hospital","time","date",false));
 
+                Log.d("~~~~~",isVisited+"  "+ visitedDetail+"  "+isContacted+"  "+contact_relationship+"  "+contact_period+"  "+ hasFever+"  "+ hasMuscle_ache+"  "+ hasSputum+"  "+ hasRunnyNose+"  "+ hasDyspnea+"  "+hasSoreThroat+"  "+symptom_start_date+"  "+ entrance_date);
+
+                sendQuestionnaireData(new QuestionnaireData("userid",isVisited, visitedDetail, isContacted, contact_relationship, contact_period, hasFever, hasMuscle_ache, hasSputum, hasRunnyNose, hasDyspnea, hasSoreThroat, symptom_start_date, entrance_date));
 
                 //Log.d("1607", entrance_date+"\n"+isVisited+"\n"+visitedDetail+"\n"+isContected+"\n"+contact_relationship+"\n"+contact_period+"\n"+hasFever+"\n"+hasMuscle_ache+"\n"+hasCough+"\n"+hasSputum+"\n"+hasRunnyNose+"\n"+hasDyspnea+"\n"+ hasSoreThroat+"\n"+symptom_start_date+"\n"+clinicName+"\n"+clinicReservationTime);
                 Toast.makeText(getApplicationContext(), "눌림", Toast.LENGTH_SHORT).show();
@@ -197,15 +200,44 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
         });
     }
 
+    private void sendQuestionnaireData(QuestionnaireData questionnaireData) {
+        Log.d("~~~~~","sendQuestionnaireData");
+
+        Call<ResponseBody> dataCall = serviceApi.sendQuestionnaireData(questionnaireData);
+        dataCall.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                String result = null;
+                try {
+                    Log.d("~~~~~","response"+response.code());
+                    result = response.body().string();
+
+                } catch (IOException e) {
+                    Log.d("~~~~~", String.valueOf(e));
+                    e.printStackTrace();
+                }
+                Log.i("~~~~~", result);
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.i("~~~~~","fail");
+                if (t instanceof IOException) {
+                    // Handle IO exception, maybe check the network and try again.
+                    Log.i("~~~~~","t"+t);
+                }
+            }
+        });
+    }
 
 
     RadioGroup.OnCheckedChangeListener contactRadioGroupButtonChangeListener = new RadioGroup.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {
             if(checkedId == R.id.questionnarie_contact_radioButton_true){
-                isContected = true;
+                isContacted = true;
             } else if(checkedId == R.id.questionnarie_contact_radioButton_false){
-                isContected = false;
+                isContacted = false;
             }
         }
     };

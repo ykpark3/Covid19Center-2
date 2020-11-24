@@ -21,4 +21,6 @@ public interface ServiceApi {
     @POST("/reservationInsert")
     Call<ResponseBody> sendReservationData(@Body ReservationData reservationData);
 
+    @POST("/questionnaire")
+    Call<ResponseBody> sendQuestionnaireData(@Body QuestionnaireData questionnaireData);
 }
