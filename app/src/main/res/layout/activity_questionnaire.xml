@@ -52,19 +52,21 @@
                 android:textSize="15dp" />
 
             <RadioGroup
+                android:id="@+id/questionnarie_visited_radioGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <RadioButton
+                    android:id="@+id/questionnarie_visited_radioButton_false"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="없음" />
 
                 <RadioButton
+                    android:id="@+id/questionnarie_visited_radioButton_true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="있음" />
-
             </RadioGroup>
 
             <LinearLayout
@@ -123,15 +125,18 @@
                 android:textSize="15dp" />
 
             <RadioGroup
+                android:id="@+id/questionnarie_contact_radioGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <RadioButton
+                    android:id="@+id/questionnarie_contact_radioButton_false"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="없음" />
 
                 <RadioButton
+                    android:id="@+id/questionnarie_contact_radioButton_true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="있음" />
@@ -193,41 +198,49 @@
                 android:textSize="15dp" />
 
             <CheckBox
+                android:id="@+id/questionnarie_radioButton_false"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="없음" />
 
             <CheckBox
+                android:id="@+id/questionnarie_fever_radioButton_true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="37.5ºC 이상 열" />
 
             <CheckBox
+                android:id="@+id/questionnarie_muscle_ache_radioButton_true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="전신통/근육통" />
 
             <CheckBox
+                android:id="@+id/questionnarie_cough_radioButton_true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="기침" />
 
             <CheckBox
+                android:id="@+id/questionnarie_sputum_radioButton_true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="가래" />
 
             <CheckBox
+                android:id="@+id/questionnarie_runny_nose_radioButton_true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="콧물" />
 
             <CheckBox
+                android:id="@+id/questionnarie_dyspnea_radioButton_true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="호흡곤란" />
 
             <CheckBox
+                android:id="@+id/questionnarie_sore_throat_radioButton_true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="인후통" />
