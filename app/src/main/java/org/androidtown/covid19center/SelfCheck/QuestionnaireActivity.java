@@ -61,8 +61,6 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Log.d("~~~~~","questionnaire activity oncreate");
-
         serviceApi = RetrofitClient.getClient().create(ServiceApi.class);
 
         setContentView(R.layout.activity_questionnaire);
@@ -107,13 +105,11 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
                 //
                 // 서버에 전송하는 코드 작성
                 //
-                Log.d("~~~~","클릭");
-                sendReservationData(new ReservationData("userid",222,"hospital","time","date",false));
-
+                sendReservationData(new ReservationData("userid",111,"hospital","time","date",false));
 
                 Log.d("~~~~~",isVisited+"  "+ visitedDetail+"  "+isContacted+"  "+contact_relationship+"  "+contact_period+"  "+ hasFever+"  "+ hasMuscle_ache+"  "+ hasSputum+"  "+ hasRunnyNose+"  "+ hasDyspnea+"  "+hasSoreThroat+"  "+symptom_start_date+"  "+ entrance_date);
-                //sendQuestionnaireData(new QuestionnaireData("user",false,"visitedDetail",false,"contact_relationship","period",false,false,false,false,false,false,"startdate","entrance"));
 
+                sendQuestionnaireData(new QuestionnaireData("userid",isVisited, visitedDetail, isContacted, contact_relationship, contact_period, hasFever, hasMuscle_ache, hasSputum, hasRunnyNose, hasDyspnea, hasSoreThroat, symptom_start_date, entrance_date));
 
                 //Log.d("1607", entrance_date+"\n"+isVisited+"\n"+visitedDetail+"\n"+isContected+"\n"+contact_relationship+"\n"+contact_period+"\n"+hasFever+"\n"+hasMuscle_ache+"\n"+hasCough+"\n"+hasSputum+"\n"+hasRunnyNose+"\n"+hasDyspnea+"\n"+ hasSoreThroat+"\n"+symptom_start_date+"\n"+clinicName+"\n"+clinicReservationTime);
                 Toast.makeText(getApplicationContext(), "눌림", Toast.LENGTH_SHORT).show();
@@ -190,11 +186,7 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
                     Log.d("~~~~~", String.valueOf(e));
                     e.printStackTrace();
                 }
-                Log.i("~~~~~", "result: "+result);
-
-                sendQuestionnaireData(new QuestionnaireData("user",false,"visitedDetail",false,"contact_relationship","period",false,false,false,false,false,false,"startdate","entrance"));
-               // sendQuestionnaireData(new QuestionnaireData("userid",isVisited, visitedDetail, isContacted, contact_relationship, contact_period, hasFever, hasMuscle_ache, hasSputum, hasRunnyNose, hasDyspnea, hasSoreThroat, symptom_start_date, entrance_date));
-
+                Log.i("~~~~~", result);
             }
 
             @Override
@@ -206,8 +198,6 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
                 }
             }
         });
-
-
     }
 
     private void sendQuestionnaireData(QuestionnaireData questionnaireData) {
