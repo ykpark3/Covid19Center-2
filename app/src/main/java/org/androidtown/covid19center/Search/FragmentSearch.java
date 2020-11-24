@@ -31,6 +31,7 @@ import com.naver.maps.map.MapFragment;
 import org.androidtown.covid19center.Main.MainActivity;
 import org.androidtown.covid19center.Map.LocationConsts;
 import org.androidtown.covid19center.Map.MapActivity;
+import org.androidtown.covid19center.QrCode.CreateQr;
 import org.androidtown.covid19center.R;
 import org.androidtown.covid19center.Search.List.SearchActivity;
 
@@ -41,6 +42,9 @@ public class FragmentSearch extends Fragment {
     private View view;
     private TextView search_textView;
     private Button openApiBtn;
+
+    private Button qrBtn;
+
     private View.OnKeyListener mOnKeyBackPressedListener;
     private LocationManager mLocMan; // 위치 관리자
 
@@ -62,11 +66,9 @@ public class FragmentSearch extends Fragment {
 
         search_textView = view.findViewById(R.id.searchBox);
         openApiBtn = view.findViewById(R.id.openApiButton);
-
-
+        qrBtn = view.findViewById(R.id.qrButton);
 
         setSearchingBox();
-
 
         locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
@@ -76,6 +78,14 @@ public class FragmentSearch extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), MapActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        qrBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent2 = new Intent(getContext(), CreateQr.class);
+                startActivity(intent2);
             }
         });
     }
@@ -90,11 +100,12 @@ public class FragmentSearch extends Fragment {
     }
 
     private void setLocation() {
+
         if (Build.VERSION.SDK_INT >= 23 &&
                 ContextCompat.checkSelfPermission(getActivity().getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, new GPSListener());
-            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, new GPSListener());
+            ActivityCompat.requestPermissions( getActivity(), new String[] {  android.Manifest.permission.ACCESS_FINE_LOCATION  },
+                    0 );
 
         } else {
 

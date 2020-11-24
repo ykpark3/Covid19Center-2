@@ -178,13 +178,6 @@ public class QuestionnarieActivity extends AppCompatActivity implements NumberPi
 
     private void setCheckedInfo(){
 
-        if(visitedDetail.equals("")){
-            visitedDetail = null;
-        }
-        if(contact_relationship.equals("")){
-            contact_relationship = null;
-        }
-
         if(fever_checkBox.isChecked() == true){
             hasFever = true;
         } else{

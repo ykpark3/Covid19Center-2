@@ -4,7 +4,9 @@ import android.app.Dialog;
 
 import android.content.Context;
 
+
 import android.content.Intent;
+
 import android.os.Bundle;
 
 import android.view.View;
@@ -14,7 +16,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import org.androidtown.covid19center.R;
+
 import org.androidtown.covid19center.SelfCheck.QuestionnarieActivity;
+
 
 
 public class EndDialog extends Dialog implements View.OnClickListener {
@@ -62,7 +66,9 @@ public class EndDialog extends Dialog implements View.OnClickListener {
         textView_message.setText("예약 일자 : " + timeMessage);
         textView_clinic_message.setText("진료소 : " + clinicMessage);
         btn_cancel.setOnClickListener(this);
+
         btn_ok.setOnClickListener(this);
+
     }
 
 
@@ -85,6 +91,7 @@ public class EndDialog extends Dialog implements View.OnClickListener {
 
             case R.id.btn_ok:
 
+
                 Intent intent = new Intent(mContext, QuestionnarieActivity.class);
 
                 intent.putExtra("clinicName", clinicMessage);
@@ -93,6 +100,7 @@ public class EndDialog extends Dialog implements View.OnClickListener {
                 mContext.startActivity(intent);
 
                 dismiss();
+
                 break;
 
         }
