@@ -1,7 +1,6 @@
 package org.androidtown.covid19center.SelfCheck;
 
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,22 +11,29 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.NumberPicker;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.androidtown.covid19center.R;
+import org.androidtown.covid19center.Server.ReservationData;
+import org.androidtown.covid19center.Server.RetrofitClient;
+import org.androidtown.covid19center.Server.ServiceApi;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class QuestionnarieActivity extends AppCompatActivity implements NumberPicker.OnValueChangeListener {
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class QuestionnaireActivity extends AppCompatActivity implements NumberPicker.OnValueChangeListener {
 
     private EditText countryEditText;
     private TextView entranceDateTextView;
@@ -48,9 +54,15 @@ public class QuestionnarieActivity extends AppCompatActivity implements NumberPi
     private Boolean isVisited, isContected, hasFever, hasMuscle_ache, hasCough, hasSputum, hasRunnyNose, hasDyspnea, hasSoreThroat;
     private CheckBox fever_checkBox, muscle_ache_checkBox, cough_checkBox, sputum_checkBox, runny_nose_checkBox, dyspnea_checkBox, sore_throat_checkBox;
 
+
+    private ServiceApi serviceApi;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        serviceApi = RetrofitClient.getClient().create(ServiceApi.class);
+
         setContentView(R.layout.activity_questionnaire);
         setLayoutElement();
         setIntentInfo();
@@ -93,6 +105,7 @@ public class QuestionnarieActivity extends AppCompatActivity implements NumberPi
                 //
                 // 서버에 전송하는 코드 작성
                 //
+                sendReservationData(new ReservationData("userid",111,"hospital","time","date",false));
 
 
                 //Log.d("1607", entrance_date+"\n"+isVisited+"\n"+visitedDetail+"\n"+isContected+"\n"+contact_relationship+"\n"+contact_period+"\n"+hasFever+"\n"+hasMuscle_ache+"\n"+hasCough+"\n"+hasSputum+"\n"+hasRunnyNose+"\n"+hasDyspnea+"\n"+ hasSoreThroat+"\n"+symptom_start_date+"\n"+clinicName+"\n"+clinicReservationTime);
@@ -131,7 +144,7 @@ public class QuestionnarieActivity extends AppCompatActivity implements NumberPi
         entranceDateTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DatePickerDialog(QuestionnarieActivity.this, date, myCalender.get(Calendar.YEAR), myCalender.get(Calendar.MONTH), myCalender.get(Calendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog(QuestionnaireActivity.this, date, myCalender.get(Calendar.YEAR), myCalender.get(Calendar.MONTH), myCalender.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
 
@@ -145,11 +158,46 @@ public class QuestionnarieActivity extends AppCompatActivity implements NumberPi
         startVirusDateTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DatePickerDialog(QuestionnarieActivity.this, virusStartDate, myCalender.get(Calendar.YEAR), myCalender.get(Calendar.MONTH), myCalender.get(Calendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog(QuestionnaireActivity.this, virusStartDate, myCalender.get(Calendar.YEAR), myCalender.get(Calendar.MONTH), myCalender.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
 
     }
+
+
+
+
+    private void sendReservationData(ReservationData reservationData) {
+        Log.d("~~~~~","sendReservationData");
+
+        Call<ResponseBody> dataCall = serviceApi.sendReservationData(reservationData);
+        dataCall.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                String result = null;
+                try {
+                    Log.d("~~~~~","response"+response.code());
+                    result = response.body().string();
+
+                } catch (IOException e) {
+                    Log.d("~~~~~", String.valueOf(e));
+                    e.printStackTrace();
+                }
+                Log.i("~~~~~", result);
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.i("~~~~~","fail");
+                if (t instanceof IOException) {
+                    // Handle IO exception, maybe check the network and try again.
+                    Log.i("~~~~~","t"+t);
+                }
+            }
+        });
+    }
+
+
 
     RadioGroup.OnCheckedChangeListener contactRadioGroupButtonChangeListener = new RadioGroup.OnCheckedChangeListener() {
         @Override

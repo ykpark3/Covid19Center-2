@@ -18,17 +18,7 @@ import androidx.annotation.NonNull;
 
 import org.androidtown.covid19center.R;
 
-import org.androidtown.covid19center.SelfCheck.QuestionnarieActivity;
-import org.androidtown.covid19center.Server.ReservationData;
-import org.androidtown.covid19center.Server.RetrofitClient;
-import org.androidtown.covid19center.Server.ServiceApi;
-
-import java.io.IOException;
-
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import org.androidtown.covid19center.SelfCheck.QuestionnaireActivity;
 
 
 public class EndDialog extends Dialog implements View.OnClickListener {
@@ -42,7 +32,6 @@ public class EndDialog extends Dialog implements View.OnClickListener {
     private TextView textView_message;
     private TextView btn_ok;
 
-    private ServiceApi serviceApi;
 
     public EndDialog(@NonNull Context context, String time, String clinic) {
 
@@ -54,7 +43,6 @@ public class EndDialog extends Dialog implements View.OnClickListener {
 
         clinicMessage = clinic;
 
-        serviceApi = RetrofitClient.getClient().create(ServiceApi.class);
     }
 
 
@@ -106,10 +94,8 @@ public class EndDialog extends Dialog implements View.OnClickListener {
                 Log.d("~~~~~","clinic message: "+clinicMessage);
                 Log.d("~~~~~","time message: "+timeMessage);
 
-                //sendReservationData(new ReservationData(AppManager.getInstance().getUserId(), 111, "hospital", "time","date",false));
-                sendReservationData(new ReservationData("userid",111,"hospital","time","date",false));
 
-                Intent intent = new Intent(mContext, QuestionnarieActivity.class);
+                Intent intent = new Intent(mContext, QuestionnaireActivity.class);
 
                 intent.putExtra("clinicName", clinicMessage);
                 intent.putExtra("clinicTime", timeMessage);
@@ -122,36 +108,6 @@ public class EndDialog extends Dialog implements View.OnClickListener {
 
         }
 
-    }
-
-    private void sendReservationData(ReservationData reservationData) {
-        Log.d("~~~~~","sendReservationData");
-
-        Call<ResponseBody> dataCall = serviceApi.sendReservationData(reservationData);
-        dataCall.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                String result = null;
-                try {
-                    Log.d("~~~~~","response"+response.code());
-                    result = response.body().string();
-
-                } catch (IOException e) {
-                    Log.d("~~~~~", String.valueOf(e));
-                    e.printStackTrace();
-                }
-                Log.i("~~~~~", result);
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.i("~~~~~","fail");
-                if (t instanceof IOException) {
-                    // Handle IO exception, maybe check the network and try again.
-                    Log.i("~~~~~","t"+t);
-                }
-            }
-        });
     }
 
 }

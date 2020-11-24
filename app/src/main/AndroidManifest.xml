@@ -24,7 +24,7 @@
         android:hardwareAccelerated="true"
         android:networkSecurityConfig="@xml/network_config">
 
-        <activity android:name=".SelfCheck.QuestionnarieActivity"/>
+        <activity android:name=".SelfCheck.QuestionnaireActivity"/>
         <activity android:name=".Login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
