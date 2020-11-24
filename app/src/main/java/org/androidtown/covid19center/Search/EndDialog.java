@@ -4,6 +4,9 @@ import android.app.Dialog;
 
 import android.content.Context;
 
+
+import android.content.Intent;
+
 import android.os.Bundle;
 
 import android.util.Log;
@@ -14,7 +17,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import org.androidtown.covid19center.R;
-import org.androidtown.covid19center.Server.AppManager;
+
+import org.androidtown.covid19center.SelfCheck.QuestionnarieActivity;
 import org.androidtown.covid19center.Server.ReservationData;
 import org.androidtown.covid19center.Server.RetrofitClient;
 import org.androidtown.covid19center.Server.ServiceApi;
@@ -51,7 +55,6 @@ public class EndDialog extends Dialog implements View.OnClickListener {
         clinicMessage = clinic;
 
         serviceApi = RetrofitClient.getClient().create(ServiceApi.class);
-
     }
 
 
@@ -105,6 +108,13 @@ public class EndDialog extends Dialog implements View.OnClickListener {
 
                 //sendReservationData(new ReservationData(AppManager.getInstance().getUserId(), 111, "hospital", "time","date",false));
                 sendReservationData(new ReservationData("userid",111,"hospital","time","date",false));
+
+                Intent intent = new Intent(mContext, QuestionnarieActivity.class);
+
+                intent.putExtra("clinicName", clinicMessage);
+                intent.putExtra("clinicTime", timeMessage);
+
+                mContext.startActivity(intent);
 
                 dismiss();
 

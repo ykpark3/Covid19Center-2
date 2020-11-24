@@ -1,7 +1,5 @@
 package org.androidtown.covid19center.Server;
 
-import com.google.gson.annotations.SerializedName;
-
 public class UsersVO {
 
    // @SerializedName("id")

@@ -8,7 +8,7 @@ public class QuestionnaireVO {
     int contact;
     String contact_relationship, contact_period;
     int fever, muscle_ache, sputum, runny_nose, dyspnea, sore_throat;
-    String symptom_start_date;
+    String symptom_start_date, entrance_date;
 
     public QuestionnaireVO
             (String user_id,
@@ -23,7 +23,8 @@ public class QuestionnaireVO {
              int runny_nose,
              int dyspnea,
              int sore_throat,
-             String symptom_start_date) {
+             String symptom_start_date,
+             String entrance_date) {
 
         this.user_id = user_id;
         this.visited = visited;
@@ -38,6 +39,7 @@ public class QuestionnaireVO {
         this.dyspnea = dyspnea;
         this.sore_throat = sore_throat;
         this.symptom_start_date = symptom_start_date;
+        this.entrance_date = entrance_date;
     }
 
 
@@ -131,4 +133,10 @@ public class QuestionnaireVO {
     public void setSymptom_start_date(String symptom_start_date) {
         this.symptom_start_date = symptom_start_date;
     }
+
+    public String getEntrance_date() {return entrance_date;}
+    public void setEntrance_date(String entrance_date) {
+        this.entrance_date = entrance_date;
+    }
+
 }

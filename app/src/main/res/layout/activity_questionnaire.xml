@@ -1,24 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="30dp"
-        android:text="문진표"
-        android:textColor="@android:color/black"
-        android:textSize="20dp" />
+    <FrameLayout
+        android:background="@color/colorWhite"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <ImageButton
+            android:id="@+id/questionnarie_backButton"
+            android:stateListAnimator="@null"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:backgroundTint="@color/colorWhite"
+            app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="문진표 작성"
+            android:textColor="@android:color/black"
+            android:textSize="15dp" />
+
+    </FrameLayout>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="15dp">
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="9.3">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -34,24 +52,26 @@
                 android:textSize="15dp" />
 
             <RadioGroup
+                android:id="@+id/questionnarie_visited_radioGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <RadioButton
+                    android:id="@+id/questionnarie_visited_radioButton_false"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="없음" />
 
                 <RadioButton
+                    android:id="@+id/questionnarie_visited_radioButton_true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="있음" />
-
             </RadioGroup>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
@@ -63,15 +83,18 @@
                     android:textColor="@android:color/black" />
 
                 <EditText
-                    android:layout_width="100dp"
+                    android:id="@+id/questionnarie_editText_country"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center" />
+
+                    android:layout_gravity="center"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
@@ -82,10 +105,13 @@
                     android:text="입국일: "
                     android:textColor="@android:color/black" />
 
-                <EditText
-                    android:layout_width="100dp"
+                <TextView
+                    android:id="@+id/questionnarie_textView_date"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center" />
+                    android:layout_gravity="center"
+                    android:text="@string/entrance_date_text"
+                    android:textColor="@color/colorLightGray" />
 
             </LinearLayout>
 
@@ -99,15 +125,18 @@
                 android:textSize="15dp" />
 
             <RadioGroup
+                android:id="@+id/questionnarie_contact_radioGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <RadioButton
+                    android:id="@+id/questionnarie_contact_radioButton_false"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="없음" />
 
                 <RadioButton
+                    android:id="@+id/questionnarie_contact_radioButton_true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="있음" />
@@ -116,7 +145,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
@@ -128,15 +157,17 @@
                     android:textColor="@android:color/black" />
 
                 <EditText
-                    android:layout_width="100dp"
+                    android:id="@+id/questionnarie_editText_relation"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center" />
+                    android:layout_gravity="center"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
@@ -147,10 +178,13 @@
                     android:text="접촉 기간: "
                     android:textColor="@android:color/black" />
 
-                <EditText
-                    android:layout_width="100dp"
+                <TextView
+                    android:id="@+id/questionnarie_textView_term"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center" />
+                    android:layout_gravity="center"
+                    android:text="@string/term_text"
+                    android:textColor="@color/colorLightGray" />
 
             </LinearLayout>
 
@@ -164,44 +198,52 @@
                 android:textSize="15dp" />
 
             <CheckBox
+                android:id="@+id/questionnarie_radioButton_false"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="없음"/>
+                android:text="없음" />
 
             <CheckBox
+                android:id="@+id/questionnarie_fever_radioButton_true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="37.5ºC 이상 열"/>
+                android:text="37.5ºC 이상 열" />
 
             <CheckBox
+                android:id="@+id/questionnarie_muscle_ache_radioButton_true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="전신통/근육통"/>
+                android:text="전신통/근육통" />
 
             <CheckBox
+                android:id="@+id/questionnarie_cough_radioButton_true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="기침"/>
+                android:text="기침" />
 
             <CheckBox
+                android:id="@+id/questionnarie_sputum_radioButton_true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="가래"/>
+                android:text="가래" />
 
             <CheckBox
+                android:id="@+id/questionnarie_runny_nose_radioButton_true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="콧물"/>
+                android:text="콧물" />
 
             <CheckBox
+                android:id="@+id/questionnarie_dyspnea_radioButton_true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="호흡곤란"/>
+                android:text="호흡곤란" />
 
             <CheckBox
+                android:id="@+id/questionnarie_sore_throat_radioButton_true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="인후통"/>
+                android:text="인후통" />
 
 
             <LinearLayout
@@ -212,19 +254,32 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="증상 발생일: "/>
+                    android:text="증상 발생일: " />
 
-                <EditText
+                <TextView
+                    android:id="@+id/questionnarie_textView_start_date"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:text="@string/start_date_text"
+                    android:textColor="@color/colorLightGray" />
 
             </LinearLayout>
 
 
         </LinearLayout>
 
-
     </ScrollView>
 
+    <Button
+        android:id="@+id/questionnarie_button"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="bottom"
+        android:layout_weight="1"
+        android:background="@color/colorMain"
+        android:fontFamily="@font/fontstyle"
+        android:text="예약하기"
+        android:textColor="@color/colorLightGray"
+        android:textSize="20dp" />
 
 </LinearLayout>
