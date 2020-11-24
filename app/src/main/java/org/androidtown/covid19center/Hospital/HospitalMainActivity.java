@@ -1,15 +1,15 @@
-package org.androidtown.covid19center.Server;
+package org.androidtown.covid19center.Hospital;
 
 import android.os.Bundle;
 import android.util.Log;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
-import org.androidtown.covid19center.Hospital.FragmentHospital;
 import org.androidtown.covid19center.R;
+import org.androidtown.covid19center.Server.AppManager;
+import org.androidtown.covid19center.Server.ReservationVO;
+import org.androidtown.covid19center.Server.RetrofitClient;
+import org.androidtown.covid19center.Server.ServiceApi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CalendarActivity extends FragmentActivity {
+public class HospitalMainActivity extends FragmentActivity {
 
     private ServiceApi serviceApi;
     private ArrayList<ReservationVO> reservationVOArrayList;
@@ -26,7 +26,7 @@ public class CalendarActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calendar);
+        setContentView(R.layout.activity_hospital_main);
 
         Log.d("~~~~~","calendarActivity oncreate");
 
@@ -49,6 +49,7 @@ public class CalendarActivity extends FragmentActivity {
             @Override
             public void onResponse(Call<List<ReservationVO>> call, Response<List<ReservationVO>> response) {
 
+
                 reservationVOArrayList = AppManager.getInstance().getReservationVOArrayList();
                 reservationVOArrayList.clear();
 
@@ -57,6 +58,8 @@ public class CalendarActivity extends FragmentActivity {
                 String hospital_name;
                 String time;
                 String date;
+                boolean visited;
+
 
                 if(response.isSuccessful()) {
                     List<ReservationVO> data = response.body();
@@ -69,8 +72,9 @@ public class CalendarActivity extends FragmentActivity {
                         hospital_name = data.get(i).getHospital_name();
                         time = data.get(i).getTime();
                         date = data.get(i).getDate();
+                        visited = data.get(i).getVisited();
 
-                        ReservationVO reservationVO = new ReservationVO(user_id,questionnaire_seq,hospital_name,time,date);
+                        ReservationVO reservationVO = new ReservationVO(user_id,questionnaire_seq,hospital_name,time,date,visited);
                         reservationVOArrayList.add(reservationVO);
 
                     }

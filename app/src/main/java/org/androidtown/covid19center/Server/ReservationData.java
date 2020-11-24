@@ -7,13 +7,25 @@ public class ReservationData {
     @SerializedName("user_id")
     String user_id;
     @SerializedName("questionnaire_seq")
-    int password;
+    int questionnaire_seq;
     @SerializedName("hospital_name")
     String hospital_name;
     @SerializedName("time")
     String time;
     @SerializedName("date")
     String date;
+    @SerializedName("visited")
+    boolean visited;
+
+
+    public ReservationData(String user_id, int questionnaire_seq, String hospital_name, String time, String date, boolean visited) {
+        this.user_id = user_id;
+        this.questionnaire_seq = questionnaire_seq;
+        this.hospital_name = hospital_name;
+        this.time = time;
+        this.date = date;
+        this.visited = visited;
+    }
 
 
     public String getUser_id() {return user_id;}
@@ -21,8 +33,8 @@ public class ReservationData {
         this.user_id = user_id;
     }
 
-    public int getPassword() {return password;}
-    public void setPassword(int password) {this.password = password;}
+    public int getQuestionnaire_seq() {return questionnaire_seq;}
+    public void setQuestionnaire_seq(int questionnaire_seq) {this.questionnaire_seq = questionnaire_seq;}
 
     public String getHospital_name() {return hospital_name;}
     public void setHospital_name(String hospital_name) {this.hospital_name = hospital_name;}

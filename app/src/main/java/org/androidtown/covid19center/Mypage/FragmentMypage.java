@@ -45,26 +45,26 @@ public class FragmentMypage extends Fragment {
             }
         });
 
-        Button button_create_qr = view.findViewById(R.id.button_create_qr);
-        Button button_scan_qr = view.findViewById(R.id.button_scan_qr);
-
-        button_create_qr.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Qr코드 생성 activity로 intent
-                Intent intent = new Intent(getActivity(), CreateQr.class);
-                startActivity(intent);
-            }
-        });
-
-        button_scan_qr.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Qr코드 스캔 activity로 intent
-                Intent intent = new Intent(getActivity(), ScanQr.class);
-                startActivity(intent);
-            }
-        });
+//        Button button_create_qr = view.findViewById(R.id.button_create_qr);
+//        Button button_scan_qr = view.findViewById(R.id.button_scan_qr);
+//
+//        button_create_qr.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                // Qr코드 생성 activity로 intent
+//                Intent intent = new Intent(getActivity(), CreateQr.class);
+//                startActivity(intent);
+//            }
+//        });
+//
+//        button_scan_qr.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                // Qr코드 스캔 activity로 intent
+//                Intent intent = new Intent(getActivity(), ScanQr.class);
+//                startActivity(intent);
+//            }
+//        });
 
         return view;
     }

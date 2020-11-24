@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class AppManager {
     private static AppManager instance;
     private ArrayList<ReservationVO> reservationVOArrayList = new ArrayList<>();
+    private String userId;
 
     public static AppManager getInstance() {
         if(instance == null) {
@@ -13,11 +14,17 @@ public class AppManager {
         return instance;
     }
 
-    public void setReservationVOArrayList(ArrayList<ReservationVO> reservationVOArrayList) {
-        this.reservationVOArrayList = reservationVOArrayList;
-    }
 
     public ArrayList<ReservationVO> getReservationVOArrayList() {
         return reservationVOArrayList;
     }
+    public void setReservationVOArrayList(ArrayList<ReservationVO> reservationVOArrayList) {
+        this.reservationVOArrayList = reservationVOArrayList;
+    }
+
+    public String getUserId() { return userId; }
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
 }

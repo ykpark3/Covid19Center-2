@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,6 +39,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private FusedLocationSource locationSource;
     private NaverMap naverMap;
     private Button button;
+    private ImageButton backButton;
     private String[] clinicInfo;
 
     @Override
@@ -50,7 +52,15 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mapFragment = (MapFragment) fm.findFragmentById(R.id.map);
         clinicInfo = new String[5];
         button = findViewById(R.id.map_button);
-        
+        backButton = findViewById(R.id.map_backButton);
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         button.setVisibility(View.GONE);
 
         if (mapFragment == null) {

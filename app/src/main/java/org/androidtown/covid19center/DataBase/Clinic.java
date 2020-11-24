@@ -2,6 +2,7 @@ package org.androidtown.covid19center.DataBase;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "clinic")
@@ -41,10 +42,10 @@ public class Clinic {
         this.clinicCallNumber = clinicCallNumber;
         this.x = x;
         this.y = y;
-
     }
 
     public Clinic() {
+
     }
 
 
@@ -92,4 +93,8 @@ public class Clinic {
     public void setClinicCallNumber(String clinicCallNumber) {
         this.clinicCallNumber = clinicCallNumber;
     }
+
+
+
+
 }

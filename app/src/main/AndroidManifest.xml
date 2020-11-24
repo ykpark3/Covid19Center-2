@@ -23,11 +23,11 @@
         android:hardwareAccelerated="true"
         android:networkSecurityConfig="@xml/network_config">
 
-        <activity android:name=".Server.CalendarActivity"></activity>
+        <activity android:name=".Hospital.HospitalMainActivity"></activity>
         <activity android:name=".Login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+                <action android:name="android.location.PROVIDERS_CHANGED" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -52,6 +52,14 @@
         <activity android:name=".SelfCheck.SelfCheckResultActivity"/>
         <activity android:name=".Hospital.ReservationManagementActivity"/>
         <activity android:name=".Mypage.MedicalRecordActivity"/>
+        <activity android:name=".Search.ReservationActivity"/>
+
+        <activity android:name=".Login.DataWarningActivity"/>
+
+
+        <activity android:name=".Hospital.ManagementPopupActivity"
+            android:theme="@style/PopupTheme" android:screenOrientation="portrait"/>
+
     </application>
 
 

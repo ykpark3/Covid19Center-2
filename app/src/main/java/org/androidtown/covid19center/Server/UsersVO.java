@@ -2,12 +2,13 @@ package org.androidtown.covid19center.Server;
 
 import com.google.gson.annotations.SerializedName;
 
-public class UsersData {
+public class UsersVO {
 
-    @SerializedName("id")
+   // @SerializedName("id")
     String id;
-    @SerializedName("password")
+   // @SerializedName("password")
     String password;
+
 
 
     public String getId() {return id;}
