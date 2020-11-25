@@ -106,17 +106,26 @@ public class FragmentSearch extends Fragment implements LocationListener{
         if (Build.VERSION.SDK_INT >= 23 &&
                 ContextCompat.checkSelfPermission(getActivity().getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
-            ActivityCompat.requestPermissions( getActivity(), new String[] {  android.Manifest.permission.ACCESS_FINE_LOCATION  },
-                    0 );
 
-        } else {
+            if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)){
+                LocationConsts.NOW_X = 126.924;
+                LocationConsts.NOW_Y = 37.516;
+                Toast.makeText(getActivity().getApplicationContext(), "위치 권한 설정이 꺼져있습니다. 원활한 서비스 이용을 위해 권한 위치 서비스를 켜주시길 바랍니다.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), SearchActivity.class);
+                startActivity(intent);
+            } else{
+                ActivityCompat.requestPermissions( getActivity(), new String[] {  android.Manifest.permission.ACCESS_FINE_LOCATION  },
+                        0 );
+            }
 
+        }else {
+
+            Log.d("1726", "123123");
             Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-
-            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, this);
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0, this);
 
             if(location == null){
-                Log.d("0431", "124");
                 if(!locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
                     new AlertDialog.Builder(getContext()).setTitle("GPS 설정").setMessage("GPS가 꺼져 있습니다. \n원할한 서비스를 이용을 위해 GPS를 활성화 하시겠습니까?").setPositiveButton("GPS 켜기", new DialogInterface.OnClickListener() {
                         @Override
@@ -134,11 +143,9 @@ public class FragmentSearch extends Fragment implements LocationListener{
                             startActivity(intent);
                         }
                     }).create().show();
-
                 }
 
             } else{
-
                 LocationConsts.NOW_X = location.getLongitude();
                 LocationConsts.NOW_Y = location.getLatitude();
                 Intent intent = new Intent(getActivity(), SearchActivity.class);
