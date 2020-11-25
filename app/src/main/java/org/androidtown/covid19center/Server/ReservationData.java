@@ -20,7 +20,15 @@ public class ReservationData {
     String completion_time;
 
 
-    public ReservationData(String user_id, int questionnaire_seq, String hospital_name, String time, String date, boolean visited, String completion_time) {
+    public ReservationData(
+            String user_id,
+            int questionnaire_seq,
+            String hospital_name,
+            String time,
+            String date,
+            boolean visited,
+            String completion_time) {
+
         this.user_id = user_id;
         this.questionnaire_seq = questionnaire_seq;
         this.hospital_name = hospital_name;
@@ -45,7 +53,7 @@ public class ReservationData {
     public String getTime() {return time;}
     public void setTime(String time) {this.time = time;}
 
-    public String getDate() {return hospital_name;}
+    public String getDate() {return date;}
     public void setDate(String date) {this.date = date;}
 
     public boolean getVisited() {return visited;}

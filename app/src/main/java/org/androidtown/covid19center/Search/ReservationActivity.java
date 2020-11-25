@@ -163,14 +163,14 @@ public class ReservationActivity extends AppCompatActivity {
 
 
     private void setCalenderView() {
-
-
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 month += 1;
                 reservationTime.clear();
-                reservationTime.add(String.format("%d년 %d월 %d일", year, month, dayOfMonth));
+                //reservationTime.add(String.format("%d년 %d월 %d일", year, month, dayOfMonth));
+
+                reservationTime.add(String.format("%d/%d/%d", year, month, dayOfMonth));
 
                 setTimeListView();
             }
@@ -178,6 +178,7 @@ public class ReservationActivity extends AppCompatActivity {
     }
 
     private void setIntentInfomation() {
+
         Intent intent = getIntent(); // 데이터 수신
 
         stringTemp = intent.getExtras().getString("clinicName");
@@ -193,7 +194,6 @@ public class ReservationActivity extends AppCompatActivity {
 
 
     private void setTimeListView() {
-
 
         ArrayList<String> itemList = new ArrayList<>();
 
@@ -216,7 +216,6 @@ public class ReservationActivity extends AppCompatActivity {
 
     private void setGridView(int time) {
 
-
         GridView gridView = (GridView) findViewById(R.id.reservation_gridView);
         listTime = new ArrayList<>();
         listTime.clear();
@@ -231,6 +230,7 @@ public class ReservationActivity extends AppCompatActivity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
 
                 if(position == 0)
                 {
@@ -270,7 +270,6 @@ public class ReservationActivity extends AppCompatActivity {
 
         for (int i = 0; i < plusTime.length; i++) {
 
-
             timeString = String.valueOf(time + plusTime[i]);
             timeStringBuffer.append(timeString);
 
@@ -287,6 +286,7 @@ public class ReservationActivity extends AppCompatActivity {
             stringTime.add(timeString);
 
             reservationTime.add(1,String.valueOf(timeStringBuffer.substring(0,3)));
+
             timeStringBuffer.delete(0, 5);
         }
 

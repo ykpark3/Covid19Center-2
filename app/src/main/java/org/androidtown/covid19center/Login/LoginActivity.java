@@ -60,10 +60,6 @@ public class LoginActivity extends AppCompatActivity {
                 String id = idEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
 
-                Log.d("~~~~~","id:" +id);
-                Log.d("~~~~~~","password:"+password);
-
-                //startLogin(new UsersData(id, password));
                 startLogin(id, password);
 
             }
@@ -118,8 +114,6 @@ public class LoginActivity extends AppCompatActivity {
                 if(response.isSuccessful()) {
                     List<UsersVO> data = response.body();
 
-                    Log.d("~~~~~","성공");
-
                     for(int i=0; i<data.size(); i++) {
                         if(data.get(i).getId().equals(id) && data.get(i).getPassword().equals(password)) {
                             Log.d("~~~~~","로그인 가능");
@@ -127,7 +121,6 @@ public class LoginActivity extends AppCompatActivity {
                             toast.show();
 
                             AppManager.getInstance().setUserId(id);   // user id 저장하기
-
 
                             if(id.equals("hhh")) {
                                 Intent intent = new Intent(LoginActivity.this, HospitalMainActivity.class);
@@ -146,7 +139,7 @@ public class LoginActivity extends AppCompatActivity {
                             break;
                         }
                     }
-                    Log.d("~~~~~","isloginpossible:"+isLoginPossible);
+
                     if(!isLoginPossible) {
 
                         Log.d("~~~~~","로그인 정보 확인 필요");

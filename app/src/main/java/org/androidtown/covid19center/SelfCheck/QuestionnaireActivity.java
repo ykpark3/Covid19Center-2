@@ -48,18 +48,22 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
     private TextView termTextView;
     private TextView startVirusDateTextView;
     private final Calendar myCalender = Calendar.getInstance();
-    private String clinicName;
-    private String clinicReservationTime;
-    private String symptom_start_date;
-    private String visitedDetail;
-    private String contact_relationship;
-    private String contact_period;
-    private String entrance_date;
     private ImageButton backButton;
     private Button nextButton;
     private RadioGroup visitedCheck_radioGroup, contact_radioGroup;
-    private Boolean isVisited, isContacted, hasFever, hasMuscle_ache, hasCough, hasSputum, hasRunnyNose, hasDyspnea, hasSoreThroat;
     private CheckBox fever_checkBox, muscle_ache_checkBox, cough_checkBox, sputum_checkBox, runny_nose_checkBox, dyspnea_checkBox, sore_throat_checkBox;
+
+    private Boolean isVisited;
+    private String visitedDetail;
+    private boolean isContacted;
+    private String contact_relationship;
+    private String contact_period;
+    private boolean hasFever, hasMuscle_ache, hasCough, hasSputum, hasRunnyNose, hasDyspnea, hasSoreThroat;
+    private String symptom_start_date;
+    private String entrance_date;
+
+    private String clinicName;
+    private String clinicReservationTime;
 
     private ServiceApi serviceApi;
     private int questionnaireSequence;
@@ -113,16 +117,9 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
                 //
                 // 서버에 전송하는 코드 작성
                 //
-                Log.d("~~~~~","클릭");
 
+                sendQuestionnaireData(new QuestionnaireData(AppManager.getInstance().getUserId(),isVisited, visitedDetail, isContacted, contact_relationship, contact_period, hasFever, hasMuscle_ache, hasSputum, hasRunnyNose, hasDyspnea, hasSoreThroat, symptom_start_date, entrance_date));
 
-                sendQuestionnaireData(new QuestionnaireData("userid",false, "visitedDetail", false, "contact_relationship", "contact_period",false,false,false,false,false,false,"symptom_start_date", "entrance_date"));
-               // sendQuestionnaireData(new QuestionnaireData("userid",isVisited, visitedDetail, isContacted, contact_relationship, contact_period, hasFever, hasMuscle_ache, hasSputum, hasRunnyNose, hasDyspnea, hasSoreThroat, symptom_start_date, entrance_date));
-
-
-                Log.d("~~~~~",isVisited+"  "+ visitedDetail+"  "+isContacted+"  "+contact_relationship+"  "+contact_period+"  "+ hasFever+"  "+ hasMuscle_ache+"  "+ hasSputum+"  "+ hasRunnyNose+"  "+ hasDyspnea+"  "+hasSoreThroat+"  "+symptom_start_date+"  "+ entrance_date);
-
-                //Log.d("1607", entrance_date+"\n"+isVisited+"\n"+visitedDetail+"\n"+isContected+"\n"+contact_relationship+"\n"+contact_period+"\n"+hasFever+"\n"+hasMuscle_ache+"\n"+hasCough+"\n"+hasSputum+"\n"+hasRunnyNose+"\n"+hasDyspnea+"\n"+ hasSoreThroat+"\n"+symptom_start_date+"\n"+clinicName+"\n"+clinicReservationTime);
                 Toast.makeText(getApplicationContext(), "눌림", Toast.LENGTH_SHORT).show();
 
             }
@@ -183,8 +180,6 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
 
 
 
-
-
     private void sendQuestionnaireData(QuestionnaireData questionnaireData) {
         Log.d("~~~~~","sendQuestionnaireData");
 
@@ -201,7 +196,7 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
                     Log.d("~~~~~", String.valueOf(e));
                     e.printStackTrace();
                 }
-                Log.i("~~~~~", result);
+                Log.i("~~~~~","result: "+ result);
 
                 getQuestionnaireSequence();
             }
@@ -219,8 +214,6 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
 
 
     protected void getQuestionnaireSequence() {
-        Log.d("~~~~~", " getQuestionnaireList");
-
         serviceApi.getQuesionnaireVO().enqueue(new Callback<List<QuestionnaireVO>>() {
             @Override
             public void onResponse(Call<List<QuestionnaireVO>> call, Response<List<QuestionnaireVO>> response) {
@@ -228,20 +221,25 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
                 if (response.isSuccessful()) {
                     List<QuestionnaireVO> data = response.body();
 
-                    Log.d("~~~~~", "quesionnaireList 가져오기 성공");
-
                     questionnaireSequence = data.get(data.size()-1).getSequence();
 
                     Log.d("~~~~~","questionnaire sequence: "+ questionnaireSequence);
 
+                    long now = System.currentTimeMillis();
+                    Date nowDate = new Date(now);
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy. MM. dd. hh:mm:ss");
+                    String getTime = simpleDateFormat.format(nowDate);
+
+                    sendReservationData(new ReservationData(
+                            AppManager.getInstance().getUserId(),
+                            questionnaireSequence,
+                            clinicName,
+                            clinicReservationTime.substring(clinicReservationTime.lastIndexOf(" ")),
+                            clinicReservationTime.substring(0, clinicReservationTime.indexOf(",")),
+                            false,
+                            getTime));
+
                 }
-
-                long now = System.currentTimeMillis();
-                Date date = new Date(now);
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy. MM. dd. hh:mm:ss");
-                String getTime = simpleDateFormat.format(date);
-
-                sendReservationData(new ReservationData("user1",33,"hospital","time","date",false,"completion"));
             }
 
             @Override
@@ -262,14 +260,14 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 String result = null;
                 try {
-                    Log.d("~~~~~","response"+response.code());
+                    Log.d("~~~~~","response: "+response.code());
                     result = response.body().string();
 
                 } catch (IOException e) {
                     Log.d("~~~~~", String.valueOf(e));
                     e.printStackTrace();
                 }
-                Log.i("~~~~~", result);
+                Log.i("~~~~~", "result: "+result);
 
             }
 
@@ -370,7 +368,7 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
     }
 
     private void updateLabel(){
-        String myFormat = "yy/MM/dd"; //In which you need put here
+        String myFormat = "yyyy/MM/dd"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
         entranceDateTextView.setText(sdf.format(myCalender.getTime()));
         entranceDateTextView.setTextColor(Color.BLACK);

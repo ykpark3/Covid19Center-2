@@ -5,31 +5,36 @@ public class QuestionnaireVO {
     int sequence;
 
     String user_id;
-    boolean visited;
+    int visited;
+    //boolean visited;
     String visited_detail;
-    boolean contact;
+    int contact;
+    //boolean contact;
     String contact_relationship, contact_period;
-    boolean fever, muscle_ache, sputum, runny_nose, dyspnea, sore_throat;
+    int fever, muscle_ache, sputum, runny_nose, dyspnea, sore_throat;
+    //boolean fever, muscle_ache, sputum, runny_nose, dyspnea, sore_throat;
     String symptom_start_date, entrance_date;
 
     public QuestionnaireVO
             (int sequence,
 
              String user_id,
-             boolean visited,
+             //boolean visited,
+             int visited,
              String visited_detail,
-             boolean contact,
+             //boolean contact,
+             int contact,
              String contact_relationship,
              String contact_period,
-             boolean fever,
-             boolean muscle_ache,
-             boolean sputum,
-             boolean runny_nose,
-             boolean dyspnea,
-             boolean sore_throat,
+             //boolean fever,
+             //boolean muscle_ache,
+             //boolean sputum,
+             //boolean runny_nose,
+             //boolean dyspnea,
+             //boolean sore_throat,
+             int fever, int muscle_ache, int sputum, int runny_nose, int dyspnea, int sore_throat,
              String symptom_start_date,
              String entrance_date) {
-
 
         this.sequence = sequence;
 
@@ -62,6 +67,7 @@ public class QuestionnaireVO {
         this.user_id = user_id;
     }
 
+    /*
     public boolean getVisited() {
         return visited;
     }
@@ -139,6 +145,8 @@ public class QuestionnaireVO {
         this.sore_throat = sore_throat;
     }
 
+
+     */
     public String getSymptom_start_date() {
         return symptom_start_date;
     }

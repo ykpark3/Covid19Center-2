@@ -59,6 +59,7 @@ public class HospitalMainActivity extends FragmentActivity {
                 String time;
                 String date;
                 boolean visited;
+                String completion_time;
 
 
                 if(response.isSuccessful()) {
@@ -73,8 +74,11 @@ public class HospitalMainActivity extends FragmentActivity {
                         time = data.get(i).getTime();
                         date = data.get(i).getDate();
                         visited = data.get(i).getVisited();
+                       // completion_time = data.get(i).getCompletion_time();
 
-                        ReservationVO reservationVO = new ReservationVO(user_id,questionnaire_seq,hospital_name,time,date,visited);
+                        ReservationVO reservationVO = new ReservationVO(user_id,questionnaire_seq,hospital_name,time,date,visited
+                                //,completion_time
+                        );
                         reservationVOArrayList.add(reservationVO);
 
                     }
