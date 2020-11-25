@@ -19,14 +19,20 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.androidtown.covid19center.R;
+import org.androidtown.covid19center.Server.AppManager;
 import org.androidtown.covid19center.Server.QuestionnaireData;
+import org.androidtown.covid19center.Server.QuestionnaireVO;
 import org.androidtown.covid19center.Server.ReservationData;
+import org.androidtown.covid19center.Server.ReservationVO;
 import org.androidtown.covid19center.Server.RetrofitClient;
 import org.androidtown.covid19center.Server.ServiceApi;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import okhttp3.ResponseBody;
@@ -56,6 +62,8 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
     private CheckBox fever_checkBox, muscle_ache_checkBox, cough_checkBox, sputum_checkBox, runny_nose_checkBox, dyspnea_checkBox, sore_throat_checkBox;
 
     private ServiceApi serviceApi;
+    private int questionnaireSequence;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -105,11 +113,14 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
                 //
                 // 서버에 전송하는 코드 작성
                 //
-                sendReservationData(new ReservationData("userid",111,"hospital","time","date",false));
+                Log.d("~~~~~","클릭");
+
+
+                sendQuestionnaireData(new QuestionnaireData("userid",false, "visitedDetail", false, "contact_relationship", "contact_period",false,false,false,false,false,false,"symptom_start_date", "entrance_date"));
+               // sendQuestionnaireData(new QuestionnaireData("userid",isVisited, visitedDetail, isContacted, contact_relationship, contact_period, hasFever, hasMuscle_ache, hasSputum, hasRunnyNose, hasDyspnea, hasSoreThroat, symptom_start_date, entrance_date));
+
 
                 Log.d("~~~~~",isVisited+"  "+ visitedDetail+"  "+isContacted+"  "+contact_relationship+"  "+contact_period+"  "+ hasFever+"  "+ hasMuscle_ache+"  "+ hasSputum+"  "+ hasRunnyNose+"  "+ hasDyspnea+"  "+hasSoreThroat+"  "+symptom_start_date+"  "+ entrance_date);
-
-                sendQuestionnaireData(new QuestionnaireData("userid",isVisited, visitedDetail, isContacted, contact_relationship, contact_period, hasFever, hasMuscle_ache, hasSputum, hasRunnyNose, hasDyspnea, hasSoreThroat, symptom_start_date, entrance_date));
 
                 //Log.d("1607", entrance_date+"\n"+isVisited+"\n"+visitedDetail+"\n"+isContected+"\n"+contact_relationship+"\n"+contact_period+"\n"+hasFever+"\n"+hasMuscle_ache+"\n"+hasCough+"\n"+hasSputum+"\n"+hasRunnyNose+"\n"+hasDyspnea+"\n"+ hasSoreThroat+"\n"+symptom_start_date+"\n"+clinicName+"\n"+clinicReservationTime);
                 Toast.makeText(getApplicationContext(), "눌림", Toast.LENGTH_SHORT).show();
@@ -170,35 +181,9 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
 
 
 
-    private void sendReservationData(ReservationData reservationData) {
-        Log.d("~~~~~","sendReservationData");
 
-        Call<ResponseBody> dataCall = serviceApi.sendReservationData(reservationData);
-        dataCall.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                String result = null;
-                try {
-                    Log.d("~~~~~","response"+response.code());
-                    result = response.body().string();
 
-                } catch (IOException e) {
-                    Log.d("~~~~~", String.valueOf(e));
-                    e.printStackTrace();
-                }
-                Log.i("~~~~~", result);
-            }
 
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.i("~~~~~","fail");
-                if (t instanceof IOException) {
-                    // Handle IO exception, maybe check the network and try again.
-                    Log.i("~~~~~","t"+t);
-                }
-            }
-        });
-    }
 
     private void sendQuestionnaireData(QuestionnaireData questionnaireData) {
         Log.d("~~~~~","sendQuestionnaireData");
@@ -217,6 +202,8 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
                     e.printStackTrace();
                 }
                 Log.i("~~~~~", result);
+
+                getQuestionnaireSequence();
             }
 
             @Override
@@ -229,6 +216,79 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
             }
         });
     }
+
+
+    protected void getQuestionnaireSequence() {
+        Log.d("~~~~~", " getQuestionnaireList");
+
+        serviceApi.getQuesionnaireVO().enqueue(new Callback<List<QuestionnaireVO>>() {
+            @Override
+            public void onResponse(Call<List<QuestionnaireVO>> call, Response<List<QuestionnaireVO>> response) {
+
+                if (response.isSuccessful()) {
+                    List<QuestionnaireVO> data = response.body();
+
+                    Log.d("~~~~~", "quesionnaireList 가져오기 성공");
+
+                    questionnaireSequence = data.get(data.size()-1).getSequence();
+
+                    Log.d("~~~~~","questionnaire sequence: "+ questionnaireSequence);
+
+                }
+
+                long now = System.currentTimeMillis();
+                Date date = new Date(now);
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy. MM. dd. hh:mm:ss");
+                String getTime = simpleDateFormat.format(date);
+
+                sendReservationData(new ReservationData("user1",33,"hospital","time","date",false,"completion"));
+            }
+
+            @Override
+            public void onFailure(Call<List<QuestionnaireVO>> call, Throwable t) {
+                Log.d("~~~~~", "실패: " + t);
+                t.printStackTrace();
+            }
+        });
+    }
+
+
+    private void sendReservationData(ReservationData reservationData) {
+        Log.d("~~~~~","sendReservationData");
+
+        Call<ResponseBody> dataCall = serviceApi.sendReservationData(reservationData);
+        dataCall.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                String result = null;
+                try {
+                    Log.d("~~~~~","response"+response.code());
+                    result = response.body().string();
+
+                } catch (IOException e) {
+                    Log.d("~~~~~", String.valueOf(e));
+                    e.printStackTrace();
+                }
+                Log.i("~~~~~", result);
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.i("~~~~~","fail");
+                if (t instanceof IOException) {
+                    // Handle IO exception, maybe check the network and try again.
+                    Log.i("~~~~~","t"+t);
+                }
+            }
+        });
+    }
+
+
+
+
+
+
 
 
     RadioGroup.OnCheckedChangeListener contactRadioGroupButtonChangeListener = new RadioGroup.OnCheckedChangeListener() {

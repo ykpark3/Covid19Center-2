@@ -18,6 +18,9 @@ public interface ServiceApi {
     @GET("/reservation")
     Call<List<ReservationVO>> getReservationVO();
 
+    @GET("/quesionnaire")
+    Call<List<QuestionnaireVO>> getQuesionnaireVO();
+
     @POST("/reservationInsert")
     Call<ResponseBody> sendReservationData(@Body ReservationData reservationData);
 

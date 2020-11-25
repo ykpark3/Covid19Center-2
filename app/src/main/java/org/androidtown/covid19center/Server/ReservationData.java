@@ -16,15 +16,18 @@ public class ReservationData {
     String date;
     @SerializedName("visited")
     boolean visited;
+    @SerializedName("completion_time")
+    String completion_time;
 
 
-    public ReservationData(String user_id, int questionnaire_seq, String hospital_name, String time, String date, boolean visited) {
+    public ReservationData(String user_id, int questionnaire_seq, String hospital_name, String time, String date, boolean visited, String completion_time) {
         this.user_id = user_id;
         this.questionnaire_seq = questionnaire_seq;
         this.hospital_name = hospital_name;
         this.time = time;
         this.date = date;
         this.visited = visited;
+        this.completion_time = completion_time;
     }
 
 
@@ -45,4 +48,9 @@ public class ReservationData {
     public String getDate() {return hospital_name;}
     public void setDate(String date) {this.date = date;}
 
+    public boolean getVisited() {return visited;}
+    public void setVisited(boolean visited) {this.visited = visited;}
+
+    public String getCompletion_time() {return completion_time;}
+    public void setCompletion_time(String completion_time) {this.completion_time = completion_time;}
 }

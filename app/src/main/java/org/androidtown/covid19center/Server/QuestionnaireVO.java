@@ -2,29 +2,36 @@ package org.androidtown.covid19center.Server;
 
 public class QuestionnaireVO {
 
+    int sequence;
+
     String user_id;
-    int visited;
+    boolean visited;
     String visited_detail;
-    int contact;
+    boolean contact;
     String contact_relationship, contact_period;
-    int fever, muscle_ache, sputum, runny_nose, dyspnea, sore_throat;
+    boolean fever, muscle_ache, sputum, runny_nose, dyspnea, sore_throat;
     String symptom_start_date, entrance_date;
 
     public QuestionnaireVO
-            (String user_id,
-             int visited,
+            (int sequence,
+
+             String user_id,
+             boolean visited,
              String visited_detail,
-             int contact,
+             boolean contact,
              String contact_relationship,
              String contact_period,
-             int fever,
-             int muscle_ache,
-             int sputum,
-             int runny_nose,
-             int dyspnea,
-             int sore_throat,
+             boolean fever,
+             boolean muscle_ache,
+             boolean sputum,
+             boolean runny_nose,
+             boolean dyspnea,
+             boolean sore_throat,
              String symptom_start_date,
              String entrance_date) {
+
+
+        this.sequence = sequence;
 
         this.user_id = user_id;
         this.visited = visited;
@@ -43,6 +50,11 @@ public class QuestionnaireVO {
     }
 
 
+    public int getSequence() { return sequence;}
+    public void setSequence(int sequence) {this.sequence = sequence; }
+
+
+
     public String getUser_id() {
         return user_id;
     }
@@ -50,10 +62,10 @@ public class QuestionnaireVO {
         this.user_id = user_id;
     }
 
-    public int getVisited() {
+    public boolean getVisited() {
         return visited;
     }
-    public void setVisited(int visited) {
+    public void setVisited(boolean visited) {
         this.visited = visited;
     }
 
@@ -64,10 +76,10 @@ public class QuestionnaireVO {
         this.visited_detail = visited_detail;
     }
 
-    public int getContact() {
+    public boolean getContact() {
         return contact;
     }
-    public void setContact(int contact) {
+    public void setContact(boolean contact) {
         this.contact = contact;
     }
 
@@ -85,45 +97,45 @@ public class QuestionnaireVO {
         this.contact_period = contact_period;
     }
 
-    public int getFever() {
+    public boolean getFever() {
         return fever;
     }
-    public void setFever(int fever) {
+    public void setFever(boolean fever) {
         this.fever = fever;
     }
 
-    public int getMuscle_ache() {
+    public boolean getMuscle_ache() {
         return muscle_ache;
     }
-    public void setMuscle_ache(int muscle_ache) {
+    public void setMuscle_ache(boolean muscle_ache) {
         this.muscle_ache = muscle_ache;
     }
 
-    public int getSputum() {
+    public boolean getSputum() {
         return sputum;
     }
-    public void setSputum(int sputum) {
+    public void setSputum(boolean sputum) {
         this.sputum = sputum;
     }
 
-    public int getRunny_nose() {
+    public boolean getRunny_nose() {
         return runny_nose;
     }
-    public void setRunny_nose(int runny_nose) {
+    public void setRunny_nose(boolean runny_nose) {
         this.runny_nose = runny_nose;
     }
 
-    public int getDyspnea() {
+    public boolean getDyspnea() {
         return dyspnea;
     }
-    public void setDyspnea(int dyspnea) {
+    public void setDyspnea(boolean dyspnea) {
         this.dyspnea = dyspnea;
     }
 
-    public int getSore_throat() {
+    public boolean getSore_throat() {
         return sore_throat;
     }
-    public void setSore_throat(int sore_throat) {
+    public void setSore_throat(boolean sore_throat) {
         this.sore_throat = sore_throat;
     }
 

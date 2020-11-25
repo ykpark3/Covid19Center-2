@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 public class QuestionnaireData {
 
+    //@SerializedName("sequence")
+    //int sequence;
     @SerializedName("user_id")
     String user_id;
     @SerializedName("visited")
@@ -34,7 +36,8 @@ public class QuestionnaireData {
     String entrance_date;
 
 
-    public QuestionnaireData(String user_id,
+    public QuestionnaireData(//int sequence,
+                             String user_id,
                              boolean visited,
                              String visited_detail,
                              boolean contact,
@@ -49,6 +52,7 @@ public class QuestionnaireData {
                              String symptom_start_date,
                              String entrance_date) {
 
+        //this.sequence = sequence;
         this.user_id = user_id;
         this.visited = visited;
         this.visited_detail = visited_detail;
@@ -65,6 +69,11 @@ public class QuestionnaireData {
         this.entrance_date = entrance_date;
     }
 
+
+    /*
+    public int getSequence() {return sequence;}
+    public void setSequence(int sequence) {this.sequence = sequence;}
+     */
 
     public String getUser_id() {return user_id;}
     public void setUser_id(String user_id) {
