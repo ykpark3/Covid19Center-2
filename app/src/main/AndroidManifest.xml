@@ -60,9 +60,9 @@
 
         <activity android:name=".Login.DataWarningActivity"/>
 
-
         <activity android:name=".Hospital.ManagementPopupActivity"
             android:theme="@style/PopupTheme" android:screenOrientation="portrait"/>
+        <activity android:name=".Mypage.CheckReservationActivity"/>
 
     </application>
 
