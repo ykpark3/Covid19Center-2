@@ -27,7 +27,7 @@
 
                 <TextView
                     android:id="@+id/searchBox"
-                    android:layout_width="357dp"
+                    android:layout_width="match_parent"
                     android:layout_height="56dp"
                     android:layout_gravity="center"
                     android:layout_marginBottom="230dp"
@@ -39,6 +39,8 @@
                     android:paddingLeft="35dp"
                     android:paddingRight="20dp"
                     android:text="선별진료소를 검색해보세요"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
                     android:textSize="16sp" />
 
                 <Button
@@ -85,7 +87,6 @@
 
         </LinearLayout>
     </ScrollView>
-
 
 
 </LinearLayout>
