@@ -10,6 +10,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +26,9 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.airbnb.lottie.L;
-import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationCallback;
+import android.location.LocationListener;
+import com.google.android.gms.location.LocationResult;
 import com.naver.maps.map.MapFragment;
 
 import org.androidtown.covid19center.Main.MainActivity;
@@ -35,25 +38,24 @@ import org.androidtown.covid19center.QrCode.CreateQr;
 import org.androidtown.covid19center.R;
 import org.androidtown.covid19center.Search.List.SearchActivity;
 
-public class FragmentSearch extends Fragment {
+public class FragmentSearch extends Fragment implements LocationListener{
 
     MapFragment mapFragment;
-    LocationManager locationManager;
     private View view;
     private TextView search_textView;
     private Button openApiBtn;
+    private LocationCallback locationCallback;
+    private LocationManager locationManager;
 
     private Button qrBtn;
 
     private View.OnKeyListener mOnKeyBackPressedListener;
-    private LocationManager mLocMan; // 위치 관리자
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_search, container, false);
 
-        mLocMan = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
 
         return view;
     }
@@ -111,14 +113,11 @@ public class FragmentSearch extends Fragment {
 
             Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 
-
-            Log.d("0435", String.valueOf(location));
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
 
             if(location == null){
-
                 Log.d("0431", "124");
-
-                if(!mLocMan.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+                if(!locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
                     new AlertDialog.Builder(getContext()).setTitle("GPS 설정").setMessage("GPS가 꺼져 있습니다. \n원할한 서비스를 이용을 위해 GPS를 활성화 하시겠습니까?").setPositiveButton("GPS 켜기", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -139,11 +138,37 @@ public class FragmentSearch extends Fragment {
                 }
 
             } else{
+
                 LocationConsts.NOW_X = location.getLongitude();
                 LocationConsts.NOW_Y = location.getLatitude();
                 Intent intent = new Intent(getActivity(), SearchActivity.class);
                 startActivity(intent);
             }
         }
+
+    }
+
+
+    @Override
+    public void onLocationChanged(Location location) {
+            LocationConsts.NOW_Y = location.getLatitude();
+            LocationConsts.NOW_X = location.getLongitude();
+            Log.d("1633", String.valueOf(LocationConsts.NOW_X));
+            Log.d("1633", String.valueOf(LocationConsts.NOW_Y));
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
     }
 }
