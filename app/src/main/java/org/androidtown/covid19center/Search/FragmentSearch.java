@@ -7,10 +7,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,18 +25,16 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import com.airbnb.lottie.L;
-import com.google.android.gms.location.LocationCallback;
-import android.location.LocationListener;
-import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.common.internal.service.Common;
 import com.naver.maps.map.MapFragment;
 
-import org.androidtown.covid19center.Main.MainActivity;
 import org.androidtown.covid19center.Map.LocationConsts;
 import org.androidtown.covid19center.Map.MapActivity;
 import org.androidtown.covid19center.QrCode.CreateQr;
 import org.androidtown.covid19center.R;
 import org.androidtown.covid19center.Search.List.SearchActivity;
+
+import java.security.Permission;
 
 public class FragmentSearch extends Fragment implements LocationListener{
 
@@ -44,12 +42,8 @@ public class FragmentSearch extends Fragment implements LocationListener{
     private View view;
     private TextView search_textView;
     private Button openApiBtn;
-    private LocationCallback locationCallback;
     private LocationManager locationManager;
-
     private Button qrBtn;
-
-    private View.OnKeyListener mOnKeyBackPressedListener;
 
     @Nullable
     @Override
@@ -106,28 +100,26 @@ public class FragmentSearch extends Fragment implements LocationListener{
         if (Build.VERSION.SDK_INT >= 23 &&
                 ContextCompat.checkSelfPermission(getActivity().getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
+            ActivityCompat.requestPermissions( getActivity(), new String[] {  android.Manifest.permission.ACCESS_FINE_LOCATION  },
+                    0 );
 
-            if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)){
-                LocationConsts.NOW_X = 126.924;
-                LocationConsts.NOW_Y = 37.516;
-                Toast.makeText(getActivity().getApplicationContext(), "위치 권한 설정이 꺼져있습니다. 원활한 서비스 이용을 위해 권한 위치 서비스를 켜주시길 바랍니다.", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity(), SearchActivity.class);
-                startActivity(intent);
-            } else{
-                ActivityCompat.requestPermissions( getActivity(), new String[] {  android.Manifest.permission.ACCESS_FINE_LOCATION  },
-                        0 );
-            }
 
         }else {
 
-            Log.d("1726", "123123");
             Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, this);
-            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0, this);
+
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+                    1000, 0, this);
+
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
+                    1000, 0, this);
 
             if(location == null){
+                Log.d("0156", "126");
                 if(!locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
-                    new AlertDialog.Builder(getContext()).setTitle("GPS 설정").setMessage("GPS가 꺼져 있습니다. \n원할한 서비스를 이용을 위해 GPS를 활성화 하시겠습니까?").setPositiveButton("GPS 켜기", new DialogInterface.OnClickListener() {
+                    new AlertDialog.Builder(getContext()).setTitle("GPS 설정").
+                            setMessage("GPS가 꺼져 있습니다. \n원할한 서비스를 이용을 위해 GPS를 활성화 하시겠습니까?").
+                            setPositiveButton("GPS 켜기", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             Intent gpsOptionsIntent = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
@@ -138,7 +130,9 @@ public class FragmentSearch extends Fragment implements LocationListener{
                         public void onClick(DialogInterface dialog, int which) {
                             LocationConsts.NOW_X = 126.924;
                             LocationConsts.NOW_Y = 37.516;
-                            Toast.makeText(getActivity().getApplicationContext(), "위치 설정이 꺼져있습니다. 원활한 서비스 이용을 위해 위치 서비스를 켜주시길 바랍니다.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity().getApplicationContext(),
+                                    "위치 설정이 꺼져있습니다. 원활한 서비스 이용을 위해 위치 서비스를 켜주시길 바랍니다.",
+                                    Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getActivity(), SearchActivity.class);
                             startActivity(intent);
                         }
@@ -146,6 +140,7 @@ public class FragmentSearch extends Fragment implements LocationListener{
                 }
 
             } else{
+                Log.d("0156", "127");
                 LocationConsts.NOW_X = location.getLongitude();
                 LocationConsts.NOW_Y = location.getLatitude();
                 Intent intent = new Intent(getActivity(), SearchActivity.class);

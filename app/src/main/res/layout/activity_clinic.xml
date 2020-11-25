@@ -126,12 +126,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="15dp"
                 android:layout_marginTop="40dp"
-                android:background="@color/colorLightGray" />
+                android:background="@color/colorMain" />
 
             <FrameLayout
                 android:id="@+id/childMap"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"></FrameLayout>
+                android:layout_height="400dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                ></FrameLayout>
 
         </LinearLayout>
 
