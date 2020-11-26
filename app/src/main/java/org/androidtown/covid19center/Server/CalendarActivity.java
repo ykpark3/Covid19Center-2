@@ -1,15 +1,11 @@
-package org.androidtown.covid19center.Hospital;
+package org.androidtown.covid19center.Server;
 
 import android.os.Bundle;
 import android.util.Log;
 
-import androidx.fragment.app.FragmentActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.androidtown.covid19center.R;
-import org.androidtown.covid19center.Server.AppManager;
-import org.androidtown.covid19center.Server.ReservationVO;
-import org.androidtown.covid19center.Server.RetrofitClient;
-import org.androidtown.covid19center.Server.ServiceApi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +14,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HospitalMainActivity extends FragmentActivity {
+public class CalendarActivity extends AppCompatActivity {
 
     private ServiceApi serviceApi;
     private ArrayList<ReservationVO> reservationVOArrayList;
@@ -26,20 +22,13 @@ public class HospitalMainActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hospital_main);
+        setContentView(R.layout.activity_calendar);
 
         Log.d("~~~~~","calendarActivity oncreate");
 
         serviceApi = RetrofitClient.getClient().create(ServiceApi.class);
 
         getReservationList();
-
-        /*
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.fragmentHospital, new FragmentHospital()).commit();
-
-         */
     }
 
     protected void getReservationList() {
@@ -49,7 +38,6 @@ public class HospitalMainActivity extends FragmentActivity {
             @Override
             public void onResponse(Call<List<ReservationVO>> call, Response<List<ReservationVO>> response) {
 
-
                 reservationVOArrayList = AppManager.getInstance().getReservationVOArrayList();
                 reservationVOArrayList.clear();
 
@@ -58,14 +46,11 @@ public class HospitalMainActivity extends FragmentActivity {
                 String hospital_name;
                 String time;
                 String date;
-                boolean visited;
-                String completion_time;
-
 
                 if(response.isSuccessful()) {
                     List<ReservationVO> data = response.body();
 
-                    Log.d("~~~~~", "getReservationList 가져오기 성공");
+                    Log.d("~~~~~", "성공");
 
                     for(int i=0; i<data.size(); i++) {
                         user_id = data.get(i).getUser_id();
@@ -73,18 +58,18 @@ public class HospitalMainActivity extends FragmentActivity {
                         hospital_name = data.get(i).getHospital_name();
                         time = data.get(i).getTime();
                         date = data.get(i).getDate();
-                        visited = data.get(i).getVisited();
-                       // completion_time = data.get(i).getCompletion_time();
 
-                        ReservationVO reservationVO = new ReservationVO(user_id,questionnaire_seq,hospital_name,time,date,visited
-                                //,completion_time
-                        );
+                        ReservationVO reservationVO = new ReservationVO(user_id,questionnaire_seq,hospital_name,time,date);
                         reservationVOArrayList.add(reservationVO);
 
                     }
 
                     AppManager.getInstance().setReservationVOArrayList(reservationVOArrayList);
-                    Log.d("~~~~~","list size:"+reservationVOArrayList.size());
+
+//                    Log.d("~~~~~","0번째 userid:  " + reservationVOArrayList.get(0).user_id);
+//                    Log.d("~~~~~","1번째 userid:  " + reservationVOArrayList.get(1).user_id);
+//                    Log.d("~~~~~","list size:"+reservationVOArrayList.size());
+
                 }
             }
 

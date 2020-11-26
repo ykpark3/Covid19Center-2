@@ -14,79 +14,76 @@
         android:id="@+id/textViewLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:textSize="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginBottom="55dp"
         android:text="LOGIN" />
 
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="20dp"
-        android:gravity="center">
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp" >
+            android:orientation="vertical"
+            android:gravity="center">
 
-            <TextView
-                android:id="@+id/textViewId"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textViewId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ID" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+
+                <EditText
+                    android:id="@+id/idEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ID" />
+                android:layout_height="wrap_content">
 
+                <TextView
+                    android:id="@+id/textViewPassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:text="PASSWORD" />
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
+                <EditText
+                    android:id="@+id/passwordEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPassword" />
 
-
-            <EditText
-                android:id="@+id/idEditText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="7"/>
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp">
-
-            <TextView
-                android:id="@+id/textViewPassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="PASSWORD" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <EditText
-                android:id="@+id/passwordEditText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="7"
-                android:inputType="textPassword" />
-
-        </LinearLayout>
+            </LinearLayout>
     </LinearLayout>
 
     <Button
         android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:text="Login"
+        android:layout_marginTop="40dp"
         />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="데이터 받는 거 확인 버튼(임시)" />
+
 </LinearLayout>

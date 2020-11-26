@@ -37,6 +37,7 @@ public class ReservationActivity extends AppCompatActivity {
     private TextView clinicName;
     private TextView clinicDate;
     private TextView warningMessage;
+    private TextView reservaitionWarningText;
     private Button reservationButton;
     private ImageButton backButton;
     private CalendarView calendarView;
@@ -73,7 +74,6 @@ public class ReservationActivity extends AppCompatActivity {
                 passTime = Integer.parseInt(time.substring(0, 2));
             }
 
-
             if (mSelectedItems.get(str, false)) {
                 mSelectedItems.put(str, false);
                 Log.d("0131", String.valueOf(str));
@@ -96,13 +96,11 @@ public class ReservationActivity extends AppCompatActivity {
         }
     };
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         reservationTime = new ArrayList<>();
-
         views = new ArrayList<>();
         timeViews = new ArrayList<>();
         setLayoutElement();
@@ -112,7 +110,6 @@ public class ReservationActivity extends AppCompatActivity {
         subTimeAdapter = new SubTimeAdapter(getApplicationContext());
         timeStringBuffer = new StringBuffer();
         canNextPage = false;
-
     }
 
     @Override
@@ -120,15 +117,17 @@ public class ReservationActivity extends AppCompatActivity {
         super.onStart();
     }
 
-
     private void setLayoutElement() {
         setContentView(R.layout.activity_reservation);
         clinicName = findViewById(R.id.reservation_clinicName);
-        clinicName.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 22);
+        clinicName.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
         calendarView = findViewById(R.id.reservation_calendarView);
         reservationButton = findViewById(R.id.reservation_button);
         warningMessage = findViewById(R.id.reservation_warning_message);
         backButton = findViewById(R.id.reservation_backButton);
+        reservaitionWarningText = findViewById(R.id.reservation_warning_message);
+        warningMessage.setVisibility(View.VISIBLE);
+
         setCalenderView();
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,14 +162,13 @@ public class ReservationActivity extends AppCompatActivity {
 
 
     private void setCalenderView() {
+
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 month += 1;
                 reservationTime.clear();
-                //reservationTime.add(String.format("%d년 %d월 %d일", year, month, dayOfMonth));
-
-                reservationTime.add(String.format("%d/%d/%d", year, month, dayOfMonth));
+                reservationTime.add(String.format("%d년 %d월 %d일", year, month, dayOfMonth));
 
                 setTimeListView();
             }
@@ -178,7 +176,6 @@ public class ReservationActivity extends AppCompatActivity {
     }
 
     private void setIntentInfomation() {
-
         Intent intent = getIntent(); // 데이터 수신
 
         stringTemp = intent.getExtras().getString("clinicName");
@@ -194,6 +191,9 @@ public class ReservationActivity extends AppCompatActivity {
 
 
     private void setTimeListView() {
+
+
+        warningMessage.setVisibility(View.GONE);
 
         ArrayList<String> itemList = new ArrayList<>();
 
@@ -213,13 +213,11 @@ public class ReservationActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
     }
 
-
     private void setGridView(int time) {
 
         GridView gridView = (GridView) findViewById(R.id.reservation_gridView);
         listTime = new ArrayList<>();
         listTime.clear();
-
 
         warningMessage.setText("예약 가능한 시간만 표시됩니다.");
 
@@ -230,7 +228,6 @@ public class ReservationActivity extends AppCompatActivity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
 
                 if(position == 0)
                 {
@@ -246,14 +243,13 @@ public class ReservationActivity extends AppCompatActivity {
                 canNextPage = true;
                 timeViews.add(view);
 
-                view.setBackgroundResource(R.color.colorMain);
+                view.setBackgroundResource(R.drawable.background_gray_rectangle);
 
                 if (timeViews.size() > 1) {
-                    view.setBackgroundResource(R.color.colorMain);
-                    timeViews.get(0).setBackgroundResource(R.color.colorLightGray);
+                    view.setBackgroundResource(R.drawable.background_purple_rectangle);
+                    timeViews.get(0).setBackgroundResource(R.drawable.background_gray_rectangle);
                     timeViews.clear();
                     timeViews.add(view);
-
                 }
             }
         });
@@ -273,10 +269,8 @@ public class ReservationActivity extends AppCompatActivity {
             timeString = String.valueOf(time + plusTime[i]);
             timeStringBuffer.append(timeString);
 
-
             if (Integer.parseInt(timeString) < 1000) {
                 timeStringBuffer.insert(0, "0");
-
             }
 
             timeStringBuffer.insert(2, ":");
@@ -286,7 +280,6 @@ public class ReservationActivity extends AppCompatActivity {
             stringTime.add(timeString);
 
             reservationTime.add(1,String.valueOf(timeStringBuffer.substring(0,3)));
-
             timeStringBuffer.delete(0, 5);
         }
 

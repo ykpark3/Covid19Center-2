@@ -17,7 +17,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.androidtown.covid19center.R;
-import org.androidtown.covid19center.Server.AppManager;
 import org.androidtown.covid19center.Server.ReservationVO;
 
 import java.text.SimpleDateFormat;
@@ -51,7 +50,7 @@ public class ReservationManagementActivity extends AppCompatActivity {
 
         //date 초기값 오늘 날짜 저장
         Date currentTime = Calendar.getInstance().getTime();
-        date = new SimpleDateFormat("MM/dd", Locale.getDefault()).format(currentTime);
+        date = new SimpleDateFormat("YY/MM/dd", Locale.getDefault()).format(currentTime);
         Log.d("date확인", date);
 
         //오늘 날짜 예약 리스트 받아오기
@@ -68,7 +67,7 @@ public class ReservationManagementActivity extends AppCompatActivity {
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 month += 1;
 
-                date = month + "/" +  dayOfMonth;
+                date = year + "/" + month + "/" +  dayOfMonth;
 
                 //날짜별 환자 리스트 받아오기
                 selectListItem();
@@ -77,7 +76,6 @@ public class ReservationManagementActivity extends AppCompatActivity {
             }
         });
     }
-    
 
     @Override
     protected void onResume() {
@@ -91,27 +89,15 @@ public class ReservationManagementActivity extends AppCompatActivity {
 
     //임시 예약 데이터@@
     public void initList(){
-        Log.d("~~~~~","init list");
-
         reservationList = new ArrayList<ReservationVO>();
 
-        reservationList =  AppManager.getInstance().getReservationVOArrayList();
-        Log.d("~~~~~","reservatonList size:  "+reservationList.size());
-
-        /*
-        for(int index = 0; index < reservationList.size(); index ++) {
-            reservationList.add(index, new ReservationVO())
-        }
-
-        reservationList.add(0, new ReservationVO("user1", 1, "hospital_1", "11:30", "11/19"));
-        reservationList.add(1, new ReservationVO("user2", 2, "hospital_2", "11:30", "11/19"));
-        reservationList.add(2, new ReservationVO("user3", 3, "hospital_3", "11:30", "11/19"));
-        reservationList.add(3, new ReservationVO("user4", 4, "hospital_3", "11:30", "11/20"));
-        reservationList.add(4, new ReservationVO("user5", 5, "hospital_3", "11:30", "11/21"));
-        reservationList.add(5, new ReservationVO("user6", 6, "hospital_3", "11:30", "11/22"));
-        reservationList.add(6, new ReservationVO("user7", 7, "hospital_3", "11:30", "11/23"));
-
-         */
+        reservationList.add(0, new ReservationVO("user1", 1, "hospital_1", "11:30", "20/11/19"));
+        reservationList.add(1, new ReservationVO("user2", 2, "hospital_2", "11:30", "20/11/19"));
+        reservationList.add(2, new ReservationVO("user3", 3, "hospital_3", "11:30", "20/11/19"));
+        reservationList.add(3, new ReservationVO("user4", 4, "hospital_3", "11:30", "20/11/20"));
+        reservationList.add(4, new ReservationVO("user5", 5, "hospital_3", "11:30", "20/11/21"));
+        reservationList.add(5, new ReservationVO("user6", 6, "hospital_3", "11:30", "20/11/22"));
+        reservationList.add(6, new ReservationVO("user7", 7, "hospital_3", "11:30", "20/11/23"));
     }
 
     //해당 날짜의 예약 리스트 select
