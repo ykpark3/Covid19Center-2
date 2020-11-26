@@ -26,6 +26,7 @@
 
         <activity android:name=".Server.CalendarActivity"></activity>
 
+        <activity android:name=".Main.MainActivity"/>
         <activity android:name=".SelfCheck.QuestionnarieActivity"/>
             <activity android:name=".Login.LoginActivity">
             <intent-filter>
@@ -38,7 +39,7 @@
         <activity android:name=".Map.MapActivity"></activity>
         <activity android:name=".Search.List.SearchActivity"></activity>
 
-        <activity android:name=".Main.MainActivity"/>
+
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="udi1xytmz6" />

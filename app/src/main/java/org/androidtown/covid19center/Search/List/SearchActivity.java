@@ -16,6 +16,7 @@ import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.androidtown.covid19center.DataBase.AppDatabase;
+import org.androidtown.covid19center.Map.LocationConsts;
 import org.androidtown.covid19center.R;
 import org.androidtown.covid19center.Search.ClinicActivity;
 
@@ -146,9 +147,15 @@ public class SearchActivity extends AppCompatActivity {
             {
                 ClinicItem clinicItem = new ClinicItem(clinics.get(i).getClinicName(),clinics.get(i).getClinicCallNumber(), clinics.get(i).getClinicAddress(), clinics.get(i).getX(), clinics.get(i).getY(), "yes");
 
-                if(clinicItem.getClinicDistance() < 20000){
+                if(LocationConsts.NOW_X == 126.924 && LocationConsts.NOW_Y == 37.516)
+                {
                     clinicDataList.add(clinicItem);
                 }
+
+                else if(clinicItem.getClinicDistance() < 20000){
+                    clinicDataList.add(clinicItem);
+                }
+
             }
 
             Collections.sort(clinicDataList, comparator);

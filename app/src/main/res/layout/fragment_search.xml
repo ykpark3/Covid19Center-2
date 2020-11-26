@@ -83,68 +83,68 @@
 
     </LinearLayout>
 
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:orientation="vertical">-->
+    <!--            <LinearLayout-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="match_parent"-->
+    <!--                android:layout_gravity="center"-->
+    <!--                android:orientation="vertical">-->
 
-<!--&lt;!&ndash;                <TextView&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:id="@+id/searchBox"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:layout_width="357dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:layout_height="56dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:layout_gravity="center"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:layout_marginBottom="230dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:background="@drawable/rectengle_shape"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:clickable="true"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:drawableRight="@drawable/ic_baseline_search_24"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:drawableTint="@color/colorMain"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:gravity="center|left"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:paddingLeft="35dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:paddingRight="20dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:text="선별진료소를 검색해보세요"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:textSize="16sp" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                <TextView&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:id="@+id/searchBox"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:layout_width="357dp"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:layout_height="56dp"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:layout_gravity="center"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:layout_marginBottom="230dp"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:background="@drawable/rectengle_shape"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:clickable="true"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:drawableRight="@drawable/ic_baseline_search_24"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:drawableTint="@color/colorMain"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:gravity="center|left"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:paddingLeft="35dp"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:paddingRight="20dp"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:text="선별진료소를 검색해보세요"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:textSize="16sp" />&ndash;&gt;-->
 
-<!--&lt;!&ndash;                <Button&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:id="@+id/openApiButton"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:layout_width="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:layout_height="110dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:background="@drawable/main_button_layout"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:drawableLeft="@drawable/ic_baseline_gps_fixed_24"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:drawableRight="@drawable/ic_baseline_map_arrow_right_24"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:drawablePadding="@android:dimen/app_icon_size"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:gravity="left|center_vertical"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:outlineAmbientShadowColor="@color/colorWhite"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:outlineSpotShadowColor="@color/colorWhite"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:paddingLeft="30dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:paddingRight="25dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:text="내 주변 선별진료소 찾기"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:textSize="17sp" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                <Button&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:id="@+id/openApiButton"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:layout_width="wrap_content"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:layout_height="110dp"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:background="@drawable/main_button_layout"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:drawableLeft="@drawable/ic_baseline_gps_fixed_24"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:drawableRight="@drawable/ic_baseline_map_arrow_right_24"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:drawablePadding="@android:dimen/app_icon_size"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:gravity="left|center_vertical"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:outlineAmbientShadowColor="@color/colorWhite"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:outlineSpotShadowColor="@color/colorWhite"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:paddingLeft="30dp"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:paddingRight="25dp"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:text="내 주변 선별진료소 찾기"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:textSize="17sp" />&ndash;&gt;-->
 
-<!--&lt;!&ndash;                <View&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:layout_width="match_parent"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:layout_height="2dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:layout_marginLeft="5dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:layout_marginRight="5dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:background="@color/colorLightGray" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                <View&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:layout_width="match_parent"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:layout_height="2dp"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:layout_marginLeft="5dp"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:layout_marginRight="5dp"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:background="@color/colorLightGray" />&ndash;&gt;-->
 
-<!--&lt;!&ndash;                <Button&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:id="@+id/qrButton"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:layout_width="match_parent"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:layout_height="110dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:layout_gravity="bottom"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:background="@drawable/main_button_layout"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:drawableLeft="@drawable/ic_main_qr_code_scanner_24"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:drawableRight="@drawable/ic_baseline_map_arrow_right_24"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:drawablePadding="@android:dimen/app_icon_size"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:gravity="left|center_vertical"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:outlineAmbientShadowColor="@color/colorWhite"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:outlineSpotShadowColor="@color/colorWhite"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:paddingLeft="30dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:paddingRight="25dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:text="진료 QR코드 불러오기 "&ndash;&gt;-->
-<!--&lt;!&ndash;                    android:textSize="17sp" />&ndash;&gt;-->
+    <!--&lt;!&ndash;                <Button&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:id="@+id/qrButton"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:layout_width="match_parent"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:layout_height="110dp"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:layout_gravity="bottom"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:background="@drawable/main_button_layout"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:drawableLeft="@drawable/ic_main_qr_code_scanner_24"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:drawableRight="@drawable/ic_baseline_map_arrow_right_24"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:drawablePadding="@android:dimen/app_icon_size"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:gravity="left|center_vertical"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:outlineAmbientShadowColor="@color/colorWhite"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:outlineSpotShadowColor="@color/colorWhite"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:paddingLeft="30dp"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:paddingRight="25dp"&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:text="진료 QR코드 불러오기 "&ndash;&gt;-->
+    <!--&lt;!&ndash;                    android:textSize="17sp" />&ndash;&gt;-->
 
-<!--            </LinearLayout>-->
+    <!--            </LinearLayout>-->
 
 </LinearLayout>

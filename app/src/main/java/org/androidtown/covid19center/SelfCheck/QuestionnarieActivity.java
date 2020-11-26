@@ -94,8 +94,11 @@ public class QuestionnarieActivity extends AppCompatActivity implements NumberPi
                 // 서버에 전송하는 코드 작성
                 //
 
+
                 //Log.d("1607", entrance_date+"\n"+isVisited+"\n"+visitedDetail+"\n"+isContected+"\n"+contact_relationship+"\n"+contact_period+"\n"+hasFever+"\n"+hasMuscle_ache+"\n"+hasCough+"\n"+hasSputum+"\n"+hasRunnyNose+"\n"+hasDyspnea+"\n"+ hasSoreThroat+"\n"+symptom_start_date+"\n"+clinicName+"\n"+clinicReservationTime);
                 Toast.makeText(getApplicationContext(), "눌림", Toast.LENGTH_SHORT).show();
+
+
             }
         });
 
@@ -133,7 +136,9 @@ public class QuestionnarieActivity extends AppCompatActivity implements NumberPi
             }
         });
 
+
         //접촉 기간 선택
+
         termTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -170,6 +175,7 @@ public class QuestionnarieActivity extends AppCompatActivity implements NumberPi
             } else if(checkedId == R.id.questionnarie_visited_radioButton_false){
                 isVisited = false;
             }
+
         }
     };
 

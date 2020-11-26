@@ -37,6 +37,7 @@ public class ReservationActivity extends AppCompatActivity {
     private TextView clinicName;
     private TextView clinicDate;
     private TextView warningMessage;
+    private TextView reservaitionWarningText;
     private Button reservationButton;
     private ImageButton backButton;
     private CalendarView calendarView;
@@ -124,6 +125,9 @@ public class ReservationActivity extends AppCompatActivity {
         reservationButton = findViewById(R.id.reservation_button);
         warningMessage = findViewById(R.id.reservation_warning_message);
         backButton = findViewById(R.id.reservation_backButton);
+        reservaitionWarningText = findViewById(R.id.reservation_warning_message);
+        warningMessage.setVisibility(View.VISIBLE);
+
         setCalenderView();
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -187,6 +191,9 @@ public class ReservationActivity extends AppCompatActivity {
 
 
     private void setTimeListView() {
+
+
+        warningMessage.setVisibility(View.GONE);
 
         ArrayList<String> itemList = new ArrayList<>();
 

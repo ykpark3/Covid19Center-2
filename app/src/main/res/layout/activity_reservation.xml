@@ -66,6 +66,14 @@
                     android:maxDate="11/19/2021"
                     android:minDate="11/19/2020" />
 
+                <TextView
+                    android:id="@+id/reservation_calenderText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="예약하실 날짜를 선택해주세요."
+                    android:textColor="@android:color/holo_red_dark" />
+
                 <View
                     android:id="@+id/tmpView"
                     android:layout_width="match_parent"
