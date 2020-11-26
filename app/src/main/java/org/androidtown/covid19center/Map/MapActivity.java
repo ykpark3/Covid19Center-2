@@ -70,7 +70,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         locationSource = new FusedLocationSource(this, LOCATTION_PERMISSION_REQUEST_CODE);
         mapFragment.getMapAsync(MapActivity.this);
-
+        //
     }
 
 
