@@ -376,7 +376,7 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
     }
 
     private void updateVirusStartLabel(){
-        String myFormat = "yy/MM/dd"; //In which you need put here
+        String myFormat = "yyyy/MM/dd"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
         startVirusDateTextView.setText(sdf.format(myCalender.getTime()));
         startVirusDateTextView.setTextColor(Color.BLACK);
