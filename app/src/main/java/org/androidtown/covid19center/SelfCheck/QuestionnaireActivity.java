@@ -1,7 +1,6 @@
 package org.androidtown.covid19center.SelfCheck;
 
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,22 +11,36 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.NumberPicker;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.androidtown.covid19center.R;
+import org.androidtown.covid19center.Server.AppManager;
+import org.androidtown.covid19center.Server.QuestionnaireData;
+import org.androidtown.covid19center.Server.QuestionnaireVO;
+import org.androidtown.covid19center.Server.ReservationData;
+import org.androidtown.covid19center.Server.ReservationVO;
+import org.androidtown.covid19center.Server.RetrofitClient;
+import org.androidtown.covid19center.Server.ServiceApi;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
-public class QuestionnarieActivity extends AppCompatActivity implements NumberPicker.OnValueChangeListener {
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class QuestionnaireActivity extends AppCompatActivity implements NumberPicker.OnValueChangeListener {
 
     private EditText countryEditText;
     private TextView entranceDateTextView;
@@ -35,22 +48,33 @@ public class QuestionnarieActivity extends AppCompatActivity implements NumberPi
     private TextView termTextView;
     private TextView startVirusDateTextView;
     private final Calendar myCalender = Calendar.getInstance();
-    private String clinicName;
-    private String clinicReservationTime;
-    private String symptom_start_date;
-    private String visitedDetail;
-    private String contact_relationship;
-    private String contact_period;
-    private String entrance_date;
     private ImageButton backButton;
     private Button nextButton;
     private RadioGroup visitedCheck_radioGroup, contact_radioGroup;
-    private Boolean isVisited, isContected, hasFever, hasMuscle_ache, hasCough, hasSputum, hasRunnyNose, hasDyspnea, hasSoreThroat;
     private CheckBox fever_checkBox, muscle_ache_checkBox, cough_checkBox, sputum_checkBox, runny_nose_checkBox, dyspnea_checkBox, sore_throat_checkBox;
+
+    private Boolean isVisited;
+    private String visitedDetail;
+    private boolean isContacted;
+    private String contact_relationship;
+    private String contact_period;
+    private boolean hasFever, hasMuscle_ache, hasCough, hasSputum, hasRunnyNose, hasDyspnea, hasSoreThroat;
+    private String symptom_start_date;
+    private String entrance_date;
+
+    private String clinicName;
+    private String clinicReservationTime;
+
+    private ServiceApi serviceApi;
+    private int questionnaireSequence;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        serviceApi = RetrofitClient.getClient().create(ServiceApi.class);
+
         setContentView(R.layout.activity_questionnaire);
         setLayoutElement();
         setIntentInfo();
@@ -94,10 +118,9 @@ public class QuestionnarieActivity extends AppCompatActivity implements NumberPi
                 // 서버에 전송하는 코드 작성
                 //
 
+                sendQuestionnaireData(new QuestionnaireData(AppManager.getInstance().getUserId(),isVisited, visitedDetail, isContacted, contact_relationship, contact_period, hasFever, hasMuscle_ache, hasSputum, hasRunnyNose, hasDyspnea, hasSoreThroat, symptom_start_date, entrance_date));
 
-                //Log.d("1607", entrance_date+"\n"+isVisited+"\n"+visitedDetail+"\n"+isContected+"\n"+contact_relationship+"\n"+contact_period+"\n"+hasFever+"\n"+hasMuscle_ache+"\n"+hasCough+"\n"+hasSputum+"\n"+hasRunnyNose+"\n"+hasDyspnea+"\n"+ hasSoreThroat+"\n"+symptom_start_date+"\n"+clinicName+"\n"+clinicReservationTime);
                 Toast.makeText(getApplicationContext(), "눌림", Toast.LENGTH_SHORT).show();
-
 
             }
         });
@@ -132,12 +155,9 @@ public class QuestionnarieActivity extends AppCompatActivity implements NumberPi
         entranceDateTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DatePickerDialog(QuestionnarieActivity.this, date, myCalender.get(Calendar.YEAR), myCalender.get(Calendar.MONTH), myCalender.get(Calendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog(QuestionnaireActivity.this, date, myCalender.get(Calendar.YEAR), myCalender.get(Calendar.MONTH), myCalender.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
-
-
-        //접촉 기간 선택
 
         termTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,19 +169,133 @@ public class QuestionnarieActivity extends AppCompatActivity implements NumberPi
         startVirusDateTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DatePickerDialog(QuestionnarieActivity.this, virusStartDate, myCalender.get(Calendar.YEAR), myCalender.get(Calendar.MONTH), myCalender.get(Calendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog(QuestionnaireActivity.this, virusStartDate, myCalender.get(Calendar.YEAR), myCalender.get(Calendar.MONTH), myCalender.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
 
     }
 
+
+
+
+
+
+    private void sendQuestionnaireData(QuestionnaireData questionnaireData) {
+        Log.d("~~~~~","sendQuestionnaireData");
+
+        Call<ResponseBody> dataCall = serviceApi.sendQuestionnaireData(questionnaireData);
+        dataCall.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                String result = null;
+                try {
+                    Log.d("~~~~~","response"+response.code());
+                    result = response.body().string();
+
+                } catch (IOException e) {
+                    Log.d("~~~~~", String.valueOf(e));
+                    e.printStackTrace();
+                }
+                Log.i("~~~~~","result: "+ result);
+
+                getQuestionnaireSequence();
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.i("~~~~~","fail");
+                if (t instanceof IOException) {
+                    // Handle IO exception, maybe check the network and try again.
+                    Log.i("~~~~~","t"+t);
+                }
+            }
+        });
+    }
+
+
+    protected void getQuestionnaireSequence() {
+        serviceApi.getQuesionnaireVO().enqueue(new Callback<List<QuestionnaireVO>>() {
+            @Override
+            public void onResponse(Call<List<QuestionnaireVO>> call, Response<List<QuestionnaireVO>> response) {
+
+                if (response.isSuccessful()) {
+                    List<QuestionnaireVO> data = response.body();
+
+                    questionnaireSequence = data.get(data.size()-1).getSequence();
+
+                    Log.d("~~~~~","questionnaire sequence: "+ questionnaireSequence);
+
+                    long now = System.currentTimeMillis();
+                    Date nowDate = new Date(now);
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy. MM. dd. hh:mm:ss");
+                    String getTime = simpleDateFormat.format(nowDate);
+
+                    sendReservationData(new ReservationData(
+                            AppManager.getInstance().getUserId(),
+                            questionnaireSequence,
+                            clinicName,
+                            clinicReservationTime.substring(clinicReservationTime.lastIndexOf(" ")),
+                            clinicReservationTime.substring(0, clinicReservationTime.indexOf(",")),
+                            false,
+                            getTime));
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<QuestionnaireVO>> call, Throwable t) {
+                Log.d("~~~~~", "실패: " + t);
+                t.printStackTrace();
+            }
+        });
+    }
+
+
+    private void sendReservationData(ReservationData reservationData) {
+        Log.d("~~~~~","sendReservationData");
+
+        Call<ResponseBody> dataCall = serviceApi.sendReservationData(reservationData);
+        dataCall.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                String result = null;
+                try {
+                    Log.d("~~~~~","response: "+response.code());
+                    result = response.body().string();
+
+                } catch (IOException e) {
+                    Log.d("~~~~~", String.valueOf(e));
+                    e.printStackTrace();
+                }
+                Log.i("~~~~~", "result: "+result);
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.i("~~~~~","fail");
+                if (t instanceof IOException) {
+                    // Handle IO exception, maybe check the network and try again.
+                    Log.i("~~~~~","t"+t);
+                }
+            }
+        });
+    }
+
+
+
+
+
+
+
+
     RadioGroup.OnCheckedChangeListener contactRadioGroupButtonChangeListener = new RadioGroup.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {
             if(checkedId == R.id.questionnarie_contact_radioButton_true){
-                isContected = true;
+                isContacted = true;
             } else if(checkedId == R.id.questionnarie_contact_radioButton_false){
-                isContected = false;
+                isContacted = false;
             }
         }
     };
@@ -175,6 +309,7 @@ public class QuestionnarieActivity extends AppCompatActivity implements NumberPi
             } else if(checkedId == R.id.questionnarie_visited_radioButton_false){
                 isVisited = false;
             }
+
 
         }
     };
@@ -233,7 +368,7 @@ public class QuestionnarieActivity extends AppCompatActivity implements NumberPi
     }
 
     private void updateLabel(){
-        String myFormat = "yy/MM/dd"; //In which you need put here
+        String myFormat = "yyyy/MM/dd"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
         entranceDateTextView.setText(sdf.format(myCalender.getTime()));
         entranceDateTextView.setTextColor(Color.BLACK);
@@ -241,7 +376,7 @@ public class QuestionnarieActivity extends AppCompatActivity implements NumberPi
     }
 
     private void updateVirusStartLabel(){
-        String myFormat = "yy/MM/dd"; //In which you need put here
+        String myFormat = "yyyy/MM/dd"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
         startVirusDateTextView.setText(sdf.format(myCalender.getTime()));
         startVirusDateTextView.setTextColor(Color.BLACK);

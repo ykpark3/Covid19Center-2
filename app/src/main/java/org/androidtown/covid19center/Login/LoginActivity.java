@@ -2,27 +2,24 @@ package org.androidtown.covid19center.Login;
 
 import android.content.Context;
 import android.content.Intent;
-import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.androidtown.covid19center.Main.MainActivity;
 import org.androidtown.covid19center.R;
-import org.androidtown.covid19center.Server.CalendarActivity;
+import org.androidtown.covid19center.Hospital.HospitalMainActivity;
+import org.androidtown.covid19center.Server.AppManager;
 import org.androidtown.covid19center.Server.RetrofitClient;
 import org.androidtown.covid19center.Server.ServiceApi;
-import org.androidtown.covid19center.Server.UsersData;
+import org.androidtown.covid19center.Server.UsersVO;
 
 import java.util.List;
 
@@ -63,22 +60,8 @@ public class LoginActivity extends AppCompatActivity {
                 String id = idEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
 
-                Log.d("~~~~~","id:" +id);
-                Log.d("~~~~~~","password:"+password);
-
-                //startLogin(new UsersData(id, password));
                 startLogin(id, password);
-            }
-        });
 
-        Button button = findViewById(R.id.button);
-        button.setOnClickListener(new Button.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                Log.d("~~~~~","data 받는 button click");
-                Intent intent = new Intent(LoginActivity.this, CalendarActivity.class);
-                startActivity(intent);
             }
         });
 
@@ -123,15 +106,13 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void startLogin(String id, String password) {
-        service.getUserData(id, password).enqueue(new Callback<List<UsersData>>() {
+        service.getUserData(id, password).enqueue(new Callback<List<UsersVO>>() {
             @Override
-            public void onResponse(Call<List<UsersData>> call, Response<List<UsersData>> response) {
+            public void onResponse(Call<List<UsersVO>> call, Response<List<UsersVO>> response) {
                 boolean isLoginPossible = false;
 
                 if(response.isSuccessful()) {
-                    List<UsersData> data = response.body();
-
-                    Log.d("~~~~~","성공");
+                    List<UsersVO> data = response.body();
 
                     for(int i=0; i<data.size(); i++) {
                         if(data.get(i).getId().equals(id) && data.get(i).getPassword().equals(password)) {
@@ -139,8 +120,10 @@ public class LoginActivity extends AppCompatActivity {
                             Toast toast = Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT);
                             toast.show();
 
+                            AppManager.getInstance().setUserId(id);   // user id 저장하기
+
                             if(id.equals("hhh")) {
-                                Intent intent = new Intent(LoginActivity.this, CalendarActivity.class);
+                                Intent intent = new Intent(LoginActivity.this, HospitalMainActivity.class);
                                 startActivity(intent);
 
                                 finish();
@@ -156,7 +139,7 @@ public class LoginActivity extends AppCompatActivity {
                             break;
                         }
                     }
-                    Log.d("~~~~~","isloginpossible:"+isLoginPossible);
+
                     if(!isLoginPossible) {
 
                         Log.d("~~~~~","로그인 정보 확인 필요");
@@ -173,7 +156,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<UsersData>> call, Throwable t) {
+            public void onFailure(Call<List<UsersVO>> call, Throwable t) {
                 Log.d("~~~~~","실패: "+ t);
                 t.printStackTrace();
 
