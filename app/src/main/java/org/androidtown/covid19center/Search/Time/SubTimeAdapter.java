@@ -19,7 +19,6 @@ public class SubTimeAdapter extends BaseAdapter {
     ArrayList<SubTimeItem> items = new ArrayList<SubTimeItem>();
     Context context;
 
-
     public SubTimeAdapter(Context context) {
 
         this.context = context;
@@ -45,11 +44,10 @@ public class SubTimeAdapter extends BaseAdapter {
 
         SubTimeItemView view = null;
 
-
         if (convertView == null) {
             view = new SubTimeItemView(context);
-            view.setBackgroundResource(R.color.colorLightGray);
-            view.setPadding(8, 8, 8, 8);
+            view.setBackgroundResource(R.drawable.background_gray_rectangle);
+            view.setPadding(8, 9, 8, 8);
             view.setGravity(Gravity.CENTER);
         } else {
 

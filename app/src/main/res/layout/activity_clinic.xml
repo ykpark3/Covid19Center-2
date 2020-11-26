@@ -50,10 +50,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="30dp"
-                android:fontFamily="@font/fontstyle"
                 android:text="대전성모병원"
+                android:fontFamily="@font/nanumsquare_b"
                 android:textColor="@color/colorBlack"
-                android:textSize="27dp" />
+                android:textSize="20dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -69,36 +69,33 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="15dp"
-                android:fontFamily="@font/fontstyle"
                 android:text="주소"
                 android:textColor="@color/colorBlack"
-                android:textSize="20dp" />
+                android:textSize="15dp" />
 
             <TextView
                 android:id="@+id/text_clinic_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="13dp"
                 android:layout_marginRight="20dp"
-                android:fontFamily="@font/fontstyle"
                 android:text="성모병원주소"
                 android:textColor="@color/colorBlack"
-                android:textSize="17dp" />
+                android:textSize="18dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="25dp"
-                android:fontFamily="@font/fontstyle"
                 android:text="전화번호"
                 android:textColor="@color/colorBlack"
-                android:textSize="20dp" />
+                android:textSize="15dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
@@ -107,11 +104,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="20dp"
-
-                    android:fontFamily="@font/fontstyle"
                     android:text="042-331-0882"
                     android:textColor="@color/colorBlack"
-                    android:textSize="17dp" />
+                    android:textSize="18dp" />
 
                 <ImageButton
                     android:id="@+id/callButton"
@@ -154,17 +149,16 @@
     </ScrollView>
 
 
-        <Button
-            android:foreground="?selectableItemBackground"
-            android:id="@+id/button_book"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_gravity="bottom"
-            android:background="@color/colorMain"
-            android:fontFamily="@font/fontstyle"
-            android:text="예약하기"
-            android:textColor="@color/colorLightGray"
-            android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/button_book"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/colorMain"
+        android:text="예약하기"
+        android:textSize="20dp"
+        android:textColor="@color/colorWhite"/>
 
 </LinearLayout>
+

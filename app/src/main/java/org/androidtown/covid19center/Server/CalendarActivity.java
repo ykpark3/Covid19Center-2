@@ -66,9 +66,9 @@ public class CalendarActivity extends AppCompatActivity {
 
                     AppManager.getInstance().setReservationVOArrayList(reservationVOArrayList);
 
-                    Log.d("~~~~~","0번째 userid:  " + reservationVOArrayList.get(0).user_id);
-                    Log.d("~~~~~","1번째 userid:  " + reservationVOArrayList.get(1).user_id);
-                    Log.d("~~~~~","list size:"+reservationVOArrayList.size());
+//                    Log.d("~~~~~","0번째 userid:  " + reservationVOArrayList.get(0).user_id);
+//                    Log.d("~~~~~","1번째 userid:  " + reservationVOArrayList.get(1).user_id);
+//                    Log.d("~~~~~","list size:"+reservationVOArrayList.size());
 
                 }
             }

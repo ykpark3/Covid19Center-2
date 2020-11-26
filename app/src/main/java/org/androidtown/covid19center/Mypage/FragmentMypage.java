@@ -32,7 +32,7 @@ public class FragmentMypage extends Fragment {
             public void onClick(View view) {
                 //Qr코드 생성 activity로 intent
                 //@@@이부분 예약 내역 activity로 수정하기!!!!!
-                Intent intent = new Intent(getActivity(), CreateQr.class);
+                Intent intent = new Intent(getActivity(), CheckReservationActivity.class);
                 startActivity(intent);
             }
         });
@@ -41,7 +41,8 @@ public class FragmentMypage extends Fragment {
             @Override
             public void onClick(View view) {
                 //진료기록 activity로 intent
-                Intent intent = new Intent(getActivity(), ScanQr.class);
+                //Intent intent = new Intent(getActivity(), ScanQr.class);
+                Intent intent = new Intent(getActivity(), MedicalRecordActivity.class);
                 startActivity(intent);
             }
         });

@@ -25,9 +25,12 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+
 import com.google.android.gms.common.internal.service.Common;
+
 import com.naver.maps.map.MapFragment;
 
+import org.androidtown.covid19center.Main.MainActivity;
 import org.androidtown.covid19center.Map.LocationConsts;
 import org.androidtown.covid19center.Map.MapActivity;
 import org.androidtown.covid19center.QrCode.CreateQr;
@@ -42,6 +45,7 @@ public class FragmentSearch extends Fragment implements LocationListener{
     private View view;
     private TextView search_textView;
     private Button openApiBtn;
+
     private LocationManager locationManager;
     private Button qrBtn;
 
@@ -49,6 +53,7 @@ public class FragmentSearch extends Fragment implements LocationListener{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_search, container, false);
+
 
 
         return view;
@@ -173,4 +178,5 @@ public class FragmentSearch extends Fragment implements LocationListener{
     public void onProviderDisabled(String provider) {
 
     }
+
 }
