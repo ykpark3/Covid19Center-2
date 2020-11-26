@@ -73,7 +73,6 @@ public class ReservationActivity extends AppCompatActivity {
                 passTime = Integer.parseInt(time.substring(0, 2));
             }
 
-
             if (mSelectedItems.get(str, false)) {
                 mSelectedItems.put(str, false);
                 Log.d("0131", String.valueOf(str));
@@ -96,13 +95,11 @@ public class ReservationActivity extends AppCompatActivity {
         }
     };
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         reservationTime = new ArrayList<>();
-
         views = new ArrayList<>();
         timeViews = new ArrayList<>();
         setLayoutElement();
@@ -112,7 +109,6 @@ public class ReservationActivity extends AppCompatActivity {
         subTimeAdapter = new SubTimeAdapter(getApplicationContext());
         timeStringBuffer = new StringBuffer();
         canNextPage = false;
-
     }
 
     @Override
@@ -120,11 +116,10 @@ public class ReservationActivity extends AppCompatActivity {
         super.onStart();
     }
 
-
     private void setLayoutElement() {
         setContentView(R.layout.activity_reservation);
         clinicName = findViewById(R.id.reservation_clinicName);
-        clinicName.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 22);
+        clinicName.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
         calendarView = findViewById(R.id.reservation_calendarView);
         reservationButton = findViewById(R.id.reservation_button);
         warningMessage = findViewById(R.id.reservation_warning_message);
@@ -164,7 +159,6 @@ public class ReservationActivity extends AppCompatActivity {
 
     private void setCalenderView() {
 
-
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
@@ -194,7 +188,6 @@ public class ReservationActivity extends AppCompatActivity {
 
     private void setTimeListView() {
 
-
         ArrayList<String> itemList = new ArrayList<>();
 
         itemList.add("08:00");
@@ -213,14 +206,11 @@ public class ReservationActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
     }
 
-
     private void setGridView(int time) {
-
 
         GridView gridView = (GridView) findViewById(R.id.reservation_gridView);
         listTime = new ArrayList<>();
         listTime.clear();
-
 
         warningMessage.setText("예약 가능한 시간만 표시됩니다.");
 
@@ -246,14 +236,13 @@ public class ReservationActivity extends AppCompatActivity {
                 canNextPage = true;
                 timeViews.add(view);
 
-                view.setBackgroundResource(R.color.colorMain);
+                view.setBackgroundResource(R.drawable.background_gray_rectangle);
 
                 if (timeViews.size() > 1) {
-                    view.setBackgroundResource(R.color.colorMain);
-                    timeViews.get(0).setBackgroundResource(R.color.colorLightGray);
+                    view.setBackgroundResource(R.drawable.background_purple_rectangle);
+                    timeViews.get(0).setBackgroundResource(R.drawable.background_gray_rectangle);
                     timeViews.clear();
                     timeViews.add(view);
-
                 }
             }
         });
@@ -270,14 +259,11 @@ public class ReservationActivity extends AppCompatActivity {
 
         for (int i = 0; i < plusTime.length; i++) {
 
-
             timeString = String.valueOf(time + plusTime[i]);
             timeStringBuffer.append(timeString);
 
-
             if (Integer.parseInt(timeString) < 1000) {
                 timeStringBuffer.insert(0, "0");
-
             }
 
             timeStringBuffer.insert(2, ":");

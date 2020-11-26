@@ -265,7 +265,6 @@
 
             </LinearLayout>
 
-
         </LinearLayout>
 
     </ScrollView>
@@ -277,9 +276,8 @@
         android:layout_gravity="bottom"
         android:layout_weight="1"
         android:background="@color/colorMain"
-        android:fontFamily="@font/fontstyle"
-        android:text="예약하기"
-        android:textColor="@color/colorLightGray"
+        android:text="접수하기"
+        android:textColor="@color/colorWhite"
         android:textSize="20dp" />
 
 </LinearLayout>

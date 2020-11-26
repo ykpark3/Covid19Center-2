@@ -32,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="예약 페이지"
+                android:text="날짜 및 시간 선택"
                 android:textColor="@android:color/black"
                 android:textSize="15dp" />
 
@@ -49,13 +49,14 @@
 
                 <TextView
                     android:id="@+id/reservation_clinicName"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="15dp"
                     android:text="건국대학교병원"
+                    android:fontFamily="@font/nanumsquare_b"
                     android:textColor="@color/colorBlack"
-                    tools:textSize="22sp" />
+                    tools:textSize="20dp" />
 
                 <CalendarView
                     android:id="@+id/reservation_calendarView"
@@ -68,10 +69,18 @@
                 <View
                     android:id="@+id/tmpView"
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:background="@color/colorLightGray" />
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@android:color/darker_gray" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:text="예약 가능한 시간을 선택해 주세요."
+                    android:textColor="@color/colorBlack" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/time_listView"
@@ -96,6 +105,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:layout_marginRight="10dp"
                     android:columnWidth="10dp"
                     android:horizontalSpacing="10dp"
@@ -115,8 +125,7 @@
         android:layout_gravity="bottom"
         android:layout_weight="1"
         android:background="@color/colorMain"
-        android:fontFamily="@font/fontstyle"
         android:text="예약하기"
-        android:textColor="@color/colorLightGray"
+        android:textColor="@color/colorWhite"
         android:textSize="20dp" />
 </LinearLayout>
