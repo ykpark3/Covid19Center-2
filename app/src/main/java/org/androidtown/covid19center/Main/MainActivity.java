@@ -1,7 +1,9 @@
 package org.androidtown.covid19center.Main;
 
 
+
 import android.content.Intent;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -19,7 +21,9 @@ import com.naver.maps.map.NaverMapSdk;
 import org.androidtown.covid19center.DataBase.AppDatabase;
 import org.androidtown.covid19center.DataBase.Clinic;
 import org.androidtown.covid19center.Hospital.FragmentHospital;
+
 import org.androidtown.covid19center.Map.LocationConsts;
+
 import org.androidtown.covid19center.Mypage.FragmentMypage;
 import org.androidtown.covid19center.R;
 import org.androidtown.covid19center.Search.FragmentSearch;
@@ -48,7 +52,9 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
     private String address;
     private AppDatabase db;
     private long lastTimeBackPressed;
+
     private int count;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
         setBottomNavigation();
         // 메모장 저장
         saveData();
+
         count = 0; // 위치권한카운트
     }
 
@@ -206,6 +213,7 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
         Toast.makeText(this, "'뒤로' 버튼을 한 번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
     }
 
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -223,10 +231,6 @@ public class MainActivity extends AppCompatActivity implements OnBackPressedList
             Intent intent = new Intent(this, SearchActivity.class);
             startActivity(intent);
         }
-
-
-
-
     }
 
 }

@@ -37,7 +37,9 @@ public class ReservationActivity extends AppCompatActivity {
     private TextView clinicName;
     private TextView clinicDate;
     private TextView warningMessage;
+
     private TextView reservaitionWarningText;
+
     private Button reservationButton;
     private ImageButton backButton;
     private CalendarView calendarView;
@@ -101,6 +103,7 @@ public class ReservationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         reservationTime = new ArrayList<>();
+
         views = new ArrayList<>();
         timeViews = new ArrayList<>();
         setLayoutElement();
@@ -121,10 +124,12 @@ public class ReservationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_reservation);
         clinicName = findViewById(R.id.reservation_clinicName);
         clinicName.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
+
         calendarView = findViewById(R.id.reservation_calendarView);
         reservationButton = findViewById(R.id.reservation_button);
         warningMessage = findViewById(R.id.reservation_warning_message);
         backButton = findViewById(R.id.reservation_backButton);
+
         reservaitionWarningText = findViewById(R.id.reservation_warning_message);
         warningMessage.setVisibility(View.VISIBLE);
 
@@ -168,7 +173,11 @@ public class ReservationActivity extends AppCompatActivity {
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 month += 1;
                 reservationTime.clear();
-                reservationTime.add(String.format("%d년 %d월 %d일", year, month, dayOfMonth));
+
+                //reservationTime.add(String.format("%d년 %d월 %d일", year, month, dayOfMonth));
+
+                reservationTime.add(String.format("%d/%d/%d", year, month, dayOfMonth));
+
 
                 setTimeListView();
             }
@@ -176,6 +185,7 @@ public class ReservationActivity extends AppCompatActivity {
     }
 
     private void setIntentInfomation() {
+
         Intent intent = getIntent(); // 데이터 수신
 
         stringTemp = intent.getExtras().getString("clinicName");
@@ -191,7 +201,6 @@ public class ReservationActivity extends AppCompatActivity {
 
 
     private void setTimeListView() {
-
 
         warningMessage.setVisibility(View.GONE);
 
@@ -229,6 +238,7 @@ public class ReservationActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+
                 if(position == 0)
                 {
                     reservationTime.add(reservationTime.get(0)+", "+reservationTime.get(1)+"00");
@@ -243,6 +253,7 @@ public class ReservationActivity extends AppCompatActivity {
                 canNextPage = true;
                 timeViews.add(view);
 
+
                 view.setBackgroundResource(R.drawable.background_gray_rectangle);
 
                 if (timeViews.size() > 1) {
@@ -250,6 +261,7 @@ public class ReservationActivity extends AppCompatActivity {
                     timeViews.get(0).setBackgroundResource(R.drawable.background_gray_rectangle);
                     timeViews.clear();
                     timeViews.add(view);
+
                 }
             }
         });
@@ -269,8 +281,10 @@ public class ReservationActivity extends AppCompatActivity {
             timeString = String.valueOf(time + plusTime[i]);
             timeStringBuffer.append(timeString);
 
+
             if (Integer.parseInt(timeString) < 1000) {
                 timeStringBuffer.insert(0, "0");
+
             }
 
             timeStringBuffer.insert(2, ":");
@@ -280,6 +294,7 @@ public class ReservationActivity extends AppCompatActivity {
             stringTime.add(timeString);
 
             reservationTime.add(1,String.valueOf(timeStringBuffer.substring(0,3)));
+
             timeStringBuffer.delete(0, 5);
         }
 
