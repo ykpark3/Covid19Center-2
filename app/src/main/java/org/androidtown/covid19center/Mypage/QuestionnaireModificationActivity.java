@@ -80,15 +80,22 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+        Log.d("~~~~~","onCreate");
+
         serviceApi = RetrofitClient.getClient().create(ServiceApi.class);
 
         setContentView(R.layout.activity_questionnaire_modification);
 
         setLayoutElement();
+
+        getQuesionnaire();
     }
 
 
     private void setLayoutElement(){
+        Log.d("~~~~~","setLayoutElement");
+
         visitedCheck_radioGroup = findViewById(R.id.questionnarie_visited_radioGroup);
         visitedCheck_radioGroup.setOnCheckedChangeListener(visitedCheckRadioGroupButtonChangeListener);
         visitedTrue_radioButton = findViewById(R.id.questionnarie_visited_radioButton_true);
@@ -132,6 +139,7 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
                 /** toDoctor 내용 추가해주기
                  *
                  */
+                /*
                 updateQuestionnaireData(new QuestionnaireData(AppManager.getInstance().getUserId(),
                         isVisited,
                         visitedDetail,
@@ -148,6 +156,8 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
                         symptom_start_date,
                         "toDoctor"));
 
+
+                 */
                 Toast.makeText(getApplicationContext(), "눌림", Toast.LENGTH_SHORT).show();
 
             }
@@ -206,7 +216,7 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
 
 
     private void updateQuestionnaireData(QuestionnaireData questionnaireData) {
-        Log.d("~~~~~", "sendQuestionnaireData");
+        Log.d("~~~~~", "updateQuestionnaireData");
 
         Call<ResponseBody> dataCall = serviceApi.sendQuestionnaireData(questionnaireData);
         dataCall.enqueue(new Callback<ResponseBody>() {
@@ -223,7 +233,7 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
                 }
                 Log.i("~~~~~", "result: " + result);
 
-                getQuesionnaire();
+
             }
 
             @Override
@@ -282,6 +292,22 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
                     symptom_start_date = data.get(data.size() - 1).getSymptom_start_date();
                     toDoctor = data.get(data.size() - 1).getToDoctor();
 
+                    Log.d("~~~~~","sequence: "+sequence +"\n"+
+                            "user_id: "+user_id +"\n"+
+                            "visited: "+visited +"\n"+
+                            "visitedDetail: "+visitedDetail +"\n"+
+                            "entrance_date: "+entrance_date +"\n"+
+                            "contact: "+contact +"\n"+
+                            "contact_relationship: "+contact_relationship +"\n"+
+                            "fever: "+fever +"\n"+
+                            "muscle_ache: "+muscle_ache +"\n"+
+                            "sputum: "+sputum +"\n"+
+                            "runny_nose: "+runny_nose +"\n"+
+                            "dyspnea: "+dyspnea +"\n"+
+                            "sore_throat: "+sore_throat +"\n"+
+                            "symptom_start_date: "+symptom_start_date +"\n"+
+                            "toDoctor: "+toDoctor +"\n");
+
 
                     /** int -> boolean 형 변환
                      *
@@ -295,7 +321,14 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
                     hasDyspnea = dyspnea != 0;
                     hasSoreThroat = sore_throat != 0;
 
-                    Log.d("~~~~~","sequence: "+sequence);
+                    Log.d("~~~~~","isVisited: "+isVisited +"\n"+
+                                    "isContacted: "+isContacted +"\n"+
+                                    "hasFever: "+hasFever +"\n"+
+                                    "hasMuscle_ache: "+hasMuscle_ache +"\n"+
+                                    "hasSputum: "+hasSputum +"\n"+
+                                    "hasRunnyNose: "+hasRunnyNose +"\n"+
+                                    "hasDyspnea: "+hasDyspnea +"\n"+
+                                    "hasSoreThroat: "+hasSoreThroat +"\n" );
 
                     setQuestionnaire();
                 }
@@ -309,7 +342,6 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
         });
 
     }
-
 
 
     private void setQuestionnaire() {
@@ -391,6 +423,8 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
 
     private void setCheckedInfo(){
 
+        Log.d("~~~~~","setCheckedInfo");
+
         if(fever_checkBox.isChecked() == true){
             hasFever = true;
         } else{
@@ -446,6 +480,7 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
      */
 
     private void updateLabel(){
+        Log.d("~~~~~","updateLabel");
         String myFormat = "yyyy/MM/dd"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
         entranceDateTextView.setText(sdf.format(myCalender.getTime()));
@@ -454,6 +489,8 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
     }
 
     private void updateVirusStartLabel(){
+        Log.d("~~~~~","updateVirusStartLabel");
+
         String myFormat = "yyyy/MM/dd"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
         startVirusDateTextView.setText(sdf.format(myCalender.getTime()));
@@ -463,12 +500,16 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
 
     @Override
     public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+
+        Log.d("~~~~~","onValueChange");
         termTextView.setText(String.valueOf(newVal)+ "일");
         termTextView.setTextColor(Color.BLACK);
         contact_period = String.valueOf(newVal);
     }
 
     public void showNumberPicker(View view, String title, String subtitle, int maxvalue, int minvalue, int step, int defvalue){
+
+        Log.d("~~~~~","showNumberPicker");
         NumberpickerDialog newFragment = new NumberpickerDialog();
 
         //Dialog에는 bundle을 이용해서 파라미터를 전달한다

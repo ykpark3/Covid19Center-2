@@ -1,6 +1,7 @@
 package org.androidtown.covid19center.SelfCheck;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.androidtown.covid19center.Mypage.QuestionnaireModificationActivity;
 import org.androidtown.covid19center.R;
 import org.androidtown.covid19center.Server.AppManager;
 import org.androidtown.covid19center.Server.QuestionnaireData;
@@ -189,6 +191,7 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
         });
 
     }
+
 
 
 
