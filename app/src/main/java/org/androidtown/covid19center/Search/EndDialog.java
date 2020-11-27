@@ -18,11 +18,13 @@ import androidx.annotation.NonNull;
 import org.androidtown.covid19center.R;
 import org.androidtown.covid19center.SelfCheck.QuestionnaireActivity;
 
+import java.util.ArrayList;
+
 
 public class EndDialog extends Dialog implements View.OnClickListener {
 
     private Context mContext;
-
+    private ArrayList<String> clinicInfoList;
     private String timeMessage;
     private String clinicMessage;
     private TextView textView_clinic_message;
@@ -30,7 +32,7 @@ public class EndDialog extends Dialog implements View.OnClickListener {
     private TextView textView_message;
     private TextView btn_ok;
 
-    public EndDialog(@NonNull Context context, String time, String clinic) {
+    public EndDialog(@NonNull Context context, String time, String clinic, ArrayList<String> clinicInfoList) {
 
         super(context);
 
@@ -39,6 +41,10 @@ public class EndDialog extends Dialog implements View.OnClickListener {
         timeMessage = time;
 
         clinicMessage = clinic;
+
+        this.clinicInfoList = new ArrayList<>();
+
+        this.clinicInfoList = clinicInfoList;
 
     }
 
@@ -52,8 +58,6 @@ public class EndDialog extends Dialog implements View.OnClickListener {
 
         setContentView(R.layout.option_codetype_dialog);
 
-
-
         btn_cancel = (TextView) findViewById(R.id.btn_cancel);
         btn_ok = (TextView) findViewById(R.id.btn_ok);
         textView_message = (TextView) findViewById(R.id.message_textView);
@@ -64,7 +68,6 @@ public class EndDialog extends Dialog implements View.OnClickListener {
         btn_cancel.setOnClickListener(this);
 
         btn_ok.setOnClickListener(this);
-
     }
 
 
@@ -93,6 +96,8 @@ public class EndDialog extends Dialog implements View.OnClickListener {
 
                 intent.putExtra("clinicName", clinicMessage);
                 intent.putExtra("clinicTime", timeMessage);
+                intent.putExtra("clinicAddress", clinicInfoList.get(2));
+                intent.putExtra("clinicCallNumber", clinicInfoList.get(3));
 
                 mContext.startActivity(intent);
 

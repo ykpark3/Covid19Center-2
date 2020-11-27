@@ -37,20 +37,21 @@ public class ReservationActivity extends AppCompatActivity {
     private TextView clinicName;
     private TextView clinicDate;
     private TextView warningMessage;
-
     private TextView reservaitionWarningText;
-
     private Button reservationButton;
     private ImageButton backButton;
     private CalendarView calendarView;
     private ArrayList<String> reservationTime;
     private String reservationTimeString;
+    private String passClinicAddress;
+    private String passClinicCallNumber;
     private String stringTemp;
     private RecyclerView listView;
     private ArrayList<View> views;
     private ArrayList<View> timeViews;
     private boolean canNextPage;
     private MyAdapter adapter;
+    private ArrayList<String> passInfoList;
     private SubTimeAdapter subTimeAdapter;
     private final SparseBooleanArray mSelectedItems = new SparseBooleanArray(0);
     private ArrayList<String> listTime;
@@ -104,6 +105,7 @@ public class ReservationActivity extends AppCompatActivity {
 
         reservationTime = new ArrayList<>();
 
+        passInfoList = new ArrayList<>();
         views = new ArrayList<>();
         timeViews = new ArrayList<>();
         setLayoutElement();
@@ -152,7 +154,18 @@ public class ReservationActivity extends AppCompatActivity {
 
                     reservationTimeString = reservationTime.get(reservationTime.size()-1);
 
-                    mEndDialog = new EndDialog(ReservationActivity.this, reservationTimeString, String.valueOf(clinicName.getText()));
+                    passInfoList.add(reservationTimeString);
+                    passInfoList.add(String.valueOf(clinicName.getText()));
+                    passInfoList.add(passClinicAddress);
+                    passInfoList.add(passClinicCallNumber);
+
+
+                    Log.d("0154", String.valueOf(passInfoList.get(0)));
+                    Log.d("0154", String.valueOf(passInfoList.get(1)));
+                    Log.d("0154", String.valueOf(passInfoList.get(2)));
+                    Log.d("0154", String.valueOf(passInfoList.get(3)));
+
+                    mEndDialog = new EndDialog(ReservationActivity.this, reservationTimeString, String.valueOf(clinicName.getText()),passInfoList);
 
                     mEndDialog.setCancelable(false);
 
@@ -178,7 +191,6 @@ public class ReservationActivity extends AppCompatActivity {
 
                 reservationTime.add(String.format("%d/%d/%d", year, month, dayOfMonth));
 
-
                 setTimeListView();
             }
         });
@@ -187,6 +199,9 @@ public class ReservationActivity extends AppCompatActivity {
     private void setIntentInfomation() {
 
         Intent intent = getIntent(); // 데이터 수신
+
+        passClinicAddress = intent.getExtras().getString("clinicAddress");
+        passClinicCallNumber = intent.getExtras().getString("clinicCallNumber");
 
         stringTemp = intent.getExtras().getString("clinicName");
         clinicName.setText(stringTemp);

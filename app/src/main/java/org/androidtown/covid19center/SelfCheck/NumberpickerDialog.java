@@ -4,10 +4,13 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.FragmentManager;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.NumberPicker;
 
 import androidx.fragment.app.DialogFragment;
+
+import org.androidtown.covid19center.R;
 
 public class NumberpickerDialog extends DialogFragment {
     private NumberPicker.OnValueChangeListener valueChangeListener;
@@ -39,6 +42,7 @@ public class NumberpickerDialog extends DialogFragment {
 
         numberPicker.setValue((defvalue - minvalue) / step);
         numberPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+        numberPicker.setBackgroundColor(Color.BLACK);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
