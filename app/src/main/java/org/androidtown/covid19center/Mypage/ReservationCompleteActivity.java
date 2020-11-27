@@ -42,6 +42,8 @@ public class ReservationCompleteActivity extends AppCompatActivity {
     private final String symptomListExplain = "관련 증상 : ";
     private String symptomDate; // 증상 날짜
     private final String symptomDateExplain = "증상 날짜 : ";
+    private boolean hasFever, hasMuscle_ache, hasCough, hasSputum, hasRunnyNose, hasDyspnea, hasSoreThroat;
+    private StringBuffer symptoms;
     private ImageButton callButton;
     private TextView nameTextView;
     private TextView dateTextView;
@@ -99,15 +101,59 @@ public class ReservationCompleteActivity extends AppCompatActivity {
 //        contactCheck =
 //        contactRelationShip =
 //        contactRelationDate =
-//        symptomList =
+//        hasFever =
+//        hasMuscle_ache =
+//        hasCough =
+//        hasSputum =
+//        hasRunnyNose =
+//        hasDyspnea =
+//        hasSoreThroat =
 //        symptomDate =
-//        if(symptomList.length() == 0){ // 이건 증상들 저장해야함.
-//            symptomCheck = false;
-//        } else{
-//            symptomCheck = true;
-//        }
+
         // 다 받은 후
+        changeSymptomsToString();// 실행 바람
         setElementInfo(); //실행 바람
+    }
+
+    private void changeSymptomsToString(){
+        symptoms = new StringBuffer();
+
+        if(hasFever){
+            symptoms.append("37.5도 이상 열,");
+        }
+
+        if(hasMuscle_ache){
+            symptoms.append("전신통/근육통,");
+        }
+
+        if(hasCough){
+            symptoms.append("기침,");
+        }
+
+        if(hasSputum){
+            symptoms.append("가래,");
+        }
+
+        if(hasRunnyNose){
+            symptoms.append("콧물,");
+        }
+
+        if(hasDyspnea){
+            symptoms.append("호흡곤란,");
+        }
+
+        if(hasSoreThroat){
+            symptoms.append("인후통,");
+        }
+
+        // 마지막 쉼표 지워주기
+        if(symptoms.length() != 0){
+            symptoms.deleteCharAt(symptoms.length()-1);
+            symptomCheck = true;
+        } else{
+            symptomCheck = false;
+        }
+
     }
 
     private void setElement(){
@@ -161,7 +207,7 @@ public class ReservationCompleteActivity extends AppCompatActivity {
 
         if(symptomCheck == true){
             symptomYesOrNoTextView.setText("있음");
-            symptomListTextView.setText(symptomListExplain + symptomList);
+            symptomListTextView.setText(symptomListExplain + symptoms);
             symptomDateTextView.setText(symptomDateExplain + symptomDate);
             symptomListTextView.setVisibility(View.VISIBLE);
             symptomDateTextView.setVisibility(View.VISIBLE);
