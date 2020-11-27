@@ -43,7 +43,7 @@ public class ManagementPopupActivity extends AppCompatActivity {
                 //@@@@@해야할것!!
                 //해당 환자 visited값 true로 변경하고
                 //버튼 비활성화 하기
-                list.get(position).setVisited(true);
+                list.get(position).setVisited(1);
 
                 Intent intent2 = new Intent(activity, ReservationManagementActivity.class);
                 intent2.putExtra("modifiedList", list);

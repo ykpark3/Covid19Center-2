@@ -48,8 +48,8 @@ public class SubTimeAdapter extends BaseAdapter {
 
         if (convertView == null) {
             view = new SubTimeItemView(context);
-            view.setBackgroundResource(R.color.colorLightGray);
-            view.setPadding(8, 8, 8, 8);
+            view.setBackgroundResource(R.drawable.background_gray_rectangle);
+            view.setPadding(8, 9, 8, 8);
             view.setGravity(Gravity.CENTER);
         } else {
 

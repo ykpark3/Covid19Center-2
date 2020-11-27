@@ -6,6 +6,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,11 +16,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.androidtown.covid19center.Main.MainActivity;
 import org.androidtown.covid19center.R;
+
 import org.androidtown.covid19center.Hospital.HospitalMainActivity;
 import org.androidtown.covid19center.Server.AppManager;
 import org.androidtown.covid19center.Server.RetrofitClient;
 import org.androidtown.covid19center.Server.ServiceApi;
 import org.androidtown.covid19center.Server.UsersVO;
+
 
 import java.util.List;
 
@@ -61,7 +64,6 @@ public class LoginActivity extends AppCompatActivity {
                 String password = passwordEditText.getText().toString();
 
                 startLogin(id, password);
-
             }
         });
 
@@ -106,6 +108,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void startLogin(String id, String password) {
+
         service.getUserData(id, password).enqueue(new Callback<List<UsersVO>>() {
             @Override
             public void onResponse(Call<List<UsersVO>> call, Response<List<UsersVO>> response) {
@@ -113,6 +116,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 if(response.isSuccessful()) {
                     List<UsersVO> data = response.body();
+
 
                     for(int i=0; i<data.size(); i++) {
                         if(data.get(i).getId().equals(id) && data.get(i).getPassword().equals(password)) {
@@ -124,6 +128,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             if(id.equals("hhh")) {
                                 Intent intent = new Intent(LoginActivity.this, HospitalMainActivity.class);
+
                                 startActivity(intent);
 
                                 finish();
@@ -156,6 +161,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             @Override
+
             public void onFailure(Call<List<UsersVO>> call, Throwable t) {
                 Log.d("~~~~~","실패: "+ t);
                 t.printStackTrace();

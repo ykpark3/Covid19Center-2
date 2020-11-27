@@ -28,7 +28,7 @@ public class HospitalMainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hospital_main);
 
-        Log.d("~~~~~","calendarActivity oncreate");
+        Log.d("~~~~~","HospitalMainActivity oncreate");
 
         serviceApi = RetrofitClient.getClient().create(ServiceApi.class);
 
@@ -58,7 +58,7 @@ public class HospitalMainActivity extends FragmentActivity {
                 String hospital_name;
                 String time;
                 String date;
-                boolean visited;
+                int visited;
                 String completion_time;
 
 
