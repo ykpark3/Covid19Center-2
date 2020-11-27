@@ -42,7 +42,7 @@ public class NumberpickerDialog extends DialogFragment {
 
         numberPicker.setValue((defvalue - minvalue) / step);
         numberPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
-        numberPicker.setBackgroundColor(Color.BLACK);
+        numberPicker.setBackgroundColor(Color.parseColor("#7c80ee"));
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
