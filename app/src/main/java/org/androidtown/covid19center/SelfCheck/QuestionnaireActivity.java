@@ -114,11 +114,26 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
             public void onClick(View v) {
                 setCheckedInfo();
 
-                //
-                // 서버에 전송하는 코드 작성
-                //
 
-                sendQuestionnaireData(new QuestionnaireData(AppManager.getInstance().getUserId(),isVisited, visitedDetail, isContacted, contact_relationship, contact_period, hasFever, hasMuscle_ache, hasSputum, hasRunnyNose, hasDyspnea, hasSoreThroat, symptom_start_date, entrance_date));
+
+                /** toDoctor 내용 추가해주기
+                 *
+                 */
+                sendQuestionnaireData(new QuestionnaireData(AppManager.getInstance().getUserId(),
+                        isVisited,
+                        visitedDetail,
+                        entrance_date,
+                        isContacted,
+                        contact_relationship,
+                        contact_period,
+                        hasFever,
+                        hasMuscle_ache,
+                        hasSputum,
+                        hasRunnyNose,
+                        hasDyspnea,
+                        hasSoreThroat,
+                        symptom_start_date,
+                        "toDoctor"));
 
                 Toast.makeText(getApplicationContext(), "눌림", Toast.LENGTH_SHORT).show();
 
@@ -227,7 +242,7 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
 
                     long now = System.currentTimeMillis();
                     Date nowDate = new Date(now);
-                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy. MM. dd. hh:mm:ss");
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
                     String getTime = simpleDateFormat.format(nowDate);
 
                     sendReservationData(new ReservationData(

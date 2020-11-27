@@ -4,14 +4,14 @@ import com.google.gson.annotations.SerializedName;
 
 public class QuestionnaireData {
 
-    //@SerializedName("sequence")
-    //int sequence;
     @SerializedName("user_id")
     String user_id;
     @SerializedName("visited")
     boolean visited;
     @SerializedName("visited_detail")
     String visited_detail;
+    @SerializedName("entrance_date")
+    String entrance_date;
     @SerializedName("contact")
     boolean contact;
     @SerializedName("contact_relationship")
@@ -32,14 +32,14 @@ public class QuestionnaireData {
     boolean sore_throat;
     @SerializedName("symptom_start_date")
     String symptom_start_date;
-    @SerializedName("entrance_date")
-    String entrance_date;
+    @SerializedName("toDoctor")
+    String toDoctor;
 
 
-    public QuestionnaireData(//int sequence,
-                             String user_id,
+    public QuestionnaireData(String user_id,
                              boolean visited,
                              String visited_detail,
+                             String entrance_date,
                              boolean contact,
                              String contact_relationship,
                              String contact_period,
@@ -50,12 +50,13 @@ public class QuestionnaireData {
                              boolean dyspnea,
                              boolean sore_throat,
                              String symptom_start_date,
-                             String entrance_date) {
+                             String toDoctor) {
 
         //this.sequence = sequence;
         this.user_id = user_id;
         this.visited = visited;
         this.visited_detail = visited_detail;
+        this.entrance_date = entrance_date;
         this.contact = contact;
         this.contact_relationship = contact_relationship;
         this.contact_period = contact_period;
@@ -66,14 +67,9 @@ public class QuestionnaireData {
         this.dyspnea = dyspnea;
         this.sore_throat = sore_throat;
         this.symptom_start_date = symptom_start_date;
-        this.entrance_date = entrance_date;
+        this.toDoctor = toDoctor;
     }
 
-
-    /*
-    public int getSequence() {return sequence;}
-    public void setSequence(int sequence) {this.sequence = sequence;}
-     */
 
     public String getUser_id() {return user_id;}
     public void setUser_id(String user_id) {
@@ -85,6 +81,11 @@ public class QuestionnaireData {
 
     public String getVisited_detail() {return visited_detail;}
     public void setVisited_detail(String visited_detail) {this.visited_detail = visited_detail;}
+
+    public String getEntrance_date() {return entrance_date;}
+    public void setEntrance_date(String entrance_date) {
+        this.entrance_date = entrance_date;
+    }
 
     public boolean getContact() {return contact;}
     public void setContact(boolean contact) {this.contact = contact;}
@@ -118,9 +119,7 @@ public class QuestionnaireData {
         this.symptom_start_date = symptom_start_date;
     }
 
-    public String getEntrance_date() {return entrance_date;}
-    public void setEntrance_date(String entrance_date) {
-        this.entrance_date = entrance_date;
-    }
+    public String getToDoctor() {return toDoctor;}
+    public void setToDoctor(String toDoctor) {this.toDoctor = toDoctor;}
 
 }
