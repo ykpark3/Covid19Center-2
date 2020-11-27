@@ -1,6 +1,7 @@
 package org.androidtown.covid19center.SelfCheck;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.androidtown.covid19center.R;
+import org.androidtown.covid19center.Search.LottieReservationCompleteActivity;
 import org.androidtown.covid19center.Server.AppManager;
 import org.androidtown.covid19center.Server.QuestionnaireData;
 import org.androidtown.covid19center.Server.QuestionnaireVO;
@@ -118,9 +120,10 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
                 // 서버에 전송하는 코드 작성
                 //
 
-                sendQuestionnaireData(new QuestionnaireData(AppManager.getInstance().getUserId(),isVisited, visitedDetail, isContacted, contact_relationship, contact_period, hasFever, hasMuscle_ache, hasSputum, hasRunnyNose, hasDyspnea, hasSoreThroat, symptom_start_date, entrance_date));
+                //sendQuestionnaireData(new QuestionnaireData(AppManager.getInstance().getUserId(),isVisited, visitedDetail, isContacted, contact_relationship, contact_period, hasFever, hasMuscle_ache, hasSputum, hasRunnyNose, hasDyspnea, hasSoreThroat, symptom_start_date, entrance_date));
 
-                Toast.makeText(getApplicationContext(), "눌림", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), LottieReservationCompleteActivity.class);
+                startActivity(intent);
 
             }
         });
