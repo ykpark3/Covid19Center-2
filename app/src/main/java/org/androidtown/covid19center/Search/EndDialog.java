@@ -98,8 +98,8 @@ public class EndDialog extends Dialog implements View.OnClickListener {
                 intent.putExtra("clinicTime", timeMessage);
                 intent.putExtra("clinicAddress", clinicInfoList.get(2));
                 intent.putExtra("clinicCallNumber", clinicInfoList.get(3));
-
                 mContext.startActivity(intent);
+
 
                 dismiss();
 

@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.airbnb.lottie.LottieAnimationView;
 
 import org.androidtown.covid19center.R;
+import org.androidtown.covid19center.Server.AppManager;
 
 public class ReservationCompleteActivity extends AppCompatActivity {
 
@@ -56,6 +57,7 @@ public class ReservationCompleteActivity extends AppCompatActivity {
     private TextView symptomYesOrNoTextView;
     private TextView symptomListTextView;
     private TextView symptomDateTextView;
+    private ImageButton backButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,8 +65,8 @@ public class ReservationCompleteActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_reservation_complete);
         setElement();
-        setIntentInfomation();
-        setElementInfo();
+        //setIntentInfomation();
+        setServerData();
 
         callButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,9 +77,41 @@ public class ReservationCompleteActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+                finish();
+            }
+        });
+    }
+
+    private void setServerData(){
+
+//        clinicDate = ;
+//        clinicName =;
+//        clinicAddress =
+//        clinicCallNumber =
+//        nationalCheck =
+//        nationalPlace =
+//        nationalDate =
+//        contactCheck =
+//        contactRelationShip =
+//        contactRelationDate =
+//        symptomList =
+//        symptomDate =
+//        if(symptomList.length() == 0){ // 이건 증상들 저장해야함.
+//            symptomCheck = false;
+//        } else{
+//            symptomCheck = true;
+//        }
+        // 다 받은 후
+        setElementInfo(); //실행 바람
     }
 
     private void setElement(){
+        backButton = findViewById(R.id.reservation_complete_backButton);
         nameTextView = findViewById(R.id.reservation_complete_userName);
         dateTextView = findViewById(R.id.reservation_complete_date);
         clinicNameTextView = findViewById(R.id.reservation_complete_clinicName);
