@@ -127,7 +127,7 @@ public class ReservationActivity extends AppCompatActivity {
 
         calendarView = findViewById(R.id.reservation_calendarView);
         reservationButton = findViewById(R.id.reservation_button);
-        warningMessage = findViewById(R.id.reservation_warning_message);
+        warningMessage = findViewById(R.id.reservation_calenderText);
         backButton = findViewById(R.id.reservation_backButton);
 
         reservaitionWarningText = findViewById(R.id.reservation_warning_message);
@@ -251,14 +251,22 @@ public class ReservationActivity extends AppCompatActivity {
                 }
 
                 canNextPage = true;
+
+                view.setBackgroundResource(R.drawable.background_purple_rectangle);
+
                 timeViews.add(view);
 
-
-                view.setBackgroundResource(R.drawable.background_gray_rectangle);
-
                 if (timeViews.size() > 1) {
-                    view.setBackgroundResource(R.drawable.background_purple_rectangle);
-                    timeViews.get(0).setBackgroundResource(R.drawable.background_gray_rectangle);
+
+                    Log.d("1542","123");
+                    if(timeViews.get(0).equals(view) && view.getBackground().equals(R.drawable.background_gray_rectangle)){
+                        view.setBackgroundResource(R.drawable.background_purple_rectangle);
+                    } else if(timeViews.get(0).equals(view) && view.getBackground().equals(R.drawable.background_purple_rectangle)){
+                        view.setBackgroundResource(R.drawable.background_gray_rectangle);
+                    } else{
+                        view.setBackgroundResource(R.drawable.background_purple_rectangle);
+                        timeViews.get(0).setBackgroundResource(R.drawable.background_gray_rectangle);
+                    }
                     timeViews.clear();
                     timeViews.add(view);
 

@@ -23,6 +23,7 @@ public class NumberpickerDialog extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState){
         final NumberPicker numberPicker = new NumberPicker(getActivity());
 
+
         title = getArguments().getString("title");
         subTitle = getArguments().getString("subTitle");
         minvalue = getArguments().getInt("minvalue");

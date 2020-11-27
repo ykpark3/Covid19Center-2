@@ -175,11 +175,6 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
 
     }
 
-
-
-
-
-
     private void sendQuestionnaireData(QuestionnaireData questionnaireData) {
         Log.d("~~~~~","sendQuestionnaireData");
 
@@ -282,13 +277,6 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
         });
     }
 
-
-
-
-
-
-
-
     RadioGroup.OnCheckedChangeListener contactRadioGroupButtonChangeListener = new RadioGroup.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -309,8 +297,6 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
             } else if(checkedId == R.id.questionnarie_visited_radioButton_false){
                 isVisited = false;
             }
-
-
         }
     };
 
@@ -392,7 +378,6 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
 
     public void showNumberPicker(View view, String title, String subtitle, int maxvalue, int minvalue, int step, int defvalue){
         NumberpickerDialog newFragment = new NumberpickerDialog();
-
         //Dialog에는 bundle을 이용해서 파라미터를 전달한다
         Bundle bundle = new Bundle(6); // 파라미터는 전달할 데이터 개수
         bundle.putString("title", title); // key , value
