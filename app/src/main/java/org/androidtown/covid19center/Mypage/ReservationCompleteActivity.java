@@ -68,6 +68,7 @@ public class ReservationCompleteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_reservation_complete);
         setElement();
         //setIntentInfomation();
+
         setServerData();
 
         callButton.setOnClickListener(new View.OnClickListener() {
@@ -101,7 +102,7 @@ public class ReservationCompleteActivity extends AppCompatActivity {
 //        contactCheck =
 //        contactRelationShip =
 //        contactRelationDate =
-//        hasFever =
+//        hasFever = true false
 //        hasMuscle_ache =
 //        hasCough =
 //        hasSputum =
