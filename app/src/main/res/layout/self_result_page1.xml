@@ -34,7 +34,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="100dp"
         android:textColor="@color/colorBlack"
-        android:textSize="20dp"
+        android:textSize="17dp"
         android:textAlignment="center"
         android:text="마스크 착용과 손씻기를 생활화하여\n코로나19를 예방하세요!"/>
 <!--        android:background="#4CAF50"-->

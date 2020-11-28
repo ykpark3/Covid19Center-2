@@ -19,8 +19,6 @@ import org.androidtown.covid19center.R;
 //qr스캔, 예약관리 버튼
 public class FragmentHospital extends Fragment {
 
-//    private LinearLayout qr_scan;
-//    private LinearLayout reservation;
     private FrameLayout qr_scan;
     private FrameLayout reservation;
 

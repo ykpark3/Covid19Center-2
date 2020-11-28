@@ -42,8 +42,6 @@ public class ManagementDialog extends Dialog implements View.OnClickListener{
 
                 //리스트 값 변경@@@
 
-                Toast.makeText(getContext(), "성공온온ㅁㅇㄹㅇ롤와", Toast.LENGTH_SHORT).show();
-
                 managementDialogListener.onOkClicked();
 
                 dismiss();
