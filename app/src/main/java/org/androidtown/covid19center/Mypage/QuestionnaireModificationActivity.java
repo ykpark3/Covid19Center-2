@@ -23,14 +23,17 @@ import org.androidtown.covid19center.SelfCheck.NumberpickerDialog;
 import org.androidtown.covid19center.Server.AppManager;
 import org.androidtown.covid19center.Server.QuestionnaireData;
 import org.androidtown.covid19center.Server.QuestionnaireVO;
+import org.androidtown.covid19center.Server.ReservationVO;
 import org.androidtown.covid19center.Server.RetrofitClient;
 import org.androidtown.covid19center.Server.ServiceApi;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -232,8 +235,6 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
                     e.printStackTrace();
                 }
                 Log.i("~~~~~", "result: " + result);
-
-
             }
 
             @Override
@@ -342,6 +343,7 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
         });
 
     }
+
 
 
     private void setQuestionnaire() {
