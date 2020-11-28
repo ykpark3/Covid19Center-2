@@ -77,8 +77,10 @@ public class CheckQuestionnaireActivity extends AppCompatActivity {
     public void initList() {
 
         qeQuestionnaireVO = new QuestionnaireVO(1, "aa", 0, "중국",
-                1, "형제", "1일", 1,1, 0, 1, 1,
-                0, 1, "11/25", "11/19");
+                "2020/11/28", 1, "형제", "1일",1, 0, 1, 1,
+                0, 1, 1, "2020/11/19", "안녕하세요"); // 임시데이터
+
+        //
 
     }
 

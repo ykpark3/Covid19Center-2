@@ -10,7 +10,6 @@ public class ReservationVO implements Serializable {
     String date;
     int visited;
 
-
     public ReservationVO(
             String user_id,
             int questionnaire_seq,

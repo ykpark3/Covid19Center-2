@@ -6,41 +6,31 @@ public class QuestionnaireVO {
 
     String user_id;
     int visited;
-    //boolean visited;
-    String visited_detail;
+
+    String visited_detail, entrance_date;
     int contact;
-    //boolean contact;
     String contact_relationship, contact_period;
     int fever, cough, muscle_ache, sputum, runny_nose, dyspnea, sore_throat;
-    //boolean fever, muscle_ache, sputum, runny_nose, dyspnea, sore_throat;
-    String symptom_start_date, entrance_date;
+    String symptom_start_date, toDoctor;
 
     public QuestionnaireVO
             (int sequence,
-
              String user_id,
-             //boolean visited,
              int visited,
              String visited_detail,
-             //boolean contact,
+             String entrance_date,
              int contact,
              String contact_relationship,
              String contact_period,
-             //boolean fever,
-             //boolean muscle_ache,
-             //boolean sputum,
-             //boolean runny_nose,
-             //boolean dyspnea,
-             //boolean sore_throat,
-             int fever, int cough, int muscle_ache, int sputum, int runny_nose, int dyspnea, int sore_throat,
+             int fever,int cough, int muscle_ache, int sputum, int runny_nose, int dyspnea, int sore_throat,
              String symptom_start_date,
-             String entrance_date) {
+             String toDoctor) {
 
         this.sequence = sequence;
-
         this.user_id = user_id;
         this.visited = visited;
         this.visited_detail = visited_detail;
+        this.entrance_date = entrance_date;
         this.contact = contact;
         this.contact_relationship = contact_relationship;
         this.contact_period = contact_period;
@@ -52,13 +42,13 @@ public class QuestionnaireVO {
         this.dyspnea = dyspnea;
         this.sore_throat = sore_throat;
         this.symptom_start_date = symptom_start_date;
-        this.entrance_date = entrance_date;
+        this.toDoctor = toDoctor;
+
     }
 
 
     public int getSequence() { return sequence;}
     public void setSequence(int sequence) {this.sequence = sequence; }
-
 
 
     public String getUser_id() {
@@ -81,6 +71,11 @@ public class QuestionnaireVO {
     }
     public void setVisited_detail(String visited_detail) {
         this.visited_detail = visited_detail;
+    }
+
+    public String getEntrance_date() {return entrance_date;}
+    public void setEntrance_date(String entrance_date) {
+        this.entrance_date = entrance_date;
     }
 
     public int getContact() {
@@ -154,8 +149,6 @@ public class QuestionnaireVO {
         this.sore_throat = sore_throat;
     }
 
-
-
     public String getSymptom_start_date() {
         return symptom_start_date;
     }
@@ -163,9 +156,6 @@ public class QuestionnaireVO {
         this.symptom_start_date = symptom_start_date;
     }
 
-    public String getEntrance_date() {return entrance_date;}
-    public void setEntrance_date(String entrance_date) {
-        this.entrance_date = entrance_date;
-    }
-
+    public String getToDoctor() {return toDoctor;}
+    public void setToDoctor(String toDoctor) {this.toDoctor = toDoctor;}
 }
