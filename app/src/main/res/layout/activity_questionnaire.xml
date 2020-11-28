@@ -277,8 +277,10 @@
         android:layout_weight="1"
         android:background="@color/colorMain"
 
+
         android:text="접수하기"
         android:textColor="@color/colorWhite"
+
 
         android:textSize="20dp" />
 

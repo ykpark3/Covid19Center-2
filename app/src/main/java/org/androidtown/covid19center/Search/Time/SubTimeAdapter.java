@@ -19,6 +19,7 @@ public class SubTimeAdapter extends BaseAdapter {
     ArrayList<SubTimeItem> items = new ArrayList<SubTimeItem>();
     Context context;
 
+
     public SubTimeAdapter(Context context) {
 
         this.context = context;
@@ -43,6 +44,7 @@ public class SubTimeAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         SubTimeItemView view = null;
+
 
         if (convertView == null) {
             view = new SubTimeItemView(context);

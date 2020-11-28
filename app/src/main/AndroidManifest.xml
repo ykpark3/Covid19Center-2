@@ -24,11 +24,14 @@
         android:hardwareAccelerated="true"
         android:networkSecurityConfig="@xml/network_config">
 
-        <activity android:name=".Server.CalendarActivity"></activity>
 
+        <activity android:name=".SelfCheck.QuestionnaireActivity"/>
         <activity android:name=".Main.MainActivity"/>
-        <activity android:name=".SelfCheck.QuestionnarieActivity"/>
-            <activity android:name=".Login.LoginActivity">
+
+
+
+        <activity android:name=".Login.LoginActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.location.PROVIDERS_CHANGED" />
@@ -38,6 +41,7 @@
         </activity>
         <activity android:name=".Map.MapActivity"></activity>
         <activity android:name=".Search.List.SearchActivity"></activity>
+
 
 
         <meta-data
@@ -61,9 +65,12 @@
 
         <activity android:name=".Login.DataWarningActivity"/>
 
+
         <activity android:name=".Hospital.ManagementPopupActivity"
             android:theme="@style/PopupTheme" android:screenOrientation="portrait"/>
         <activity android:name=".Mypage.CheckReservationActivity"/>
+
+        <activity android:name=".Hospital.HospitalMainActivity"/>
 
     </application>
 

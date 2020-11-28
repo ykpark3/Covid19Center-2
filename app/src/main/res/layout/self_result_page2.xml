@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp">
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/green_check"
@@ -20,11 +22,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="80dp"
         android:id="@+id/text1"
-        android:textColor="@color/colorBlack"
+        android:textColor="#eca645"
         android:textSize="20dp"
         android:text="의심해볼 만한 증상들이 있어요." />
-<!--    android:background="#FF9800"-->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="80dp"
+        android:textColor="@color/colorBlack"
+        android:textSize="17dp"
+        android:textAlignment="center"
+        android:text="코로나19가 의심되는 경우\n1339, 지역번호+120, 가까운 보건소에\n전화상담을 받으세요." />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/colorBlack"
+        android:textSize="17dp"
+        android:textAlignment="center"
+        android:text="의료기관 방문시 마스크를 꼭 착용하세요." />
 
 </LinearLayout>

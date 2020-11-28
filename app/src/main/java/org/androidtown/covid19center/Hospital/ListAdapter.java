@@ -81,7 +81,7 @@ public class ListAdapter extends BaseAdapter {
                     @Override
                     public void onOkClicked() {
                         //여기서 true값으로 리스트 값 변경하기!!!!!!!!!!
-                        list.get(position).setVisited(true);
+                        list.get(position).setVisited(1);
                         updateItem(list);
                     }
 
