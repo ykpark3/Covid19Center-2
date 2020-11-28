@@ -61,18 +61,16 @@
                     android:layout_height="wrap_content">
 
                     <RadioButton
-                        android:id="@+id/questionnarie_visited_radioButton_false"
+                        android:id="@+id/questionnarie_visited_false"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="없음"
-                        android:enabled="false"/>
+                        android:text="없음"/>
 
                     <RadioButton
-                        android:id="@+id/questionnarie_visited_radioButton_true"
+                        android:id="@+id/questionnarie_visited_true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="있음"
-                        android:enabled="false"/>
+                        android:text="있음"/>
                 </RadioGroup>
 
                 <LinearLayout
@@ -89,7 +87,7 @@
                         android:textColor="@android:color/black" />
 
                     <TextView
-                        android:id="@+id/questionnarie_editText_country"
+                        android:id="@+id/questionnarie_visited_country"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -112,7 +110,7 @@
                         android:textColor="@android:color/black" />
 
                     <TextView
-                        android:id="@+id/questionnarie_textView_date"
+                        android:id="@+id/questionnarie_entry_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -136,13 +134,13 @@
                     android:layout_height="wrap_content">
 
                     <RadioButton
-                        android:id="@+id/questionnarie_contact_radioButton_false"
+                        android:id="@+id/questionnarie_contact_false"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="없음" />
 
                     <RadioButton
-                        android:id="@+id/questionnarie_contact_radioButton_true"
+                        android:id="@+id/questionnarie_contact_true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="있음" />
@@ -163,7 +161,7 @@
                         android:textColor="@android:color/black" />
 
                     <TextView
-                        android:id="@+id/questionnarie_editText_relation"
+                        android:id="@+id/questionnarie_relation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -186,7 +184,7 @@
                         android:textColor="@android:color/black" />
 
                     <TextView
-                        android:id="@+id/questionnarie_textView_term"
+                        android:id="@+id/questionnarie_period"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -204,50 +202,50 @@
                     android:textColor="@android:color/black"
                     android:textSize="15dp" />
 
-                <CheckBox
-                    android:id="@+id/questionnarie_radioButton_false"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="없음" />
+<!--                <CheckBox-->
+<!--                    android:id="@+id/questionnarie_symptom_false"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="없음" />-->
 
                 <CheckBox
-                    android:id="@+id/questionnarie_fever_radioButton_true"
+                    android:id="@+id/questionnarie_fever"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="37.5ºC 이상 열" />
 
                 <CheckBox
-                    android:id="@+id/questionnarie_muscle_ache_radioButton_true"
+                    android:id="@+id/questionnarie_muscle_ache"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="전신통/근육통" />
 
                 <CheckBox
-                    android:id="@+id/questionnarie_cough_radioButton_true"
+                    android:id="@+id/questionnarie_cough"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="기침" />
 
                 <CheckBox
-                    android:id="@+id/questionnarie_sputum_radioButton_true"
+                    android:id="@+id/questionnarie_sputum"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="가래" />
 
                 <CheckBox
-                    android:id="@+id/questionnarie_runny_nose_radioButton_true"
+                    android:id="@+id/questionnarie_runny_nose"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="콧물" />
 
                 <CheckBox
-                    android:id="@+id/questionnarie_dyspnea_radioButton_true"
+                    android:id="@+id/questionnarie_dyspnea"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="호흡곤란" />
 
                 <CheckBox
-                    android:id="@+id/questionnarie_sore_throat_radioButton_true"
+                    android:id="@+id/questionnarie_sore_throat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="인후통" />
@@ -263,7 +261,7 @@
                         android:text="증상 발생일: " />
 
                     <TextView
-                        android:id="@+id/questionnarie_textView_start_date"
+                        android:id="@+id/questionnarie_start_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="11/20"

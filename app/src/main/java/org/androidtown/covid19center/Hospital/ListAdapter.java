@@ -66,10 +66,10 @@ public class ListAdapter extends BaseAdapter {
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(view.getContext(), "클릭..", Toast.LENGTH_SHORT).show();
 
                 //환자 문진표 intent하기
                 Intent intent = new Intent(view.getContext(), CheckQuestionnaireActivity.class);
+                intent.putExtra("questionnaire sequence", list.get(position).getQuestionnaire_seq());
                 view.getContext().startActivity(intent);
             }
         });

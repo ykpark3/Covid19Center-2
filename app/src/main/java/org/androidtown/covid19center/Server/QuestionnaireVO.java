@@ -11,7 +11,7 @@ public class QuestionnaireVO {
     int contact;
     //boolean contact;
     String contact_relationship, contact_period;
-    int fever, muscle_ache, sputum, runny_nose, dyspnea, sore_throat;
+    int fever, cough, muscle_ache, sputum, runny_nose, dyspnea, sore_throat;
     //boolean fever, muscle_ache, sputum, runny_nose, dyspnea, sore_throat;
     String symptom_start_date, entrance_date;
 
@@ -32,7 +32,7 @@ public class QuestionnaireVO {
              //boolean runny_nose,
              //boolean dyspnea,
              //boolean sore_throat,
-             int fever, int muscle_ache, int sputum, int runny_nose, int dyspnea, int sore_throat,
+             int fever, int cough, int muscle_ache, int sputum, int runny_nose, int dyspnea, int sore_throat,
              String symptom_start_date,
              String entrance_date) {
 
@@ -45,6 +45,7 @@ public class QuestionnaireVO {
         this.contact_relationship = contact_relationship;
         this.contact_period = contact_period;
         this.fever = fever;
+        this.cough = cough;
         this.muscle_ache = muscle_ache;
         this.sputum = sputum;
         this.runny_nose = runny_nose;
@@ -67,11 +68,11 @@ public class QuestionnaireVO {
         this.user_id = user_id;
     }
 
-    /*
-    public boolean getVisited() {
+
+    public int getVisited() {
         return visited;
     }
-    public void setVisited(boolean visited) {
+    public void setVisited(int visited) {
         this.visited = visited;
     }
 
@@ -82,10 +83,10 @@ public class QuestionnaireVO {
         this.visited_detail = visited_detail;
     }
 
-    public boolean getContact() {
+    public int getContact() {
         return contact;
     }
-    public void setContact(boolean contact) {
+    public void setContact(int contact) {
         this.contact = contact;
     }
 
@@ -103,50 +104,58 @@ public class QuestionnaireVO {
         this.contact_period = contact_period;
     }
 
-    public boolean getFever() {
+    public int getFever() {
         return fever;
     }
-    public void setFever(boolean fever) {
+    public void setFever(int fever) {
         this.fever = fever;
     }
 
-    public boolean getMuscle_ache() {
+    public int getCough() {
+        return cough;
+    }
+
+    public void setCough(int cough) {
+        this.cough = cough;
+    }
+
+    public int getMuscle_ache() {
         return muscle_ache;
     }
-    public void setMuscle_ache(boolean muscle_ache) {
+    public void setMuscle_ache(int muscle_ache) {
         this.muscle_ache = muscle_ache;
     }
 
-    public boolean getSputum() {
+    public int getSputum() {
         return sputum;
     }
-    public void setSputum(boolean sputum) {
+    public void setSputum(int sputum) {
         this.sputum = sputum;
     }
 
-    public boolean getRunny_nose() {
+    public int getRunny_nose() {
         return runny_nose;
     }
-    public void setRunny_nose(boolean runny_nose) {
+    public void setRunny_nose(int runny_nose) {
         this.runny_nose = runny_nose;
     }
 
-    public boolean getDyspnea() {
+    public int getDyspnea() {
         return dyspnea;
     }
-    public void setDyspnea(boolean dyspnea) {
+    public void setDyspnea(int dyspnea) {
         this.dyspnea = dyspnea;
     }
 
-    public boolean getSore_throat() {
+    public int getSore_throat() {
         return sore_throat;
     }
-    public void setSore_throat(boolean sore_throat) {
+    public void setSore_throat(int sore_throat) {
         this.sore_throat = sore_throat;
     }
 
 
-     */
+
     public String getSymptom_start_date() {
         return symptom_start_date;
     }
