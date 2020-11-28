@@ -52,7 +52,8 @@ public class ReservationManagementActivity extends AppCompatActivity {
         //date 초기값 오늘 날짜 저장
         Date currentTime = Calendar.getInstance().getTime();
 
-        date = new SimpleDateFormat("YY/MM/dd", Locale.getDefault()).format(currentTime);
+        date = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault()).format(currentTime);
+
 
         Log.d("date확인", date);
 

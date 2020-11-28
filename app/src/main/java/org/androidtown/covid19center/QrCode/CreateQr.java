@@ -34,7 +34,8 @@ public class CreateQr extends AppCompatActivity {
     public CreateQr() {
         //임시 데이터 저장
 
-        reservationVO = new ReservationVO("user_qr_테스트", 1, "hospital_1", "11:30", "11/19", false);
+        reservationVO = new ReservationVO("user_qr_테스트", 1, "hospital_1", "11:30", "11/19", 0);
+
 
     }
 

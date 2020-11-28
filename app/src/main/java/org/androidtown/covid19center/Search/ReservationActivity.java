@@ -191,6 +191,7 @@ public class ReservationActivity extends AppCompatActivity {
 
                 reservationTime.add(String.format("%d/%d/%d", year, month, dayOfMonth));
 
+
                 setTimeListView();
             }
         });
@@ -282,6 +283,7 @@ public class ReservationActivity extends AppCompatActivity {
                         view.setBackgroundResource(R.drawable.background_purple_rectangle);
                         timeViews.get(0).setBackgroundResource(R.drawable.background_gray_rectangle);
                     }
+
                     timeViews.clear();
                     timeViews.add(view);
 

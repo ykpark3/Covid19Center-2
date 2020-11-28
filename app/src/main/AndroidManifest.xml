@@ -2,16 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="org.androidtown.covid19center">
-    <!-- http 프로토콜 통신 permission 받기  -->
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <!--    카메라 권한-->
-    <uses-permission android:name="android.permission.CAMERA"/>
-
-    <!--    위치 권한-->
+    <!-- http 프로토콜 통신 permission 받기 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 카메라 권한 -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- 위치 권한 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -35,13 +30,13 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.location.PROVIDERS_CHANGED" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
         <activity android:name=".Map.MapActivity"></activity>
         <activity android:name=".Search.List.SearchActivity"></activity>
-
 
 
         <meta-data
@@ -51,10 +46,12 @@
             android:name="com.naver.maps.map.CLIENT_TYPE"
             android:value="gov" />
 
-        <activity android:name=".QrCode.CreateQr"/>
-        <activity android:name=".QrCode.ScanQr"/>
-        <activity android:name="com.journeyapps.barcodescanner.CaptureActivity"
+        <activity android:name=".QrCode.CreateQr" />
+        <activity android:name=".QrCode.ScanQr" />
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="fullSensor"
+
             tools:replace="screenOrientation"/>
         <activity android:name=".Search.ClinicActivity"/>
 
@@ -71,8 +68,6 @@
         <activity android:name=".Mypage.CheckReservationActivity"/>
         <activity android:name=".Hospital.HospitalMainActivity"/>
         <activity android:name=".Mypage.ReservationCompleteActivity"/>
-
     </application>
-
 
 </manifest>
