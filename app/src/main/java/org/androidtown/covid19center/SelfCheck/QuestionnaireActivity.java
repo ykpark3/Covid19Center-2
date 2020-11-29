@@ -128,19 +128,25 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
         isSecondQuestion = false;
         isThirdQuestion = false;
         isFourthQuestion = false;
+
         none_checkBox.setOnClickListener(this::onClick);
-
-
+        fever_checkBox.setOnClickListener(this::onClick);
+        muscle_ache_checkBox.setOnClickListener(this::onClick);
+        cough_checkBox.setOnClickListener(this::onClick);
+        sputum_checkBox.setOnClickListener(this::onClick);
+        runny_nose_checkBox.setOnClickListener(this::onClick);
+        dyspnea_checkBox.setOnClickListener(this::onClick);
+        sore_throat_checkBox.setOnClickListener(this::onClick);
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(checkQuestion()) {
+                setCheckedInfo();
 
-                    setCheckedInfo();
+                if(checkQuestion().equals(true)) {
+
                     //sendQuestionnaireData(new QuestionnaireData(AppManager.getInstance().getUserId(),isVisited, visitedDetail, isContacted, contact_relationship, contact_period, hasFever, hasMuscle_ache, hasSputum, hasRunnyNose, hasDyspnea, hasSoreThroat, symptom_start_date, entrance_date));
-
 
                     /** toDoctor 내용 추가해주기
                      *
@@ -167,7 +173,7 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
                     startActivity(intent);
                 } else{
                     Toast.makeText(getApplicationContext(),
-                            "체크하지 않은 항목이 있습니다.", Toast.LENGTH_SHORT);
+                            "체크하지 않은 항목이 있습니다.", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -225,12 +231,14 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
 
     private Boolean checkQuestion(){
 
-
-        if(!isFirstQuestion || !isSecondQuestion || !isThirdQuestion || !isFourthQuestion){
+        if(isFirstQuestion.equals(false) || isSecondQuestion.equals(false) || isThirdQuestion.equals(false)){
+            Log.d("2048", "123");
             return false;
+        } else{
+            Log.d("2048", "124");
+            return true;
         }
 
-        return true;
     }
 
     private void sendIntentInfo(Intent intent){
@@ -284,7 +292,6 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
         });
     }
 
-
     RadioGroup.OnCheckedChangeListener visitedCheckRadioGroupButtonChangeListener = new RadioGroup.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -294,13 +301,10 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
                 isFirstQuestion = true;
             } else if(checkedId == R.id.questionnarie_visited_radioButton_false){
                 isVisited = false;
-                isFirstQuestion = false;
+                isFirstQuestion = true;
             }
-
-
         }
     };
-
 
     private void sendReservationData(ReservationData reservationData) {
         Log.d("~~~~~","sendReservationData");
@@ -333,7 +337,6 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
         });
     }
 
-
     RadioGroup.OnCheckedChangeListener contactRadioGroupButtonChangeListener = new RadioGroup.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -342,7 +345,7 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
                 isSecondQuestion = true;
             } else if(checkedId == R.id.questionnarie_contact_radioButton_false){
                 isContacted = false;
-                isSecondQuestion = false;
+                isSecondQuestion = true;
             }
         }
     };
@@ -374,7 +377,6 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
                             clinicReservationTime.substring(0, clinicReservationTime.indexOf(",")),
                             false,
                             getTime));
-
                 }
             }
 
@@ -391,7 +393,12 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
         isContacted = false;
         symptomStringBuffer = new StringBuffer();
 
+        if(none_checkBox.isChecked() == true){
+            isThirdQuestion = true;
+        }
+
         if(fever_checkBox.isChecked() == true){
+            isThirdQuestion = true;
             hasFever = true;
             isContacted = true;
             symptomStringBuffer.append("37.5도 이상 열,");
@@ -400,6 +407,7 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
         }
 
         if(muscle_ache_checkBox.isChecked() == true){
+            isThirdQuestion = true;
             hasMuscle_ache = true;
             isContacted = true;
             symptomStringBuffer.append("전신통/근육통,");
@@ -409,6 +417,7 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
 
         if(cough_checkBox.isChecked() == true){
             hasCough = true;
+            isThirdQuestion = true;
             isContacted = true;
             symptomStringBuffer.append("기침,");
         } else{
@@ -416,6 +425,7 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
         }
 
         if(runny_nose_checkBox.isChecked() == true){
+            isThirdQuestion = true;
             hasRunnyNose = true;
             isContacted = true;
             symptomStringBuffer.append("콧물,");
@@ -424,6 +434,7 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
         }
 
         if(dyspnea_checkBox.isChecked() == true){
+            isThirdQuestion = true;
             hasDyspnea = true;
             isContacted = true;
             symptomStringBuffer.append("호흡곤란,");
@@ -432,6 +443,7 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
         }
 
         if(sputum_checkBox.isChecked() == true){
+            isThirdQuestion = true;
             hasSputum = true;
             isContacted = true;
             symptomStringBuffer.append("가래,");
@@ -440,14 +452,13 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
         }
 
         if(sore_throat_checkBox.isChecked() == true){
+            isThirdQuestion = true;
             hasSoreThroat = true;
             isContacted = true;
             symptomStringBuffer.append("인후통,");
         } else{
             hasSoreThroat = false;
         }
-
-
 
         if(symptomStringBuffer.length() !=0)
         {
@@ -518,13 +529,9 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
             sore_throat_checkBox.setChecked(false);
         } else if(v.getId() == R.id.questionnarie_fever_radioButton_true || v.getId() == R.id.questionnarie_muscle_ache_radioButton_true
                 || v.getId() == R.id.questionnarie_sputum_radioButton_true || v.getId() == R.id.questionnarie_runny_nose_radioButton_true
-                || v.getId() == R.id.questionnarie_dyspnea_radioButton_true
+                || v.getId() == R.id.questionnarie_dyspnea_radioButton_true || v.getId() == R.id.questionnarie_cough_radioButton_true
                 || v.getId() == R.id.questionnarie_sore_throat_radioButton_true ){
-
             none_checkBox.setChecked(false);
-
         }
-
-
     }
 }
