@@ -269,6 +269,25 @@
 
                 </LinearLayout>
 
+                <!--    기타 전달사항     -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="4. 기타 전달사항이 있으면 적어주세요."
+                    android:textColor="@android:color/black"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/questionnaire_to_doctor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="15dp"
+                    android:text="전달 사항 어쩌구 저쩌구"
+                    android:textColor="@android:color/black"
+                    android:textSize="15dp" />
+
             </LinearLayout>
 
         </FrameLayout>
