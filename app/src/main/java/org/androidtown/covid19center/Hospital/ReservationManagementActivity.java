@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,6 +50,8 @@ public class ReservationManagementActivity extends AppCompatActivity {
         setContentView(R.layout.activity_reservation_management);
         CalendarView calendarView = findViewById(R.id.hospital_calendar);
 //        textview_notify_ques = findViewById(R.id.textview_notify_ques);
+        LinearLayout layout_listview_contents = findViewById(R.id.layout_listview_contents);
+        View deviding_line = findViewById(R.id.view_deviding_line);
 
         //임시 예약 환자 리스트 생성
         initList();
@@ -62,6 +65,14 @@ public class ReservationManagementActivity extends AppCompatActivity {
 
         //오늘 날짜 예약 리스트 받아오기
         selectListItem();
+
+        if(selectedList.size() == 0){
+            layout_listview_contents.setVisibility(View.INVISIBLE);
+            deviding_line.setVisibility(View.INVISIBLE);
+        }else{
+            layout_listview_contents.setVisibility(View.VISIBLE);
+            deviding_line.setVisibility(View.VISIBLE);
+        }
 
         ListView listView = findViewById(R.id.reservation_listview);
         ListAdapter listAdapter = new ListAdapter(this,selectedList, date);
@@ -81,9 +92,13 @@ public class ReservationManagementActivity extends AppCompatActivity {
                 listAdapter.updateItem(selectedList);
                 listAdapter.notifyDataSetChanged();
 
-//                if(selectedList.size() == 0){
-//                    textview_notify_ques.setVisibility(View.INVISIBLE);
-//                }
+                if(selectedList.size() == 0){
+                    layout_listview_contents.setVisibility(View.INVISIBLE);
+                    deviding_line.setVisibility(View.INVISIBLE);
+                }else{
+                    layout_listview_contents.setVisibility(View.VISIBLE);
+                    deviding_line.setVisibility(View.VISIBLE);
+                }
             }
         });
     }
