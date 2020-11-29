@@ -62,7 +62,6 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
     private StringBuffer symptomStringBuffer;
     private boolean isSymptomChecked;
     private String entrance_date;
-
     private String clinicName;
     private String clinicReservationTime;
     private String clinicAddress;
@@ -70,6 +69,8 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
     private ServiceApi serviceApi;
     private int questionnaireSequence;
 
+    private EditText toDoctorEditText;
+    private String toDoctorMessage;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -104,12 +105,15 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
         dyspnea_checkBox = findViewById(R.id.questionnarie_dyspnea_radioButton_true);
         sore_throat_checkBox = findViewById(R.id.questionnarie_sore_throat_radioButton_true);
 
+        toDoctorEditText = findViewById(R.id.questionnarie_editText_toDoctor);
+
         clinicReservationTime = "";
         symptom_start_date = "";
         visitedDetail = "";
         contact_relationship = "";
         contact_period = "";
         entrance_date = "";
+        toDoctorMessage = "";
 
 
         nextButton.setOnClickListener(new View.OnClickListener() {
@@ -199,15 +203,6 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
     }
 
     private void sendIntentInfo(Intent intent){
-        Log.d("0346", String.valueOf(isVisited));
-        Log.d("0346", visitedDetail);
-        Log.d("0346", entrance_date);
-        Log.d("0346", String.valueOf(isContacted));
-        Log.d("0346", contact_relationship);
-        Log.d("0346", contact_period);
-        Log.d("0346", String.valueOf(isSymptomChecked));
-        Log.d("0346", String.valueOf(symptomStringBuffer));
-        Log.d("0346", symptom_start_date);
 
         intent.putExtra("userId",AppManager.getInstance().getUserId());
         intent.putExtra("clinicDate",clinicReservationTime);
@@ -426,6 +421,7 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
 
         contact_relationship = String.valueOf(relationEditText.getText());
         visitedDetail = String.valueOf(countryEditText.getText());
+        toDoctorMessage = String.valueOf(toDoctorEditText.getText());
     }
 
     private void setIntentInfo(){

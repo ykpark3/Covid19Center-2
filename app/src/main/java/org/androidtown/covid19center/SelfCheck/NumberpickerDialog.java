@@ -11,7 +11,6 @@ import androidx.fragment.app.DialogFragment;
 
 public class NumberpickerDialog extends DialogFragment {
     private NumberPicker.OnValueChangeListener valueChangeListener;
-
     String title;
     String subTitle;
     int minvalue;

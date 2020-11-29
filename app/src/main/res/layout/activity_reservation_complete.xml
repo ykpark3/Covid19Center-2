@@ -281,7 +281,7 @@
                     android:textSize="15dp" />
 
                 <TextView
-                    android:id="@+id/reservation_complete_pass_textView"
+                    android:id="@+id/reservation_complete_doctor_message_textView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"

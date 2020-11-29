@@ -39,6 +39,8 @@ public class ReservationCompleteActivity extends AppCompatActivity {
     private final String symptomListExplain = "관련 증상 : ";
     private String symptomDate; // 증상 날짜
     private final String symptomDateExplain = "증상 날짜 : ";
+    private String doctorMessage;
+    private final String doctorMessageExplain = "의사에게 전달 사항 : ";
     private boolean hasFever, hasMuscle_ache, hasCough, hasSputum, hasRunnyNose, hasDyspnea, hasSoreThroat;
     private StringBuffer symptoms;
     private ImageButton callButton;
@@ -56,6 +58,7 @@ public class ReservationCompleteActivity extends AppCompatActivity {
     private TextView symptomYesOrNoTextView;
     private TextView symptomListTextView;
     private TextView symptomDateTextView;
+    private TextView doctorMessageTextView;
     private ImageButton backButton;
 
     @Override
@@ -107,6 +110,7 @@ public class ReservationCompleteActivity extends AppCompatActivity {
 //        hasDyspnea =
 //        hasSoreThroat =
 //        symptomDate =
+//        doctorMessage =
 
         // 다 받은 후
         changeSymptomsToString();// 실행 바람
@@ -171,6 +175,7 @@ public class ReservationCompleteActivity extends AppCompatActivity {
         symptomListTextView = findViewById(R.id.reservation_complete_symptom_true_textView);
         symptomDateTextView = findViewById(R.id.reservation_complete_symptom_date_textView);
         callButton = findViewById(R.id.reservation_complete_callButton);
+        doctorMessageTextView = findViewById(R.id.reservation_complete_doctor_message_textView);
     }
 
     private void setElementInfo(){
@@ -178,6 +183,7 @@ public class ReservationCompleteActivity extends AppCompatActivity {
         clinicNameTextView.setText(clinicNameExplain + clinicName);
         clinicAddressTextView.setText(clinicAddressExplain + clinicAddress);
         clinicCallNumberTextView.setText(clinicCallNumberExplain + clinicCallNumber);
+        doctorMessageTextView.setText(doctorMessageExplain + doctorMessage);
 
         if(nationalCheck == true){
             nationalYesOrNoTextView.setText("있음");
