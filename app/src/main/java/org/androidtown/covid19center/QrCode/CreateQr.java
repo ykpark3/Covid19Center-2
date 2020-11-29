@@ -4,6 +4,8 @@ import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
@@ -27,6 +29,7 @@ import java.io.InputStreamReader;
 
 public class CreateQr extends AppCompatActivity {
     private ImageView qr_code;
+    private ImageButton backButton;
     private String qr_data;
 
     ReservationVO reservationVO;
@@ -62,6 +65,14 @@ public class CreateQr extends AppCompatActivity {
         } catch (WriterException e) {
             e.printStackTrace();
         }
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+                finish();
+            }
+        });
     }
 
     //Json 형식으로 만들기

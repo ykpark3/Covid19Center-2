@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -36,12 +37,13 @@ public class ReservationManagementActivity extends AppCompatActivity {
     AppCompatActivity activity = this;
 
     //임시 리스트
-    ArrayList<ReservationVO> reservationList;
-    ArrayList<ReservationVO> selectedList;
+    private ArrayList<ReservationVO> reservationList;
+    private ArrayList<ReservationVO> selectedList;
 
-    String date; //캘린더에서 선택한 날짜
+    private String date; //캘린더에서 선택한 날짜
 
     private TextView textview_notify_ques;
+    private ImageButton backButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,6 +54,8 @@ public class ReservationManagementActivity extends AppCompatActivity {
 //        textview_notify_ques = findViewById(R.id.textview_notify_ques);
         LinearLayout layout_listview_contents = findViewById(R.id.layout_listview_contents);
         View deviding_line = findViewById(R.id.view_deviding_line);
+        backButton = (ImageButton)findViewById(R.id.self_check_result_back_button);
+
 
         //임시 예약 환자 리스트 생성
         initList();
@@ -99,6 +103,14 @@ public class ReservationManagementActivity extends AppCompatActivity {
                     layout_listview_contents.setVisibility(View.VISIBLE);
                     deviding_line.setVisibility(View.VISIBLE);
                 }
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+                finish();
             }
         });
     }
