@@ -138,6 +138,7 @@
         android:layout_gravity="bottom"
         android:layout_weight="1"
         android:background="@color/colorMain"
+
         android:text="예약하기"
         android:textColor="@color/colorWhite"
         android:textSize="20dp" />

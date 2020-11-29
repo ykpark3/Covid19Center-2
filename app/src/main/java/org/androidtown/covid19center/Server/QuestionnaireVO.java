@@ -6,10 +6,11 @@ public class QuestionnaireVO {
 
     String user_id;
     int visited;
+
     String visited_detail, entrance_date;
     int contact;
     String contact_relationship, contact_period;
-    int fever, muscle_ache, sputum, runny_nose, dyspnea, sore_throat;
+    int fever, cough, muscle_ache, sputum, runny_nose, dyspnea, sore_throat;
     String symptom_start_date, toDoctor;
 
     public QuestionnaireVO
@@ -21,7 +22,7 @@ public class QuestionnaireVO {
              int contact,
              String contact_relationship,
              String contact_period,
-             int fever, int muscle_ache, int sputum, int runny_nose, int dyspnea, int sore_throat,
+             int fever, int cough, int muscle_ache, int sputum, int runny_nose, int dyspnea, int sore_throat,
              String symptom_start_date,
              String toDoctor) {
 
@@ -34,6 +35,7 @@ public class QuestionnaireVO {
         this.contact_relationship = contact_relationship;
         this.contact_period = contact_period;
         this.fever = fever;
+        this.cough = cough;
         this.muscle_ache = muscle_ache;
         this.sputum = sputum;
         this.runny_nose = runny_nose;
@@ -41,11 +43,13 @@ public class QuestionnaireVO {
         this.sore_throat = sore_throat;
         this.symptom_start_date = symptom_start_date;
         this.toDoctor = toDoctor;
+
     }
 
 
     public int getSequence() { return sequence;}
     public void setSequence(int sequence) {this.sequence = sequence; }
+
 
     public String getUser_id() {
         return user_id;
@@ -98,13 +102,23 @@ public class QuestionnaireVO {
     public int getFever() {
         return fever;
     }
+
     public void setFever(int fever) {
         this.fever = fever;
+    }
+
+    public int getCough() {
+        return cough;
+    }
+
+    public void setCough(int cough) {
+        this.cough = cough;
     }
 
     public int getMuscle_ache() {
         return muscle_ache;
     }
+
     public void setMuscle_ache(int muscle_ache) {
         this.muscle_ache = muscle_ache;
     }
@@ -137,7 +151,6 @@ public class QuestionnaireVO {
         this.sore_throat = sore_throat;
     }
 
-
     public String getSymptom_start_date() {
         return symptom_start_date;
     }
@@ -147,5 +160,4 @@ public class QuestionnaireVO {
 
     public String getToDoctor() {return toDoctor;}
     public void setToDoctor(String toDoctor) {this.toDoctor = toDoctor;}
-
 }

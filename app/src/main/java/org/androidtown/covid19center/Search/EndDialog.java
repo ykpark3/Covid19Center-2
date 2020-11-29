@@ -1,16 +1,10 @@
 package org.androidtown.covid19center.Search;
 
 import android.app.Dialog;
-
 import android.content.Context;
-
-
 import android.content.Intent;
-
 import android.os.Bundle;
-
 import android.view.View;
-
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -31,6 +25,7 @@ public class EndDialog extends Dialog implements View.OnClickListener {
     private TextView btn_cancel;
     private TextView textView_message;
     private TextView btn_ok;
+
 
     public EndDialog(@NonNull Context context, String time, String clinic, ArrayList<String> clinicInfoList) {
 

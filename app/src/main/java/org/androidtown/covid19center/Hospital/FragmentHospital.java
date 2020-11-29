@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,8 +18,6 @@ import org.androidtown.covid19center.R;
 //qr스캔, 예약관리 버튼
 public class FragmentHospital extends Fragment {
 
-//    private LinearLayout qr_scan;
-//    private LinearLayout reservation;
     private FrameLayout qr_scan;
     private FrameLayout reservation;
 

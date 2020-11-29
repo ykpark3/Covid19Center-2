@@ -1,9 +1,7 @@
 package org.androidtown.covid19center.QrCode;
 
-import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
@@ -20,11 +18,6 @@ import org.androidtown.covid19center.Server.ReservationVO;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-
 public class CreateQr extends AppCompatActivity {
     private ImageView qr_code;
     private String qr_data;
@@ -35,7 +28,6 @@ public class CreateQr extends AppCompatActivity {
         //임시 데이터 저장
 
         reservationVO = new ReservationVO("user_qr_테스트", 1, "hospital_1", "11:30", "11/19", 0);
-
 
     }
 

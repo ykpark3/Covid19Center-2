@@ -7,8 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.androidtown.covid19center.R;
 import org.androidtown.covid19center.Server.ReservationVO;
@@ -50,6 +50,8 @@ public class ListAdapter extends BaseAdapter {
         TextView listview_hospital = (TextView) view.findViewById(R.id.listview_hospital);
         TextView listview_date = (TextView) view.findViewById(R.id.listview_date);
         TextView listview_time = (TextView) view.findViewById(R.id.listview_time);
+        Button finish_button = view.findViewById(R.id.finish_button);
+        LinearLayout linearLayout = view.findViewById(R.id.layout_listview);
 
         listview_user_id.setText(list.get(position).getUser_id());
         //네이밍 수정하기
@@ -58,7 +60,18 @@ public class ListAdapter extends BaseAdapter {
         listview_time.setText(list.get(position).getTime());
 //        listview_time.setText(String.valueOf(list.get(position).getVisited()));
 
-        Button finish_button = view.findViewById(R.id.finish_button);
+
+        linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //환자 문진표 intent하기
+                Intent intent = new Intent(view.getContext(), CheckQuestionnaireActivity.class);
+                intent.putExtra("questionnaire sequence", list.get(position).getQuestionnaire_seq());
+                view.getContext().startActivity(intent);
+            }
+        });
+
 
         //진료 완료시 버튼 비활성화
 //        if(list.get(position).getVisited() == true){

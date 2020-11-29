@@ -4,14 +4,17 @@ import com.google.gson.annotations.SerializedName;
 
 public class QuestionnaireData {
 
+
     @SerializedName("user_id")
     String user_id;
     @SerializedName("visited")
     boolean visited;
     @SerializedName("visited_detail")
     String visited_detail;
+
     @SerializedName("entrance_date")
     String entrance_date;
+
     @SerializedName("contact")
     boolean contact;
     @SerializedName("contact_relationship")
@@ -32,6 +35,7 @@ public class QuestionnaireData {
     boolean sore_throat;
     @SerializedName("symptom_start_date")
     String symptom_start_date;
+
     @SerializedName("toDoctor")
     String toDoctor;
 
@@ -50,7 +54,9 @@ public class QuestionnaireData {
                              boolean dyspnea,
                              boolean sore_throat,
                              String symptom_start_date,
+
                              String toDoctor) {
+
 
         //this.sequence = sequence;
         this.user_id = user_id;

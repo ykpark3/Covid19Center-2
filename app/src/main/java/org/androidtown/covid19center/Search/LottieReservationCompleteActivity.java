@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.airbnb.lottie.LottieAnimationView;
 
 import org.androidtown.covid19center.Main.MainActivity;
-import org.androidtown.covid19center.Mypage.ReservationCompleteActivity;
 import org.androidtown.covid19center.R;
 
 public class LottieReservationCompleteActivity extends AppCompatActivity {

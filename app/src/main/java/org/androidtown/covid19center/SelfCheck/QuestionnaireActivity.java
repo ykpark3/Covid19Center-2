@@ -14,25 +14,21 @@ import android.widget.ImageButton;
 import android.widget.NumberPicker;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.androidtown.covid19center.Mypage.QuestionnaireModificationActivity;
 import org.androidtown.covid19center.R;
 import org.androidtown.covid19center.Search.LottieReservationCompleteActivity;
 import org.androidtown.covid19center.Server.AppManager;
 import org.androidtown.covid19center.Server.QuestionnaireData;
 import org.androidtown.covid19center.Server.QuestionnaireVO;
 import org.androidtown.covid19center.Server.ReservationData;
-import org.androidtown.covid19center.Server.ReservationVO;
 import org.androidtown.covid19center.Server.RetrofitClient;
 import org.androidtown.covid19center.Server.ServiceApi;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -71,7 +67,6 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
     private String clinicReservationTime;
     private String clinicAddress;
     private String clinicCallNumber;
-
     private ServiceApi serviceApi;
     private int questionnaireSequence;
 
@@ -121,7 +116,6 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
             @Override
             public void onClick(View v) {
                 setCheckedInfo();
-
 
 
                 //sendQuestionnaireData(new QuestionnaireData(AppManager.getInstance().getUserId(),isVisited, visitedDetail, isContacted, contact_relationship, contact_period, hasFever, hasMuscle_ache, hasSputum, hasRunnyNose, hasDyspnea, hasSoreThroat, symptom_start_date, entrance_date));
@@ -265,42 +259,19 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
     }
 
 
-    protected void getQuestionnaireSequence() {
-        serviceApi.getQuesionnaireVO().enqueue(new Callback<List<QuestionnaireVO>>() {
-            @Override
-            public void onResponse(Call<List<QuestionnaireVO>> call, Response<List<QuestionnaireVO>> response) {
+    RadioGroup.OnCheckedChangeListener visitedCheckRadioGroupButtonChangeListener = new RadioGroup.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(RadioGroup group, int checkedId) {
 
-                if (response.isSuccessful()) {
-                    List<QuestionnaireVO> data = response.body();
-
-                    questionnaireSequence = data.get(data.size()-1).getSequence();
-
-                    Log.d("~~~~~","questionnaire sequence: "+ questionnaireSequence);
-
-                    long now = System.currentTimeMillis();
-                    Date nowDate = new Date(now);
-                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
-                    String getTime = simpleDateFormat.format(nowDate);
-
-                    sendReservationData(new ReservationData(
-                            AppManager.getInstance().getUserId(),
-                            questionnaireSequence,
-                            clinicName,
-                            clinicReservationTime.substring(clinicReservationTime.lastIndexOf(" ")),
-                            clinicReservationTime.substring(0, clinicReservationTime.indexOf(",")),
-                            false,
-                            getTime));
-
-                }
+            if(checkedId == R.id.questionnarie_visited_radioButton_true){
+                isVisited = true;
+            } else if(checkedId == R.id.questionnarie_visited_radioButton_false){
+                isVisited = false;
             }
 
-            @Override
-            public void onFailure(Call<List<QuestionnaireVO>> call, Throwable t) {
-                Log.d("~~~~~", "실패: " + t);
-                t.printStackTrace();
-            }
-        });
-    }
+
+        }
+    };
 
 
     private void sendReservationData(ReservationData reservationData) {
@@ -334,6 +305,7 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
         });
     }
 
+
     RadioGroup.OnCheckedChangeListener contactRadioGroupButtonChangeListener = new RadioGroup.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -345,17 +317,44 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
         }
     };
 
-    RadioGroup.OnCheckedChangeListener visitedCheckRadioGroupButtonChangeListener = new RadioGroup.OnCheckedChangeListener() {
-        @Override
-        public void onCheckedChanged(RadioGroup group, int checkedId) {
+    protected void getQuestionnaireSequence() {
+        serviceApi.getQuesionnaireVO().enqueue(new Callback<List<QuestionnaireVO>>() {
+            @Override
+            public void onResponse(Call<List<QuestionnaireVO>> call, Response<List<QuestionnaireVO>> response) {
 
-            if(checkedId == R.id.questionnarie_visited_radioButton_true){
-                isVisited = true;
-            } else if(checkedId == R.id.questionnarie_visited_radioButton_false){
-                isVisited = false;
+                if (response.isSuccessful()) {
+                    List<QuestionnaireVO> data = response.body();
+
+                    questionnaireSequence = data.get(data.size()-1).getSequence();
+
+                    Log.d("~~~~~","questionnaire sequence: "+ questionnaireSequence);
+
+                    long now = System.currentTimeMillis();
+                    Date nowDate = new Date(now);
+
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+
+                    String getTime = simpleDateFormat.format(nowDate);
+
+                    sendReservationData(new ReservationData(
+                            AppManager.getInstance().getUserId(),
+                            questionnaireSequence,
+                            clinicName,
+                            clinicReservationTime.substring(clinicReservationTime.lastIndexOf(" ")),
+                            clinicReservationTime.substring(0, clinicReservationTime.indexOf(",")),
+                            false,
+                            getTime));
+
+                }
             }
-        }
-    };
+
+            @Override
+            public void onFailure(Call<List<QuestionnaireVO>> call, Throwable t) {
+                Log.d("~~~~~", "실패: " + t);
+                t.printStackTrace();
+            }
+        });
+    }
 
     private void setCheckedInfo(){
 

@@ -10,8 +10,6 @@ public class ReservationVO implements Serializable {
     String date;
     int visited;
 
-
-
     public ReservationVO(
             String user_id,
             int questionnaire_seq,
@@ -19,7 +17,6 @@ public class ReservationVO implements Serializable {
             String time,
             String date,
             int visited) {
-
 
 
         this.user_id = user_id;

@@ -5,16 +5,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
-
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.androidtown.covid19center.R;
-
-import org.androidtown.covid19center.Server.AppManager;
-import org.androidtown.covid19center.Server.QuestionnaireData;
 
 public class CheckReservationActivity extends AppCompatActivity {
 
