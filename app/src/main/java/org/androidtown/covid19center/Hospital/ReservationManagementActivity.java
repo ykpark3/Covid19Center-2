@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.CalendarView;
 import android.widget.FrameLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -39,12 +40,15 @@ public class ReservationManagementActivity extends AppCompatActivity {
 
     String date; //캘린더에서 선택한 날짜
 
+    private TextView textview_notify_ques;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_reservation_management);
         CalendarView calendarView = findViewById(R.id.hospital_calendar);
+//        textview_notify_ques = findViewById(R.id.textview_notify_ques);
 
         //임시 예약 환자 리스트 생성
         initList();
@@ -70,14 +74,16 @@ public class ReservationManagementActivity extends AppCompatActivity {
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 month += 1;
 
-
                 date = year + "/" + month + "/" +  dayOfMonth;
-
 
                 //날짜별 환자 리스트 받아오기
                 selectListItem();
                 listAdapter.updateItem(selectedList);
                 listAdapter.notifyDataSetChanged();
+
+//                if(selectedList.size() == 0){
+//                    textview_notify_ques.setVisibility(View.INVISIBLE);
+//                }
             }
         });
     }
