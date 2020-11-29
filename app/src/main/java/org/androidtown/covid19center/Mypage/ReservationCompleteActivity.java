@@ -243,10 +243,6 @@ public class ReservationCompleteActivity extends AppCompatActivity {
         } else{
             symptomCheck = true;
         }
-
-
-
-
     }
 
 }

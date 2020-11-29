@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.NumberPicker;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +30,7 @@ import org.androidtown.covid19center.Server.ServiceApi;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -39,7 +41,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class QuestionnaireActivity extends AppCompatActivity implements NumberPicker.OnValueChangeListener {
+public class QuestionnaireActivity extends AppCompatActivity implements NumberPicker.OnValueChangeListener, View.OnClickListener {
 
     private EditText countryEditText;
     private TextView entranceDateTextView;
@@ -50,7 +52,7 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
     private ImageButton backButton;
     private Button nextButton;
     private RadioGroup visitedCheck_radioGroup, contact_radioGroup;
-    private CheckBox fever_checkBox, muscle_ache_checkBox, cough_checkBox, sputum_checkBox, runny_nose_checkBox, dyspnea_checkBox, sore_throat_checkBox;
+    private CheckBox none_checkBox ,fever_checkBox, muscle_ache_checkBox, cough_checkBox, sputum_checkBox, runny_nose_checkBox, dyspnea_checkBox, sore_throat_checkBox;
 
     private Boolean isVisited;
     private String visitedDetail;
@@ -58,6 +60,7 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
     private String contact_relationship;
     private String contact_period;
     private boolean hasFever, hasMuscle_ache, hasCough, hasSputum, hasRunnyNose, hasDyspnea, hasSoreThroat;
+    private boolean none_checked;
     private String symptom_start_date;
     private StringBuffer symptomStringBuffer;
     private boolean isSymptomChecked;
@@ -68,9 +71,13 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
     private String clinicCallNumber;
     private ServiceApi serviceApi;
     private int questionnaireSequence;
-
     private EditText toDoctorEditText;
     private String toDoctorMessage;
+
+    private Boolean isFirstQuestion;
+    private Boolean isSecondQuestion;
+    private Boolean isThirdQuestion;
+    private Boolean isFourthQuestion;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -84,6 +91,7 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
     }
 
     private void setLayoutElement(){
+
         countryEditText = findViewById(R.id.questionnarie_editText_country);
         entranceDateTextView = findViewById(R.id.questionnarie_textView_date);
         relationEditText = findViewById(R.id.questionnarie_editText_relation);
@@ -91,11 +99,13 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
         startVirusDateTextView = findViewById(R.id.questionnarie_textView_start_date);
         nextButton = findViewById(R.id.questionnarie_button);
         backButton = findViewById(R.id.questionnarie_backButton);
+
         contact_radioGroup = findViewById(R.id.questionnarie_contact_radioGroup);
         contact_radioGroup.setOnCheckedChangeListener(contactRadioGroupButtonChangeListener);
         visitedCheck_radioGroup = findViewById(R.id.questionnarie_visited_radioGroup);
         visitedCheck_radioGroup.setOnCheckedChangeListener(visitedCheckRadioGroupButtonChangeListener);
 
+        none_checkBox = findViewById(R.id.questionnarie_radioButton_false);
 
         fever_checkBox = findViewById(R.id.questionnarie_fever_radioButton_true);
         muscle_ache_checkBox = findViewById(R.id.questionnarie_muscle_ache_radioButton_true);
@@ -114,40 +124,51 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
         contact_period = "";
         entrance_date = "";
         toDoctorMessage = "";
+        isFirstQuestion = false;
+        isSecondQuestion = false;
+        isThirdQuestion = false;
+        isFourthQuestion = false;
+        none_checkBox.setOnClickListener(this::onClick);
+
 
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setCheckedInfo();
+
+                if(checkQuestion()) {
+
+                    setCheckedInfo();
+                    //sendQuestionnaireData(new QuestionnaireData(AppManager.getInstance().getUserId(),isVisited, visitedDetail, isContacted, contact_relationship, contact_period, hasFever, hasMuscle_ache, hasSputum, hasRunnyNose, hasDyspnea, hasSoreThroat, symptom_start_date, entrance_date));
 
 
-                //sendQuestionnaireData(new QuestionnaireData(AppManager.getInstance().getUserId(),isVisited, visitedDetail, isContacted, contact_relationship, contact_period, hasFever, hasMuscle_ache, hasSputum, hasRunnyNose, hasDyspnea, hasSoreThroat, symptom_start_date, entrance_date));
+                    /** toDoctor 내용 추가해주기
+                     *
+                     */
+                    sendQuestionnaireData(new QuestionnaireData(AppManager.getInstance().getUserId(),
+                            isVisited,
+                            visitedDetail,
+                            entrance_date,
+                            isContacted,
+                            contact_relationship,
+                            contact_period,
+                            hasFever,
+                            hasMuscle_ache,
+                            hasSputum,
+                            hasRunnyNose,
+                            hasDyspnea,
+                            hasSoreThroat,
+                            symptom_start_date,
+                            "toDoctor"));
 
 
-                /** toDoctor 내용 추가해주기
-                 *
-                 */
-                sendQuestionnaireData(new QuestionnaireData(AppManager.getInstance().getUserId(),
-                        isVisited,
-                        visitedDetail,
-                        entrance_date,
-                        isContacted,
-                        contact_relationship,
-                        contact_period,
-                        hasFever,
-                        hasMuscle_ache,
-                        hasSputum,
-                        hasRunnyNose,
-                        hasDyspnea,
-                        hasSoreThroat,
-                        symptom_start_date,
-                        "toDoctor"));
-
-
-                Intent intent = new Intent(getApplicationContext(), LottieReservationCompleteActivity.class);
-                sendIntentInfo(intent);
-                startActivity(intent);
+                    Intent intent = new Intent(getApplicationContext(), LottieReservationCompleteActivity.class);
+                    //sendIntentInfo(intent);
+                    startActivity(intent);
+                } else{
+                    Toast.makeText(getApplicationContext(),
+                            "체크하지 않은 항목이 있습니다.", Toast.LENGTH_SHORT);
+                }
 
             }
         });
@@ -200,6 +221,16 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
             }
         });
 
+    }
+
+    private Boolean checkQuestion(){
+
+
+        if(!isFirstQuestion || !isSecondQuestion || !isThirdQuestion || !isFourthQuestion){
+            return false;
+        }
+
+        return true;
     }
 
     private void sendIntentInfo(Intent intent){
@@ -260,8 +291,10 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
 
             if(checkedId == R.id.questionnarie_visited_radioButton_true){
                 isVisited = true;
+                isFirstQuestion = true;
             } else if(checkedId == R.id.questionnarie_visited_radioButton_false){
                 isVisited = false;
+                isFirstQuestion = false;
             }
 
 
@@ -306,8 +339,10 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
         public void onCheckedChanged(RadioGroup group, int checkedId) {
             if(checkedId == R.id.questionnarie_contact_radioButton_true){
                 isContacted = true;
+                isSecondQuestion = true;
             } else if(checkedId == R.id.questionnarie_contact_radioButton_false){
                 isContacted = false;
+                isSecondQuestion = false;
             }
         }
     };
@@ -470,4 +505,26 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
         newFragment.show(getSupportFragmentManager(), "null");
     }
 
+    @Override
+    public void onClick(View v) {
+
+        if(v.getId() == R.id.questionnarie_radioButton_false){
+            fever_checkBox.setChecked(false);
+            muscle_ache_checkBox.setChecked(false);
+            cough_checkBox.setChecked(false);
+            sputum_checkBox.setChecked(false);
+            runny_nose_checkBox.setChecked(false);
+            dyspnea_checkBox.setChecked(false);
+            sore_throat_checkBox.setChecked(false);
+        } else if(v.getId() == R.id.questionnarie_fever_radioButton_true || v.getId() == R.id.questionnarie_muscle_ache_radioButton_true
+                || v.getId() == R.id.questionnarie_sputum_radioButton_true || v.getId() == R.id.questionnarie_runny_nose_radioButton_true
+                || v.getId() == R.id.questionnarie_dyspnea_radioButton_true
+                || v.getId() == R.id.questionnarie_sore_throat_radioButton_true ){
+
+            none_checkBox.setChecked(false);
+
+        }
+
+
+    }
 }
