@@ -265,6 +265,34 @@
                     android:textSize="15dp" />
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="4. 의사에게 전달할 특이사항"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/reservation_complete_pass_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="천식이 있어요."
+                    android:textColor="@color/colorBlack"
+                    android:textSize="15dp" />
+
+
+            </LinearLayout>
+
             <Button
                 android:id="@+id/button"
                 android:layout_width="match_parent"
