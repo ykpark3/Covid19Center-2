@@ -10,7 +10,14 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import org.androidtown.covid19center.R;
+
+import com.airbnb.lottie.LottieAnimationView;
+
+import org.androidtown.covid19center.R;
+import org.androidtown.covid19center.Server.AppManager;
+
 
 public class ReservationCompleteActivity extends AppCompatActivity {
 

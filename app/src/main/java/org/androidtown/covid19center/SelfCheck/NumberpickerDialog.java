@@ -9,6 +9,8 @@ import android.widget.NumberPicker;
 
 import androidx.fragment.app.DialogFragment;
 
+import org.androidtown.covid19center.R;
+
 public class NumberpickerDialog extends DialogFragment {
     private NumberPicker.OnValueChangeListener valueChangeListener;
     String title;

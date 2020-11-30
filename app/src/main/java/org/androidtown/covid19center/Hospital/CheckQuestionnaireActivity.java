@@ -33,6 +33,7 @@ public class CheckQuestionnaireActivity extends AppCompatActivity {
     private CheckBox dyspnea;
     private CheckBox sore_throat;
     private TextView start_date;
+    private TextView to_doctor;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,6 +60,7 @@ public class CheckQuestionnaireActivity extends AppCompatActivity {
         dyspnea = findViewById(R.id.questionnarie_dyspnea);
         sore_throat = findViewById(R.id.questionnarie_sore_throat);
         start_date = findViewById(R.id.questionnarie_start_date);
+        to_doctor = findViewById(R.id.questionnaire_to_doctor);
 
         //클릭한 환자 문진표 시퀀스 받아오기
         Intent intent = getIntent();
@@ -73,12 +75,9 @@ public class CheckQuestionnaireActivity extends AppCompatActivity {
 
     //임시 데이터 넣는 함수
     public void initList() {
-
         qeQuestionnaireVO = new QuestionnaireVO(1, "aa", 0, "중국",
-                "2020/11/28", 1, "형제", "1일", 1, 0, 1, 1,
-                0, 1, 1, "2020/11/19", "안녕하세요"); // 임시데이터
-
-        //
+                "2020/11/28", 1, "형제", "1일",1, 0, 1, 1,
+                0, 1, 1, "2020/11/19", "안녕하세요");
 
     }
 
@@ -105,14 +104,15 @@ public class CheckQuestionnaireActivity extends AppCompatActivity {
         }
 
         //해당하는 증상 체크
-        if (qeQuestionnaireVO.getFever() == 1) fever.setChecked(true);
-        if (qeQuestionnaireVO.getMuscle_ache() == 1) muscle_ache.setChecked(true);
-        if (qeQuestionnaireVO.getCough() == 1) cough.setChecked(true);
-        if (qeQuestionnaireVO.getSputum() == 1) sputum.setChecked(true);
-        if (qeQuestionnaireVO.getRunny_nose() == 1) runny_nose.setChecked(true);
-        if (qeQuestionnaireVO.getDyspnea() == 1) dyspnea.setChecked(true);
-        if (qeQuestionnaireVO.getSore_throat() == 1) sore_throat.setChecked(true);
-        if (qeQuestionnaireVO.getSymptom_start_date() != null)
-            start_date.setText(qeQuestionnaireVO.getSymptom_start_date());
+        if(qeQuestionnaireVO.getFever()==1) fever.setChecked(true);
+        if(qeQuestionnaireVO.getMuscle_ache()==1) muscle_ache.setChecked(true);
+        if(qeQuestionnaireVO.getCough()==1) cough.setChecked(true);
+        if(qeQuestionnaireVO.getSputum()==1) sputum.setChecked(true);
+        if(qeQuestionnaireVO.getRunny_nose()==1) runny_nose.setChecked(true);
+        if(qeQuestionnaireVO.getDyspnea()==1) dyspnea.setChecked(true);
+        if(qeQuestionnaireVO.getSore_throat()==1) sore_throat.setChecked(true);
+        if(qeQuestionnaireVO.getSymptom_start_date() != null) start_date.setText(qeQuestionnaireVO.getSymptom_start_date());
+        if(qeQuestionnaireVO.getToDoctor() != null) to_doctor.setText(qeQuestionnaireVO.getToDoctor());
+
     }
 }

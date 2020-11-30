@@ -15,6 +15,10 @@ import org.androidtown.covid19center.SelfCheck.QuestionnaireActivity;
 import java.util.ArrayList;
 
 
+import java.util.ArrayList;
+
+
+
 public class EndDialog extends Dialog implements View.OnClickListener {
 
     private Context mContext;

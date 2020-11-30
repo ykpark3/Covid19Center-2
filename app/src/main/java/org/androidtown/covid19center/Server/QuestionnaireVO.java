@@ -22,7 +22,9 @@ public class QuestionnaireVO {
              int contact,
              String contact_relationship,
              String contact_period,
-             int fever, int cough, int muscle_ache, int sputum, int runny_nose, int dyspnea, int sore_throat,
+
+             int fever,int cough, int muscle_ache, int sputum, int runny_nose, int dyspnea, int sore_throat,
+
              String symptom_start_date,
              String toDoctor) {
 

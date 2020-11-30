@@ -1,5 +1,6 @@
 package org.androidtown.covid19center.Mypage;
 
+import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -16,20 +17,25 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 import org.androidtown.covid19center.R;
 import org.androidtown.covid19center.SelfCheck.NumberpickerDialog;
+import org.androidtown.covid19center.Server.AppManager;
 import org.androidtown.covid19center.Server.QuestionnaireData;
 import org.androidtown.covid19center.Server.QuestionnaireVO;
+import org.androidtown.covid19center.Server.ReservationVO;
+
 import org.androidtown.covid19center.Server.RetrofitClient;
 import org.androidtown.covid19center.Server.ServiceApi;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;

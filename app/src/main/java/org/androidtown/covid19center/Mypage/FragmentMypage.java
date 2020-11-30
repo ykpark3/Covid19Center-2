@@ -37,7 +37,6 @@ public class FragmentMypage extends Fragment {
 
 //                Intent intent = new Intent(getActivity(), CheckReservationActivity.class); 지우지 말아줘
 
-
                 startActivity(intent);
             }
         });
