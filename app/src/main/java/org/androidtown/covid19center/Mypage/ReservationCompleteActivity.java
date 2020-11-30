@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import org.androidtown.covid19center.R;
 import org.androidtown.covid19center.Server.AppManager;
 import org.androidtown.covid19center.Server.QuestionnaireVO;
+import org.androidtown.covid19center.Server.ReservationVO;
 import org.androidtown.covid19center.Server.RetrofitClient;
 import org.androidtown.covid19center.Server.ServiceApi;
 
@@ -119,6 +121,7 @@ public class ReservationCompleteActivity extends AppCompatActivity {
         });
     }
 
+
     private void goToModificationActivity() {
         Log.d("~~~~~","goToModificationActivity");
         Intent intent = new Intent(this, QuestionnaireModificationActivity.class);
@@ -126,6 +129,33 @@ public class ReservationCompleteActivity extends AppCompatActivity {
 
     }
 
+
+
+    private void getReservationData() {
+        ArrayList<ReservationVO> reservationVOArrayList;
+        reservationVOArrayList = AppManager.getInstance().getReservationVOArrayList();
+
+        for(int index = 0; index<reservationVOArrayList.size(); index++) {
+            if(sequence == reservationVOArrayList.get(index).getQuestionnaire_seq()) {
+                clinicDate = reservationVOArrayList.get(index).getDate() + " " + reservationVOArrayList.get(index).getTime();
+                clinicName = reservationVOArrayList.get(index).getHospital_name();
+
+                /**
+                 * 주소를 어떻게 해야할지 몰라서 임시로 넣음
+                 */
+                clinicAddress = "서울특별시 광진구 화양동 능동로 120-1";
+                clinicCallNumber = "1588-1533";
+            }
+
+            else {
+                Toast.makeText(getApplicationContext(), "예약 내역이 없습니다.", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }
+
+        changeSymptomsToString();
+        setElementInfo();
+    }
 
 
     protected void getQuesionnaire() {
@@ -154,7 +184,7 @@ public class ReservationCompleteActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     List<QuestionnaireVO> data = response.body();
 
-                    Log.d("~~~~~", "questionnaireList 가져오기 성공");
+                    Log.d("~~~~~", "getQuesionnaire 성공");
 
                     sequence = data.get(data.size() -1).getSequence();
                     name = data.get(data.size() - 1).getUser_id();
@@ -176,15 +206,15 @@ public class ReservationCompleteActivity extends AppCompatActivity {
 
 
                     Log.d("~~~~~", sequence+
-                            name+
-                            visited+
-                            nationalPlace+
-                            nationalDate+
-                            contact+
-                            contactRelationShip+
-                            contactRelationDate+
-                            fever+ muscle_ache+cough+sputum+ runny_nose+ dyspnea+ sore_throat+
-                            symptomDate+
+                            name+" "+
+                            visited+" "+
+                            nationalPlace+" "+
+                            nationalDate+" "+
+                            contact+" "+
+                            contactRelationShip+" "+
+                            contactRelationDate+" "+
+                            fever+" "+ muscle_ache+cough+sputum+" "+ runny_nose+ " "+dyspnea+" "+ sore_throat+" "+
+                            symptomDate+" "+
                             toDoctor);
 
                     QuestionnaireVO questionnaireVO = new QuestionnaireVO(
@@ -202,9 +232,7 @@ public class ReservationCompleteActivity extends AppCompatActivity {
                     );
 
                     questionnaireVOArrayList.add(questionnaireVO);
-
                     AppManager.getInstance().setQuestionnaireVOArrayList(questionnaireVOArrayList);
-
 
 
                     /** int -> boolean 형 변환
@@ -220,9 +248,8 @@ public class ReservationCompleteActivity extends AppCompatActivity {
                     hasDyspnea = dyspnea != 0;
                     hasSoreThroat = sore_throat != 0;
 
+                    getReservationData();
 
-                    changeSymptomsToString();
-                    setElementInfo();
                 }
             }
 
@@ -317,7 +344,7 @@ public class ReservationCompleteActivity extends AppCompatActivity {
         if(isContacted == true){
             contactYesOrNoTextView.setText("있음");
             contactRelationTextView.setText(contactRelationShipExplain+contactRelationShip);
-            contactDateTextView.setText(relationDateExplain + contactRelationDate);
+            contactDateTextView.setText(relationDateExplain + contactRelationDate+"일");
             contactRelationTextView.setVisibility(View.VISIBLE);
             contactDateTextView.setVisibility(View.VISIBLE);
         } else{
@@ -360,8 +387,6 @@ public class ReservationCompleteActivity extends AppCompatActivity {
         } else{
             symptomCheck = true;
         }
-
-
 
 
     }

@@ -166,7 +166,8 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
                         symptom_start_date,
                         "toDoctor"));
 
-                Toast.makeText(getApplicationContext(), "눌림", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "문진표가 수정되었습니다.", Toast.LENGTH_SHORT).show();
+                finish();
 
             }
         });
