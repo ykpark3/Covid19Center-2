@@ -132,11 +132,16 @@ public class ReservationCompleteActivity extends AppCompatActivity {
 
 
     private void getReservationData() {
+        Log.d("~~~~~", " getReservationData");
+
         ArrayList<ReservationVO> reservationVOArrayList;
         reservationVOArrayList = AppManager.getInstance().getReservationVOArrayList();
 
         for(int index = 0; index<reservationVOArrayList.size(); index++) {
+            Log.d("~~~~~","index: "+index+"   seq: "+reservationVOArrayList.get(index).getQuestionnaire_seq());
+
             if(sequence == reservationVOArrayList.get(index).getQuestionnaire_seq()) {
+                Log.d("~~~~~","seq 일치");
                 clinicDate = reservationVOArrayList.get(index).getDate() + " " + reservationVOArrayList.get(index).getTime();
                 clinicName = reservationVOArrayList.get(index).getHospital_name();
 
@@ -148,6 +153,7 @@ public class ReservationCompleteActivity extends AppCompatActivity {
             }
 
             else {
+                Log.d("~~~~~","seq 일치 XXXXX");
                 Toast.makeText(getApplicationContext(), "예약 내역이 없습니다.", Toast.LENGTH_SHORT).show();
                 finish();
             }
@@ -205,7 +211,7 @@ public class ReservationCompleteActivity extends AppCompatActivity {
                     toDoctor = data.get(data.size() - 1).getToDoctor();
 
 
-                    Log.d("~~~~~", sequence+
+                    Log.d("~~~~~", sequence+"  "+
                             name+" "+
                             visited+" "+
                             nationalPlace+" "+

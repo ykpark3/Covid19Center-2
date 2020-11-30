@@ -20,19 +20,19 @@ import retrofit2.Response;
 
 public class HospitalMainActivity extends FragmentActivity {
 
-    private ServiceApi serviceApi;
-    private ArrayList<ReservationVO> reservationVOArrayList;
+    //private ServiceApi serviceApi;
+   // private ArrayList<ReservationVO> reservationVOArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hospital_main);
 
-        Log.d("~~~~~","HospitalMainActivity oncreate");
+        Log.d("~~~~~", "HospitalMainActivity oncreate");
 
-        serviceApi = RetrofitClient.getClient().create(ServiceApi.class);
+       // serviceApi = RetrofitClient.getClient().create(ServiceApi.class);
 
-        getReservationList();
+        // getReservationList();
 
         /*
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -42,6 +42,7 @@ public class HospitalMainActivity extends FragmentActivity {
          */
     }
 
+    /*
     protected void getReservationList() {
         Log.d("~~~~~"," getReservationList");
 
@@ -95,5 +96,6 @@ public class HospitalMainActivity extends FragmentActivity {
             }
         });
 
-    }
+
+     */
 }
