@@ -143,10 +143,10 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
             public void onClick(View v) {
                 setCheckedInfo();
 
+
                 /** toDoctor 내용 추가해주기
                  *
                  */
-
                 updateQuestionnaireData(new QuestionnaireData(
                         sequence,
                         AppManager.getInstance().getUserId(),

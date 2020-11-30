@@ -136,7 +136,9 @@ public class ReservationCompleteActivity extends AppCompatActivity {
             public void onResponse(Call<List<QuestionnaireVO>> call, Response<List<QuestionnaireVO>> response) {
 
                 questionnaireVOArrayList = AppManager.getInstance().getQuesionnaireVOArrayList();
-                questionnaireVOArrayList.clear();
+                //questionnaireVOArrayList.clear();
+
+                Log.d("~~~~~","size: "+questionnaireVOArrayList.size());
 
                 int visited;
                 int contact;
@@ -172,6 +174,18 @@ public class ReservationCompleteActivity extends AppCompatActivity {
                     symptomDate = data.get(data.size() - 1).getSymptom_start_date();
                     toDoctor = data.get(data.size() - 1).getToDoctor();
 
+
+                    Log.d("~~~~~", sequence+
+                            name+
+                            visited+
+                            nationalPlace+
+                            nationalDate+
+                            contact+
+                            contactRelationShip+
+                            contactRelationDate+
+                            fever+ muscle_ache+cough+sputum+ runny_nose+ dyspnea+ sore_throat+
+                            symptomDate+
+                            toDoctor);
 
                     QuestionnaireVO questionnaireVO = new QuestionnaireVO(
                             sequence,
