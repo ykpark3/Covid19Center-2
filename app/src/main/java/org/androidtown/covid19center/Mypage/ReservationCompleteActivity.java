@@ -123,7 +123,6 @@ public class ReservationCompleteActivity extends AppCompatActivity {
 
 
     private void goToModificationActivity() {
-        Log.d("~~~~~","goToModificationActivity");
         Intent intent = new Intent(this, QuestionnaireModificationActivity.class);
         startActivity(intent);
 
@@ -137,11 +136,11 @@ public class ReservationCompleteActivity extends AppCompatActivity {
         ArrayList<ReservationVO> reservationVOArrayList;
         reservationVOArrayList = AppManager.getInstance().getReservationVOArrayList();
 
+        boolean hasReservationData = false;
+
         for(int index = 0; index<reservationVOArrayList.size(); index++) {
-            Log.d("~~~~~","index: "+index+"   seq: "+reservationVOArrayList.get(index).getQuestionnaire_seq());
 
             if(sequence == reservationVOArrayList.get(index).getQuestionnaire_seq()) {
-                Log.d("~~~~~","seq 일치");
                 clinicDate = reservationVOArrayList.get(index).getDate() + " " + reservationVOArrayList.get(index).getTime();
                 clinicName = reservationVOArrayList.get(index).getHospital_name();
 
@@ -150,13 +149,16 @@ public class ReservationCompleteActivity extends AppCompatActivity {
                  */
                 clinicAddress = "서울특별시 광진구 화양동 능동로 120-1";
                 clinicCallNumber = "1588-1533";
+
+                hasReservationData = true;
+                break;
             }
 
-            else {
-                Log.d("~~~~~","seq 일치 XXXXX");
-                Toast.makeText(getApplicationContext(), "예약 내역이 없습니다.", Toast.LENGTH_SHORT).show();
-                finish();
-            }
+        }
+
+        if(!hasReservationData) {
+            Toast.makeText(getApplicationContext(), "예약 내역이 없습니다.", Toast.LENGTH_SHORT).show();
+            finish();
         }
 
         changeSymptomsToString();
@@ -171,8 +173,8 @@ public class ReservationCompleteActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<QuestionnaireVO>> call, Response<List<QuestionnaireVO>> response) {
 
-                questionnaireVOArrayList = AppManager.getInstance().getQuesionnaireVOArrayList();
-                //questionnaireVOArrayList.clear();
+                questionnaireVOArrayList = AppManager.getInstance().getQuestionnaireVOArrayList();
+
 
                 Log.d("~~~~~","size: "+questionnaireVOArrayList.size());
 
@@ -209,19 +211,6 @@ public class ReservationCompleteActivity extends AppCompatActivity {
                     sore_throat = data.get(data.size() - 1).getSore_throat();
                     symptomDate = data.get(data.size() - 1).getSymptom_start_date();
                     toDoctor = data.get(data.size() - 1).getToDoctor();
-
-
-                    Log.d("~~~~~", sequence+"  "+
-                            name+" "+
-                            visited+" "+
-                            nationalPlace+" "+
-                            nationalDate+" "+
-                            contact+" "+
-                            contactRelationShip+" "+
-                            contactRelationDate+" "+
-                            fever+" "+ muscle_ache+cough+sputum+" "+ runny_nose+ " "+dyspnea+" "+ sore_throat+" "+
-                            symptomDate+" "+
-                            toDoctor);
 
                     QuestionnaireVO questionnaireVO = new QuestionnaireVO(
                             sequence,

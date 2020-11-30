@@ -23,7 +23,6 @@ import org.androidtown.covid19center.SelfCheck.NumberpickerDialog;
 import org.androidtown.covid19center.Server.AppManager;
 import org.androidtown.covid19center.Server.QuestionnaireData;
 import org.androidtown.covid19center.Server.QuestionnaireVO;
-import org.androidtown.covid19center.Server.ReservationVO;
 import org.androidtown.covid19center.Server.RetrofitClient;
 import org.androidtown.covid19center.Server.ServiceApi;
 
@@ -31,10 +30,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -88,7 +84,7 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
         super.onCreate(savedInstanceState);
 
 
-        Log.d("~~~~~", "onCreate");
+        Log.d("~~~~~QuestionnaireModif", "onCreate");
 
         serviceApi = RetrofitClient.getClient().create(ServiceApi.class);
 
@@ -101,7 +97,7 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
 
 
     private void setLayoutElement() {
-        Log.d("~~~~~", "setLayoutElement");
+        Log.d("~~~~~QuestionnaireModif", "setLayoutElement");
 
         visitedCheck_radioGroup = findViewById(R.id.questionnarie_visited_radioGroup);
         visitedCheck_radioGroup.setOnCheckedChangeListener(visitedCheckRadioGroupButtonChangeListener);
@@ -202,7 +198,7 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
         entranceDateTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("~~~~~", "entranceDateTextView click");
+                Log.d("~~~~~QuestionnaireModif", "entranceDateTextView click");
                 new DatePickerDialog(QuestionnaireModificationActivity.this, date, myCalender.get(Calendar.YEAR), myCalender.get(Calendar.MONTH), myCalender.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
@@ -211,7 +207,7 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
             @Override
             public void onClick(View v) {
 
-                Log.d("~~~~~", "termTextView click");
+                Log.d("~~~~~QuestionnaireModif", "termTextView click");
                 showNumberPicker(v, "접촉기간", "1", 30, 0, 1, 1);
             }
         });
@@ -219,7 +215,7 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
         startVirusDateTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("~~~~~", "startVirusDateTextView click");
+                Log.d("~~~~~QuestionnaireModif", "startVirusDateTextView click");
 
                 new DatePickerDialog(QuestionnaireModificationActivity.this, virusStartDate, myCalender.get(Calendar.YEAR), myCalender.get(Calendar.MONTH), myCalender.get(Calendar.DAY_OF_MONTH)).show();
             }
@@ -229,7 +225,7 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
 
 
     protected void getQuesionnaire() {
-        Log.d("~~~~~", " getQuesionnaire");
+        Log.d("~~~~~QuestionnaireModif", " getQuesionnaire");
         int visited;
         int contact;
         int fever, muscle_ache, sputum, runny_nose, dyspnea, sore_throat;
@@ -242,9 +238,9 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
 
 
         questionnaireVOArrayList = new ArrayList<QuestionnaireVO>();
-        questionnaireVOArrayList = AppManager.getInstance().getQuesionnaireVOArrayList();
+        questionnaireVOArrayList = AppManager.getInstance().getQuestionnaireVOArrayList();
 
-        Log.d("~~~~~","questionnaireVOArrayList size: "+questionnaireVOArrayList.size());
+        Log.d("~~~~~QuestionnaireModif","questionnaireVOArrayList size: "+questionnaireVOArrayList.size());
 
         sequence = questionnaireVOArrayList.get(questionnaireVOArrayList.size() - 1).getSequence();
         user_id = questionnaireVOArrayList.get(questionnaireVOArrayList.size() - 1).getUser_id();
@@ -284,7 +280,7 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
 
 
     private void updateQuestionnaireData(QuestionnaireData questionnaireData) {
-        Log.d("~~~~~", "updateQuestionnaireData");
+        Log.d("~~~~~QuestionnaireModif", "updateQuestionnaireData");
 
         Call<ResponseBody> dataCall = serviceApi.modifyQuestionnaireData(sequence, questionnaireData);
 
@@ -293,22 +289,22 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 String result = null;
                 try {
-                    Log.d("~~~~~", "response" + response.code());
+                    Log.d("~~~~~QuestionnaireModif", "response" + response.code());
                     result = response.body().string();
 
                 } catch (IOException e) {
-                    Log.d("~~~~~", String.valueOf(e));
+                    Log.d("~~~~~QuestionnaireModif", String.valueOf(e));
                     e.printStackTrace();
                 }
-                Log.i("~~~~~", "result: " + result);
+                Log.i("~~~~~QuestionnaireModif", "result: " + result);
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.i("~~~~~", "fail");
+                Log.i("~~~~~QuestionnaireModif", "fail");
                 if (t instanceof IOException) {
                     // Handle IO exception, maybe check the network and try again.
-                    Log.i("~~~~~", "t" + t);
+                    Log.i("~~~~~QuestionnaireModif", "t" + t);
                 }
             }
         });
@@ -316,7 +312,7 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
 
 
     private void setQuestionnaire() {
-        Log.d("~~~~~", "setQuestionnaire");
+        Log.d("~~~~~QuestionnaireModif", "setQuestionnaire");
 
         if (isVisited) {
             visitedTrue_radioButton.setChecked(true);
@@ -326,7 +322,7 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
         countryEditText.setText(visitedDetail);
 
         if (entrance_date.equals("")) {
-            Log.d("~~~~~", "entrance date 공란");
+            Log.d("~~~~~QuestionnaireModif", "entrance date 공란");
             entranceDateTextView.setText(R.string.entrance_date_text);
             entranceDateTextView.setTextColor(Color.LTGRAY);
         } else {
@@ -411,7 +407,7 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
 
     private void setCheckedInfo() {
 
-        Log.d("~~~~~", "setCheckedInfo");
+        Log.d("~~~~~QuestionnaireModif", "setCheckedInfo");
 
         if (fever_checkBox.isChecked() == true) {
             hasFever = true;
@@ -468,7 +464,7 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
      */
 
     private void updateLabel() {
-        Log.d("~~~~~", "updateLabel");
+        Log.d("~~~~~QuestionnaireModif", "updateLabel");
         String myFormat = "yyyy/MM/dd"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
         entranceDateTextView.setText(sdf.format(myCalender.getTime()));
@@ -477,7 +473,7 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
     }
 
     private void updateVirusStartLabel() {
-        Log.d("~~~~~", "updateVirusStartLabel");
+        Log.d("~~~~~QuestionnaireModif", "updateVirusStartLabel");
 
         String myFormat = "yyyy/MM/dd"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
@@ -489,7 +485,7 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
     @Override
     public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
 
-        Log.d("~~~~~", "onValueChange");
+        Log.d("~~~~~QuestionnaireModif", "onValueChange");
         termTextView.setText(String.valueOf(newVal) + "일");
         termTextView.setTextColor(Color.BLACK);
         contact_period = String.valueOf(newVal);
@@ -497,7 +493,7 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
 
     public void showNumberPicker(View view, String title, String subtitle, int maxvalue, int minvalue, int step, int defvalue) {
 
-        Log.d("~~~~~", "showNumberPicker");
+        Log.d("~~~~QuestionnaireModif~", "showNumberPicker");
         NumberpickerDialog newFragment = new NumberpickerDialog();
 
         //Dialog에는 bundle을 이용해서 파라미터를 전달한다

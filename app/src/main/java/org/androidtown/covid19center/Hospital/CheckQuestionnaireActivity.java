@@ -2,16 +2,19 @@ package org.androidtown.covid19center.Hospital;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.androidtown.covid19center.R;
+import org.androidtown.covid19center.Server.AppManager;
 import org.androidtown.covid19center.Server.QuestionnaireVO;
+
+import java.util.ArrayList;
 
 public class CheckQuestionnaireActivity extends AppCompatActivity {
 
@@ -35,6 +38,12 @@ public class CheckQuestionnaireActivity extends AppCompatActivity {
     private CheckBox dyspnea;
     private CheckBox sore_throat;
     private TextView start_date;
+
+
+    private int ques_seq;
+    private ArrayList<QuestionnaireVO> questionnaireVOArrayList;
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,27 +73,60 @@ public class CheckQuestionnaireActivity extends AppCompatActivity {
 
         //클릭한 환자 문진표 시퀀스 받아오기
         Intent intent = getIntent();
-        int ques_seq = intent.getExtras().getInt("questionnaire sequence");
+        ques_seq = intent.getExtras().getInt("questionnaire sequence");
+        Log.d("~~~~FragmentHospital","ques_seq: "+ques_seq);
 
         //해당 sequence값 문진표 서버에서 받아오기!
-        //임시 데이터로 대체 했음!
         initList();
 
         checkQuestionnaire();
     }
 
-    //임시 데이터 넣는 함수
-    public void initList() {
 
+
+    public void initList() {
+        Log.d("~~~~~FragmentHospital","-----initlist-----");
+        questionnaireVOArrayList = AppManager.getInstance().getQuestionnaireVOArrayList();
+        Log.d("~~~~~FragmentHospital","question size: "+questionnaireVOArrayList.size());
+
+        for(int index = 0; index< questionnaireVOArrayList.size(); index++){
+            Log.d("~~~~~FragmentHospital","index: "+index+"\n"+ "questionnaireVOArrayList sequence :"+questionnaireVOArrayList.get(index).getSequence());
+            if(ques_seq == questionnaireVOArrayList.get(index).getSequence()) {
+                Log.d("~~~~~FragmentHospital","if문");
+                qeQuestionnaireVO = new QuestionnaireVO(
+                        questionnaireVOArrayList.get(index).getSequence(),
+                        questionnaireVOArrayList.get(index).getUser_id(),
+                        questionnaireVOArrayList.get(index).getVisited(),
+                        questionnaireVOArrayList.get(index).getVisited_detail(),
+                        questionnaireVOArrayList.get(index).getEntrance_date(),
+                        questionnaireVOArrayList.get(index).getContact(),
+                        questionnaireVOArrayList.get(index).getContact_relationship(),
+                        questionnaireVOArrayList.get(index).getContact_period(),
+                        questionnaireVOArrayList.get(index).getFever(),
+                        questionnaireVOArrayList.get(index).getMuscle_ache(),
+                        questionnaireVOArrayList.get(index).getCough(),
+                        questionnaireVOArrayList.get(index).getSputum(),
+                        questionnaireVOArrayList.get(index).getRunny_nose(),
+                        questionnaireVOArrayList.get(index).getDyspnea(),
+                        questionnaireVOArrayList.get(index).getSore_throat(),
+                        questionnaireVOArrayList.get(index).getSymptom_start_date(),
+                        questionnaireVOArrayList.get(index).getToDoctor());
+            }
+        }
+
+        Log.d("~~~~~FragmentHospital","-----initlist end-----");
+/*
         qeQuestionnaireVO = new QuestionnaireVO(1, "aa", 0, "중국",
                 "2020/11/28", 1, "형제", "1일",1, 0, 1, 1,
                 0, 1, 1, "2020/11/19", "안녕하세요"); // 임시데이터
 
-        //
+ */
 
     }
 
     public void checkQuestionnaire() {
+
+        Log.d("~~~~~FragmentHospital","checkQuestionnaire");
 
         //위험지역 방문 여부
         if (qeQuestionnaireVO.getVisited() == 1){

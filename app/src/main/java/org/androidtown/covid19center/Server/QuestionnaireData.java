@@ -85,20 +85,20 @@ public class QuestionnaireData {
 
 
 
-    public QuestionnaireData(String userId,
-                             boolean isVisited,
-                             String visitedDetail,
+    public QuestionnaireData(String user_id,
+                             boolean visited,
+                             String visited_detail,
                              String entrance_date,
-                             boolean isContacted,
+                             boolean contact,
                              String contact_relationship,
                              String contact_period,
-                             boolean hasFever,
-                             boolean hasMuscle_ache,
-                             boolean hasCough,
-                             boolean hasSputum,
-                             boolean hasRunnyNose,
-                             boolean hasDyspnea,
-                             boolean hasSoreThroat,
+                             boolean fever,
+                             boolean muscle_ache,
+                             boolean cough,
+                             boolean sputum,
+                             boolean runny_nose,
+                             boolean dyspnea,
+                             boolean sore_throat,
                              String symptom_start_date,
                              String toDoctor) {
 
@@ -111,7 +111,7 @@ public class QuestionnaireData {
         this.contact_period = contact_period;
         this.fever = fever;
         this.muscle_ache = muscle_ache;
-        this.cough =cough;
+        this.cough = cough;
         this.sputum = sputum;
         this.runny_nose = runny_nose;
         this.dyspnea = dyspnea;
