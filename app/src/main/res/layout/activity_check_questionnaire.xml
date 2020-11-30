@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/colorWhite">
+
+        <ImageButton
+            android:id="@+id/check_ques_back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:backgroundTint="@color/colorWhite"
+            android:stateListAnimator="@null"
+            app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="문진표"
+            android:textColor="@android:color/black"
+            android:textSize="15dp" />
+
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="20dp"
+                android:orientation="vertical">
+
+                <!-- 질문 1-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1. 최근 21일 이내 '코로나바이러스감염증19' 유행국가, 감염병 특별관리지역, 발생국가를 방문, 거주, 경유한 적이 있습니까?"
+                    android:textColor="@android:color/black"
+                    android:textSize="15dp" />
+
+                <RadioGroup
+                    android:id="@+id/questionnarie_visited_radioGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/questionnarie_visited_false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="없음"/>
+
+                    <RadioButton
+                        android:id="@+id/questionnarie_visited_true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="있음"/>
+                </RadioGroup>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="30dp"
+                        android:text="방문국가/지역/장소: "
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/questionnarie_visited_country"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="중국"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="30dp"
+                        android:text="입국일: "
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/questionnarie_entry_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="11/19"
+                        android:textColor="@color/colorBlack" />
+
+                </LinearLayout>
+
+                <!-- 질문 2-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="2. '코로나바이러스감염증-19' 확진환자와 접촉한 적이 있습니까?"
+                    android:textColor="@android:color/black"
+                    android:textSize="15dp" />
+
+                <RadioGroup
+                    android:id="@+id/questionnarie_contact_radioGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/questionnarie_contact_false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="없음" />
+
+                    <RadioButton
+                        android:id="@+id/questionnarie_contact_true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="있음" />
+
+                </RadioGroup>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="30dp"
+                        android:text="본인과의 관계: "
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/questionnarie_relation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="친척"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="30dp"
+                        android:text="접촉 기간: "
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/questionnarie_period"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="7일"
+                        android:textColor="@color/colorBlack" />
+
+                </LinearLayout>
+
+                <!-- 질문 3-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="3. 다음 중 해당되는 증상이 있다면 표시 하세요."
+                    android:textColor="@android:color/black"
+                    android:textSize="15dp" />
+
+<!--                <CheckBox-->
+<!--                    android:id="@+id/questionnarie_symptom_false"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="없음" />-->
+
+                <CheckBox
+                    android:id="@+id/questionnarie_fever"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="37.5ºC 이상 열" />
+
+                <CheckBox
+                    android:id="@+id/questionnarie_muscle_ache"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="전신통/근육통" />
+
+                <CheckBox
+                    android:id="@+id/questionnarie_cough"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="기침" />
+
+                <CheckBox
+                    android:id="@+id/questionnarie_sputum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="가래" />
+
+                <CheckBox
+                    android:id="@+id/questionnarie_runny_nose"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="콧물" />
+
+                <CheckBox
+                    android:id="@+id/questionnarie_dyspnea"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="호흡곤란" />
+
+                <CheckBox
+                    android:id="@+id/questionnarie_sore_throat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="인후통" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="증상 발생일: " />
+
+                    <TextView
+                        android:id="@+id/questionnarie_start_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="11/20"
+                        android:textColor="@color/colorBlack" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </ScrollView>
+
+</LinearLayout>

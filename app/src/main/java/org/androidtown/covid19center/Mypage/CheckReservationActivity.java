@@ -7,16 +7,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.androidtown.covid19center.R;
+
 import org.androidtown.covid19center.Server.AppManager;
 import org.androidtown.covid19center.Server.QuestionnaireData;
 
 public class CheckReservationActivity extends AppCompatActivity {
 
     private Button questionnaireButton;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,12 +33,12 @@ public class CheckReservationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d("~~~~~","questionnaire button click");
-                goToNextActivity();
+                goToModificationActivity();
             }
         });
     }
 
-    private void goToNextActivity() {
+    private void goToModificationActivity() {
         Log.d("~~~~~","goToNextActivity");
         Intent intent = new Intent(this, QuestionnaireModificationActivity.class);
         startActivity(intent);

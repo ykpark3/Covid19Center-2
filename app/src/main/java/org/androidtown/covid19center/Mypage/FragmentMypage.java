@@ -33,7 +33,12 @@ public class FragmentMypage extends Fragment {
                 //Qr코드 생성 activity로 intent
                 //@@@이부분 예약 내역 activity로 수정하기!!!!!
 
-                Intent intent = new Intent(getActivity(), CheckReservationActivity.class);
+
+                Intent intent = new Intent(getActivity(), ReservationCompleteActivity.class);
+
+//                Intent intent = new Intent(getActivity(), CheckReservationActivity.class); 지우지 말아줘
+
+
 
                 startActivity(intent);
             }

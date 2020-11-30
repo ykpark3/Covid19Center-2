@@ -90,7 +90,8 @@ public class ClinicActivity extends AppCompatActivity implements OnMapReadyCallb
                 Intent intent = new Intent(getApplicationContext(), ReservationActivity.class);
 
                 intent.putExtra("clinicName", clinicNameTmp);
-
+                intent.putExtra("clinicAddress", clinicAddress.getText());
+                intent.putExtra("clinicCallNumber", clinicCallNumber.getText());
                 startActivity(intent);
             }
         });

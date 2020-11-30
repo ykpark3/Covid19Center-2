@@ -37,20 +37,21 @@ public class ReservationActivity extends AppCompatActivity {
     private TextView clinicName;
     private TextView clinicDate;
     private TextView warningMessage;
-
     private TextView reservaitionWarningText;
-
     private Button reservationButton;
     private ImageButton backButton;
     private CalendarView calendarView;
     private ArrayList<String> reservationTime;
     private String reservationTimeString;
+    private String passClinicAddress;
+    private String passClinicCallNumber;
     private String stringTemp;
     private RecyclerView listView;
     private ArrayList<View> views;
     private ArrayList<View> timeViews;
     private boolean canNextPage;
     private MyAdapter adapter;
+    private ArrayList<String> passInfoList;
     private SubTimeAdapter subTimeAdapter;
     private final SparseBooleanArray mSelectedItems = new SparseBooleanArray(0);
     private ArrayList<String> listTime;
@@ -104,6 +105,9 @@ public class ReservationActivity extends AppCompatActivity {
 
         reservationTime = new ArrayList<>();
 
+
+        passInfoList = new ArrayList<>();
+
         views = new ArrayList<>();
         timeViews = new ArrayList<>();
         setLayoutElement();
@@ -127,7 +131,7 @@ public class ReservationActivity extends AppCompatActivity {
 
         calendarView = findViewById(R.id.reservation_calendarView);
         reservationButton = findViewById(R.id.reservation_button);
-        warningMessage = findViewById(R.id.reservation_warning_message);
+        warningMessage = findViewById(R.id.reservation_calenderText);
         backButton = findViewById(R.id.reservation_backButton);
 
         reservaitionWarningText = findViewById(R.id.reservation_warning_message);
@@ -152,7 +156,18 @@ public class ReservationActivity extends AppCompatActivity {
 
                     reservationTimeString = reservationTime.get(reservationTime.size()-1);
 
-                    mEndDialog = new EndDialog(ReservationActivity.this, reservationTimeString, String.valueOf(clinicName.getText()));
+                    passInfoList.add(reservationTimeString);
+                    passInfoList.add(String.valueOf(clinicName.getText()));
+                    passInfoList.add(passClinicAddress);
+                    passInfoList.add(passClinicCallNumber);
+
+
+                    Log.d("0154", String.valueOf(passInfoList.get(0)));
+                    Log.d("0154", String.valueOf(passInfoList.get(1)));
+                    Log.d("0154", String.valueOf(passInfoList.get(2)));
+                    Log.d("0154", String.valueOf(passInfoList.get(3)));
+
+                    mEndDialog = new EndDialog(ReservationActivity.this, reservationTimeString, String.valueOf(clinicName.getText()),passInfoList);
 
                     mEndDialog.setCancelable(false);
 
@@ -187,6 +202,9 @@ public class ReservationActivity extends AppCompatActivity {
     private void setIntentInfomation() {
 
         Intent intent = getIntent(); // 데이터 수신
+
+        passClinicAddress = intent.getExtras().getString("clinicAddress");
+        passClinicCallNumber = intent.getExtras().getString("clinicCallNumber");
 
         stringTemp = intent.getExtras().getString("clinicName");
         clinicName.setText(stringTemp);
@@ -251,14 +269,25 @@ public class ReservationActivity extends AppCompatActivity {
                 }
 
                 canNextPage = true;
+
+
+                view.setBackgroundResource(R.drawable.background_purple_rectangle);
+
                 timeViews.add(view);
 
 
-                view.setBackgroundResource(R.drawable.background_gray_rectangle);
-
                 if (timeViews.size() > 1) {
-                    view.setBackgroundResource(R.drawable.background_purple_rectangle);
-                    timeViews.get(0).setBackgroundResource(R.drawable.background_gray_rectangle);
+
+                    Log.d("1542","123");
+                    if(timeViews.get(0).equals(view) && view.getBackground().equals(R.drawable.background_gray_rectangle)){
+                        view.setBackgroundResource(R.drawable.background_purple_rectangle);
+                    } else if(timeViews.get(0).equals(view) && view.getBackground().equals(R.drawable.background_purple_rectangle)){
+                        view.setBackgroundResource(R.drawable.background_gray_rectangle);
+                    } else{
+                        view.setBackgroundResource(R.drawable.background_purple_rectangle);
+                        timeViews.get(0).setBackgroundResource(R.drawable.background_gray_rectangle);
+                    }
+
                     timeViews.clear();
                     timeViews.add(view);
 

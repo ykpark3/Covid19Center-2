@@ -111,7 +111,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="@string/entrance_date_text"
-                    android:textColor="@color/colorLightGray" />
+                    android:textColor="@color/colorBlack" />
 
             </LinearLayout>
 
@@ -184,7 +184,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="@string/term_text"
-                    android:textColor="@color/colorLightGray" />
+                    android:textColor="@color/colorBlack"/>
+
 
             </LinearLayout>
 
@@ -254,7 +255,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="증상 발생일: " />
+                    android:text="증상 발생일: "
+                    android:textColor="@color/colorBlack"/>
 
                 <TextView
                     android:id="@+id/questionnarie_textView_start_date"
