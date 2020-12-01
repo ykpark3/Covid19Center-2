@@ -19,10 +19,12 @@
         android:hardwareAccelerated="true"
         android:networkSecurityConfig="@xml/network_config">
 
+
         <activity android:name=".Main.MainActivity"/>
 
         <activity android:name=".Search.LottieReservationCompleteActivity"/>
         <activity android:name=".SelfCheck.QuestionnaireActivity"/>
+
 
         <activity android:name=".Login.LoginActivity">
             <intent-filter>

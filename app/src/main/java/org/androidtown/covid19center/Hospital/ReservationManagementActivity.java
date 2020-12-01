@@ -1,12 +1,9 @@
 package org.androidtown.covid19center.Hospital;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.CalendarView;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
@@ -24,11 +21,9 @@ import org.androidtown.covid19center.Server.AppManager;
 import org.androidtown.covid19center.Server.ReservationVO;
 
 import java.text.SimpleDateFormat;
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 //의료진용 예약 관리 페이지

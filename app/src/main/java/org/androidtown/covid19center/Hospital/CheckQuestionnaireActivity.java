@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,13 +19,12 @@ public class CheckQuestionnaireActivity extends AppCompatActivity {
     private RadioButton visited_false;
     private TextView visited_country;
     private TextView entry_date;
-
     private RadioButton contact_true;
     private RadioButton contact_false;
     private TextView relation;
     private TextView period;
 
-//    private CheckBox symptom_false;
+    //    private CheckBox symptom_false;
     private CheckBox fever;
     private CheckBox muscle_ache;
     private CheckBox cough;
@@ -80,27 +78,28 @@ public class CheckQuestionnaireActivity extends AppCompatActivity {
         qeQuestionnaireVO = new QuestionnaireVO(1, "aa", 0, "중국",
                 "2020/11/28", 1, "형제", "1일",1, 0, 1, 1,
                 0, 1, 1, "2020/11/19", "안녕하세요");
+
     }
 
     public void checkQuestionnaire() {
 
         //위험지역 방문 여부
-        if (qeQuestionnaireVO.getVisited() == 1){
+        if (qeQuestionnaireVO.getVisited() == 1) {
             visited_true.setChecked(true);
 
             visited_country.setText(qeQuestionnaireVO.getVisited_detail());
             entry_date.setText(qeQuestionnaireVO.getEntrance_date());
-        }else{
+        } else {
             visited_false.setChecked(true);
         }
 
         //접촉 여부
-        if(qeQuestionnaireVO.getContact() == 1){
+        if (qeQuestionnaireVO.getContact() == 1) {
             contact_true.setChecked(true);
 
             relation.setText(qeQuestionnaireVO.getContact_relationship());
             period.setText(qeQuestionnaireVO.getContact_period());
-        }else{
+        } else {
             contact_false.setChecked(true);
         }
 
@@ -114,5 +113,6 @@ public class CheckQuestionnaireActivity extends AppCompatActivity {
         if(qeQuestionnaireVO.getSore_throat()==1) sore_throat.setChecked(true);
         if(qeQuestionnaireVO.getSymptom_start_date() != null) start_date.setText(qeQuestionnaireVO.getSymptom_start_date());
         if(qeQuestionnaireVO.getToDoctor() != null) to_doctor.setText(qeQuestionnaireVO.getToDoctor());
+
     }
 }

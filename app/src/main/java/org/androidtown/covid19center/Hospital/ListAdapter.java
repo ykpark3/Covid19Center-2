@@ -10,10 +10,8 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.androidtown.covid19center.R;
-import org.androidtown.covid19center.SelfCheck.QuestionnaireActivity;
 import org.androidtown.covid19center.Server.ReservationVO;
 
 import java.util.ArrayList;

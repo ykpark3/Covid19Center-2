@@ -22,7 +22,9 @@ public class QuestionnaireVO {
              int contact,
              String contact_relationship,
              String contact_period,
+
              int fever,int cough, int muscle_ache, int sputum, int runny_nose, int dyspnea, int sore_throat,
+
              String symptom_start_date,
              String toDoctor) {
 
@@ -102,6 +104,7 @@ public class QuestionnaireVO {
     public int getFever() {
         return fever;
     }
+
     public void setFever(int fever) {
         this.fever = fever;
     }
@@ -117,6 +120,7 @@ public class QuestionnaireVO {
     public int getMuscle_ache() {
         return muscle_ache;
     }
+
     public void setMuscle_ache(int muscle_ache) {
         this.muscle_ache = muscle_ache;
     }

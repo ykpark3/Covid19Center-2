@@ -6,7 +6,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
-
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,15 +13,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.androidtown.covid19center.Hospital.HospitalMainActivity;
 import org.androidtown.covid19center.Main.MainActivity;
 import org.androidtown.covid19center.R;
-
-import org.androidtown.covid19center.Hospital.HospitalMainActivity;
 import org.androidtown.covid19center.Server.AppManager;
 import org.androidtown.covid19center.Server.RetrofitClient;
 import org.androidtown.covid19center.Server.ServiceApi;
 import org.androidtown.covid19center.Server.UsersVO;
-
 
 import java.util.List;
 
@@ -43,13 +40,13 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         // 네트워크가 켜져있으면 동작
-        if(checkNetworkSetting() == 1){
+        if (checkNetworkSetting() == 1) {
             setLoginInfomation();
         }
 
     }
 
-    public void setLoginInfomation(){
+    public void setLoginInfomation() {
         service = RetrofitClient.getClient().create(ServiceApi.class);
 
         idEditText = findViewById(R.id.idEditText);
@@ -69,21 +66,21 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    public int checkNetworkSetting(){
+    public int checkNetworkSetting() {
         mcontext = getApplicationContext();
 
-        if(getOnline_23() == 0){
+        if (getOnline_23() == 0) {
 
             Intent intent = new Intent(getApplicationContext(), DataWarningActivity.class);
             startActivity(intent);
             finish();
-        } else{
+        } else {
             return 1;
         }
         return 0;
     }
 
-    public int getOnline_23(){
+    public int getOnline_23() {
         int ret_code = 0;
 
         ConnectivityManager cm = (ConnectivityManager) mcontext.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -95,8 +92,7 @@ public class LoginActivity extends AppCompatActivity {
             } else if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE && activeNetwork.isConnectedOrConnecting()) {
                 // 모바일 네트워크 연결중
                 return 2;
-            }
-            else {
+            } else {
                 // 네트워크 오프라인 상태.
                 return 0;
             }
@@ -114,26 +110,25 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<List<UsersVO>> call, Response<List<UsersVO>> response) {
                 boolean isLoginPossible = false;
 
-                if(response.isSuccessful()) {
+                if (response.isSuccessful()) {
                     List<UsersVO> data = response.body();
 
 
-                    for(int i=0; i<data.size(); i++) {
-                        if(data.get(i).getId().equals(id) && data.get(i).getPassword().equals(password)) {
-                            Log.d("~~~~~","로그인 가능");
+                    for (int i = 0; i < data.size(); i++) {
+                        if (data.get(i).getId().equals(id) && data.get(i).getPassword().equals(password)) {
+                            Log.d("~~~~~", "로그인 가능");
                             Toast toast = Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT);
                             toast.show();
 
                             AppManager.getInstance().setUserId(id);   // user id 저장하기
 
-                            if(id.equals("hhh")) {
+                            if (id.equals("hhh")) {
                                 Intent intent = new Intent(LoginActivity.this, HospitalMainActivity.class);
 
                                 startActivity(intent);
 
                                 finish();
-                            }
-                            else {
+                            } else {
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(intent);
 
@@ -145,9 +140,9 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
 
-                    if(!isLoginPossible) {
+                    if (!isLoginPossible) {
 
-                        Log.d("~~~~~","로그인 정보 확인 필요");
+                        Log.d("~~~~~", "로그인 정보 확인 필요");
                         Toast toast = Toast.makeText(LoginActivity.this, "로그인 정보를 확인해주세요.", Toast.LENGTH_SHORT);
                         toast.show();
 
@@ -163,7 +158,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
 
             public void onFailure(Call<List<UsersVO>> call, Throwable t) {
-                Log.d("~~~~~","실패: "+ t);
+                Log.d("~~~~~", "실패: " + t);
                 t.printStackTrace();
 
             }

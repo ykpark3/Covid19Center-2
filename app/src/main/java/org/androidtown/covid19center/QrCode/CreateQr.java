@@ -1,11 +1,11 @@
 package org.androidtown.covid19center.QrCode;
 
-import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
@@ -21,11 +21,6 @@ import org.androidtown.covid19center.R;
 import org.androidtown.covid19center.Server.ReservationVO;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
 public class CreateQr extends AppCompatActivity {
     private ImageView qr_code;
@@ -47,6 +42,7 @@ public class CreateQr extends AppCompatActivity {
 
         setContentView(R.layout.activity_create_qr);
         ImageView qr_code = (ImageView) findViewById(R.id.qr_code);
+        ImageButton backButton = (ImageButton) findViewById(R.id.create_qr_backButton);
 
         qr_data = createJson().toString(); //원하는 내용 저장
 
