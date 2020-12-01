@@ -390,8 +390,8 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
 
     private void setCheckedInfo(){
 
-        isContacted = false;
         symptomStringBuffer = new StringBuffer();
+        isSymptomChecked = false;
 
         if(none_checkBox.isChecked() == true){
             isThirdQuestion = true;
@@ -400,7 +400,7 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
         if(fever_checkBox.isChecked() == true){
             isThirdQuestion = true;
             hasFever = true;
-            isContacted = true;
+            isSymptomChecked = true;
             symptomStringBuffer.append("37.5도 이상 열,");
         } else{
             hasFever = false;
@@ -409,7 +409,7 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
         if(muscle_ache_checkBox.isChecked() == true){
             isThirdQuestion = true;
             hasMuscle_ache = true;
-            isContacted = true;
+            isSymptomChecked = true;
             symptomStringBuffer.append("전신통/근육통,");
         } else{
             hasMuscle_ache = false;
@@ -418,7 +418,7 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
         if(cough_checkBox.isChecked() == true){
             hasCough = true;
             isThirdQuestion = true;
-            isContacted = true;
+            isSymptomChecked = true;
             symptomStringBuffer.append("기침,");
         } else{
             hasCough = false;
@@ -427,7 +427,7 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
         if(runny_nose_checkBox.isChecked() == true){
             isThirdQuestion = true;
             hasRunnyNose = true;
-            isContacted = true;
+            isSymptomChecked = true;
             symptomStringBuffer.append("콧물,");
         } else{
             hasRunnyNose = false;
@@ -436,7 +436,7 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
         if(dyspnea_checkBox.isChecked() == true){
             isThirdQuestion = true;
             hasDyspnea = true;
-            isContacted = true;
+            isSymptomChecked = true;
             symptomStringBuffer.append("호흡곤란,");
         } else{
             hasDyspnea = false;
@@ -445,7 +445,7 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
         if(sputum_checkBox.isChecked() == true){
             isThirdQuestion = true;
             hasSputum = true;
-            isContacted = true;
+            isSymptomChecked = true;
             symptomStringBuffer.append("가래,");
         } else{
             hasSputum = false;
@@ -454,7 +454,7 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
         if(sore_throat_checkBox.isChecked() == true){
             isThirdQuestion = true;
             hasSoreThroat = true;
-            isContacted = true;
+            isSymptomChecked = true;
             symptomStringBuffer.append("인후통,");
         } else{
             hasSoreThroat = false;
