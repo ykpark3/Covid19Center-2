@@ -55,7 +55,7 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
     private RadioGroup visitedCheck_radioGroup, contact_radioGroup;
     private CheckBox fever_checkBox, muscle_ache_checkBox, cough_checkBox, sputum_checkBox, runny_nose_checkBox, dyspnea_checkBox, sore_throat_checkBox;
 
-    private Boolean isVisited;
+    private boolean isVisited;
     private String visitedDetail;
     private boolean isContacted;
     private String contact_relationship;
@@ -82,10 +82,10 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
     private EditText toDoctorEditText;
     private String toDoctorMessage;
 
-    private Boolean isFirstQuestion;
-    private Boolean isSecondQuestion;
-    private Boolean isThirdQuestion;
-    private Boolean isFourthQuestion;
+    private boolean isFirstQuestion;
+    private boolean isSecondQuestion;
+    private boolean isThirdQuestion;
+    private boolean isFourthQuestion;
 
 
     @Override
@@ -134,6 +134,7 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
             public void onClick(View v) {
 
                 setCheckedInfo();
+
 
                 /** toDoctor 내용 추가해주기
                  *
@@ -216,6 +217,88 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
 
     }
 
+
+    private void addQuestionnaireVOArrayList() {
+        Log.d("~~~~~QuestionnaireAct","addQuestionnaireVOArrayList");
+
+        /**
+         * boolean -> int 형 변환
+         */
+        int visited;
+        int contact;
+        int fever, muscle_ache, cough, sputum, runny_nose, dyspnea, sore_throat;
+
+        if(isVisited) {
+            visited = 1;
+        } else {
+            visited = 0;
+        }
+
+        if(isContacted) {
+            contact = 1;
+        } else {
+            contact = 0;
+        }
+
+        if(hasFever) {
+            fever = 1;
+        } else {
+            fever = 0;
+        }
+
+        if(hasMuscle_ache) {
+            muscle_ache = 1;
+        } else {
+            muscle_ache = 0;
+        }
+
+        if(hasCough) {
+            cough = 1;
+        } else {
+            cough = 0;
+        }
+
+        if(hasSputum) {
+            sputum = 1;
+        } else {
+            sputum = 0;
+        }
+
+        if(hasRunnyNose) {
+            runny_nose = 1;
+        } else {
+            runny_nose = 0;
+        }
+
+        if(hasDyspnea) {
+            dyspnea = 1;
+        } else {
+            dyspnea = 0;
+        }
+
+        if(hasSoreThroat) {
+            sore_throat = 1;
+        } else {
+            sore_throat = 0;
+        }
+
+
+        /**
+         * AppManager에 저장된 QuestionnaireVO에 추가
+         */
+        ArrayList<QuestionnaireVO> questionnaireVOArrayList = AppManager.getInstance().getQuestionnaireVOArrayList();
+        questionnaireVOArrayList.add(new QuestionnaireVO(
+                questionnaireSequence,
+                AppManager.getInstance().getUserId(),
+                visited, visitedDetail, entrance_date,
+                contact, contact_relationship, contact_period,
+                fever, muscle_ache, cough, sputum, runny_nose, dyspnea, sore_throat,
+                symptom_start_date,
+                "toDoctor"));
+
+        AppManager.getInstance().setQuestionnaireVOArrayList(questionnaireVOArrayList);
+    }
+
     private void sendIntentInfo(Intent intent){
 
         intent.putExtra("userId",AppManager.getInstance().getUserId());
@@ -247,6 +330,7 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
                     Log.d("~~~~~","response"+response.code());
                     result = response.body().string();
 
+
                 } catch (IOException e) {
                     Log.d("~~~~~", String.valueOf(e));
                     e.printStackTrace();
@@ -270,6 +354,7 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
 
     protected void getQuestionnaireSequence() {
         serviceApi.getQuesionnaireVO().enqueue(new Callback<List<QuestionnaireVO>>() {
+
             @Override
             public void onResponse(Call<List<QuestionnaireVO>> call, Response<List<QuestionnaireVO>> response) {
 
@@ -282,10 +367,9 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
 
                     long now = System.currentTimeMillis();
                     Date nowDate = new Date(now);
-
-                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
-
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
                     String getTime = simpleDateFormat.format(nowDate);
+
 
                     /**
                      * AppManager에 저장된 ReservationVO에 추가
@@ -299,6 +383,10 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
                             clinicReservationTime.substring(0, clinicReservationTime.indexOf(",")),
                             0));
                     AppManager.getInstance().setReservationVOArrayList(reservationVOArrayList);
+
+
+
+                    addQuestionnaireVOArrayList();
 
 
                     sendReservationData(new ReservationData(
@@ -393,9 +481,12 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
         symptomStringBuffer = new StringBuffer();
         isSymptomChecked = false;
 
+        /*
         if(none_checkBox.isChecked() == true){
             isThirdQuestion = true;
         }
+
+         */
 
         if(fever_checkBox.isChecked() == true){
             isThirdQuestion = true;
@@ -467,7 +558,7 @@ public class QuestionnaireActivity extends AppCompatActivity implements NumberPi
 
         contact_relationship = String.valueOf(relationEditText.getText());
         visitedDetail = String.valueOf(countryEditText.getText());
-        toDoctorMessage = String.valueOf(toDoctorEditText.getText());
+     //   toDoctorMessage = String.valueOf(toDoctorEditText.getText());
     }
 
 

@@ -31,7 +31,6 @@ public class AppManager {
     public ArrayList<ReservationVO> getReservationVOArrayList() {
         return reservationVOArrayList;
     }
-
     public void setReservationVOArrayList(ArrayList<ReservationVO> reservationVOArrayList) {
         this.reservationVOArrayList = reservationVOArrayList;
     }

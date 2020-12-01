@@ -46,6 +46,7 @@ public class QuestionnaireVO {
 
     }
 
+    /*
     public QuestionnaireVO
             (String user_id,
              int visited,
@@ -75,6 +76,8 @@ public class QuestionnaireVO {
         this.symptom_start_date = symptom_start_date;
         this.toDoctor = toDoctor;
     }
+
+     */
 
 
 

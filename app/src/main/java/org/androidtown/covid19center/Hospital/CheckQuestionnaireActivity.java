@@ -86,12 +86,16 @@ public class CheckQuestionnaireActivity extends AppCompatActivity {
 
     public void initList() {
         Log.d("~~~~~FragmentHospital","-----initlist-----");
+
         questionnaireVOArrayList = AppManager.getInstance().getQuestionnaireVOArrayList();
         Log.d("~~~~~FragmentHospital","question size: "+questionnaireVOArrayList.size());
 
         for(int index = 0; index< questionnaireVOArrayList.size(); index++){
+
             Log.d("~~~~~FragmentHospital","index: "+index+"\n"+ "questionnaireVOArrayList sequence :"+questionnaireVOArrayList.get(index).getSequence());
+
             if(ques_seq == questionnaireVOArrayList.get(index).getSequence()) {
+
                 Log.d("~~~~~FragmentHospital","if문");
                 qeQuestionnaireVO = new QuestionnaireVO(
                         questionnaireVOArrayList.get(index).getSequence(),
@@ -115,12 +119,6 @@ public class CheckQuestionnaireActivity extends AppCompatActivity {
         }
 
         Log.d("~~~~~FragmentHospital","-----initlist end-----");
-/*
-        qeQuestionnaireVO = new QuestionnaireVO(1, "aa", 0, "중국",
-                "2020/11/28", 1, "형제", "1일",1, 0, 1, 1,
-                0, 1, 1, "2020/11/19", "안녕하세요"); // 임시데이터
-
- */
 
     }
 

@@ -29,6 +29,7 @@ public interface ServiceApi {
     @GET("/questionnaire")
     Call<List<QuestionnaireVO>> getQuesionnaireVO();
 
+
     @POST("/reservationInsert")
     Call<ResponseBody> sendReservationData(@Body ReservationData reservationData);
 

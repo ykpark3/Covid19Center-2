@@ -92,7 +92,7 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
 
         setLayoutElement();
 
-        getQuesionnaire();
+        getQuestionnaire();
     }
 
 
@@ -224,11 +224,11 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
     }
 
 
-    protected void getQuesionnaire() {
-        Log.d("~~~~~QuestionnaireModif", " getQuesionnaire");
+    protected void getQuestionnaire() {
+        Log.d("~~~~~QuestionnaireModif", " getQuestionnaire");
         int visited;
         int contact;
-        int fever, muscle_ache, sputum, runny_nose, dyspnea, sore_throat;
+        int fever, muscle_ache, cough, sputum, runny_nose, dyspnea, sore_throat;
 
                 /*
                 String visited_detail, entrance_date;
@@ -252,6 +252,7 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
         contact_period = questionnaireVOArrayList.get(questionnaireVOArrayList.size() - 1).getContact_period();
         fever = questionnaireVOArrayList.get(questionnaireVOArrayList.size() - 1).getFever();
         muscle_ache = questionnaireVOArrayList.get(questionnaireVOArrayList.size() - 1).getMuscle_ache();
+        cough = questionnaireVOArrayList.get(questionnaireVOArrayList.size() - 1).getCough();
         sputum = questionnaireVOArrayList.get(questionnaireVOArrayList.size() - 1).getSputum();
         runny_nose = questionnaireVOArrayList.get(questionnaireVOArrayList.size() - 1).getRunny_nose();
         dyspnea = questionnaireVOArrayList.get(questionnaireVOArrayList.size() - 1).getDyspnea();
@@ -268,6 +269,7 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
         isContacted = contact != 0;
         hasFever = fever != 0;
         hasMuscle_ache = muscle_ache != 0;
+        hasCough = cough != 0;
         hasSputum = sputum != 0;
         hasRunnyNose = runny_nose != 0;
         hasDyspnea = dyspnea != 0;
