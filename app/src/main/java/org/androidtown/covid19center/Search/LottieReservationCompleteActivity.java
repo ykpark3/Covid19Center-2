@@ -35,6 +35,7 @@ public class LottieReservationCompleteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activiiy_lottie_reservation_complete);
 
+
         //getIntentInfo();
 
         LottieAnimationView lottieAnimationView = (LottieAnimationView) findViewById(R.id.lottie_reservation_complete);
@@ -54,6 +55,7 @@ public class LottieReservationCompleteActivity extends AppCompatActivity {
         public void run() {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
 
             //sendIntent(intent);
             startActivity(intent);

@@ -10,7 +10,9 @@ public class QuestionnaireVO {
     String visited_detail, entrance_date;
     int contact;
     String contact_relationship, contact_period;
-    int fever, cough, muscle_ache, sputum, runny_nose, dyspnea, sore_throat;
+
+    int fever, muscle_ache, cough, sputum, runny_nose, dyspnea, sore_throat;
+
     String symptom_start_date, toDoctor;
 
     public QuestionnaireVO
@@ -23,7 +25,7 @@ public class QuestionnaireVO {
              String contact_relationship,
              String contact_period,
 
-             int fever,int cough, int muscle_ache, int sputum, int runny_nose, int dyspnea, int sore_throat,
+             int fever,int muscle_ache, int cough, int sputum, int runny_nose, int dyspnea, int sore_throat,
 
              String symptom_start_date,
              String toDoctor) {
@@ -39,6 +41,7 @@ public class QuestionnaireVO {
         this.fever = fever;
         this.cough = cough;
         this.muscle_ache = muscle_ache;
+        this.cough = cough;
         this.sputum = sputum;
         this.runny_nose = runny_nose;
         this.dyspnea = dyspnea;
@@ -47,6 +50,40 @@ public class QuestionnaireVO {
         this.toDoctor = toDoctor;
 
     }
+
+    /*
+    public QuestionnaireVO
+            (String user_id,
+             int visited,
+             String visited_detail,
+             String entrance_date,
+             int contact,
+             String contact_relationship,
+             String contact_period,
+             int fever,int muscle_ache, int cough, int sputum, int runny_nose, int dyspnea, int sore_throat,
+             String symptom_start_date,
+             String toDoctor) {
+
+        this.user_id = user_id;
+        this.visited = visited;
+        this.visited_detail = visited_detail;
+        this.entrance_date = entrance_date;
+        this.contact = contact;
+        this.contact_relationship = contact_relationship;
+        this.contact_period = contact_period;
+        this.fever = fever;
+        this.muscle_ache = muscle_ache;
+        this.cough = cough;
+        this.sputum = sputum;
+        this.runny_nose = runny_nose;
+        this.dyspnea = dyspnea;
+        this.sore_throat = sore_throat;
+        this.symptom_start_date = symptom_start_date;
+        this.toDoctor = toDoctor;
+    }
+
+     */
+
 
 
     public int getSequence() { return sequence;}
@@ -109,6 +146,14 @@ public class QuestionnaireVO {
         this.fever = fever;
     }
 
+    public int getMuscle_ache() {
+        return muscle_ache;
+    }
+
+    public void setMuscle_ache(int muscle_ache) {
+        this.muscle_ache = muscle_ache;
+    }
+
     public int getCough() {
         return cough;
     }
@@ -117,13 +162,6 @@ public class QuestionnaireVO {
         this.cough = cough;
     }
 
-    public int getMuscle_ache() {
-        return muscle_ache;
-    }
-
-    public void setMuscle_ache(int muscle_ache) {
-        this.muscle_ache = muscle_ache;
-    }
 
     public int getSputum() {
         return sputum;

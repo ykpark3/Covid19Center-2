@@ -24,18 +24,16 @@ public class AppManager {
     public String getUserId() { return userId; }
     public void setUserId(String userId) {
         this.userId = userId;
-
     }
 
     public ArrayList<ReservationVO> getReservationVOArrayList() {
         return reservationVOArrayList;
     }
-
     public void setReservationVOArrayList(ArrayList<ReservationVO> reservationVOArrayList) {
         this.reservationVOArrayList = reservationVOArrayList;
     }
 
-    public ArrayList<QuestionnaireVO> getQuesionnaireVOArrayList() {return questionnaireVOArrayList; }
+    public ArrayList<QuestionnaireVO> getQuestionnaireVOArrayList() {return questionnaireVOArrayList; }
     public void setQuestionnaireVOArrayList(ArrayList<QuestionnaireVO> questionnaireVOArrayList) {
         this.questionnaireVOArrayList = questionnaireVOArrayList;
     }

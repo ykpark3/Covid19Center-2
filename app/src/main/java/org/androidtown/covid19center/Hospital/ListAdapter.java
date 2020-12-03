@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.androidtown.covid19center.R;
+import org.androidtown.covid19center.SelfCheck.QuestionnaireActivity;
 import org.androidtown.covid19center.Server.ReservationVO;
 
 import java.util.ArrayList;
@@ -59,6 +60,7 @@ public class ListAdapter extends BaseAdapter {
 //        listview_hospital.setText(String.valueOf(list.get(position).getVisited()));
         listview_date.setText(list.get(position).getDate());
         listview_time.setText(list.get(position).getTime());
+
 
         //리스트뷰 클릭시 환자 문진표 띄우기
         linearLayout.setOnClickListener(new View.OnClickListener() {
