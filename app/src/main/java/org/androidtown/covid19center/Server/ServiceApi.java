@@ -19,9 +19,7 @@ import retrofit2.http.QueryMap;
 public interface ServiceApi {
 
     @GET("/users")
-
     Call<List<UsersVO>> getUserData(@Query("id") String id, @Query("password") String password);
-    //Call<ResponseBody> login(@Body UsersData users);
 
     @GET("/reservation")
     Call<List<ReservationVO>> getReservationVO();
