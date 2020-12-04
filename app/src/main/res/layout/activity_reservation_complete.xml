@@ -16,6 +16,7 @@
         <ImageButton
             android:id="@+id/reservation_complete_backButton"
 
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -296,7 +297,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/modificationButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorMain"

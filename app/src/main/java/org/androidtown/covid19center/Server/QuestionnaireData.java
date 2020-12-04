@@ -2,8 +2,14 @@ package org.androidtown.covid19center.Server;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.zip.CheckedOutputStream;
+
 public class QuestionnaireData {
 
+
+
+    @SerializedName("sequence")
+    int sequence;
 
     @SerializedName("user_id")
     String user_id;
@@ -25,6 +31,8 @@ public class QuestionnaireData {
     boolean fever;
     @SerializedName("muscle_ache")
     boolean muscle_ache;
+    @SerializedName("cough")
+    boolean cough;
     @SerializedName("sputum")
     boolean sputum;
     @SerializedName("runny_nose")
@@ -40,7 +48,8 @@ public class QuestionnaireData {
     String toDoctor;
 
 
-    public QuestionnaireData(String user_id,
+    public QuestionnaireData(int sequence,
+                             String user_id,
                              boolean visited,
                              String visited_detail,
                              String entrance_date,
@@ -49,16 +58,16 @@ public class QuestionnaireData {
                              String contact_period,
                              boolean fever,
                              boolean muscle_ache,
+                             boolean cough,
                              boolean sputum,
                              boolean runny_nose,
                              boolean dyspnea,
                              boolean sore_throat,
                              String symptom_start_date,
-
                              String toDoctor) {
 
 
-        //this.sequence = sequence;
+        this.sequence = sequence;
         this.user_id = user_id;
         this.visited = visited;
         this.visited_detail = visited_detail;
@@ -68,6 +77,7 @@ public class QuestionnaireData {
         this.contact_period = contact_period;
         this.fever = fever;
         this.muscle_ache = muscle_ache;
+        this.cough =cough;
         this.sputum = sputum;
         this.runny_nose = runny_nose;
         this.dyspnea = dyspnea;
@@ -76,6 +86,53 @@ public class QuestionnaireData {
         this.toDoctor = toDoctor;
     }
 
+
+
+    public QuestionnaireData(String user_id,
+                             boolean visited,
+                             String visited_detail,
+                             String entrance_date,
+                             boolean contact,
+                             String contact_relationship,
+                             String contact_period,
+                             boolean fever,
+                             boolean muscle_ache,
+                             boolean cough,
+                             boolean sputum,
+                             boolean runny_nose,
+                             boolean dyspnea,
+                             boolean sore_throat,
+                             String symptom_start_date,
+
+                             String toDoctor) {
+
+
+        this.user_id = user_id;
+        this.visited = visited;
+        this.visited_detail = visited_detail;
+        this.entrance_date = entrance_date;
+        this.contact = contact;
+        this.contact_relationship = contact_relationship;
+        this.contact_period = contact_period;
+        this.fever = fever;
+        this.muscle_ache = muscle_ache;
+        this.cough = cough;
+        this.sputum = sputum;
+        this.runny_nose = runny_nose;
+        this.dyspnea = dyspnea;
+        this.sore_throat = sore_throat;
+        this.symptom_start_date = symptom_start_date;
+        this.toDoctor = toDoctor;
+
+    }
+
+
+    public int getSequence() {
+        return sequence;
+    }
+    public void setSequence(int sequence) {
+        this.sequence = sequence;
+    }
 
     public String getUser_id() {return user_id;}
     public void setUser_id(String user_id) {
@@ -107,6 +164,9 @@ public class QuestionnaireData {
 
     public boolean getMuscle_ache() {return muscle_ache;}
     public void setMuscle_ache(boolean muscle_ache) {this.muscle_ache = muscle_ache;}
+
+    public boolean getCough() {return cough;}
+    public void setCough(boolean cough) {this.cough = cough;}
 
     public boolean getSputum() {return sputum;}
     public void setSputum(boolean sputum) {this.sputum = sputum;}

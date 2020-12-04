@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,12 +33,12 @@ public class CheckReservationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d("~~~~~","questionnaire button click");
-                goToNextActivity();
+                goToModificationActivity();
             }
         });
     }
 
-    private void goToNextActivity() {
+    private void goToModificationActivity() {
         Log.d("~~~~~","goToNextActivity");
         Intent intent = new Intent(this, QuestionnaireModificationActivity.class);
         startActivity(intent);

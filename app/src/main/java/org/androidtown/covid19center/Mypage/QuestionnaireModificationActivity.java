@@ -30,12 +30,13 @@ import org.androidtown.covid19center.Server.ServiceApi;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -64,7 +65,10 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
     private ImageButton backButton;
     private Button nextButton;
 
-    private Boolean isVisited;
+    int sequence;
+    String user_id;
+
+    private boolean isVisited;
     private String visitedDetail;
     private String entrance_date;
     private boolean isContacted;
@@ -79,14 +83,14 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
     private String clinicReservationTime;
      */
     private ServiceApi serviceApi;
-
+    private ArrayList<QuestionnaireVO> questionnaireVOArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
 
-        Log.d("~~~~~","onCreate");
+        Log.d("~~~~~QuestionnaireModif", "onCreate");
 
         serviceApi = RetrofitClient.getClient().create(ServiceApi.class);
 
@@ -94,12 +98,12 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
 
         setLayoutElement();
 
-        getQuesionnaire();
+        getQuestionnaire();
     }
 
 
-    private void setLayoutElement(){
-        Log.d("~~~~~","setLayoutElement");
+    private void setLayoutElement() {
+        Log.d("~~~~~QuestionnaireModif", "setLayoutElement");
 
         visitedCheck_radioGroup = findViewById(R.id.questionnarie_visited_radioGroup);
         visitedCheck_radioGroup.setOnCheckedChangeListener(visitedCheckRadioGroupButtonChangeListener);
@@ -129,7 +133,7 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
         nextButton = findViewById(R.id.questionnarie_button);
         backButton = findViewById(R.id.questionnarie_backButton);
 
-       // clinicReservationTime = null;
+        // clinicReservationTime = null;
         symptom_start_date = null;
         visitedDetail = null;
         contact_relationship = null;
@@ -141,11 +145,13 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
             public void onClick(View v) {
                 setCheckedInfo();
 
+
                 /** toDoctor 내용 추가해주기
                  *
                  */
-                /*
-                updateQuestionnaireData(new QuestionnaireData(AppManager.getInstance().getUserId(),
+                updateQuestionnaireData(new QuestionnaireData(
+                        sequence,
+                        AppManager.getInstance().getUserId(),
                         isVisited,
                         visitedDetail,
                         entrance_date,
@@ -154,6 +160,7 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
                         contact_period,
                         hasFever,
                         hasMuscle_ache,
+                        hasCough,
                         hasSputum,
                         hasRunnyNose,
                         hasDyspnea,
@@ -161,9 +168,8 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
                         symptom_start_date,
                         "toDoctor"));
 
-
-                 */
-                Toast.makeText(getApplicationContext(), "눌림", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "문진표가 수정되었습니다.", Toast.LENGTH_SHORT).show();
+                finish();
 
             }
         });
@@ -178,7 +184,7 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                myCalender.set(Calendar.YEAR,year);
+                myCalender.set(Calendar.YEAR, year);
                 myCalender.set(Calendar.MONTH, month);
                 myCalender.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                 updateLabel();
@@ -188,7 +194,7 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
         DatePickerDialog.OnDateSetListener virusStartDate = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                myCalender.set(Calendar.YEAR,year);
+                myCalender.set(Calendar.YEAR, year);
                 myCalender.set(Calendar.MONTH, month);
                 myCalender.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                 updateVirusStartLabel();
@@ -198,6 +204,7 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
         entranceDateTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("~~~~~QuestionnaireModif", "entranceDateTextView click");
                 new DatePickerDialog(QuestionnaireModificationActivity.this, date, myCalender.get(Calendar.YEAR), myCalender.get(Calendar.MONTH), myCalender.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
@@ -205,13 +212,17 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
         termTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showNumberPicker(v, "접촉기간", "1", 30, 0,1, 1);
+
+                Log.d("~~~~~QuestionnaireModif", "termTextView click");
+                showNumberPicker(v, "접촉기간", "1", 30, 0, 1, 1);
             }
         });
 
         startVirusDateTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("~~~~~QuestionnaireModif", "startVirusDateTextView click");
+
                 new DatePickerDialog(QuestionnaireModificationActivity.this, virusStartDate, myCalender.get(Calendar.YEAR), myCalender.get(Calendar.MONTH), myCalender.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
@@ -219,52 +230,11 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
     }
 
 
-
-    private void updateQuestionnaireData(QuestionnaireData questionnaireData) {
-        Log.d("~~~~~", "updateQuestionnaireData");
-
-        Call<ResponseBody> dataCall = serviceApi.sendQuestionnaireData(questionnaireData);
-        dataCall.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                String result = null;
-                try {
-                    Log.d("~~~~~", "response" + response.code());
-                    result = response.body().string();
-
-                } catch (IOException e) {
-                    Log.d("~~~~~", String.valueOf(e));
-                    e.printStackTrace();
-                }
-                Log.i("~~~~~", "result: " + result);
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.i("~~~~~", "fail");
-                if (t instanceof IOException) {
-                    // Handle IO exception, maybe check the network and try again.
-                    Log.i("~~~~~", "t" + t);
-                }
-            }
-        });
-    }
-
-
-
-    protected void getQuesionnaire() {
-        Log.d("~~~~~", " getQuesionnaire");
-
-        serviceApi.getQuesionnaireVO().enqueue(new Callback<List<QuestionnaireVO>>() {
-            @Override
-            public void onResponse(Call<List<QuestionnaireVO>> call, Response<List<QuestionnaireVO>> response) {
-
-                int sequence;
-                String user_id;
-
-                int visited;
-                int contact;
-                int fever, muscle_ache, sputum, runny_nose, dyspnea, sore_throat;
+    protected void getQuestionnaire() {
+        Log.d("~~~~~QuestionnaireModif", " getQuestionnaire");
+        int visited;
+        int contact;
+        int fever, muscle_ache, cough, sputum, runny_nose, dyspnea, sore_throat;
 
                 /*
                 String visited_detail, entrance_date;
@@ -273,140 +243,158 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
                  */
 
 
-                if (response.isSuccessful()) {
-                    List<QuestionnaireVO> data = response.body();
+        questionnaireVOArrayList = new ArrayList<QuestionnaireVO>();
+        questionnaireVOArrayList = AppManager.getInstance().getQuestionnaireVOArrayList();
 
-                    Log.d("~~~~~", "questionnaireList 가져오기 성공");
+        Log.d("~~~~~QuestionnaireModif","questionnaireVOArrayList size: "+questionnaireVOArrayList.size());
 
-                    sequence = data.get(data.size() -1).getSequence();
-                    user_id = data.get(data.size() - 1).getUser_id();
-                    visited = data.get(data.size() - 1).getVisited();
-                    visitedDetail = data.get(data.size() - 1).getVisited_detail();
-                    entrance_date = data.get(data.size() - 1).getEntrance_date();
-                    contact = data.get(data.size() - 1).getContact();
-                    contact_relationship = data.get(data.size() - 1).getContact_relationship();
-                    contact_period = data.get(data.size() - 1).getContact_period();
-                    fever = data.get(data.size() - 1).getFever();
-                    muscle_ache = data.get(data.size() - 1).getMuscle_ache();
-                    sputum = data.get(data.size() - 1).getSputum();
-                    runny_nose = data.get(data.size() - 1).getRunny_nose();
-                    dyspnea = data.get(data.size() - 1).getDyspnea();
-                    sore_throat = data.get(data.size() - 1).getSore_throat();
-                    symptom_start_date = data.get(data.size() - 1).getSymptom_start_date();
-                    toDoctor = data.get(data.size() - 1).getToDoctor();
-
-                    Log.d("~~~~~","sequence: "+sequence +"\n"+
-                            "user_id: "+user_id +"\n"+
-                            "visited: "+visited +"\n"+
-                            "visitedDetail: "+visitedDetail +"\n"+
-                            "entrance_date: "+entrance_date +"\n"+
-                            "contact: "+contact +"\n"+
-                            "contact_relationship: "+contact_relationship +"\n"+
-                            "fever: "+fever +"\n"+
-                            "muscle_ache: "+muscle_ache +"\n"+
-                            "sputum: "+sputum +"\n"+
-                            "runny_nose: "+runny_nose +"\n"+
-                            "dyspnea: "+dyspnea +"\n"+
-                            "sore_throat: "+sore_throat +"\n"+
-                            "symptom_start_date: "+symptom_start_date +"\n"+
-                            "toDoctor: "+toDoctor +"\n");
+        sequence = questionnaireVOArrayList.get(questionnaireVOArrayList.size() - 1).getSequence();
+        user_id = questionnaireVOArrayList.get(questionnaireVOArrayList.size() - 1).getUser_id();
+        visited = questionnaireVOArrayList.get(questionnaireVOArrayList.size() - 1).getVisited();
+        visitedDetail = questionnaireVOArrayList.get(questionnaireVOArrayList.size() - 1).getVisited_detail();
+        entrance_date = questionnaireVOArrayList.get(questionnaireVOArrayList.size() - 1).getEntrance_date();
+        contact = questionnaireVOArrayList.get(questionnaireVOArrayList.size() - 1).getContact();
+        contact_relationship = questionnaireVOArrayList.get(questionnaireVOArrayList.size() - 1).getContact_relationship();
+        contact_period = questionnaireVOArrayList.get(questionnaireVOArrayList.size() - 1).getContact_period();
+        fever = questionnaireVOArrayList.get(questionnaireVOArrayList.size() - 1).getFever();
+        muscle_ache = questionnaireVOArrayList.get(questionnaireVOArrayList.size() - 1).getMuscle_ache();
+        cough = questionnaireVOArrayList.get(questionnaireVOArrayList.size() - 1).getCough();
+        sputum = questionnaireVOArrayList.get(questionnaireVOArrayList.size() - 1).getSputum();
+        runny_nose = questionnaireVOArrayList.get(questionnaireVOArrayList.size() - 1).getRunny_nose();
+        dyspnea = questionnaireVOArrayList.get(questionnaireVOArrayList.size() - 1).getDyspnea();
+        sore_throat = questionnaireVOArrayList.get(questionnaireVOArrayList.size() - 1).getSore_throat();
+        symptom_start_date = questionnaireVOArrayList.get(questionnaireVOArrayList.size() - 1).getSymptom_start_date();
+        toDoctor = questionnaireVOArrayList.get(questionnaireVOArrayList.size() - 1).getToDoctor();
 
 
-                    /** int -> boolean 형 변환
-                     *
-                     */
-                    isVisited = visited != 0;
-                    isContacted = contact != 0;
-                    hasFever = fever != 0;
-                    hasMuscle_ache = muscle_ache != 0;
-                    hasSputum = sputum != 0;
-                    hasRunnyNose = runny_nose != 0;
-                    hasDyspnea = dyspnea != 0;
-                    hasSoreThroat = sore_throat != 0;
+        /** int -> boolean 형 변환
+         * radioButton check할 때는 boolean형 사용
+         *
+         */
+        isVisited = visited != 0;
+        isContacted = contact != 0;
+        hasFever = fever != 0;
+        hasMuscle_ache = muscle_ache != 0;
+        hasCough = cough != 0;
+        hasSputum = sputum != 0;
+        hasRunnyNose = runny_nose != 0;
+        hasDyspnea = dyspnea != 0;
+        hasSoreThroat = sore_throat != 0;
 
-                    Log.d("~~~~~","isVisited: "+isVisited +"\n"+
-                                    "isContacted: "+isContacted +"\n"+
-                                    "hasFever: "+hasFever +"\n"+
-                                    "hasMuscle_ache: "+hasMuscle_ache +"\n"+
-                                    "hasSputum: "+hasSputum +"\n"+
-                                    "hasRunnyNose: "+hasRunnyNose +"\n"+
-                                    "hasDyspnea: "+hasDyspnea +"\n"+
-                                    "hasSoreThroat: "+hasSoreThroat +"\n" );
-
-                    setQuestionnaire();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<QuestionnaireVO>> call, Throwable t) {
-                Log.d("~~~~~", "실패: " + t);
-                t.printStackTrace();
-            }
-        });
-
+        setQuestionnaire();
     }
 
 
 
-    private void setQuestionnaire() {
-        Log.d("~~~~~","setQuestionnaire");
 
-        if(isVisited){
+    private void updateQuestionnaireData(QuestionnaireData questionnaireData) {
+        Log.d("~~~~~QuestionnaireModif", "updateQuestionnaireData");
+
+        Call<ResponseBody> dataCall = serviceApi.modifyQuestionnaireData(sequence, questionnaireData);
+
+        dataCall.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                String result = null;
+                try {
+                    Log.d("~~~~~QuestionnaireModif", "response" + response.code());
+                    result = response.body().string();
+
+                } catch (IOException e) {
+                    Log.d("~~~~~QuestionnaireModif", String.valueOf(e));
+                    e.printStackTrace();
+                }
+                Log.i("~~~~~QuestionnaireModif", "result: " + result);
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.i("~~~~~QuestionnaireModif", "fail");
+                if (t instanceof IOException) {
+                    // Handle IO exception, maybe check the network and try again.
+                    Log.i("~~~~~QuestionnaireModif", "t" + t);
+                }
+            }
+        });
+    }
+
+
+    private void setQuestionnaire() {
+        Log.d("~~~~~QuestionnaireModif", "setQuestionnaire");
+
+        if (isVisited) {
             visitedTrue_radioButton.setChecked(true);
-        }
-        else {
+        } else {
             visitedFalse_radioButton.setChecked(true);
         }
         countryEditText.setText(visitedDetail);
-        entranceDateTextView.setText(entrance_date);
-        entranceDateTextView.setTextColor(Color.BLACK);
 
-        if(isContacted){
-            contactTrue_radioButton.setChecked(true);
+        if (entrance_date.equals("")) {
+            Log.d("~~~~~QuestionnaireModif", "entrance date 공란");
+            entranceDateTextView.setText(R.string.entrance_date_text);
+            entranceDateTextView.setTextColor(Color.LTGRAY);
+        } else {
+            entranceDateTextView.setText(entrance_date);
+            entranceDateTextView.setTextColor(Color.BLACK);
         }
-        else {
+
+        if (isContacted) {
+            contactTrue_radioButton.setChecked(true);
+        } else {
             contactFalse_radioButton.setChecked(true);
         }
         relationEditText.setText(contact_relationship);
-        termTextView.setText(contact_period);
+
+        if (contact_period.equals("")) {
+            termTextView.setText(R.string.term_text);
+            termTextView.setTextColor(Color.LTGRAY);
+        } else {
+            termTextView.setText(entrance_date);
+            termTextView.setTextColor(Color.BLACK);
+        }
 
 
-        if(hasFever){
+        if (hasFever) {
             fever_checkBox.setChecked(true);
         }
-        if(hasMuscle_ache){
+        if (hasMuscle_ache) {
             muscle_ache_checkBox.setChecked(true);
         }
-        if(hasCough){
+        if (hasCough) {
             cough_checkBox.setChecked(true);
         }
-        if(hasSputum){
+        if (hasSputum) {
             sputum_checkBox.setChecked(true);
         }
-        if(hasRunnyNose){
+        if (hasRunnyNose) {
             runny_nose_checkBox.setChecked(true);
         }
-        if(hasDyspnea){
+        if (hasDyspnea) {
             dyspnea_checkBox.setChecked(true);
         }
-        if(hasSoreThroat){
+        if (hasSoreThroat) {
             sore_throat_checkBox.setChecked(true);
         }
 
-        if(!hasFever && !hasMuscle_ache && !hasCough && !hasSputum && !hasRunnyNose && !hasDyspnea && !hasSoreThroat) {
+        if (!hasFever && !hasMuscle_ache && !hasCough && !hasSputum && !hasRunnyNose && !hasDyspnea && !hasSoreThroat) {
             none_checkBox.setChecked(true);
         }
 
-        startVirusDateTextView.setText(symptom_start_date);
-        startVirusDateTextView.setTextColor(Color.BLACK);
+        if (symptom_start_date.equals("")) {
+            startVirusDateTextView.setText(R.string.term_text);
+            startVirusDateTextView.setTextColor(Color.LTGRAY);
+        } else {
+            startVirusDateTextView.setText(entrance_date);
+            startVirusDateTextView.setTextColor(Color.BLACK);
+        }
     }
 
     RadioGroup.OnCheckedChangeListener contactRadioGroupButtonChangeListener = new RadioGroup.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {
-            if(checkedId == R.id.questionnarie_contact_radioButton_true){
+            if (checkedId == R.id.questionnarie_contact_radioButton_true) {
                 isContacted = true;
-            } else if(checkedId == R.id.questionnarie_contact_radioButton_false){
+            } else if (checkedId == R.id.questionnarie_contact_radioButton_false) {
                 isContacted = false;
             }
         }
@@ -416,58 +404,58 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {
 
-            if(checkedId == R.id.questionnarie_visited_radioButton_true){
+            if (checkedId == R.id.questionnarie_visited_radioButton_true) {
                 isVisited = true;
-            } else if(checkedId == R.id.questionnarie_visited_radioButton_false){
+            } else if (checkedId == R.id.questionnarie_visited_radioButton_false) {
                 isVisited = false;
             }
 
         }
     };
 
-    private void setCheckedInfo(){
+    private void setCheckedInfo() {
 
-        Log.d("~~~~~","setCheckedInfo");
+        Log.d("~~~~~QuestionnaireModif", "setCheckedInfo");
 
-        if(fever_checkBox.isChecked() == true){
+        if (fever_checkBox.isChecked() == true) {
             hasFever = true;
-        } else{
+        } else {
             hasFever = false;
         }
 
-        if(muscle_ache_checkBox.isChecked() == true){
+        if (muscle_ache_checkBox.isChecked() == true) {
             hasMuscle_ache = true;
-        } else{
+        } else {
             hasMuscle_ache = false;
         }
 
-        if(cough_checkBox.isChecked() == true){
+        if (cough_checkBox.isChecked() == true) {
             hasCough = true;
-        } else{
+        } else {
             hasCough = false;
         }
 
-        if(runny_nose_checkBox.isChecked() == true){
+        if (runny_nose_checkBox.isChecked() == true) {
             hasRunnyNose = true;
-        } else{
+        } else {
             hasRunnyNose = false;
         }
 
-        if(dyspnea_checkBox.isChecked() == true){
+        if (dyspnea_checkBox.isChecked() == true) {
             hasDyspnea = true;
-        } else{
+        } else {
             hasDyspnea = false;
         }
 
-        if(sputum_checkBox.isChecked() == true){
+        if (sputum_checkBox.isChecked() == true) {
             hasSputum = true;
-        } else{
+        } else {
             hasSputum = false;
         }
 
-        if(sore_throat_checkBox.isChecked() == true){
+        if (sore_throat_checkBox.isChecked() == true) {
             hasSoreThroat = true;
-        } else{
+        } else {
             hasSoreThroat = false;
         }
 
@@ -483,8 +471,8 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
 
      */
 
-    private void updateLabel(){
-        Log.d("~~~~~","updateLabel");
+    private void updateLabel() {
+        Log.d("~~~~~QuestionnaireModif", "updateLabel");
         String myFormat = "yyyy/MM/dd"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
         entranceDateTextView.setText(sdf.format(myCalender.getTime()));
@@ -492,8 +480,8 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
         entrance_date = sdf.format(myCalender.getTime());
     }
 
-    private void updateVirusStartLabel(){
-        Log.d("~~~~~","updateVirusStartLabel");
+    private void updateVirusStartLabel() {
+        Log.d("~~~~~QuestionnaireModif", "updateVirusStartLabel");
 
         String myFormat = "yyyy/MM/dd"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
@@ -505,15 +493,15 @@ public class QuestionnaireModificationActivity extends AppCompatActivity impleme
     @Override
     public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
 
-        Log.d("~~~~~","onValueChange");
-        termTextView.setText(String.valueOf(newVal)+ "일");
+        Log.d("~~~~~QuestionnaireModif", "onValueChange");
+        termTextView.setText(String.valueOf(newVal) + "일");
         termTextView.setTextColor(Color.BLACK);
         contact_period = String.valueOf(newVal);
     }
 
-    public void showNumberPicker(View view, String title, String subtitle, int maxvalue, int minvalue, int step, int defvalue){
+    public void showNumberPicker(View view, String title, String subtitle, int maxvalue, int minvalue, int step, int defvalue) {
 
-        Log.d("~~~~~","showNumberPicker");
+        Log.d("~~~~QuestionnaireModif~", "showNumberPicker");
         NumberpickerDialog newFragment = new NumberpickerDialog();
 
         //Dialog에는 bundle을 이용해서 파라미터를 전달한다

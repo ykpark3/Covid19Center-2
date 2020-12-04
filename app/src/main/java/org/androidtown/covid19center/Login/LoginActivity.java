@@ -6,6 +6,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,14 +14,19 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.androidtown.covid19center.Hospital.HospitalMainActivity;
 import org.androidtown.covid19center.Main.MainActivity;
 import org.androidtown.covid19center.R;
+
+import org.androidtown.covid19center.Hospital.HospitalMainActivity;
 import org.androidtown.covid19center.Server.AppManager;
+import org.androidtown.covid19center.Server.QuestionnaireVO;
+import org.androidtown.covid19center.Server.ReservationVO;
 import org.androidtown.covid19center.Server.RetrofitClient;
 import org.androidtown.covid19center.Server.ServiceApi;
 import org.androidtown.covid19center.Server.UsersVO;
 
+
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -31,8 +37,12 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText idEditText, passwordEditText;
     Button loginButton;
-    private ServiceApi service;
+    private ServiceApi serviceApi;
     private Context mcontext;
+    private ArrayList<ReservationVO> reservationVOArrayList;
+    private ArrayList<QuestionnaireVO> questionnaireVOArrayList;
+
+    private String id, password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void setLoginInfomation() {
-        service = RetrofitClient.getClient().create(ServiceApi.class);
+        serviceApi = RetrofitClient.getClient().create(ServiceApi.class);
 
         idEditText = findViewById(R.id.idEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
@@ -57,10 +67,10 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String id = idEditText.getText().toString();
-                String password = passwordEditText.getText().toString();
+                id = idEditText.getText().toString();
+                password = passwordEditText.getText().toString();
 
-                startLogin(id, password);
+                startLogin();
             }
         });
 
@@ -103,9 +113,10 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    public void startLogin(String id, String password) {
 
-        service.getUserData(id, password).enqueue(new Callback<List<UsersVO>>() {
+    public void startLogin() {
+
+        serviceApi.getUserData(id, password).enqueue(new Callback<List<UsersVO>>() {
             @Override
             public void onResponse(Call<List<UsersVO>> call, Response<List<UsersVO>> response) {
                 boolean isLoginPossible = false;
@@ -116,25 +127,15 @@ public class LoginActivity extends AppCompatActivity {
 
                     for (int i = 0; i < data.size(); i++) {
                         if (data.get(i).getId().equals(id) && data.get(i).getPassword().equals(password)) {
-                            Log.d("~~~~~", "로그인 가능");
+                            Log.d("~~~~~LoginActivity", "로그인 가능");
                             Toast toast = Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT);
                             toast.show();
 
                             AppManager.getInstance().setUserId(id);   // user id 저장하기
 
-                            if (id.equals("hhh")) {
-                                Intent intent = new Intent(LoginActivity.this, HospitalMainActivity.class);
-
-                                startActivity(intent);
-
-                                finish();
-                            } else {
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                startActivity(intent);
-
-                                finish();
-                            }
                             isLoginPossible = true;
+
+                            getReservationList();
 
                             break;
                         }
@@ -142,7 +143,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     if (!isLoginPossible) {
 
-                        Log.d("~~~~~", "로그인 정보 확인 필요");
+                        Log.d("~~~~~LoginActivity", "로그인 정보 확인 필요");
                         Toast toast = Toast.makeText(LoginActivity.this, "로그인 정보를 확인해주세요.", Toast.LENGTH_SHORT);
                         toast.show();
 
@@ -158,9 +159,156 @@ public class LoginActivity extends AppCompatActivity {
             @Override
 
             public void onFailure(Call<List<UsersVO>> call, Throwable t) {
-                Log.d("~~~~~", "실패: " + t);
+                Log.d("~~~~~LoginActivity", "실패: " + t);
                 t.printStackTrace();
 
+            }
+        });
+    }
+
+
+    protected void getReservationList() {
+        Log.d("~~~~~LoginActivity", " getReservationList");
+
+        serviceApi.getReservationVO().enqueue(new Callback<List<ReservationVO>>() {
+            @Override
+            public void onResponse(Call<List<ReservationVO>> call, Response<List<ReservationVO>> response) {
+
+
+                reservationVOArrayList = AppManager.getInstance().getReservationVOArrayList();
+                reservationVOArrayList.clear();
+
+                String user_id;
+                int questionnaire_seq;
+                String hospital_name;
+                String time;
+                String date;
+                int visited;
+                String completion_time;
+
+
+                if (response.isSuccessful()) {
+                    List<ReservationVO> data = response.body();
+
+                    Log.d("~~~~~LoginActivity", "getReservationList 가져오기 성공");
+
+                    for (int i = 0; i < data.size(); i++) {
+                        user_id = data.get(i).getUser_id();
+                        questionnaire_seq = data.get(i).getQuestionnaire_seq();
+                        hospital_name = data.get(i).getHospital_name();
+                        time = data.get(i).getTime();
+                        date = data.get(i).getDate();
+                        visited = data.get(i).getVisited();
+                        // completion_time = data.get(i).getCompletion_time();
+
+                        ReservationVO reservationVO = new ReservationVO(user_id, questionnaire_seq, hospital_name, time, date, visited
+                                //,completion_time
+                        );
+                        reservationVOArrayList.add(reservationVO);
+
+                    }
+
+                    AppManager.getInstance().setReservationVOArrayList(reservationVOArrayList);
+                    Log.d("~~~~~LoginActivity", "reservation list size:" + reservationVOArrayList.size());
+
+
+                    getQuestionnaireList();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<ReservationVO>> call, Throwable t) {
+                Log.d("~~~~~LoginActivity", "실패: " + t);
+                t.printStackTrace();
+            }
+        });
+    }
+
+
+
+    protected void getQuestionnaireList() {
+        Log.d("~~~~~LoginActivity", " getQuestionnaireList");
+
+        serviceApi.getQuesionnaireVO().enqueue(new Callback<List<QuestionnaireVO>>() {
+            @Override
+            public void onResponse(Call<List<QuestionnaireVO>> call, Response<List<QuestionnaireVO>> response) {
+
+
+                questionnaireVOArrayList = AppManager.getInstance().getQuestionnaireVOArrayList();
+                questionnaireVOArrayList.clear();
+
+                int sequence;
+
+                String user_id;
+                int visited;
+
+                String visited_detail, entrance_date;
+                int contact;
+                String contact_relationship, contact_period;
+                int fever, muscle_ache, cough, sputum, runny_nose, dyspnea, sore_throat;
+                String symptom_start_date, toDoctor;
+
+
+                if (response.isSuccessful()) {
+                    List<QuestionnaireVO> data = response.body();
+
+                    Log.d("~~~~~LoginActivity", "questionnaireList 가져오기 성공");
+
+                    for (int i = 0; i < data.size(); i++) {
+                        sequence = data.get(i).getSequence();
+                        user_id = data.get(i).getUser_id();
+                        visited = data.get(i).getVisited();
+                        visited_detail = data.get(i).getVisited_detail();
+                        entrance_date = data.get(i).getEntrance_date();
+                        contact = data.get(i).getContact();
+                        contact_relationship = data.get(i).getContact_relationship();
+                        contact_period = data.get(i).getContact_period();
+                        fever = data.get(i).getFever();
+                        muscle_ache = data.get(i).getMuscle_ache();
+                        cough = data.get(i).getCough();
+                        sputum = data.get(i).getSputum();
+                        runny_nose = data.get(i).getRunny_nose();
+                        dyspnea = data.get(i).getDyspnea();
+                        sore_throat = data.get(i).getSore_throat();
+                        symptom_start_date = data.get(i).getSymptom_start_date();
+                        toDoctor = data.get(i).getToDoctor();
+
+
+                        QuestionnaireVO questionnaireVO = new QuestionnaireVO(
+                                sequence, user_id,
+                                visited, visited_detail, entrance_date,
+                                contact, contact_relationship, contact_period,
+                                fever, muscle_ache, cough, sputum, runny_nose, dyspnea, sore_throat,
+                                symptom_start_date, toDoctor
+                        );
+
+                        questionnaireVOArrayList.add(questionnaireVO);
+
+                    }
+
+                    AppManager.getInstance().setQuestionnaireVOArrayList(questionnaireVOArrayList);
+                    Log.d("~~~~~LoginActivity", "questionnaire list size:" + questionnaireVOArrayList.size());
+
+
+                    if (id.equals("hhh")) {
+                        Intent intent = new Intent(LoginActivity.this, HospitalMainActivity.class);
+                        startActivity(intent);
+
+                        finish();
+                    } else {
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(intent);
+
+                        finish();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<QuestionnaireVO>> call, Throwable t) {
+                Log.d("~~~~~LoginActivity", "실패: " + t);
+                t.printStackTrace();
             }
         });
     }

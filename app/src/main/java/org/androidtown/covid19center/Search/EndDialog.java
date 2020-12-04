@@ -19,6 +19,10 @@ import java.util.ArrayList;
 
 
 
+import java.util.ArrayList;
+
+
+
 public class EndDialog extends Dialog implements View.OnClickListener {
 
     private Context mContext;
