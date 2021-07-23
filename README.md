@@ -3,7 +3,7 @@
 
 감염 위험 낮추고 진료 속도 높이는 선별진료소 서비스 ‘Covid19 Center’
 
-![%F0%9F%8F%A5%20Covid-19%20Center%20468c7c7d88124b288d3422f49f73bebd/Untitled.png](%F0%9F%8F%A5%20Covid-19%20Center%20468c7c7d88124b288d3422f49f73bebd/Untitled.png)
+![Untitled](https://user-images.githubusercontent.com/59998914/126848498-ca707a13-bdcb-4e2a-a32b-aa0b2ed3303e.png)
 
 ## 💡 Background
 
@@ -55,48 +55,48 @@ Naver Map API를 통해 선별 진료소 위치를 받아오고 사용자의 현
 
 ## 1. 홈 화면 및 선별 진료소 목록
 
-![%F0%9F%8F%A5%20Covid-19%20Center%20468c7c7d88124b288d3422f49f73bebd/Untitled%201.png](%F0%9F%8F%A5%20Covid-19%20Center%20468c7c7d88124b288d3422f49f73bebd/Untitled%201.png)
+![Untitled 1](https://user-images.githubusercontent.com/59998914/126848499-82d0e350-a23f-4a70-a0d7-5d68ac56a33d.png)
 
-![%F0%9F%8F%A5%20Covid-19%20Center%20468c7c7d88124b288d3422f49f73bebd/Untitled%202.png](%F0%9F%8F%A5%20Covid-19%20Center%20468c7c7d88124b288d3422f49f73bebd/Untitled%202.png)
+![Untitled 2](https://user-images.githubusercontent.com/59998914/126848500-93e01433-e2e1-4969-95c9-4b01272369df.png)
 
-![%F0%9F%8F%A5%20Covid-19%20Center%20468c7c7d88124b288d3422f49f73bebd/Untitled%203.png](%F0%9F%8F%A5%20Covid-19%20Center%20468c7c7d88124b288d3422f49f73bebd/Untitled%203.png)
+![Untitled 3](https://user-images.githubusercontent.com/59998914/126848502-90a21fb2-74ef-4290-a342-50f19c92346f.png)
 
 ## 2. 선별진료소 상세정보 및 예약 페이지
 
-![%F0%9F%8F%A5%20Covid-19%20Center%20468c7c7d88124b288d3422f49f73bebd/Untitled%204.png](%F0%9F%8F%A5%20Covid-19%20Center%20468c7c7d88124b288d3422f49f73bebd/Untitled%204.png)
+![Untitled 4](https://user-images.githubusercontent.com/59998914/126848505-a7c4f9f8-5160-447d-80a3-f3a8777db3bb.png)
 
-![%F0%9F%8F%A5%20Covid-19%20Center%20468c7c7d88124b288d3422f49f73bebd/Untitled%205.png](%F0%9F%8F%A5%20Covid-19%20Center%20468c7c7d88124b288d3422f49f73bebd/Untitled%205.png)
+![Untitled 5](https://user-images.githubusercontent.com/59998914/126848510-eea359b9-a56a-4aa9-815f-74c445aba085.png)
 
-![%F0%9F%8F%A5%20Covid-19%20Center%20468c7c7d88124b288d3422f49f73bebd/Untitled%206.png](%F0%9F%8F%A5%20Covid-19%20Center%20468c7c7d88124b288d3422f49f73bebd/Untitled%206.png)
+![Untitled 6](https://user-images.githubusercontent.com/59998914/126848511-e5b0ea36-1f32-4862-b2d6-972d362ea573.png)
 
 ## 3. 자가 진단 페이지
 
-![%F0%9F%8F%A5%20Covid-19%20Center%20468c7c7d88124b288d3422f49f73bebd/Untitled%207.png](%F0%9F%8F%A5%20Covid-19%20Center%20468c7c7d88124b288d3422f49f73bebd/Untitled%207.png)
+![Untitled 7](https://user-images.githubusercontent.com/59998914/126848513-0898a9f4-8845-47f3-a046-7aeab9af1afc.png)
 
-![%F0%9F%8F%A5%20Covid-19%20Center%20468c7c7d88124b288d3422f49f73bebd/Untitled%208.png](%F0%9F%8F%A5%20Covid-19%20Center%20468c7c7d88124b288d3422f49f73bebd/Untitled%208.png)
+![Untitled 8](https://user-images.githubusercontent.com/59998914/126848514-a9c2c4c5-0bae-4da7-8ea7-54560fd7f0e6.png)
 
 ## 4. 마이페이지
 
-![%F0%9F%8F%A5%20Covid-19%20Center%20468c7c7d88124b288d3422f49f73bebd/Untitled%209.png](%F0%9F%8F%A5%20Covid-19%20Center%20468c7c7d88124b288d3422f49f73bebd/Untitled%209.png)
+![Untitled 9](https://user-images.githubusercontent.com/59998914/126848515-5b7f779a-465b-4154-9c78-6938a5d5bff9.png)
 
 
 ## 의료진용 서비스
 
 ## 5. 의료진용 QR 스캔 페이지
 
-![%F0%9F%8F%A5%20Covid-19%20Center%20468c7c7d88124b288d3422f49f73bebd/Untitled%2010.png](%F0%9F%8F%A5%20Covid-19%20Center%20468c7c7d88124b288d3422f49f73bebd/Untitled%2010.png)
+![Untitled 10](https://user-images.githubusercontent.com/59998914/126848516-c800dc53-c216-4159-ad72-779a0920fb8f.png)
 
 ## 6. 의료진용 예약 관리 페이지
 
-![%F0%9F%8F%A5%20Covid-19%20Center%20468c7c7d88124b288d3422f49f73bebd/Untitled%2011.png](%F0%9F%8F%A5%20Covid-19%20Center%20468c7c7d88124b288d3422f49f73bebd/Untitled%2011.png)
+![Untitled 11](https://user-images.githubusercontent.com/59998914/126848518-ee124621-c43a-4feb-8015-c164ea457a37.png)
 
 ## ⏳ Service Flow
 
-![%F0%9F%8F%A5%20Covid-19%20Center%20468c7c7d88124b288d3422f49f73bebd/Untitled%2012.png](%F0%9F%8F%A5%20Covid-19%20Center%20468c7c7d88124b288d3422f49f73bebd/Untitled%2012.png)
+![Untitled 12](https://user-images.githubusercontent.com/59998914/126848519-d9298c92-ff3e-4ece-92a6-46740076af09.png)
 
 ## 🛠️ Architecture
 
-![%F0%9F%8F%A5%20Covid-19%20Center%20468c7c7d88124b288d3422f49f73bebd/Untitled%2013.png](%F0%9F%8F%A5%20Covid-19%20Center%20468c7c7d88124b288d3422f49f73bebd/Untitled%2013.png)
+![Untitled 13](https://user-images.githubusercontent.com/59998914/126848520-68a80af3-3c55-42a3-a512-5f7d62fe860b.png)
 
 ## 💭 I Learned
 
