@@ -54,6 +54,19 @@ Naver Map API를 통해 선별 진료소 위치를 받아오고 사용자의 현
 
 <br>
 
+## ⏳ Service Flow
+
+![Untitled 12](https://user-images.githubusercontent.com/59998914/126848519-d9298c92-ff3e-4ece-92a6-46740076af09.png)
+
+<br>
+
+## 🛠️ Architecture
+
+![Untitled 13](https://user-images.githubusercontent.com/59998914/126848520-68a80af3-3c55-42a3-a512-5f7d62fe860b.png)
+
+<br>
+
+
 ## 🎞️ Service UI
 
 
@@ -90,18 +103,6 @@ Naver Map API를 통해 선별 진료소 위치를 받아오고 사용자의 현
 #### 7. 의료진용 예약 관리 페이지
 
 <img src = "https://user-images.githubusercontent.com/63557248/128549489-65a0dc19-26ac-45f3-80d0-dec4076f49e2.png" width=80% height=80% >
-
-<br>
-
-## ⏳ Service Flow
-
-![Untitled 12](https://user-images.githubusercontent.com/59998914/126848519-d9298c92-ff3e-4ece-92a6-46740076af09.png)
-
-<br>
-
-## 🛠️ Architecture
-
-![Untitled 13](https://user-images.githubusercontent.com/59998914/126848520-68a80af3-3c55-42a3-a512-5f7d62fe860b.png)
 
 <br>
 
