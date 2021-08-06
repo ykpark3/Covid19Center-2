@@ -27,6 +27,18 @@
 
 <br>
 
+## 🛠️ Architecture
+
+![Untitled 13](https://user-images.githubusercontent.com/59998914/126848520-68a80af3-3c55-42a3-a512-5f7d62fe860b.png)
+
+<br>
+
+## ⏳ Service Flow
+
+![Untitled 12](https://user-images.githubusercontent.com/59998914/126848519-d9298c92-ff3e-4ece-92a6-46740076af09.png)
+
+<br>
+
 ## 👩‍💻 Project Features
 
 
@@ -51,18 +63,6 @@ Naver Map API를 통해 선별 진료소 위치를 받아오고 사용자의 현
 문진표에서는 방문 국가, 확진자 접촉여부, 증상, 특이사항 등을 작성한다.
 
 선별진료소에서 의료진이 QR 코드를 스캔하면 손쉽게 예약을 확인할 수 있다.
-
-<br>
-
-## ⏳ Service Flow
-
-![Untitled 12](https://user-images.githubusercontent.com/59998914/126848519-d9298c92-ff3e-4ece-92a6-46740076af09.png)
-
-<br>
-
-## 🛠️ Architecture
-
-![Untitled 13](https://user-images.githubusercontent.com/59998914/126848520-68a80af3-3c55-42a3-a512-5f7d62fe860b.png)
 
 <br>
 
